@@ -1,0 +1,16 @@
+# pkg-config source file
+
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Cflags: -I${includedir} 
+Libs: -lulibsms
+
+Name: ulibsms
+Description: universal SS7 SMS library
+Version: @VERSION@
+Requires: ulib ulibgsmmap
+
+
