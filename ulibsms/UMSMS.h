@@ -118,10 +118,9 @@ typedef enum UMSMS_MessageType
 + (NSData *) decode7bituncompressed:(NSData *)input len:(NSUInteger)len offset:(NSUInteger) offset;
 + (NSData *) pack7bit:(NSData *)input fillBits:(NSUInteger)fillers newLength:(NSUInteger *)newlen;
 - (void)decodePdu:(NSData *)data context:(id)context;
-- (UMSMS_Address *)objectValue;
+- (UMSynchronizedSortedDictionary *)objectValue;
 - (void)setText:(NSString *)text;
 - (NSString *)text;
 - (NSData *)encodePdu;
-
 
 @end

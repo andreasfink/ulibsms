@@ -114,7 +114,6 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     return output;
 }
 
-
 - (void)decodePdu:(NSData *)data context:(id)context
 {
     const uint8_t *bytes = data.bytes;
@@ -175,13 +174,10 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                                octstr_get_char(tscts,12));
             */
             tp_udl = GRAB(bytes,len,pos);
-            if(pos+tp_udl > len)
-            {
-                @throw([NSException exceptionWithName:@"BUFFER_OVERRUN"
-                                               reason:@"reading beyond size of pdu"
-                                             userInfo:@{@"file": @(__FILE__), @"line": @(__LINE__)} ]);
-            }
-            t_ud = [NSData dataWithBytes:&bytes[pos] length:tp_udl];
+            
+            /* tp_udl is in characters not bytes */
+            int remaining_bytes = len - pos;
+            t_ud = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
             tp_udhlen = 0;
             if(tp_udhi && tp_udl > 0)
             {
@@ -206,8 +202,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             }
             
             /* deal with the user data -- 7 or 8 bit encoded */
-            NSData *tmp = [NSData dataWithBytes:&bytes[pos] length:tp_udl];
-            //			octstr_dump(tmp, 0);
+            NSData *tmp = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
             if(((tp_dcs & 0xF4) == 0xF4) || (tp_dcs == 0x08)) /* 8 bit encoded */
             {
                 /* 8 bit encoding */
@@ -222,7 +217,6 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 if (tp_udhi && (((tp_dcs & 0xF4) == 0xF4) || (tp_dcs == 0x00)))
                 {
                     int nbits = (tp_udhlen + 1) * 8;
-                    //					offset = (((nbits/7)+1) * 7 - nbits)%7;     /* Fill bits for UDH to septet boundary */
                     offset = (((nbits / 7) + 1) * 7 - nbits) % 7;
                 }
                 t_ud = [UMSMS decode7bituncompressed:tmp len:tp_udl offset:offset];
