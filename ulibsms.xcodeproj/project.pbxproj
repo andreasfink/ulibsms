@@ -30,6 +30,7 @@
 		A6C789581B4ABC0A0090FC94 /* UMHLRCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C789561B4ABC0A0090FC94 /* UMHLRCacheEntry.m */; };
 		A6D10CD11D4F34EB001D021B /* UMSMS_Address.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D10CCF1D4F34EB001D021B /* UMSMS_Address.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6D10CD21D4F34EB001D021B /* UMSMS_Address.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D10CD01D4F34EB001D021B /* UMSMS_Address.m */; };
+		A6DC799A1DE65D17003BBA67 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */; };
 		A6ED5C3B1B434FAD00854472 /* UMLayerSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = A6ED5C391B434FAD00854472 /* UMLayerSMS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6ED5C3C1B434FAD00854472 /* UMLayerSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED5C3A1B434FAD00854472 /* UMLayerSMS.m */; };
 		A6ED5C861B435C4100854472 /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C7E1B435C4100854472 /* ulib.framework */; };
@@ -80,6 +81,7 @@
 		A6D10CD01D4F34EB001D021B /* UMSMS_Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMSMS_Address.m; sourceTree = "<group>"; };
 		A6D2B7BA1B453E490090FC94 /* UMSMSInProgressQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSMSInProgressQueue.h; sourceTree = "<group>"; };
 		A6D2B7BB1B453E490090FC94 /* UMSMSInProgressQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSMSInProgressQueue.m; sourceTree = "<group>"; };
+		A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = /usr/lib/libiconv.2.dylib; sourceTree = "<absolute>"; };
 		A6ED5C391B434FAD00854472 /* UMLayerSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMLayerSMS.h; sourceTree = "<group>"; };
 		A6ED5C3A1B434FAD00854472 /* UMLayerSMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMLayerSMS.m; sourceTree = "<group>"; };
 		A6ED5C7E1B435C4100854472 /* ulib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulib.framework; path = /Library/Frameworks/ulib.framework; sourceTree = "<absolute>"; };
@@ -106,6 +108,7 @@
 				A6ED5C8B1B435C4100854472 /* ulibsccp.framework in Frameworks */,
 				A6ED5C8D1B435C4100854472 /* ulibtcap.framework in Frameworks */,
 				A6ED5C8A1B435C4100854472 /* ulibmtp3.framework in Frameworks */,
+				A6DC799A1DE65D17003BBA67 /* libiconv.2.dylib in Frameworks */,
 				A6ED5C861B435C4100854472 /* ulib.framework in Frameworks */,
 				A6B7FBC71B44B54100854472 /* sctp.framework in Frameworks */,
 				A6ED5C8C1B435C4100854472 /* ulibsctp.framework in Frameworks */,
@@ -207,6 +210,7 @@
 		A6ED5C8E1B435C4500854472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */,
 				A6CCA3601CBC2C1A00DE6284 /* ulibgsmmap.framework */,
 				A6B7FBC61B44B54100854472 /* sctp.framework */,
 				A6ED5C7E1B435C4100854472 /* ulib.framework */,

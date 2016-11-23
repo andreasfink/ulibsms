@@ -6,11 +6,11 @@ libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
 Cflags: -I${includedir} 
-Libs: -lulibsms
+Libs: -lulibsms -liconv
 
 Name: ulibsms
 Description: universal SS7 SMS library
 Version: @VERSION@
-Requires: ulib ulibgsmmap
+Requires: ulib ulibgsmmap iconv
 
 

@@ -11,6 +11,7 @@
 #import "UMSMS.h"
 #import "UMSMS_Address.h"
 #import <ulibgsmmap/ulibgsmmap.h>
+#import <iconv.h>
 
 static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos, const char *file, long line)
 {
@@ -581,9 +582,266 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     t_content = [text gsm8];
  }
 
+
+- (NSString *)textFromUCS2
+{
+    iconv_t cd = iconv_open ("UTF-8", "UCS-2");
+    int ival = 1;
+    iconvctl(cd,ICONV_SET_DISCARD_ILSEQ,&ival);
+    size_t read_chars;
+
+    char buffer[300];
+    memset(buffer,0x00,sizeof(buffer));
+    char *inbuf = t_ud.bytes;
+    char *outbuf = &buffer[0];
+    size_t inbytesleft = t_ud.length;
+    size_t outsize = sizeof(buffer)-1;
+    size_t outbytesleft = outsize;
+    if(iconv(cd,&inbuf,&inbytesleft,&outbuf,&outbytesleft) < 0)
+    {
+        NSLog(@"error %d while calling iconv()",errno);
+    }
+    int len = outsize-outbytesleft;
+    NSString *s = @(buffer);
+    return s;
+}
+
 - (NSString *)text
 {
-    return [t_content stringFromGsm8];
+    NSString *t = @"unknown encoding";
+    switch(tp_dcs)
+    {
+        case 0:
+            t= [t_ud stringFromGsm8];
+            break;
+        case 0x08:
+            t = [self textFromUCS2];
+            break;
+        case 0x03:
+            t =  [[NSString alloc]initWithData:t_ud encoding:NSISOLatin1StringEncoding];
+            break;
+        case 0x04:
+            t = [t_ud hexString];
+            break;
+        default:
+            t = [t_ud hexString];
+            break;
+    }
+    if(tp_udhi)
+    {
+        if(t_udh.length >=6)
+        {
+            uint8_t *bytes = t_udh.bytes;
+            if(bytes[0] >= 0x05)
+            {
+                if(bytes[1]==0x00)
+                {
+                    if(bytes[2]==0x03)
+                    {
+                        t = [NSString stringWithFormat:@"(%d/%d): %@",bytes[3],bytes[5],bytes[4],t];
+                    }
+                }
+            }
+        }
+    }
+    return t;
 }
+#if 0
++ (NSString *)gsmToUTF8:(NSData *)d
+{
+    NSMutableString *out = [[NSMutableString alloc]init];
+    uint8_t *inBytes = d.bytes;
+    NSInteger i;
+    NSInteger len = d.length;
+    BOOL escape = NO;
+    for(i=0;i<len;i++)
+    {
+        NSString *c = @"";
+        if(escape)
+        {
+            escape = NO;
+            switch(inBytes[i])
+            {
+                case 0x14:
+                    c = @"^";
+                    break;
+                case 0x28:
+                    c = @"{";
+                    break;
+                case 0x29:
+                    c = @"}";
+                    break;
+                case 0x2F:
+                    c = @"\\";
+                    break;
+                case 0x3C:
+                    c = @"[";
+                    break;
+                case 0x3D:
+                    c = @"~";
+                    break;
+                case 0x3E:
+                    c = @"]";
+                    break;
+                case 0x40:
+                    c = @"|";
+                    break;
+                case 0x65:
+                    c = @"€";
+                    break;
+                case 0x0A:
+                    c = @"\n";
+                    break;
+                default:
+                break;
+            }
+        }
+        else
+        {
+            switch(inBytes[i])
+            {
+                case 0x00:
+                    c = @"@";
+                    break;
+                case 0x01:
+                    c = @"£";
+                    break;
+                case 0x02:
+                    c = @"$";
+                    break;
+                case 0x03:
+                    c = @"¥";
+                    break;
+                case 0x04:
+                    c = @"è";
+                    break;
+                case 0x05:
+                    c = @"é";
+                    break;
+                case 0x06:
+                    c = @"ù";
+                    break;
+                case 0x07:
+                    c = @"ì";
+                    break;
+                case 0x08:
+                    c = @"ò";
+                    break;
+                case 0x09:
+                    c = @"Ç";
+                    break;
+                case 0x0A:
+                    c = @"\n";
+                    break;
+                case 0x0B:
+                    c = @"Ø";
+                case 0x0C:
+                    c = @"ø";
+                    break;
+                case 0x0D:
+                    c = @"\r";
+                    break;
+                case 0x0E:
+                    c = @"Å";
+                    break;
+                case 0x0F:
+                    c = @"å";
+                    break;
+                case 0x10:
+                    c = @"Δ";
+                    break;
+                case 0x11:
+                    c = @"_";
+                    break;
+                case 0x12:
+                    c = @"Φ";
+                    break;
+                case  0x13:
+                    c = @"Γ";
+                    break;
+                case  0x14:
+                    c = @"Λ";
+                    break;
+                case  0x15:
+                    c = @"Ω";
+                    break;
+                case  0x16:
+                    c = @"Π";
+                    break;
+                case  0x17:
+                    c = @"Ψ";
+                    break;
+                case  0x18:
+                    c = @"Σ";
+                    break;
+                case  0x19:
+                    c = @"Θ";
+                    break;
+                case 0x01A:
+                    escape = YES;
+                    break;
+                case 0x1B:
+                    c = @"Ξ";
+                case 0x1C:
+                    c = @"Æ";
+                    break;
+                case 0x1D:
+                    c = @"æ";
+                    break;
+                case 0x1E:
+                    c = @"ß";
+                    break;
+                case 0x1F:
+                    c = @"É";
+                    break;
+                case 0x24:
+                    c = @"¤";
+                    break;
+                case 0x40:
+                    c = @"¡";
+                    break;
+                case 0x5B:
+                    c = @"Ä";
+                    break;
+                case 0x5C:
+                    c = @"Ö";
+                    break;
+                case 0x5D:
+                    c = @"Ñ";
+                    break;
+                case 0x5E:
+                    c = @"Ü";
+                    break;
+                case 0x5F:
+                    c = @"§";
+                    break;
+                case 0x60:
+                    c = @"¿";
+                    break;
+                case 0x7B:
+                    c = @"ä";
+                    break;
+                case 0x7C:
+                    c = @"ö";
+                    break;
+                case 0x7D:
+                    c = @"ñ";
+                    break;
+                case 0x7E:
+                    c = @"ü";
+                    break;
+                case 0x7F:
+                    c = @"à";
+                    break;
+                default:
+                    c = [NSString stringWithFormat:@"%c",inBytes[i]];
+                    break;
+            }
+        }
+        [out appendString:c];
+    }
+    return out;
+}
+#endif
 
 @end
