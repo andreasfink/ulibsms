@@ -638,7 +638,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 {
                     if(bytes[2]==0x03)
                     {
-                        t = [NSString stringWithFormat:@"(%d/%d): %@",bytes[3],bytes[5],bytes[4],t];
+                        t = [NSString stringWithFormat:@"(%d/%d): %@",bytes[5],bytes[4],t];
                     }
                 }
             }
