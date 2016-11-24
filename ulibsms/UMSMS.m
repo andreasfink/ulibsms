@@ -640,6 +640,10 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             }
         }
     }
+    if(t==NULL)
+    {
+        t=@"";
+    }
     return t;
 }
 #if 0
