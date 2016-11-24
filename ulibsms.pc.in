@@ -11,6 +11,6 @@ Libs: -lulibsms -liconv
 Name: ulibsms
 Description: universal SS7 SMS library
 Version: @VERSION@
-Requires: ulib ulibgsmmap iconv
+Requires: ulib ulibgsmmap
 
 

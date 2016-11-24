@@ -588,21 +588,17 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     iconv_t cd = iconv_open ("UTF-8", "UCS-2");
     int ival = 1;
     iconvctl(cd,ICONV_SET_DISCARD_ILSEQ,&ival);
-    size_t read_chars;
-
+    
     char buffer[300];
     memset(buffer,0x00,sizeof(buffer));
-    char *inbuf = t_ud.bytes;
+    char const *inbuf = t_ud.bytes;
     char *outbuf = &buffer[0];
     size_t inbytesleft = t_ud.length;
     size_t outsize = sizeof(buffer)-1;
     size_t outbytesleft = outsize;
-    if(iconv(cd,&inbuf,&inbytesleft,&outbuf,&outbytesleft) < 0)
-    {
-        NSLog(@"error %d while calling iconv()",errno);
-    }
-    int len = outsize-outbytesleft;
+    iconv(cd,(char **)&inbuf,&inbytesleft,&outbuf,&outbytesleft);
     NSString *s = @(buffer);
+    iconv_close(cd);
     return s;
 }
 
@@ -631,14 +627,14 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     {
         if(t_udh.length >=6)
         {
-            uint8_t *bytes = t_udh.bytes;
+            const uint8_t *bytes = t_udh.bytes;
             if(bytes[0] >= 0x05)
             {
                 if(bytes[1]==0x00)
                 {
                     if(bytes[2]==0x03)
                     {
-                        t = [NSString stringWithFormat:@"(%d/%d): %@",bytes[3],bytes[5],bytes[4],t];
+                        t = [NSString stringWithFormat:@"(%d/%d): %@",bytes[5],bytes[4],t];
                     }
                 }
             }

@@ -1,0 +1,12 @@
+This directory contains the source of the iconv library which you might need on some systems
+just do:
+
+tar -xvzf libiconv*.tar.gz
+cd libiconv*
+./configure
+cd lib
+make install
+cd ../..
+
+
+
