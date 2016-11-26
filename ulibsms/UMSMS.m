@@ -55,6 +55,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 @synthesize tp_oa;
 @synthesize tp_da;
 @synthesize t_content;
+@synthesize udh_decoded;
 
 + (NSData *) decode7bituncompressed:(NSData *)input len:(NSUInteger)len offset:(NSUInteger) offset
 {
@@ -201,7 +202,11 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 t_udh = NULL;
                 tp_udhlen = 0;
             }
-            
+
+            if(t_udh)
+            {
+                udh_decoded = [UMSMS decodeUdh:t_udh];
+            }
             /* deal with the user data -- 7 or 8 bit encoded */
             NSData *tmp = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
             if(((tp_dcs & 0xF4) == 0xF4) || (tp_dcs == 0x08)) /* 8 bit encoded */
@@ -651,4 +656,286 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     return t;
 }
 
+
++ (NSDictionary *)decodeUdh:(NSData *)data
+{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    if(data.length < 2)
+    {
+        return dict;
+    }
+
+    uint8_t *bytes = data.bytes;
+    NSInteger len  = data.length;
+    NSInteger i;
+
+    if(bytes[0] != len - 1)
+    {
+        dict[@"error"] = @"invalid-length";
+        return dict;
+    }
+    for(i=1;i<(len-1);i++)
+    {
+        int iei = bytes[i];
+        int ielen = bytes[i+1];
+        if( (len - 2 - i ) < ielen)
+        {
+            break;
+        }
+        uint8_t *iebytes = &bytes[i+2];
+        i++;
+        i = i+ielen+1;
+        NSData *d2 = [NSData dataWithBytes:iebytes length:ielen];
+        NSMutableDictionary *dict2 = [[NSMutableDictionary alloc]init];
+        dict2[@"iei"] = @(iei);
+        dict2[@"iel"] = @(ielen);
+        dict2[@"data"] = d2;
+        switch(iei)
+        {
+            case 0x00:
+            {
+                dict2[@"type"] = @"concatenated";
+                if(ielen !=3)
+                {
+                    dict2[@"error"] = @"invalid-ielength";
+                    break;
+                }
+                dict2[@"reference-number"] = @(iebytes[0]);
+                dict2[@"part"] = @(iebytes[1]);
+                dict2[@"max"] = @(iebytes[2]);
+                break;
+            }
+            case 0x01:
+            {
+                dict2[@"type"] = @"Special SMS Message Indication";
+                if(ielen !=2)
+                {
+                    dict2[@"error"] = @"invalid-ielength";
+                    break;
+                }
+                break;
+            }
+            case 0x03:
+            {
+                dict2[@"type"] = @"Special SMS Message Indication";
+                if(ielen !=2)
+                {
+                    dict2[@"error"] = @"invalid-ielength";
+                    break;
+                }
+                break;
+            }
+            case 0x04:
+            {
+                dict2[@"type"] = @"Application port addressing scheme 8bit";
+                if(ielen !=2)
+                {
+                    dict2[@"error"] = @"invalid-ielength";
+                    break;
+                }
+                break;
+            }
+            case 0x05:
+            {
+                dict2[@"type"] = @"Application port addressing scheme 16bit";
+                if(ielen !=4)
+                {
+                    dict2[@"error"] = @"invalid-ielength";
+                    break;
+                }
+                break;
+            }
+            case 0x06:
+            {
+                dict2[@"type"] = @"ASMSC Control Parameters";
+                if(ielen !=1)
+                {
+                    dict2[@"error"] = @"invalid-ielength";
+                    break;
+                }
+                break;
+            }
+            case 0x07:
+            {
+                dict2[@"type"] = @"UDH Source Indicator";
+                if(ielen !=1)
+                {
+                    dict2[@"error"] = @"invalid-ielength";
+                    break;
+                }
+                break;
+            }
+            case 0x08:
+            {
+                dict2[@"type"] = @"Concatenated short message, 16-bit reference";
+                if(ielen !=4)
+                {
+                    dict2[@"error"] = @"invalid-ielength";
+                    break;
+                }
+                break;
+            }
+            case 0x09:
+            {
+                dict2[@"type"] = @"WCMP";
+                break;
+            }
+            case 0x0A:
+            {
+                dict2[@"type"] = @"Text Formatting EMS";
+                break;
+            }
+            case 0x0B:
+            {
+                dict2[@"type"] = @"Predefined Sound	EMS";
+                break;
+            }
+            case 0x0C:
+            {
+                dict2[@"type"] = @"User Defined Sound (iMelody EMS)";
+                break;
+            }
+            case 0x0D:
+            {
+                dict2[@"type"] = @"Predefined Animation (EMS)";
+                break;
+            }
+            case 0x0E:
+            {
+                dict2[@"type"] = @"Large Animation (EMS)";
+                break;
+            }
+            case 0x0F:
+            {
+                dict2[@"type"] = @"Small Animation (EMS)";
+                break;
+            }
+            case 0x10:
+            {
+                dict2[@"type"] = @"Large Picture (EMS)";
+                break;
+            }
+            case 0x11:
+            {
+                dict2[@"type"] = @"Smalll Picture (EMS)";
+                break;
+            }
+            case 0x12:
+            {
+                dict2[@"type"] = @"Variable Picture (EMS)";
+                break;
+            }
+            case 0x13:
+            {
+                dict2[@"type"] = @"User prompt indicator (EMS)";
+                break;
+            }
+            case 0x14:
+            {
+                dict2[@"type"] = @"Extended Object (EMS)";
+                break;
+            }
+            case 0x15:
+            {
+                dict2[@"type"] = @"Reused Extended Object (EMS)";
+                break;
+            }
+            case 0x16:
+            {
+                dict2[@"type"] = @"Compression Control (EMS)";
+                break;
+            }
+            case 0x17:
+            {
+                dict2[@"type"] = @"Object Distribution Indicator (EMS)";
+                break;
+            }
+            case 0x18:
+            {
+                dict2[@"type"] = @"Standard WVG object (EMS)";
+                break;
+            }
+            case 0x19:
+            {
+                dict2[@"type"] = @"Character Size WVG object (EMS)";
+                break;
+            }
+            case 0x1A:
+            case 0x1B:
+            case 0x1C:
+            case 0x1D:
+            case 0x1E:
+            case 0x1F:
+            {
+                dict2[@"type"] = @"Extended Object Data Request Command (EMS)";
+                break;
+            }
+
+            case 0x20:
+            {
+                dict2[@"type"] = @"RFC 822 E-Mail Header"; /* len = 1*/
+                break;
+            }
+            case 0x21:
+            {
+                dict2[@"type"] = @"Hyperlink format element";
+                break;
+            }
+            case 0x22:
+            {
+                dict2[@"type"] = @"Reply Address Element";
+                break;
+            }
+            case 0x23:
+            {
+                dict2[@"type"] = @"Enhanced Voice Mail Information";
+                break;
+            }
+            case 0x24:
+            {
+                dict2[@"type"] = @"National Language Single Shift"; /* len =1 */
+                break;
+            }
+            case 0x25:
+            {
+                dict2[@"type"] = @"National Language Locking Shift"; /* len =1 */
+                break;
+            }
+            default:
+                if((iei >=0x26) && (iei <=0x6F))
+                {
+                    dict2[@"type"] = @"Reserved for future use"; /* len =1 */
+                    break;
+                }
+                if((iei >=0x70) && (iei <=0x7F))
+                {
+                    dict2[@"type"] = @"(U)SIM Toolkit Security Headers"; /* len =1 */
+                    break;
+                }
+                else if((iei >=0x80) && (iei <=0x9F))
+                {
+                    dict2[@"type"] = @"SME to SME specific use"; /* len =1 */
+                    break;
+                }
+                else if((iei >=0xA0) && (iei <=0xBF))
+                {
+                    dict2[@"type"] = @"SME to SME specific use"; /* len =1 */
+                    break;
+                }
+                else if((iei >=0xC0) && (iei <=0xDF))
+                {
+                    dict2[@"type"] = @"SC specific use"; /* len =1 */
+                    break;
+                }
+                else if((iei >=0xE0) && (iei <=0xFF))
+                {
+                    dict2[@"type"] = @"Reserved for future use"; /* len =1 */
+                    break;
+                }
+                break;
+        }
+        dict[@(iei)] = dict2;
+    }
+    return dict;
+}
 @end
