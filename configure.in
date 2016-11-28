@@ -15,7 +15,7 @@ CONFIG_DEFINE="ULIBSMS_CONFIG"
 VERSION=`head -n 1 VERSION`
 CONFIG_HEADER=ulibsms_config.h
 DEPENDENT_PKGCONFIGS="ulibgsmmap ulibasn1"
-FRAMEWORKS="-framework ulib -framework ulibsctp -framework ulibm2pa -framework ulibmtp3 -framework ulibm3ua -framework ulibsccp -framework ulibtcap -framework ulibgsmmap -framework ulibasn1"
+FRAMEWORKS="-framework ulib -framework ulibsctp -framework ulibm2pa -framework ulibmtp3 -framework ulibsccp -framework ulibtcap -framework ulibgsmmap -framework ulibasn1"
 PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 export PKG_CONFIG_PATH
 
