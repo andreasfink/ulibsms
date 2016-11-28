@@ -205,7 +205,14 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
             if(t_udh)
             {
-                udh_decoded = [UMSMS decodeUdh:t_udh];
+                @try
+                {
+                    udh_decoded = [UMSMS decodeUdh:t_udh];
+                }
+                @catch(NSException *e)
+                {
+                    NSLog(@"Exception while decoding udh: %@",e);
+                }
             }
             /* deal with the user data -- 7 or 8 bit encoded */
             NSData *tmp = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
@@ -577,8 +584,9 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
           @"ton" : @(tp_da.ton),
           @"npi" : @(tp_da.npi),
           @"address" : tp_da.address,
-          };
+        };
     }
+    dict[@"udh"] = udh_decoded;
     return dict;
 }
 
