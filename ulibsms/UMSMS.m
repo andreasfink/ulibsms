@@ -669,7 +669,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         return dict;
     }
 
-    uint8_t *bytes = data.bytes;
+    const uint8_t *bytes = data.bytes;
     NSInteger len  = data.length;
     NSInteger i;
 
