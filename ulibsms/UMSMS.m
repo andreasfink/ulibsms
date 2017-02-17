@@ -686,7 +686,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         {
             break;
         }
-        uint8_t *iebytes = &bytes[i+2];
+        const uint8_t *iebytes = &bytes[i+2];
         i++;
         i = i+ielen+1;
         NSData *d2 = [NSData dataWithBytes:iebytes length:ielen];
