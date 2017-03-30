@@ -178,7 +178,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             tp_udl = GRAB(bytes,len,pos);
             
             /* tp_udl is in characters not bytes */
-            int remaining_bytes = len - pos;
+            NSUInteger remaining_bytes = len - pos;
             t_ud = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
             tp_udhlen = 0;
             if(tp_udhi && tp_udl > 0)

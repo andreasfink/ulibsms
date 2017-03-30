@@ -75,7 +75,7 @@
 		A6C789521B4ABBFF0090FC94 /* UMHLRCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMHLRCache.m; sourceTree = "<group>"; };
 		A6C789551B4ABC0A0090FC94 /* UMHLRCacheEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMHLRCacheEntry.h; sourceTree = "<group>"; };
 		A6C789561B4ABC0A0090FC94 /* UMHLRCacheEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMHLRCacheEntry.m; sourceTree = "<group>"; };
-		A6CCA3601CBC2C1A00DE6284 /* ulibgsmmap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ulibgsmmap.framework; sourceTree = "<group>"; };
+		A6CCA3601CBC2C1A00DE6284 /* ulibgsmmap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibgsmmap.framework; path = /Library/Frameworks/ulibgsmmap.framework; sourceTree = "<absolute>"; };
 		A6D10CCF1D4F34EB001D021B /* UMSMS_Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSMS_Address.h; sourceTree = "<group>"; };
 		A6D10CD01D4F34EB001D021B /* UMSMS_Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMSMS_Address.m; sourceTree = "<group>"; };
 		A6D2B7BA1B453E490090FC94 /* UMSMSInProgressQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSMSInProgressQueue.h; sourceTree = "<group>"; };
