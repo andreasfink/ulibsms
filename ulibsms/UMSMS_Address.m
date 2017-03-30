@@ -71,19 +71,19 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
             ton = 1;
             npi = 1;
         }
-        else if(([digits length] >= 2) && ( [digits compare:@"00" options:NSLiteralSearch  range:NSMakeRange(0,2)] == NSOrderedSame ))
+        else if(([digits length] >= 2) && ([digits compare:@"00" options:NSLiteralSearch  range:NSMakeRange(0,2)] == NSOrderedSame ))
         {
             address = [digits substringFromIndex:2];
             ton = 1;
             npi = 1;
         }
-        else if ( [digits compare:@"0" options:NSLiteralSearch range:NSMakeRange(0,1)] == NSOrderedSame )
+        else if ([digits compare:@"0" options:NSLiteralSearch range:NSMakeRange(0,1)] == NSOrderedSame)
         {
             address = [digits substringFromIndex:1];
             ton = 2;
             npi = 1;
         }
-        else if ([digits compare:@":" options:NSLiteralSearch range:NSMakeRange(0,1)] == NSOrderedSame )
+        else if ([digits compare:@":" options:NSLiteralSearch range:NSMakeRange(0,1)] == NSOrderedSame)
         {
             int aton;
             int anpi;
@@ -197,8 +197,8 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
             }
             else
             {
-                ton = 1;
-                npi = 1;
+                ton = 0;
+                npi = 0;
                 address = digits;
             }
         }

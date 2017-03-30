@@ -124,5 +124,7 @@ typedef enum UMSMS_MessageType
 - (NSString *)text;
 - (NSData *)encodePdu;
 //+ (NSString *)gsmToUTF8:(NSData *)d;
++ (void)appendSmsForm:(NSMutableString *)s;
+- (UMSMS *)initWithHttpRequest:(UMHTTPRequest *)req;
 
 @end

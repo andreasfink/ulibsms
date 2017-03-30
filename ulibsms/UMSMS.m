@@ -520,7 +520,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     const uint8_t *bytes = input.bytes;
     NSUInteger pos  = 0;
     value = 0;
-    
+
     numbits=fillers;
     
     for (i = 0; i < len; i++)
@@ -941,5 +941,229 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         dict[@(iei)] = dict2;
     }
     return dict;
+}
+
++ (void)appendSmsForm:(NSMutableString *)s
+{
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=mandatory>tp-mti</td>\n"];
+    [s appendString:@"    <td class=mandatory><input name=\"tp-mti\" type=text value=\"SUBMIT\">Message Type Indicator: SUBMIT | DELIVER</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=mandatory>tp-rd</td>\n"];
+    [s appendString:@"    <td class=mandatory><input name=\"tp-rd\" type=text value=\"0\">(Reject Duplicates)</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-vpf</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-vpf\" type=text value=\"2\">Validity Period Format: 0 |&nbsp;1 | 2 |&nbsp;3</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=mandatory>tp-srr</td>\n"];
+    [s appendString:@"    <td class=mandatory><input name=\"tp-rd\" type=text value=\"0\">(Reject Duplicates)</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-mms</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-mms\" type=text value=\"0\">More Messsages to Send: 0 |&nbsp;1</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-sri</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-sri\" type=text value=\"0\">Status Report Indicator: 0 | 1</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-udhi</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-udhi\" type=text value=\"0\">User Data Header Indicator: 0 |&nbsp;1</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-rp</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-rp\" type=text value=\"0\">Reply Path: 0 |&nbsp;1</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-srr</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-srr\" type=text value=\"0\">Status Report Requested: 0 | 1</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-pid</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-pid\" type=text value=\"0\">Process Indicator: 0..255</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-dcs</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-dcs\" type=text value=\"0\">Data Coding Scheme: 0..255</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-mr</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-mr\" type=text value=\"0\">Message Reference: 0..255</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-rd</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-rd\" type=text value=\"0\">Reject Duplicates: 0 |&nbsp;1</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>validity-time</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"validity-time\" type=text value=\"255\">0...255</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>t-udh</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"t-udh\" type=text>User Data Header (hex bytes)</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-oa</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-oa\" type=text placeholder=\"+12345678\">Origination Address (E164 Number) DELIVER only</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-da</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-da\" type=text placeholder=\"+12345678\">Destination Address (E164 Number) SUBMIT only</td>\n"];
+    [s appendString:@"</tr>\n"];
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>text</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"text\" type=text>Text</td>\n"];
+    [s appendString:@"</tr>\n"];
+}
+
+
+#define SET_OPTIONAL_PARAMETER(p,var,name)   \
+{\
+    var = [p[name]urldecode];\
+    if([var isEqualToString:@"default" ])\
+    {\
+        var = NULL;\
+    } \
+}
+
+- (UMSMS *)initWithHttpRequest:(UMHTTPRequest *)req
+{
+    self = [super init];
+    if(self)
+    {
+        NSDictionary *p = req.params;
+
+        NSString *web_tp_mti;
+        NSString *web_tp_mms;
+        NSString *web_tp_sri;
+        NSString *web_tp_udhi;
+        NSString *web_tp_rp;
+        NSString *web_tp_vpf;
+        NSString *web_tp_srr;
+        NSString *web_tp_pid;
+        NSString *web_tp_dcs;
+        NSString *web_tp_mr;
+        NSString *web_tp_rd;
+        NSString *web_validity_time;
+        NSString *web_t_udh;
+        NSString *web_tp_oa;
+        NSString *web_tp_da;
+        NSString *web_text;
+
+        SET_OPTIONAL_PARAMETER(p,web_tp_mti,@"tp-mti");
+        SET_OPTIONAL_PARAMETER(p,web_tp_mms,@"tp-mms");
+        SET_OPTIONAL_PARAMETER(p,web_tp_sri,@"tp-sri");
+        SET_OPTIONAL_PARAMETER(p,web_tp_udhi,@"tp-udhi");
+        SET_OPTIONAL_PARAMETER(p,web_tp_rp,@"tp-rp");
+        SET_OPTIONAL_PARAMETER(p,web_tp_vpf,@"tp-vpf");
+        SET_OPTIONAL_PARAMETER(p,web_tp_srr,@"tp-srr");
+        SET_OPTIONAL_PARAMETER(p,web_tp_pid,@"tp-pid");
+        SET_OPTIONAL_PARAMETER(p,web_tp_dcs,@"tp-dcs");
+        SET_OPTIONAL_PARAMETER(p,web_tp_mr,@"tp-mr");
+        SET_OPTIONAL_PARAMETER(p,web_tp_rd,@"tp-rd");
+        SET_OPTIONAL_PARAMETER(p,web_validity_time,@"validity-time");
+        SET_OPTIONAL_PARAMETER(p,web_t_udh,@"t-udh");
+        SET_OPTIONAL_PARAMETER(p,web_tp_oa,@"tp-oa");
+        SET_OPTIONAL_PARAMETER(p,web_tp_da,@"tp-da");
+        SET_OPTIONAL_PARAMETER(p,web_text,@"text");
+
+        if([web_tp_mti isEqualToStringCaseInsensitive:@"DELIVER"])
+        {
+            tp_mti = UMSMS_MessageType_DELIVER;
+        }
+        else if([web_tp_mti isEqualToStringCaseInsensitive:@"DELIVER-REPORT"])
+        {
+            tp_mti = UMSMS_MessageType_DELIVER_REPORT;
+        }
+        else if([web_tp_mti isEqualToStringCaseInsensitive:@"SUBMIT"])
+        {
+            tp_mti = UMSMS_MessageType_SUBMIT;
+        }
+        else if([web_tp_mti isEqualToStringCaseInsensitive:@"SUBMIT-REPORT"])
+        {
+            tp_mti = UMSMS_MessageType_SUBMIT_REPORT;
+        }
+        else if([web_tp_mti isEqualToStringCaseInsensitive:@"STATUS-REPORT"])
+        {
+            tp_mti = UMSMS_MessageType_STATUS_REPORT;
+        }
+        else if([web_tp_mti isEqualToStringCaseInsensitive:@"COMMAND"])
+        {
+            tp_mti = UMSMS_MessageType_COMMAND;
+        }
+        else if([web_tp_mti isEqualToStringCaseInsensitive:@"RESERVED"])
+        {
+            tp_mti = UMSMS_MessageType_RESERVED;
+        }
+
+        if(web_tp_mms.length>0)
+        {
+            tp_mms = [web_tp_mms boolValue];
+        }
+        if(web_tp_sri.length>0)
+        {
+            tp_sri = [web_tp_sri boolValue];
+        }
+        if(web_tp_udhi.length>0)
+        {
+            tp_udhi = [web_tp_udhi boolValue];
+        }
+        if(web_tp_rp.length>0)
+        {
+            tp_rp = [web_tp_rp boolValue];
+        }
+        if(web_tp_vpf.length>0)
+        {
+            tp_vpf = [web_tp_vpf intValue];
+        }
+        if(web_tp_srr.length>0)
+        {
+            tp_srr = [web_tp_srr boolValue];
+        }
+        if(web_tp_pid.length>0)
+        {
+            tp_pid = [web_tp_pid intValue] & 0xFF;
+        }
+        if(web_tp_dcs.length>0)
+        {
+            tp_dcs = [web_tp_dcs intValue] & 0xFF;
+        }
+        if(web_tp_mr.length>0)
+        {
+            tp_mr = [web_tp_mr intValue] & 0xFF;
+        }
+        if(web_tp_rd.length>0)
+        {
+            tp_rd = [web_tp_rd boolValue];
+        }
+        if(web_validity_time.length>0)
+        {
+            validity_time = [web_validity_time intValue];
+        }
+        if(web_t_udh.length>0)
+        {
+            t_udh = [web_t_udh unhexData];
+        }
+        if(web_tp_oa.length > 0)
+        {
+            tp_oa = [[UMSMS_Address alloc]initWithString:web_tp_oa]; /*oa msisdn */
+        }
+        if(web_tp_da.length > 0)
+        {
+            tp_da = [[UMSMS_Address alloc]initWithString:web_tp_da];
+        }
+        if(web_text.length > 0)
+        {
+            t_content = [web_text gsm8];
+        }
+    }
+    return self;
 }
 @end
