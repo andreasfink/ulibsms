@@ -943,17 +943,24 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     return dict;
 }
 
-+ (void)appendSmsForm:(NSMutableString *)s
++ (void)appendSmsMoForm:(NSMutableString *)s
 {
+
+    [s appendString:@"<tr><td colspan=2 class=subtitle>SMS Parameters:</td></tr>\n"];
+
     [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=mandatory>tp-mti</td>\n"];
-    [s appendString:@"    <td class=mandatory><input name=\"tp-mti\" type=text value=\"SUBMIT\">Message Type Indicator: SUBMIT | DELIVER</td>\n"];
+    [s appendString:@"    <td class=optional>tp-rp</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-rp\" type=text value=\"0\">Reply Path: 0 |&nbsp;1</td>\n"];
     [s appendString:@"</tr>\n"];
 
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-udhi</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-udhi\" type=text value=\"0\">User Data Header Indicator: 0 |&nbsp;1</td>\n"];
+    [s appendString:@"</tr>\n"];
 
     [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=mandatory>tp-rd</td>\n"];
-    [s appendString:@"    <td class=mandatory><input name=\"tp-rd\" type=text value=\"0\">(Reject Duplicates)</td>\n"];
+    [s appendString:@"    <td class=optional>tp-srr</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-srr\" type=text value=\"0\">Status Report Requested</td>\n"];
     [s appendString:@"</tr>\n"];
 
     [s appendString:@"<tr>\n"];
@@ -962,66 +969,128 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     [s appendString:@"</tr>\n"];
 
     [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=mandatory>tp-srr</td>\n"];
-    [s appendString:@"    <td class=mandatory><input name=\"tp-rd\" type=text value=\"0\">(Reject Duplicates)</td>\n"];
+    [s appendString:@"    <td class=optional>tp-rd</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-rd\" type=text value=\"0\">(Reject Duplicates)</td>\n"];
     [s appendString:@"</tr>\n"];
+
     [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=optional>tp-mms</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"tp-mms\" type=text value=\"0\">More Messsages to Send: 0 |&nbsp;1</td>\n"];
+    [s appendString:@"    <td class=mandatory>tp-mti</td>\n"];
+
+    [s appendString:@"    <td class=mandatory><input name=\"tp-mti\" type=text value=\"SUBMIT\">Message Type Indicator: SUBMIT</td>\n"];
     [s appendString:@"</tr>\n"];
-    [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=optional>tp-sri</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"tp-sri\" type=text value=\"0\">Status Report Indicator: 0 | 1</td>\n"];
-    [s appendString:@"</tr>\n"];
-    [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=optional>tp-udhi</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"tp-udhi\" type=text value=\"0\">User Data Header Indicator: 0 |&nbsp;1</td>\n"];
-    [s appendString:@"</tr>\n"];
-    [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=optional>tp-rp</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"tp-rp\" type=text value=\"0\">Reply Path: 0 |&nbsp;1</td>\n"];
-    [s appendString:@"</tr>\n"];
-    [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=optional>tp-srr</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"tp-srr\" type=text value=\"0\">Status Report Requested: 0 | 1</td>\n"];
-    [s appendString:@"</tr>\n"];
-    [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=optional>tp-pid</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"tp-pid\" type=text value=\"0\">Process Indicator: 0..255</td>\n"];
-    [s appendString:@"</tr>\n"];
-    [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=optional>tp-dcs</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"tp-dcs\" type=text value=\"0\">Data Coding Scheme: 0..255</td>\n"];
-    [s appendString:@"</tr>\n"];
+
+
     [s appendString:@"<tr>\n"];
     [s appendString:@"    <td class=optional>tp-mr</td>\n"];
     [s appendString:@"    <td class=optional><input name=\"tp-mr\" type=text value=\"0\">Message Reference: 0..255</td>\n"];
     [s appendString:@"</tr>\n"];
+
+
+    /* TP-Destination-Address */
     [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=optional>tp-rd</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"tp-rd\" type=text value=\"0\">Reject Duplicates: 0 |&nbsp;1</td>\n"];
+    [s appendString:@"    <td class=mandatory>tp-da</td>\n"];
+    [s appendString:@"    <td class=mandatory><input name=\"tp-da\" type=text placeholder=\"+12345678\">Destination Address (E164 Number). Reiver of SMS</td>\n"];
     [s appendString:@"</tr>\n"];
+
+    /* pid */
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-pid</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-pid\" type=text value=\"0\">Process Indicator: 0..255</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    /* DCS */
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-dcs</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-dcs\" type=text value=\"0\">Data Coding Scheme: 0..255</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    /* validity time */
     [s appendString:@"<tr>\n"];
     [s appendString:@"    <td class=optional>validity-time</td>\n"];
     [s appendString:@"    <td class=optional><input name=\"validity-time\" type=text value=\"255\">0...255</td>\n"];
     [s appendString:@"</tr>\n"];
+
     [s appendString:@"<tr>\n"];
     [s appendString:@"    <td class=optional>t-udh</td>\n"];
     [s appendString:@"    <td class=optional><input name=\"t-udh\" type=text>User Data Header (hex bytes)</td>\n"];
     [s appendString:@"</tr>\n"];
+
     [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=optional>tp-oa</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"tp-oa\" type=text placeholder=\"+12345678\">Origination Address (E164 Number) DELIVER only</td>\n"];
+    [s appendString:@"    <td class=optional>text</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"text\" type=text>Text</td>\n"];
     [s appendString:@"</tr>\n"];
+
+}
++ (void)appendSmsMtForm:(NSMutableString *)s
+{
+    [s appendString:@"<tr><td colspan=2 class=subtitle>SMS Parameters:</td></tr>\n"];
+
     [s appendString:@"<tr>\n"];
-    [s appendString:@"    <td class=optional>tp-da</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"tp-da\" type=text placeholder=\"+12345678\">Destination Address (E164 Number) SUBMIT only</td>\n"];
+    [s appendString:@"    <td class=optional>tp-rp</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-rp\" type=text value=\"0\">Reply Path: 0 |&nbsp;1</td>\n"];
     [s appendString:@"</tr>\n"];
+
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-udhi</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-udhi\" type=text value=\"0\">User Data Header Indicator: 0 |&nbsp;1</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-sri</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-sri\" type=text value=\"0\">Status Report Indication</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-lp</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-lp\" type=text value=\"0\">Loop Prevention</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-mms</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-mms\" type=text value=\"0\">More Messsages to Send: 0 |&nbsp;1</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=mandatory>tp-mti</td>\n"];
+
+    [s appendString:@"    <td class=mandatory><input name=\"tp-mti\" type=text value=\"DELIVER\">Message Type Indicator: DELIVER</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    /* tp originating address */
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=mandatory>tp-oa</td>\n"];
+    [s appendString:@"    <td class=mandatory><input name=\"tp-da\" type=text placeholder=\"+12345678\">Originating Address (E164 Number). Sender of SMS</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    /* pid */
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-pid</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-pid\" type=text value=\"0\">Process Indicator: 0..255</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    /* DCS */
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>tp-dcs</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"tp-dcs\" type=text value=\"0\">Data Coding Scheme: 0..255</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    /* SCTS time */
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>scts</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"scts\" type=text value=\"\">Service Center Time Stamp</td>\n"];
+    [s appendString:@"</tr>\n"];
+
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>t-udh</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"t-udh\" type=text>User Data Header (hex bytes)</td>\n"];
+    [s appendString:@"</tr>\n"];
+
     [s appendString:@"<tr>\n"];
     [s appendString:@"    <td class=optional>text</td>\n"];
     [s appendString:@"    <td class=optional><input name=\"text\" type=text>Text</td>\n"];
     [s appendString:@"</tr>\n"];
 }
+
 
 
 #define SET_OPTIONAL_PARAMETER(p,var,name)   \
