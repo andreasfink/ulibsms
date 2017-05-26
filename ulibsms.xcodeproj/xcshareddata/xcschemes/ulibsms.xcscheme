@@ -17,7 +17,7 @@
                BlueprintIdentifier = "A641CE9E1B42014800854472"
                BuildableName = "ulibsms.framework"
                BlueprintName = "ulibsms"
-               ReferencedContainer = "container:ulibsms.xcodeproj">
+               ReferencedContainer = "container:../../../../../Users/afink/development/git/ulibsms/ulibsms.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "A641CEA91B42014800854472"
                BuildableName = "ulibsmsTests.xctest"
                BlueprintName = "ulibsmsTests"
-               ReferencedContainer = "container:ulibsms.xcodeproj">
+               ReferencedContainer = "container:../../../../../Users/afink/development/git/ulibsms/ulibsms.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "A641CE9E1B42014800854472"
             BuildableName = "ulibsms.framework"
             BlueprintName = "ulibsms"
-            ReferencedContainer = "container:ulibsms.xcodeproj">
+            ReferencedContainer = "container:../../../../../Users/afink/development/git/ulibsms/ulibsms.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -67,7 +67,7 @@
             BlueprintIdentifier = "A641CE9E1B42014800854472"
             BuildableName = "ulibsms.framework"
             BlueprintName = "ulibsms"
-            ReferencedContainer = "container:ulibsms.xcodeproj">
+            ReferencedContainer = "container:../../../../../Users/afink/development/git/ulibsms/ulibsms.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -85,7 +85,7 @@
             BlueprintIdentifier = "A641CE9E1B42014800854472"
             BuildableName = "ulibsms.framework"
             BlueprintName = "ulibsms"
-            ReferencedContainer = "container:ulibsms.xcodeproj">
+            ReferencedContainer = "container:../../../../../Users/afink/development/git/ulibsms/ulibsms.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
