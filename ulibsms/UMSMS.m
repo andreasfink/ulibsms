@@ -434,6 +434,8 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         tp_mti = UMSMS_MessageType_COMMAND;
     }
 }
+
+
 - (NSData *)encodePdu
 {
     NSMutableData *pdu = [[NSMutableData alloc]init];
@@ -445,7 +447,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             /* normal message from SMSC to mobile */
             uint8_t o = tp_mti;
             o += tp_mms << 2;
-            o += tp_sri << 5;
+            o += (tp_sri ? 1 : 0) << 5;
             o += tp_udhi<< 6;
             o += tp_rp << 7;
             
@@ -1059,7 +1061,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     /* tp originating address */
     [s appendString:@"<tr>\n"];
     [s appendString:@"    <td class=mandatory>tp-oa</td>\n"];
-    [s appendString:@"    <td class=mandatory><input name=\"tp-da\" type=text placeholder=\"+12345678\">Originating Address (E164 Number). Sender of SMS</td>\n"];
+    [s appendString:@"    <td class=mandatory><input name=\"tp-oa\" type=text placeholder=\"+12345678\">Originating Address (E164 Number). Sender of SMS</td>\n"];
     [s appendString:@"</tr>\n"];
 
     /* pid */
@@ -1077,7 +1079,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     /* SCTS time */
     [s appendString:@"<tr>\n"];
     [s appendString:@"    <td class=optional>scts</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"scts\" type=text value=\"\">Service Center Time Stamp</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"scts\" type=text value=\"\" placeholder \"yyyy-MM-dd HH:mm:ss\">Service Center Time Stamp</td>\n"];
     [s appendString:@"</tr>\n"];
 
     [s appendString:@"<tr>\n"];
@@ -1125,6 +1127,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         NSString *web_tp_oa;
         NSString *web_tp_da;
         NSString *web_text;
+        NSString *web_scts;
 
         SET_OPTIONAL_PARAMETER(p,web_tp_mti,@"tp-mti");
         SET_OPTIONAL_PARAMETER(p,web_tp_mms,@"tp-mms");
@@ -1142,6 +1145,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         SET_OPTIONAL_PARAMETER(p,web_tp_oa,@"tp-oa");
         SET_OPTIONAL_PARAMETER(p,web_tp_da,@"tp-da");
         SET_OPTIONAL_PARAMETER(p,web_text,@"text");
+        SET_OPTIONAL_PARAMETER(p,web_scts,@"scts");
 
         if([web_tp_mti isEqualToStringCaseInsensitive:@"DELIVER"])
         {
@@ -1188,7 +1192,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         {
             tp_rp = [web_tp_rp boolValue];
         }
-        if(web_tp_vpf.length>0)
+        if(web_tp_vpf.length>0) /* this is only present on SUBMIT */
         {
             tp_vpf = [web_tp_vpf intValue];
         }
@@ -1231,6 +1235,51 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         if(web_text.length > 0)
         {
             t_content = [web_text gsm8];
+        }
+
+        NSTimeZone *tz      = [NSTimeZone systemTimeZone];
+        int offset_minutes  = (int)[tz secondsFromGMTForDate:[NSDate date]] / 60;
+        int offset_15min    = offset_minutes / 15;
+        int offset_negative = offset_15min < 0;
+        offset_15min = abs(offset_15min);
+        NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+        NSString *timeStamp;
+
+        NSDate *sctsDate = [NSDate date];
+
+        if((web_scts.length > 0) && (![web_scts isEqualToString:@"now"]))
+        {
+            NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
+            [dateFormatter1 setLocale:usLocale];
+            [dateFormatter1 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            [dateFormatter1 setTimeZone:tz];
+            sctsDate = [dateFormatter1 dateFromString:web_scts];
+        }
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setLocale:usLocale];
+        [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+        [dateFormatter setTimeZone:tz];
+        timeStamp = [dateFormatter stringFromDate:sctsDate];
+
+        const char *tmp_dt = [timeStamp UTF8String];
+        scts[0]  = (tmp_dt[2] - '0') << 0; /* YY */
+        scts[0] |= (tmp_dt[3] - '0') << 4;
+        scts[1]  = (tmp_dt[4] - '0') << 0; /* MM */
+        scts[1] |= (tmp_dt[5] - '0') << 4;
+        scts[2]  = (tmp_dt[6] - '0') << 0; /* DD */
+        scts[2] |= (tmp_dt[7] - '0') << 4;
+        scts[3]  = (tmp_dt[8] - '0') << 0; /* hh */
+        scts[3] |= (tmp_dt[9] - '0') << 4;
+        scts[4]  = (tmp_dt[10] - '0') << 0; /* mm */
+        scts[4] |= (tmp_dt[11] - '0') << 4;
+        scts[5]  = (tmp_dt[12] - '0') << 0; /* ss */
+        scts[5] |= (tmp_dt[13] - '0') << 4;
+        scts[6]  = (offset_15min & 0xF0) >> 4;
+        scts[6] |= (offset_15min & 0x0F) << 4;
+        if(offset_negative)
+        {
+            scts[6]  |= 0x08;
         }
     }
     return self;
