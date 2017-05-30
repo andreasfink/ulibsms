@@ -193,7 +193,10 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
             {
                 ton = 5;
                 npi = 0;
-                address = [[[digits gsm8]gsm8to7withNibbleLengthPrefix]hexString];
+
+                int nibblelen;
+                NSData *m = [[digits gsm8] gsm8to7:&nibblelen];
+                address = [m hexString];
             }
             else
             {
@@ -225,7 +228,7 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
     
     NSUInteger len = address.length;
     int b = ((ton & 0x07) << 4) | (npi & 0x0F);
-    
+    b = b | 0x80;
     NSString *addr = address;
     
     if(ton != 5) /* not alphanumeric */
@@ -254,6 +257,24 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
             uint8_t c2 = ((c & 0x0F) << 4) | ((c & 0xF0) >>4 );
             [d appendByte:c2];
         }
+    }
+    else if (ton==5)
+    {
+        if(len > 255)
+        {
+            @throw([NSException exceptionWithName:@"BUFFER_OVERRUN"
+                                           reason:@"writing beyond size of pdu"
+                                         userInfo:@{@"file": @(__FILE__), @"line": @(__LINE__)} ]);
+        }
+
+        if(len & 0x01) /* odd */
+        {
+            addr = [NSString stringWithFormat:@"%@F",addr]; /* add filler */
+        }
+
+        [d appendByte:(uint8_t)len];
+        [d appendByte:(uint8_t)b];
+        [d appendData:[addr unhexedData]];
     }
     else
     {

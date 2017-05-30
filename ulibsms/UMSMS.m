@@ -1079,7 +1079,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     /* SCTS time */
     [s appendString:@"<tr>\n"];
     [s appendString:@"    <td class=optional>scts</td>\n"];
-    [s appendString:@"    <td class=optional><input name=\"scts\" type=text value=\"\" placeholder \"yyyy-MM-dd HH:mm:ss\">Service Center Time Stamp</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"scts\" type=text value=\"\" placeholder=\"yyyy-MM-dd HH:mm:ss\">Service Center Time Stamp</td>\n"];
     [s appendString:@"</tr>\n"];
 
     [s appendString:@"<tr>\n"];
@@ -1249,6 +1249,11 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
         if((web_scts.length > 0) && (![web_scts isEqualToString:@"now"]))
         {
+            if(web_scts.length < 19)
+            {
+                @throw([NSException exceptionWithName:@"Invalid SCTS length (expecting yyyy-MM-dd HH:mm:ss)"  reason:NULL userInfo:@{}]);
+            }
+
             NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
             [dateFormatter1 setLocale:usLocale];
             [dateFormatter1 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
