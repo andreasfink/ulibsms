@@ -7,53 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A641CEA51B42014800854472 /* ulibsms.h in Headers */ = {isa = PBXBuildFile; fileRef = A641CEA41B42014800854472 /* ulibsms.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A641CEAB1B42014800854472 /* ulibsms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A641CE9F1B42014800854472 /* ulibsms.framework */; };
 		A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CEB11B42014800854472 /* ulibsmsTests.m */; };
-		A64612D61D41F12B00211137 /* UMSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = A64612D41D41F12B00211137 /* UMSMS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A64612D71D41F12B00211137 /* UMSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A64612D51D41F12B00211137 /* UMSMS.m */; };
-		A682DB5C1B455ADF0090FC94 /* UMSMSRetryQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = A682DB5A1B455ADF0090FC94 /* UMSMSRetryQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A682DB5D1B455ADF0090FC94 /* UMSMSRetryQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A682DB5B1B455ADF0090FC94 /* UMSMSRetryQueue.m */; };
-		A682DB5E1B455D260090FC94 /* UMSMSInProgressQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D2B7BB1B453E490090FC94 /* UMSMSInProgressQueue.m */; };
-		A682DB5F1B455F6B0090FC94 /* UMSMSInProgressQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D2B7BA1B453E490090FC94 /* UMSMSInProgressQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A682DB621B4566A50090FC94 /* UMSMSTransactionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = A682DB601B4566A50090FC94 /* UMSMSTransactionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6B7FBB61B44A9C500854472 /* UMSMSWaitingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = A6B7FBB41B44A9C500854472 /* UMSMSWaitingQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6B7FBB71B44A9C500854472 /* UMSMSWaitingQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B7FBB51B44A9C500854472 /* UMSMSWaitingQueue.m */; };
-		A6B7FBC71B44B54100854472 /* sctp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B7FBC61B44B54100854472 /* sctp.framework */; };
-		A6C789471B4A885E0090FC94 /* UMGlobalMessageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A6C789451B4A885E0090FC94 /* UMGlobalMessageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6C789481B4A885E0090FC94 /* UMGlobalMessageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C789461B4A885E0090FC94 /* UMGlobalMessageCache.m */; };
-		A6C7894B1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = A6C789491B4A886C0090FC94 /* UMGlobalMessageCacheEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6C7894C1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7894A1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.m */; };
-		A6C789531B4ABBFF0090FC94 /* UMHLRCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A6C789511B4ABBFF0090FC94 /* UMHLRCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6C789541B4ABBFF0090FC94 /* UMHLRCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C789521B4ABBFF0090FC94 /* UMHLRCache.m */; };
-		A6C789571B4ABC0A0090FC94 /* UMHLRCacheEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = A6C789551B4ABC0A0090FC94 /* UMHLRCacheEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6C789581B4ABC0A0090FC94 /* UMHLRCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C789561B4ABC0A0090FC94 /* UMHLRCacheEntry.m */; };
-		A6D10CD11D4F34EB001D021B /* UMSMS_Address.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D10CCF1D4F34EB001D021B /* UMSMS_Address.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6D10CD21D4F34EB001D021B /* UMSMS_Address.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D10CD01D4F34EB001D021B /* UMSMS_Address.m */; };
-		A6DC799A1DE65D17003BBA67 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */; };
-		A6ED5C3B1B434FAD00854472 /* UMLayerSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = A6ED5C391B434FAD00854472 /* UMLayerSMS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6ED5C3C1B434FAD00854472 /* UMLayerSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED5C3A1B434FAD00854472 /* UMLayerSMS.m */; };
-		A6ED5C861B435C4100854472 /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C7E1B435C4100854472 /* ulib.framework */; };
-		A6ED5C871B435C4100854472 /* ulibgsmmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C7F1B435C4100854472 /* ulibgsmmap.framework */; };
-		A6ED5C881B435C4100854472 /* ulibm2pa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C801B435C4100854472 /* ulibm2pa.framework */; };
-		A6ED5C8A1B435C4100854472 /* ulibmtp3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C821B435C4100854472 /* ulibmtp3.framework */; };
-		A6ED5C8B1B435C4100854472 /* ulibsccp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C831B435C4100854472 /* ulibsccp.framework */; };
-		A6ED5C8C1B435C4100854472 /* ulibsctp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C841B435C4100854472 /* ulibsctp.framework */; };
-		A6ED5C8D1B435C4100854472 /* ulibtcap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C851B435C4100854472 /* ulibtcap.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A641CEAC1B42014800854472 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A641CE961B42014800854472 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A641CE9E1B42014800854472;
-			remoteInfo = ulibsms;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		A641CE9F1B42014800854472 /* ulibsms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ulibsms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A641CEA31B42014800854472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A641CEA41B42014800854472 /* ulibsms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ulibsms.h; sourceTree = "<group>"; };
 		A641CEAA1B42014800854472 /* ulibsmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ulibsmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,27 +55,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A641CE9B1B42014800854472 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A6ED5C8B1B435C4100854472 /* ulibsccp.framework in Frameworks */,
-				A6ED5C8D1B435C4100854472 /* ulibtcap.framework in Frameworks */,
-				A6ED5C8A1B435C4100854472 /* ulibmtp3.framework in Frameworks */,
-				A6DC799A1DE65D17003BBA67 /* libiconv.2.dylib in Frameworks */,
-				A6ED5C861B435C4100854472 /* ulib.framework in Frameworks */,
-				A6B7FBC71B44B54100854472 /* sctp.framework in Frameworks */,
-				A6ED5C8C1B435C4100854472 /* ulibsctp.framework in Frameworks */,
-				A6ED5C881B435C4100854472 /* ulibm2pa.framework in Frameworks */,
-				A6ED5C871B435C4100854472 /* ulibgsmmap.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A641CEA71B42014800854472 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A641CEAB1B42014800854472 /* ulibsms.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +83,6 @@
 		A641CEA01B42014800854472 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A641CE9F1B42014800854472 /* ulibsms.framework */,
 				A641CEAA1B42014800854472 /* ulibsmsTests.xctest */,
 			);
 			name = Products;
@@ -224,47 +163,7 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		A641CE9C1B42014800854472 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A6B7FBB61B44A9C500854472 /* UMSMSWaitingQueue.h in Headers */,
-				A682DB621B4566A50090FC94 /* UMSMSTransactionProtocol.h in Headers */,
-				A6C789471B4A885E0090FC94 /* UMGlobalMessageCache.h in Headers */,
-				A6C789571B4ABC0A0090FC94 /* UMHLRCacheEntry.h in Headers */,
-				A682DB5F1B455F6B0090FC94 /* UMSMSInProgressQueue.h in Headers */,
-				A6ED5C3B1B434FAD00854472 /* UMLayerSMS.h in Headers */,
-				A641CEA51B42014800854472 /* ulibsms.h in Headers */,
-				A6D10CD11D4F34EB001D021B /* UMSMS_Address.h in Headers */,
-				A682DB5C1B455ADF0090FC94 /* UMSMSRetryQueue.h in Headers */,
-				A6C789531B4ABBFF0090FC94 /* UMHLRCache.h in Headers */,
-				A64612D61D41F12B00211137 /* UMSMS.h in Headers */,
-				A6C7894B1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		A641CE9E1B42014800854472 /* ulibsms */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A641CEB51B42014800854472 /* Build configuration list for PBXNativeTarget "ulibsms" */;
-			buildPhases = (
-				A641CE9A1B42014800854472 /* Sources */,
-				A641CE9B1B42014800854472 /* Frameworks */,
-				A641CE9C1B42014800854472 /* Headers */,
-				A641CE9D1B42014800854472 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ulibsms;
-			productName = ulibsms;
-			productReference = A641CE9F1B42014800854472 /* ulibsms.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		A641CEA91B42014800854472 /* ulibsmsTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A641CEB81B42014800854472 /* Build configuration list for PBXNativeTarget "ulibsmsTests" */;
@@ -276,7 +175,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A641CEAD1B42014800854472 /* PBXTargetDependency */,
 			);
 			name = ulibsmsTests;
 			productName = ulibsmsTests;
@@ -292,11 +190,6 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Andreas Fink (andreas@fink.org)";
 				TargetAttributes = {
-					A641CE9E1B42014800854472 = {
-						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 2GSNWPNR77;
-						ProvisioningStyle = Automatic;
-					};
 					A641CEA91B42014800854472 = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
@@ -314,20 +207,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A641CE9E1B42014800854472 /* ulibsms */,
 				A641CEA91B42014800854472 /* ulibsmsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A641CE9D1B42014800854472 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A641CEA81B42014800854472 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,23 +223,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A641CE9A1B42014800854472 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A6D10CD21D4F34EB001D021B /* UMSMS_Address.m in Sources */,
-				A682DB5D1B455ADF0090FC94 /* UMSMSRetryQueue.m in Sources */,
-				A6C789541B4ABBFF0090FC94 /* UMHLRCache.m in Sources */,
-				A6C789581B4ABC0A0090FC94 /* UMHLRCacheEntry.m in Sources */,
-				A64612D71D41F12B00211137 /* UMSMS.m in Sources */,
-				A6C789481B4A885E0090FC94 /* UMGlobalMessageCache.m in Sources */,
-				A6C7894C1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.m in Sources */,
-				A6ED5C3C1B434FAD00854472 /* UMLayerSMS.m in Sources */,
-				A6B7FBB71B44A9C500854472 /* UMSMSWaitingQueue.m in Sources */,
-				A682DB5E1B455D260090FC94 /* UMSMSInProgressQueue.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A641CEA61B42014800854472 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -364,14 +232,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A641CEAD1B42014800854472 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A641CE9E1B42014800854472 /* ulibsms */;
-			targetProxy = A641CEAC1B42014800854472 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A641CEB31B42014800854472 /* Debug */ = {
@@ -476,58 +336,6 @@
 			};
 			name = Release;
 		};
-		A641CEB61B42014800854472 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DEPLOYMENT_LOCATION = YES;
-				DEVELOPMENT_TEAM = 2GSNWPNR77;
-				DSTROOT = /;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
-				);
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = ulibsms/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = me.fink.ulibsms;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = NO;
-			};
-			name = Debug;
-		};
-		A641CEB71B42014800854472 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DEPLOYMENT_LOCATION = YES;
-				DEVELOPMENT_TEAM = 2GSNWPNR77;
-				DSTROOT = /;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
-				);
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = ulibsms/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = me.fink.ulibsms;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = NO;
-			};
-			name = Release;
-		};
 		A641CEB91B42014800854472 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -570,15 +378,6 @@
 			buildConfigurations = (
 				A641CEB31B42014800854472 /* Debug */,
 				A641CEB41B42014800854472 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A641CEB51B42014800854472 /* Build configuration list for PBXNativeTarget "ulibsms" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A641CEB61B42014800854472 /* Debug */,
-				A641CEB71B42014800854472 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
