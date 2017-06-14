@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0830"
+   LastUpgradeVersion = "0900"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -17,7 +17,7 @@
                BlueprintIdentifier = "A641CE9E1B42014800854472"
                BuildableName = "ulibsms.framework"
                BlueprintName = "ulibsms"
-               ReferencedContainer = "container:../../../../../Users/afink/development/git/ulibsms/ulibsms.xcodeproj">
+               ReferencedContainer = "container:ulibsms.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "A641CEA91B42014800854472"
                BuildableName = "ulibsmsTests.xctest"
                BlueprintName = "ulibsmsTests"
-               ReferencedContainer = "container:../../../../../Users/afink/development/git/ulibsms/ulibsms.xcodeproj">
+               ReferencedContainer = "container:ulibsms.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "A641CE9E1B42014800854472"
             BuildableName = "ulibsms.framework"
             BlueprintName = "ulibsms"
-            ReferencedContainer = "container:../../../../../Users/afink/development/git/ulibsms/ulibsms.xcodeproj">
+            ReferencedContainer = "container:ulibsms.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -67,7 +67,7 @@
             BlueprintIdentifier = "A641CE9E1B42014800854472"
             BuildableName = "ulibsms.framework"
             BlueprintName = "ulibsms"
-            ReferencedContainer = "container:../../../../../Users/afink/development/git/ulibsms/ulibsms.xcodeproj">
+            ReferencedContainer = "container:ulibsms.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -85,7 +85,7 @@
             BlueprintIdentifier = "A641CE9E1B42014800854472"
             BuildableName = "ulibsms.framework"
             BlueprintName = "ulibsms"
-            ReferencedContainer = "container:../../../../../Users/afink/development/git/ulibsms/ulibsms.xcodeproj">
+            ReferencedContainer = "container:ulibsms.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
