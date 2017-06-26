@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A641CE9E1B42014800854472"
+               BlueprintIdentifier = "A6F9FE451EF7FA33007C203A"
                BuildableName = "ulibsms.framework"
                BlueprintName = "ulibsms"
                ReferencedContainer = "container:ulibsms.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A641CE9E1B42014800854472"
+            BlueprintIdentifier = "A6F9FE451EF7FA33007C203A"
             BuildableName = "ulibsms.framework"
             BlueprintName = "ulibsms"
             ReferencedContainer = "container:ulibsms.xcodeproj">
@@ -64,7 +64,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A641CE9E1B42014800854472"
+            BlueprintIdentifier = "A6F9FE451EF7FA33007C203A"
             BuildableName = "ulibsms.framework"
             BlueprintName = "ulibsms"
             ReferencedContainer = "container:ulibsms.xcodeproj">
@@ -82,7 +82,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A641CE9E1B42014800854472"
+            BlueprintIdentifier = "A6F9FE451EF7FA33007C203A"
             BuildableName = "ulibsms.framework"
             BlueprintName = "ulibsms"
             ReferencedContainer = "container:ulibsms.xcodeproj">
