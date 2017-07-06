@@ -25,5 +25,6 @@
 - (UMSMS_Address *)initWithString:(NSString *)addr;
 - (UMSMS_Address *)initWithAddress:(NSString *)msisdn ton:(GSMMAP_TonType)xton npi:(GSMMAP_NpiType)xnpi;
 - (NSData *)encoded;
+- (NSString *)stringValue;
 
 @end
