@@ -13,9 +13,9 @@
 
 @interface UMSMS_Address : UMObject
 {
-    GSMMAP_TonType ton;
-    GSMMAP_NpiType npi;
-    NSString *address;
+    GSMMAP_TonType _ton;
+    GSMMAP_NpiType _npi;
+    NSString *_address;
 }
 
 @property(readwrite,assign) GSMMAP_TonType ton;

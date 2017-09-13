@@ -44,10 +44,6 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
 
 @implementation UMSMS_Address
 
-@synthesize ton;
-@synthesize npi;
-@synthesize address;
-
 - (UMSMS_Address *)initWithString:(NSString *)digits
 {
     self = [super init];
@@ -55,33 +51,33 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
     {
         if(digits == nil)
         {
-            address = @"";
-            ton = 0;
-            npi = 0;
+            _address = @"";
+            _ton = 0;
+            _npi = 0;
         }
         else if([digits length] < 2)
         {
-            address = @"";
-            ton = 0;
-            npi = 0;
+            _address = @"";
+            _ton = 0;
+            _npi = 0;
         }
         else if ([digits compare:@"+" options:NSLiteralSearch range:NSMakeRange(0,1)] == NSOrderedSame )
         {
-            address = [digits substringFromIndex:1];
-            ton = 1;
-            npi = 1;
+            _address = [digits substringFromIndex:1];
+            _ton = 1;
+            _npi = 1;
         }
         else if(([digits length] >= 2) && ([digits compare:@"00" options:NSLiteralSearch  range:NSMakeRange(0,2)] == NSOrderedSame ))
         {
-            address = [digits substringFromIndex:2];
-            ton = 1;
-            npi = 1;
+            _address = [digits substringFromIndex:2];
+            _ton = 1;
+            _npi = 1;
         }
         else if ([digits compare:@"0" options:NSLiteralSearch range:NSMakeRange(0,1)] == NSOrderedSame)
         {
-            address = [digits substringFromIndex:1];
-            ton = 2;
-            npi = 1;
+            _address = [digits substringFromIndex:1];
+            _ton = 2;
+            _npi = 1;
         }
         else if ([digits compare:@":" options:NSLiteralSearch range:NSMakeRange(0,1)] == NSOrderedSame)
         {
@@ -114,9 +110,9 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
             }
             if(colon_index < 3)
             {
-                address = @"";
-                ton = 0;
-                npi = 0;
+                _address = @"";
+                _ton = 0;
+                _npi = 0;
                 return self;
             }
             numstr[colon_pos[1]]='\0';
@@ -125,12 +121,12 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
             anpi = atoi(&numstr[colon_pos[1]+1]);
             strncpy(number,&numstr[colon_pos[2]+1],(sizeof(number)-1));
             
-            ton = aton % 8;
-            npi = anpi % 16;
+            _ton = aton % 8;
+            _npi = anpi % 16;
             size_t len = strlen(number);
-            if(ton==5) /* alphanumeric */
+            if(_ton==5) /* alphanumeric */
             {
-                address = [[NSString alloc] initWithBytes:number length:len encoding:(NSUTF8StringEncoding)];
+                _address = [[NSString alloc] initWithBytes:number length:len encoding:(NSUTF8StringEncoding)];
             }
             else
             {
@@ -184,25 +180,25 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
                     }
                 }
                 number[j] = '\0';
-                address = @(number);
+                _address = @(number);
             }
         }
         else
         {
             if(is_all_digits(digits.UTF8String, 0,digits.length)==0)
             {
-                ton = 5;
-                npi = 0;
+                _ton = 5;
+                _npi = 0;
 
                 int nibblelen;
                 NSData *m = [[digits gsm8] gsm8to7:&nibblelen];
-                address = [m hexString];
+                _address = [m hexString];
             }
             else
             {
-                ton = 0;
-                npi = 0;
-                address = digits;
+                _ton = 0;
+                _npi = 0;
+                _address = digits;
             }
         }
     }
@@ -214,9 +210,9 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
     self = [super init];
     if(self)
     {
-        ton = xton;
-        npi = xnpi;
-        address = msisdn;
+        _ton = xton;
+        _npi = xnpi;
+        _address = msisdn;
     }
     return self;
 }
@@ -226,12 +222,12 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
 {
     NSMutableData *d = [[NSMutableData alloc]init];
     
-    NSUInteger len = address.length;
-    int b = ((ton & 0x07) << 4) | (npi & 0x0F);
+    NSUInteger len = _address.length;
+    int b = ((_ton & 0x07) << 4) | (_npi & 0x0F);
     b = b | 0x80;
-    NSString *addr = address;
+    NSString *addr = _address;
     
-    if(ton != 5) /* not alphanumeric */
+    if(_ton != 5) /* not alphanumeric */
     {
         if(len > 255)
         {
@@ -258,7 +254,7 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
             [d appendByte:c2];
         }
     }
-    else if (ton==5)
+    else if (_ton==5)
     {
         if(len > 255)
         {
@@ -288,11 +284,12 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
 
 - (NSString *)stringValue
 {
-    if((ton!=5) || (npi != 0))
+    if((_ton!=5) || (_npi != 0))
     {
-        return address;
+        return _address;
     }
-    NSString *s = [[address unhexedData] stringFromGsm7withNibbleLengthPrefix];
+    NSString *s = [[_address unhexedData] stringFromGsm7withNibbleLengthPrefix];
     return s;
 }
+
 @end

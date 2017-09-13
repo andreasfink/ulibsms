@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CEB11B42014800854472 /* ulibsmsTests.m */; };
+		A6909AAE1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = A6909AAC1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6909AB21F694638000254E8 /* UMGSMCharacterTable.h in Headers */ = {isa = PBXBuildFile; fileRef = A6909AB01F694638000254E8 /* UMGSMCharacterTable.h */; };
+		A6909AB31F694638000254E8 /* UMGSMCharacterTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A6909AB11F694638000254E8 /* UMGSMCharacterTable.m */; };
 		A6F9FE4A1EF7FA33007C203A /* ulibsms.h in Headers */ = {isa = PBXBuildFile; fileRef = A6F9FE481EF7FA33007C203A /* ulibsms.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6F9FE4E1EF7FB67007C203A /* UMSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = A64612D41D41F12B00211137 /* UMSMS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6F9FE4F1EF7FB79007C203A /* UMSMS_Address.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D10CCF1D4F34EB001D021B /* UMSMS_Address.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,6 +55,9 @@
 		A682DB5A1B455ADF0090FC94 /* UMSMSRetryQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSMSRetryQueue.h; sourceTree = "<group>"; };
 		A682DB5B1B455ADF0090FC94 /* UMSMSRetryQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMSMSRetryQueue.m; sourceTree = "<group>"; };
 		A682DB601B4566A50090FC94 /* UMSMSTransactionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSMSTransactionProtocol.h; sourceTree = "<group>"; };
+		A6909AAC1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMGSMNationalLanguageIdentifier.h; sourceTree = "<group>"; };
+		A6909AB01F694638000254E8 /* UMGSMCharacterTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMGSMCharacterTable.h; sourceTree = "<group>"; };
+		A6909AB11F694638000254E8 /* UMGSMCharacterTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMGSMCharacterTable.m; sourceTree = "<group>"; };
 		A6B7FBB41B44A9C500854472 /* UMSMSWaitingQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSMSWaitingQueue.h; sourceTree = "<group>"; };
 		A6B7FBB51B44A9C500854472 /* UMSMSWaitingQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMSMSWaitingQueue.m; sourceTree = "<group>"; };
 		A6B7FBC61B44B54100854472 /* sctp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = sctp.framework; path = /Library/Frameworks/sctp.framework; sourceTree = "<absolute>"; };
@@ -166,6 +172,9 @@
 				A6C789461B4A885E0090FC94 /* UMGlobalMessageCache.m */,
 				A6C789491B4A886C0090FC94 /* UMGlobalMessageCacheEntry.h */,
 				A6C7894A1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.m */,
+				A6909AAC1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h */,
+				A6909AB01F694638000254E8 /* UMGSMCharacterTable.h */,
+				A6909AB11F694638000254E8 /* UMGSMCharacterTable.m */,
 			);
 			path = ulibsms;
 			sourceTree = "<group>";
@@ -234,8 +243,10 @@
 				A6F9FE531EF7FB79007C203A /* UMSMSInProgressQueue.h in Headers */,
 				A6F9FE4E1EF7FB67007C203A /* UMSMS.h in Headers */,
 				A6F9FE501EF7FB79007C203A /* UMSMSTransactionProtocol.h in Headers */,
+				A6909AAE1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h in Headers */,
 				A6F9FE4F1EF7FB79007C203A /* UMSMS_Address.h in Headers */,
 				A6F9FE511EF7FB79007C203A /* UMLayerSMS.h in Headers */,
+				A6909AB21F694638000254E8 /* UMGSMCharacterTable.h in Headers */,
 				A6F9FE541EF7FB79007C203A /* UMHLRCache.h in Headers */,
 				A6F9FE571EF7FB79007C203A /* UMGlobalMessageCache.h in Headers */,
 				A6F9FE4A1EF7FA33007C203A /* ulibsms.h in Headers */,
@@ -348,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6909AB31F694638000254E8 /* UMGSMCharacterTable.m in Sources */,
 				A6F9FE621EF7FB8E007C203A /* UMGlobalMessageCacheEntry.m in Sources */,
 				A6F9FE5A1EF7FB8E007C203A /* UMSMS_Address.m in Sources */,
 				A6F9FE5D1EF7FB8E007C203A /* UMSMSInProgressQueue.m in Sources */,
