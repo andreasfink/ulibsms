@@ -87,11 +87,11 @@ typedef enum UMSMS_MessageType
     UMSMS_Address *tp_oa;
     UMSMS_Address *tp_da;
     NSData *t_content;
-    int multipart_ref;
-    int multipart_max;
-    int multipart_current;
-    int language_lock_table_number;
-    int language_shift_table_number;
+    int _multipart_ref;
+    int _multipart_max;
+    int _multipart_current;
+    int _language_lock_table_number;
+    int _language_shift_table_number;
 }
 
 @property(readwrite,assign) int tp_mti; /* message type */
@@ -120,6 +120,12 @@ typedef enum UMSMS_MessageType
 @property(readwrite,strong) UMSMS_Address *tp_da;
 @property(readwrite,strong) NSData *t_content;
 @property(readwrite,strong) NSString *tp_mti_string;
+
+@property(readonly,assign) int multipart_ref;
+@property(readonly,assign) int multipart_max;
+@property(readonly,assign) int multipart_current;
+@property(readonly,assign) int language_lock_table_number;
+@property(readonly,assign) int language_shift_table_number;
 
 + (NSData *) decode7bituncompressed:(NSData *)input len:(NSUInteger)len offset:(NSUInteger) offset;
 + (NSData *) pack7bit:(NSData *)input fillBits:(NSUInteger)fillers newLength:(NSUInteger *)newlen;
