@@ -11,6 +11,8 @@
 
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
+#import <ulib/ulib.h>
+#import "UMSMS.h"
 
 @interface ulibsmsTests : XCTestCase
 
@@ -40,4 +42,15 @@
     }];
 }
 
+- (void) testDecoding
+{
+    NSString *s = @"240B919799329660F700007190010190822150CC32FD3407D9D3E4F21B344687E9A0B09B0CA297F174D0DB0D4AB7DF21D0B14C07D1D16590595E2E83C27038084DA7C3E7BAD7CB7D93D96AAE301CEE3ABFDFAE33FB053FD6D7";
+    NSData *d = [s unhexedData];
+    UMSMS *sms = [[UMSMS alloc]init];
+    [sms decodePdu:d context:NULL];
+ 
+    UMSynchronizedSortedDictionary *o = sms.objectValue;
+
+    NSLog(@"%@",o);
+}
 @end

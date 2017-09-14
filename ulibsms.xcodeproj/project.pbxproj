@@ -8,6 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CEB11B42014800854472 /* ulibsmsTests.m */; };
+		A664D57A1F6A60E500BD455E /* UMSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A64612D51D41F12B00211137 /* UMSMS.m */; };
+		A664D57B1F6A60EB00BD455E /* UMSMS_Address.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D10CD01D4F34EB001D021B /* UMSMS_Address.m */; };
+		A664D57C1F6A60EE00BD455E /* UMLayerSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED5C3A1B434FAD00854472 /* UMLayerSMS.m */; };
+		A664D57D1F6A60F100BD455E /* UMSMSWaitingQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B7FBB51B44A9C500854472 /* UMSMSWaitingQueue.m */; };
+		A664D57E1F6A60F400BD455E /* UMSMSInProgressQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D2B7BB1B453E490090FC94 /* UMSMSInProgressQueue.m */; };
+		A664D57F1F6A60F700BD455E /* UMHLRCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C789521B4ABBFF0090FC94 /* UMHLRCache.m */; };
+		A664D5801F6A60FA00BD455E /* UMHLRCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C789561B4ABC0A0090FC94 /* UMHLRCacheEntry.m */; };
+		A664D5811F6A60FC00BD455E /* UMSMSRetryQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A682DB5B1B455ADF0090FC94 /* UMSMSRetryQueue.m */; };
+		A664D5821F6A615F00BD455E /* UMGlobalMessageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C789461B4A885E0090FC94 /* UMGlobalMessageCache.m */; };
+		A664D5831F6A616100BD455E /* UMGlobalMessageCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7894A1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.m */; };
+		A664D5841F6A616400BD455E /* UMGSMCharacterTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A6909AB11F694638000254E8 /* UMGSMCharacterTable.m */; };
+		A664D5851F6A616D00BD455E /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C7E1B435C4100854472 /* ulib.framework */; };
+		A664D5861F6A616F00BD455E /* sctp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B7FBC61B44B54100854472 /* sctp.framework */; };
+		A664D5871F6A617200BD455E /* ulibgsmmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CCA3601CBC2C1A00DE6284 /* ulibgsmmap.framework */; };
+		A664D5881F6A617E00BD455E /* ulibm2pa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C801B435C4100854472 /* ulibm2pa.framework */; };
+		A664D5891F6A618100BD455E /* ulibmtp3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C821B435C4100854472 /* ulibmtp3.framework */; };
+		A664D58A1F6A618400BD455E /* ulibsccp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C831B435C4100854472 /* ulibsccp.framework */; };
+		A664D58B1F6A618600BD455E /* ulibsctp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C841B435C4100854472 /* ulibsctp.framework */; };
+		A664D58C1F6A618900BD455E /* ulibtcap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C851B435C4100854472 /* ulibtcap.framework */; };
+		A664D58D1F6A61BB00BD455E /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */; };
 		A6909AAE1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = A6909AAC1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6909AB21F694638000254E8 /* UMGSMCharacterTable.h in Headers */ = {isa = PBXBuildFile; fileRef = A6909AB01F694638000254E8 /* UMGSMCharacterTable.h */; };
 		A6909AB31F694638000254E8 /* UMGSMCharacterTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A6909AB11F694638000254E8 /* UMGSMCharacterTable.m */; };
@@ -78,7 +98,6 @@
 		A6ED5C391B434FAD00854472 /* UMLayerSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMLayerSMS.h; sourceTree = "<group>"; };
 		A6ED5C3A1B434FAD00854472 /* UMLayerSMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMLayerSMS.m; sourceTree = "<group>"; };
 		A6ED5C7E1B435C4100854472 /* ulib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulib.framework; path = /Library/Frameworks/ulib.framework; sourceTree = "<absolute>"; };
-		A6ED5C7F1B435C4100854472 /* ulibgsmmap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibgsmmap.framework; path = /Library/Frameworks/ulibgsmmap.framework; sourceTree = "<absolute>"; };
 		A6ED5C801B435C4100854472 /* ulibm2pa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibm2pa.framework; path = /Library/Frameworks/ulibm2pa.framework; sourceTree = "<absolute>"; };
 		A6ED5C821B435C4100854472 /* ulibmtp3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibmtp3.framework; path = /Library/Frameworks/ulibmtp3.framework; sourceTree = "<absolute>"; };
 		A6ED5C831B435C4100854472 /* ulibsccp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibsccp.framework; path = /Library/Frameworks/ulibsccp.framework; sourceTree = "<absolute>"; };
@@ -99,6 +118,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A664D5871F6A617200BD455E /* ulibgsmmap.framework in Frameworks */,
+				A664D58A1F6A618400BD455E /* ulibsccp.framework in Frameworks */,
+				A664D58C1F6A618900BD455E /* ulibtcap.framework in Frameworks */,
+				A664D5891F6A618100BD455E /* ulibmtp3.framework in Frameworks */,
+				A664D58D1F6A61BB00BD455E /* libiconv.2.dylib in Frameworks */,
+				A664D5861F6A616F00BD455E /* sctp.framework in Frameworks */,
+				A664D58B1F6A618600BD455E /* ulibsctp.framework in Frameworks */,
+				A664D5881F6A617E00BD455E /* ulibm2pa.framework in Frameworks */,
+				A664D5851F6A616D00BD455E /* ulib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +239,6 @@
 				A6CCA3601CBC2C1A00DE6284 /* ulibgsmmap.framework */,
 				A6B7FBC61B44B54100854472 /* sctp.framework */,
 				A6ED5C7E1B435C4100854472 /* ulib.framework */,
-				A6ED5C7F1B435C4100854472 /* ulibgsmmap.framework */,
 				A6ED5C801B435C4100854472 /* ulibm2pa.framework */,
 				A6ED5C821B435C4100854472 /* ulibmtp3.framework */,
 				A6ED5C831B435C4100854472 /* ulibsccp.framework */,
@@ -351,7 +378,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A664D5831F6A616100BD455E /* UMGlobalMessageCacheEntry.m in Sources */,
+				A664D5811F6A60FC00BD455E /* UMSMSRetryQueue.m in Sources */,
+				A664D5841F6A616400BD455E /* UMGSMCharacterTable.m in Sources */,
+				A664D5821F6A615F00BD455E /* UMGlobalMessageCache.m in Sources */,
 				A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */,
+				A664D57F1F6A60F700BD455E /* UMHLRCache.m in Sources */,
+				A664D5801F6A60FA00BD455E /* UMHLRCacheEntry.m in Sources */,
+				A664D57C1F6A60EE00BD455E /* UMLayerSMS.m in Sources */,
+				A664D57D1F6A60F100BD455E /* UMSMSWaitingQueue.m in Sources */,
+				A664D57E1F6A60F400BD455E /* UMSMSInProgressQueue.m in Sources */,
+				A664D57B1F6A60EB00BD455E /* UMSMS_Address.m in Sources */,
+				A664D57A1F6A60E500BD455E /* UMSMS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +523,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -504,6 +543,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = ulibsmsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";

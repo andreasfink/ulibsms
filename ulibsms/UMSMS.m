@@ -287,10 +287,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         for(int i=0;i<len2;i++)
         {
             int c = b2[i];
-            c = ((c & 0x0F)<< 4) + ((c & 0xF0) >> 4);
-            [s appendFormat:@"%c%c",
-                nib[c & 0x0F],
-                nib[(c & 0xF0)>>4]];
+            [s appendFormat:@"%c%c", nib[c & 0x0F], nib[(c & 0xF0)>>4]];
         }
         tpa.address = [s substringToIndex:len];
     }
