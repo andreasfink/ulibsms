@@ -87,6 +87,11 @@ typedef enum UMSMS_MessageType
     UMSMS_Address *tp_oa;
     UMSMS_Address *tp_da;
     NSData *t_content;
+    int multipart_ref;
+    int multipart_max;
+    int multipart_current;
+    int language_lock_table_number;
+    int language_shift_table_number;
 }
 
 @property(readwrite,assign) int tp_mti; /* message type */

@@ -207,7 +207,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             {
                 @try
                 {
-                    udh_decoded = [UMSMS decodeUdh:t_udh];
+                    udh_decoded = [self decodeUdh:t_udh];
                 }
                 @catch(NSException *e)
                 {
@@ -635,6 +635,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             t = [t_ud hexString];
             break;
     }
+    /*
     if(tp_udhi)
     {
         if(t_udh.length >=6)
@@ -652,6 +653,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             }
         }
     }
+     */
     if(t==NULL)
     {
         t=@"";
@@ -660,7 +662,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 }
 
 
-+ (NSDictionary *)decodeUdh:(NSData *)data
+- (NSDictionary *)decodeUdh:(NSData *)data
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     if(data.length < 2)
@@ -703,9 +705,12 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                     dict2[@"error"] = @"invalid-ielength";
                     break;
                 }
-                dict2[@"reference-number"] = @(iebytes[0]);
-                dict2[@"part"] = @(iebytes[1]);
-                dict2[@"max"] = @(iebytes[2]);
+                multipart_ref = iebytes[0];
+                multipart_max = iebytes[1];
+                multipart_current = iebytes[2];
+                dict2[@"reference-number"] = @(multipart_ref);
+                dict2[@"max"] = @(multipart_max);
+                dict2[@"part"] = @(multipart_current);
                 break;
             }
             case 0x01:
@@ -897,11 +902,15 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             case 0x24:
             {
                 dict2[@"type"] = @"National Language Single Shift"; /* len =1 */
+                language_shift_table_number=iebytes[0];
+                dict2[@"language-code"] = @(language_shift_table_number);
                 break;
             }
             case 0x25:
             {
                 dict2[@"type"] = @"National Language Locking Shift"; /* len =1 */
+                language_lock_table_number=iebytes[0];
+                dict2[@"language-code"] = @(language_lock_table_number);
                 break;
             }
             default:
