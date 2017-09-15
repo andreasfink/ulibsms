@@ -277,6 +277,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     if(ton == 5) /* alphanumeric */
     {
         tpa.address = [NSString stringWithFormat:@"%02X%@",len,[tmp hexString]];
+        /* FIXME: decode to UTF8String */
     }
     else
     {
