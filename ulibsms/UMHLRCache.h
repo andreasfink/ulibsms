@@ -17,6 +17,7 @@
 {
     UMSynchronizedDictionary *entries;
     int expiration_seconds;
+    UMMutex* _lock;
 }
 
 @property(readwrite,assign)    int expiration_seconds;

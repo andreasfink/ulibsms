@@ -32,7 +32,8 @@
     {
         return;
     }
-    @synchronized(self)
+    [_lock lock];
+    @try
     {
         UMHLRCacheEntry *entry = entries[msisdn];
         if(entry==NULL)
@@ -55,11 +56,17 @@
         }
         entries[msisdn] = entry;
     }
+    @finally
+    {
+        [_lock unlock];
+    }
 }
+
 
 - (void)expire
 {
-    @synchronized(self)
+    [_lock lock];
+    @try
     {
         /* expire the dict */
         time_t	cur;
@@ -74,14 +81,23 @@
             }
         }
     }
+    @finally
+    {
+        [_lock unlock];
+    }
 }
 
 - (UMHLRCacheEntry *)find:(NSString *)msisdn
 {
-    @synchronized(self)
+    [_lock lock];
+    @try
     {
         UMHLRCacheEntry *entry = entries[msisdn];
         return entry;
+    }
+    @finally
+    {
+        [_lock unlock];
     }
 }
 
