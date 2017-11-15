@@ -82,7 +82,7 @@ typedef enum UMSMS_MessageType
     int tp_fcs; /* status cause */
     NSData *t_ud;
     NSData *t_udh;
-    NSDictionary *udh_decoded;
+    UMSynchronizedArray *udh_decoded;
     char scts[8];
     UMSMS_Address *tp_oa;
     UMSMS_Address *tp_da;
@@ -115,7 +115,7 @@ typedef enum UMSMS_MessageType
 @property(readwrite,assign) int tp_fcs; /* status cause */
 @property(readwrite,strong) NSData *t_ud;
 @property(readwrite,strong) NSData *t_udh;
-@property(readwrite,strong) NSDictionary *udh_decoded;
+@property(readwrite,strong) UMSynchronizedArray *udh_decoded;
 @property(readwrite,strong) UMSMS_Address *tp_oa;
 @property(readwrite,strong) UMSMS_Address *tp_da;
 @property(readwrite,strong) NSData *t_content;

@@ -184,8 +184,10 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             if(tp_udhi && tp_udl > 0)
             {
                 tp_udhlen = GRAB(bytes,len,pos);
+                remaining_bytes--;
                 t_udh = [NSData dataWithBytes:&bytes[pos-1] length:tp_udhlen+1];
                 pos += tp_udhlen;
+                remaining_bytes -= tp_udhlen;
                 if (((tp_dcs & 0xF4) == 0xF4) || (tp_dcs == 0x08))
                 {
                     tp_udl -= (tp_udhlen + 1);
@@ -663,12 +665,12 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 }
 
 
-- (NSDictionary *)decodeUdh:(NSData *)data
+- (UMSynchronizedArray *)decodeUdh:(NSData *)data
 {
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    UMSynchronizedArray *arr = [[UMSynchronizedArray alloc]init];
     if(data.length < 2)
     {
-        return dict;
+        return arr;
     }
 
     const uint8_t *bytes = data.bytes;
@@ -677,8 +679,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
     if(bytes[0] != len - 1)
     {
-        dict[@"error"] = @"invalid-length";
-        return dict;
+        return arr;
     }
     for(i=1;i<(len-1);i++)
     {
@@ -692,7 +693,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         i++;
         i = i+ielen+1;
         NSData *d2 = [NSData dataWithBytes:iebytes length:ielen];
-        NSMutableDictionary *dict2 = [[NSMutableDictionary alloc]init];
+        UMSynchronizedSortedDictionary *dict2 = [[UMSynchronizedSortedDictionary alloc]init];
         dict2[@"iei"] = @(iei);
         dict2[@"iel"] = @(ielen);
         dict2[@"data"] = d2;
@@ -947,9 +948,9 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 }
                 break;
         }
-        dict[@(iei)] = dict2;
+        [arr addObject:dict2];
     }
-    return dict;
+    return arr;
 }
 
 + (void)appendSmsMoForm:(NSMutableString *)s
