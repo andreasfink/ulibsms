@@ -1253,7 +1253,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
         NSString *timeStamp;
 
-        NSDate *sctsDate = [NSDate date];
+        NSDate *sctsDate = [NSDate new];
 
         if((web_scts.length > 0) && (![web_scts isEqualToString:@"now"]))
         {
