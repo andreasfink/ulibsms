@@ -161,5 +161,9 @@ static UMGlobalMessageCache *_sharedObject;
         flog = NULL;
     }
 }
+-(void)flush
+{
+    [cache flush];
+}
 
 @end
