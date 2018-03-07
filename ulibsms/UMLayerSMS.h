@@ -35,4 +35,7 @@
 @property (readwrite,strong)    NSString                *smscNumber;
 @property (readwrite,strong)    UMLayerGSMMAP           *mapInstance;
 
+- (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq;
+- (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq name:(NSString *)name;
+
 @end

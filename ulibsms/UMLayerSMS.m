@@ -43,7 +43,12 @@
 
 - (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq
 {
-    self = [super initWithTaskQueueMulti:tq];
+    return [self initWithTaskQueueMulti:tq name:@""];
+}
+
+- (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq name:(NSString *)name
+{
+    self = [super initWithTaskQueueMulti:tq name:name];
     if(self)
     {
         [self genericInitialisation];
