@@ -66,39 +66,27 @@
 - (void)expire
 {
     [_lock lock];
-    @try
+    /* expire the dict */
+    time_t	cur;
+    cur = time(&cur);
+    NSArray *keys = [entries allKeys];
+    for (NSString *key in keys)
     {
-        /* expire the dict */
-        time_t	cur;
-        cur = time(&cur);
-        NSArray *keys = [entries allKeys];
-        for (NSString *key in keys)
+        UMHLRCacheEntry *entry = entries[key];
+        if(entry.expires < cur)
         {
-            UMHLRCacheEntry *entry = entries[key];
-            if(entry.expires < cur)
-            {
-                [entries removeObjectForKey:key];
-            }
+            [entries removeObjectForKey:key];
         }
-    }
-    @finally
-    {
-        [_lock unlock];
-    }
+   }
+   [_lock unlock];
 }
 
 - (UMHLRCacheEntry *)find:(NSString *)msisdn
 {
     [_lock lock];
-    @try
-    {
-        UMHLRCacheEntry *entry = entries[msisdn];
-        return entry;
-    }
-    @finally
-    {
-        [_lock unlock];
-    }
+    UMHLRCacheEntry *entry = entries[msisdn];
+    [_lock unlock];
+    return entry;
 }
 
 
