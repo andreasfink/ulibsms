@@ -284,6 +284,10 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
 
 - (NSString *)stringValue
 {
+    if((_ton==1)&&(_npi==1))
+    {
+        return [NSString stringWithFormat:@"+%@",_address];
+    }
     if(_ton!=5)
     {
         return _address;
