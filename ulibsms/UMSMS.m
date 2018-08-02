@@ -623,7 +623,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     switch(tp_dcs)
     {
         case 0:
-            t = [t_ud stringFromGsm8];
+            t j= [t_ud stringFromGsm8];
             break;
         case 0x08:
             t = [self textFromUCS2];
