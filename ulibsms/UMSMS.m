@@ -623,7 +623,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     switch(tp_dcs)
     {
         case 0:
-            t= [t_ud stringFromGsm8];
+            t = [t_ud stringFromGsm8];
             break;
         case 0x08:
             t = [self textFromUCS2];
@@ -635,8 +635,21 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             t = [t_ud hexString];
             break;
         default:
-            t = [t_ud hexString];
-            break;
+        {
+            switch(coding)
+            {
+                case DC_7BIT:
+                case DC_8BIT:
+                    t= [t_ud stringFromGsm8];
+                    break;
+                case DC_UCS2:
+                    t = [self textFromUCS2];
+                    break;
+                default:
+                    t = [t_ud hexString];
+                    break;
+            }
+        }
     }
     /*
     if(tp_udhi)
