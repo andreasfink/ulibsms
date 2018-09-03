@@ -13,10 +13,5 @@
 
 @implementation UMHLRCacheEntry
 
-@synthesize msisdn;
-@synthesize msc;
-@synthesize imsi;
-@synthesize hlr;
-@synthesize expires;
 
 @end

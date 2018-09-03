@@ -13,14 +13,14 @@
 
 @interface UMGlobalMessageCacheEntry : UMObject
 {
-    NSString    *messageId;
-    id          msg;
-    int         retainCounter;
+    NSString    *_messageId;
+    id          _msg;
+    int         _cacheRetainCounter;
 }
 
 @property(readwrite,strong) NSString   *messageId;
 @property(readwrite,strong) id          msg;
-@property(readwrite,assign) int         retainCounter;
+@property(readwrite,assign) int         cacheRetainCounter;
 
 
 @end

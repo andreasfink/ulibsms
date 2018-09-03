@@ -12,10 +12,10 @@
 #import "UMGlobalMessageCache.h"
 #import "UMGlobalMessageCacheEntry.h"
 
-static UMGlobalMessageCache *_sharedObject = NULL;
+//static UMGlobalMessageCache *_sharedObject = NULL;
 
 @implementation UMGlobalMessageCache
-
+/*
 + (UMGlobalMessageCache *)sharedInstance
 {
     if(_sharedObject)
@@ -25,7 +25,7 @@ static UMGlobalMessageCache *_sharedObject = NULL;
     _sharedObject =[[UMGlobalMessageCache alloc]init];
     return _sharedObject;
 }
-
+*/
 - (UMGlobalMessageCache *)init
 {
     self = [super init];
@@ -46,15 +46,15 @@ static UMGlobalMessageCache *_sharedObject = NULL;
             entry = [[UMGlobalMessageCacheEntry alloc]init];
             entry.messageId = messageId;
             entry.msg = msg;
-            entry.retainCounter = 1;
+            entry.cacheRetainCounter = 1;
             [self logEvent:[NSString stringWithFormat:@"retain 0->1 %s:%ld %s",file,line,func] messageId:messageId];
 
         }
         else
         {
             UMAssert(msg == entry.msg,@"two messages with same ID??");
-            entry.retainCounter = entry.retainCounter + 1;
-            [self logEvent:[NSString stringWithFormat:@"retain %d->%d %s:%ld %s",entry.retainCounter-1,entry.retainCounter,file,line,func] messageId:messageId];
+            entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
+            [self logEvent:[NSString stringWithFormat:@"retain %d->%d %s:%ld %s",entry.cacheRetainCounter-1,entry.cacheRetainCounter,file,line,func] messageId:messageId];
         }
         cache[messageId]=entry;
     }
@@ -70,12 +70,12 @@ static UMGlobalMessageCache *_sharedObject = NULL;
             entry = [[UMGlobalMessageCacheEntry alloc]init];
             entry.messageId = messageId;
             entry.msg = msg;
-            entry.retainCounter = 1;
+            entry.cacheRetainCounter = 1;
         }
         else
         {
             UMAssert(msg == entry.msg,@"two messages with same ID??");
-            entry.retainCounter = entry.retainCounter + 1;
+            entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
         }
         cache[messageId]=entry;
     }
@@ -88,9 +88,9 @@ static UMGlobalMessageCache *_sharedObject = NULL;
         UMGlobalMessageCacheEntry *entry = cache[messageId];
         if(entry)
         {
-            [self logEvent:[NSString stringWithFormat:@"release %d->%d %s:%ld %s",entry.retainCounter,entry.retainCounter-1,file,line,func] messageId:messageId];
-            entry.retainCounter = entry.retainCounter - 1;
-            if(entry.retainCounter<1)
+            [self logEvent:[NSString stringWithFormat:@"release %d->%d %s:%ld %s",entry.cacheRetainCounter,entry.cacheRetainCounter-1,file,line,func] messageId:messageId];
+            entry.cacheRetainCounter = entry.cacheRetainCounter - 1;
+            if(entry.cacheRetainCounter<1)
             {
                 [cache removeObjectForKey:messageId];
             }
@@ -109,8 +109,8 @@ static UMGlobalMessageCache *_sharedObject = NULL;
         UMGlobalMessageCacheEntry *entry = cache[messageId];
         if(entry)
         {
-            entry.retainCounter = entry.retainCounter - 1;
-            if(entry.retainCounter<1)
+            entry.cacheRetainCounter = entry.cacheRetainCounter - 1;
+            if(entry.cacheRetainCounter<1)
             {
                 [cache removeObjectForKey:messageId];
             }

@@ -13,29 +13,28 @@
 #import "UMHLRCacheEntry.h"
 
 @implementation UMHLRCache
-@synthesize expiration_seconds;
 
 - (UMHLRCache *)init
 {
     self = [super init];
     if(self)
     {
-        entries= [[UMSynchronizedDictionary alloc] init];
-        expiration_seconds = 0;
+        _entries= [[UMSynchronizedDictionary alloc] init];
+        _expiration_seconds = 0;
     }
     return self;
 }
 
 - (void)addToCacheMSISDN:(NSString *)msisdn msc:(NSString *)msc imsi:(NSString *)imsi hlr:(NSString *)hlr
 {
-    if(expiration_seconds<1)
+    if(_expiration_seconds<1)
     {
         return;
     }
     [_lock lock];
     @try
     {
-        UMHLRCacheEntry *entry = entries[msisdn];
+        UMHLRCacheEntry *entry = _entries[msisdn];
         if(entry==NULL)
         {
             time_t now;
@@ -46,7 +45,7 @@
             entry.imsi = imsi;
             entry.hlr = hlr;
             entry.msc = msc;
-            entry.expires = now + expiration_seconds;
+            entry.expires = now + _expiration_seconds;
         }
         else
         {
@@ -54,7 +53,7 @@
             entry.hlr = hlr;
             entry.msc = msc;
         }
-        entries[msisdn] = entry;
+        _entries[msisdn] = entry;
     }
     @finally
     {
@@ -69,13 +68,13 @@
     /* expire the dict */
     time_t	cur;
     cur = time(&cur);
-    NSArray *keys = [entries allKeys];
+    NSArray *keys = [_entries allKeys];
     for (NSString *key in keys)
     {
-        UMHLRCacheEntry *entry = entries[key];
+        UMHLRCacheEntry *entry = _entries[key];
         if(entry.expires < cur)
         {
-            [entries removeObjectForKey:key];
+            [_entries removeObjectForKey:key];
         }
    }
    [_lock unlock];
@@ -84,7 +83,7 @@
 - (UMHLRCacheEntry *)find:(NSString *)msisdn
 {
     [_lock lock];
-    UMHLRCacheEntry *entry = entries[msisdn];
+    UMHLRCacheEntry *entry = _entries[msisdn];
     [_lock unlock];
     return entry;
 }

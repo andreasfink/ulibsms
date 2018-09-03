@@ -13,11 +13,11 @@
 
 @interface UMHLRCacheEntry : UMObject
 {
-    NSString *msisdn;
-    NSString *msc;
-    NSString *imsi;
-    NSString *hlr;
-    time_t  expires;
+    NSString *_msisdn;
+    NSString *_msc;
+    NSString *_imsi;
+    NSString *_hlr;
+    time_t  _expires;
 }
 
 

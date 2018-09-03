@@ -13,8 +13,5 @@
 
 @implementation UMGlobalMessageCacheEntry
 
-@synthesize messageId;
-@synthesize msg;
-@synthesize retainCounter;
 
 @end

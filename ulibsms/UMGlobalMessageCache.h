@@ -19,7 +19,7 @@
     FILE *flog;
 }
 
-+ (UMGlobalMessageCache *)sharedInstance;
+//+ (UMGlobalMessageCache *)sharedInstance;
 
 - (void)openLog:(NSString *)logfilename;
 - (void)closeLog;

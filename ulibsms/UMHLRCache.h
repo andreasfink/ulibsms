@@ -15,8 +15,8 @@
 
 @interface UMHLRCache : UMObject
 {
-    UMSynchronizedDictionary *entries;
-    int expiration_seconds;
+    UMSynchronizedDictionary *_entries;
+    int _expiration_seconds;
     UMMutex* _lock;
 }
 

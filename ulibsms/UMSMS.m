@@ -30,33 +30,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
 @implementation UMSMS
 
-#if 0
-@synthesize _tp_mti; /* message type */
-@synthesize tp_mms; /* more message to send */
-@synthesize tp_sri; /* status report qualifier: 0 report to SUBMIT, 1 = report to COMMAND */
-@synthesize tp_udhi; /*user data header indicator */
-@synthesize tp_rp; /* reply path */
-@synthesize tp_vpf; /* validity period present */
-@synthesize tp_srr; /* status report requested */
-@synthesize tp_pid; /* */
-@synthesize tp_dcs; /* data coding scheme */
-@synthesize tp_udl; /* user data length */
-@synthesize tp_udhlen; /*user data header length */
-@synthesize tp_mr; /* message refrence */
-@synthesize tp_rd; /* reject duplicates */
-@synthesize validity_time;
-@synthesize coding;
-@synthesize messageClass;
-@synthesize compress;
-@synthesize mwi_pdu;
-@synthesize tp_fcs; /* status cause */
-@synthesize t_ud;
-@synthesize t_udh;
-@synthesize tp_oa;
-@synthesize tp_da;
-@synthesize t_content;
-@synthesize udh_decoded;
-#endif
+
 
 + (NSData *) decode7bituncompressed:(NSData *)input len:(NSUInteger)len offset:(NSUInteger) offset
 {
