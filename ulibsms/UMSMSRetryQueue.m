@@ -48,8 +48,7 @@
                                  @"expire-time":[NSNumber numberWithLong:(long)last_considersation],
                                  @"priority":  [NSNumber numberWithInt:priority],
                                  };
-        [[UMGlobalMessageCache sharedInstance]retainMessage:msg forMessageId:messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
-
+        [_messageCache retainMessage:msg forMessageId:messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
         [retry_entries addObject:entry];
     }
 }
@@ -78,14 +77,14 @@
 
                 [needsRetry addObject:entry[@"msg"]];
                 [retry_entries removeObjectAtIndex:i];
-                [[UMGlobalMessageCache sharedInstance]releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
+                [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
                 n--;
             }
             else if([entry[@"expire-time"]longValue] <= now)
             {
                 [hasExpired addObject:entry[@"msg"]];
                 [retry_entries removeObjectAtIndex:i];
-                [[UMGlobalMessageCache sharedInstance]releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
+                [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
                 n--;
             }
             else

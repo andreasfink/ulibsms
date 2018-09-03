@@ -13,11 +13,12 @@
 #import "UMSMSWaitingQueue.h"
 #import "UMSMSRetryQueue.h"
 #import "UMHLRCache.h"
+#import "UMGlobalMessageCache.h"
 
 @implementation UMLayerSMS
 
 
-- (UMLayerSMS *)init
+- (UMLayerSMS *)initWithMessageCache:(UMGlobalMessageCache *)cache
 {
     self = [super init];
     if(self)

@@ -11,14 +11,19 @@
 #import <ulib/ulib.h>
 #import "UMSMSTransactionProtocol.h"
 
+@class UMGlobalMessageCache;
 
 @interface UMSMSWaitingQueue : UMObject
 {
     UMSynchronizedDictionary *numbersInProgress;
+    UMGlobalMessageCache *_messageCache;
 }
+@property (readwrite,strong)    UMGlobalMessageCache    *messageCache;
 
 - (BOOL)isTransactionToNumberInProgress:(NSString *)number;
-- (void)queueTransaction:(id<UMSMSTransactionProtocol>)transaction forNumber:(NSString *)number;
+- (void)queueTransaction:(id<UMSMSTransactionProtocol>)transaction
+               forNumber:(NSString *)number;
+
 - (id<UMSMSTransactionProtocol>)getNextTransactionForNumber:(NSString *)number;
 
 @end

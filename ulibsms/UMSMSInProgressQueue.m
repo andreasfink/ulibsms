@@ -42,7 +42,7 @@
         NSString *number = transaction.destinationNumber;
         dictById[msgid] = transaction;
         dictByNumber[number] = transaction;  
-        [[UMGlobalMessageCache sharedInstance]retainMessage:transaction.msg forMessageId:msgid file:__FILE__ line:__LINE__ func:__FUNCTION__];
+        [_messageCache retainMessage:transaction.msg forMessageId:msgid file:__FILE__ line:__LINE__ func:__FUNCTION__];
     }
 }
 
@@ -57,7 +57,7 @@
     {
         [dictById removeObjectForKey:transaction.messageId];
         [dictByNumber removeObjectForKey:transaction.destinationNumber];
-        [[UMGlobalMessageCache sharedInstance]releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+        [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
     }
 }
 
@@ -69,10 +69,10 @@
 #endif
     @synchronized(self)
     {
-        id msg = [[UMGlobalMessageCache sharedInstance] findMessage:msgid];
+        id msg = [_messageCache findMessage:msgid];
         if(msg)
         {
-            [[UMGlobalMessageCache sharedInstance]releaseMessage:msg forMessageId:msgid file:__FILE__ line:__LINE__ func:__FUNCTION__];
+            [_messageCache releaseMessage:msg forMessageId:msgid file:__FILE__ line:__LINE__ func:__FUNCTION__];
             [dictById removeObjectForKey:msgid];
             [dictByNumber removeObjectForKey:number];
         }
@@ -171,7 +171,7 @@
 
                 [dictById removeObjectForKey:transaction.messageId];
                 [dictByNumber removeObjectForKey:transaction.destinationNumber];
-                [[UMGlobalMessageCache sharedInstance]releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+                [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
 
             }
         }

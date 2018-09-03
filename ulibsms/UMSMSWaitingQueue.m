@@ -42,7 +42,8 @@
     }
 }
 
-- (void)queueTransaction:(id<UMSMSTransactionProtocol>)transaction forNumber:(NSString *)number
+- (void)queueTransaction:(id<UMSMSTransactionProtocol>)transaction
+               forNumber:(NSString *)number
 {
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue queueTransaction:%@ forNumber:%@",transaction,number);
@@ -58,7 +59,7 @@
         [transactionsOfNumber append:transaction];
         numbersInProgress[number] = transactionsOfNumber;
         
-        [[UMGlobalMessageCache sharedInstance]retainMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+        [_messageCache retainMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
 
     }
 }
@@ -81,7 +82,7 @@
             return NULL;
         }
         id<UMSMSTransactionProtocol> transaction = [transactionsOfNumber getFirst];
-        [[UMGlobalMessageCache sharedInstance]releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+        [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
 
         if([transactionsOfNumber count]<1)
         {

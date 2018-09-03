@@ -12,20 +12,8 @@
 #import "UMGlobalMessageCache.h"
 #import "UMGlobalMessageCacheEntry.h"
 
-//static UMGlobalMessageCache *_sharedObject = NULL;
-
 @implementation UMGlobalMessageCache
-/*
-+ (UMGlobalMessageCache *)sharedInstance
-{
-    if(_sharedObject)
-    {
-        return _sharedObject;
-    }
-    _sharedObject =[[UMGlobalMessageCache alloc]init];
-    return _sharedObject;
-}
-*/
+
 - (UMGlobalMessageCache *)init
 {
     self = [super init];

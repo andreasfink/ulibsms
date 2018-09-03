@@ -11,13 +11,18 @@
 #import <ulib/ulib.h>
 #import "UMSMSTransactionProtocol.h"
 
+@class UMGlobalMessageCache;
 @interface UMSMSInProgressQueue : UMObject
 {
     UMSynchronizedDictionary *dictById;
     UMSynchronizedDictionary *dictByNumber;
+    UMGlobalMessageCache *_messageCache;
 }
 
+@property(readwrite,strong) UMGlobalMessageCache *messageCache;
+
 - (void) add:(UMObject<UMSMSTransactionProtocol> *)transaction;
+
 - (void) remove:(UMObject<UMSMSTransactionProtocol> *)transaction;
 - (void) removeId:(NSString *)msgid destinationNumber:(NSString *)number;
 - (id) findTransactionById:(NSString *)msgid;

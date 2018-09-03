@@ -16,7 +16,7 @@
 @class UMSMSRetryQueue;
 @class UMHLRCache;
 @class UMLayerGSMMAP;
-
+@class UMGlobalMessageCache;
 @interface UMLayerSMS : UMLayer
 {
     UMLayerGSMMAP           *_mapInstance;
@@ -25,6 +25,7 @@
     UMSMSInProgressQueue    *_inProgressQueue;   /* SMS currently being sent */
     UMSMSRetryQueue         *_retryQueue;        /* SMS to be resent after some time (during normal retry) */
     UMHLRCache              *_hlrCache;
+    UMGlobalMessageCache    *_messageCache;
 }
 
 @property (readwrite,strong)    UMSMSInProgressQueue    *inProgressQueue;
@@ -34,6 +35,7 @@
 
 @property (readwrite,strong)    NSString                *smscNumber;
 @property (readwrite,strong)    UMLayerGSMMAP           *mapInstance;
+@property (readwrite,strong)    UMGlobalMessageCache    *messageCache;
 
 - (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq;
 - (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq name:(NSString *)name;

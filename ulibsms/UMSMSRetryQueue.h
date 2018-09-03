@@ -11,16 +11,22 @@
 
 #import <ulib/ulib.h>
 
+
+@class UMGlobalMessageCache;
+
 @interface UMSMSRetryQueue : UMObject
 {
     NSMutableArray *retry_entries;
+    UMGlobalMessageCache *_messageCache;
 }
+@property (readwrite,strong)    UMGlobalMessageCache    *messageCache;
 
 -(void) queueForRetry:(id)msg
             messageId:(NSString *)messageId
             retryTime:(time_t) next_consideration
            expireTime:(time_t) last_considersation
              priority:(int) priority;
+
 - (void)messagesNeedingRetrying:(NSArray **)needsRetry1
                      orExpiring:(NSArray **)hasExpired1;
 
