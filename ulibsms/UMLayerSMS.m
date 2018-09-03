@@ -16,12 +16,6 @@
 
 @implementation UMLayerSMS
 
-@synthesize waitingQueue;
-@synthesize inProgressQueue;
-@synthesize retryQueue;
-@synthesize smscNumber;
-@synthesize mapInstance;
-@synthesize hlrCache;
 
 - (UMLayerSMS *)init
 {
@@ -35,10 +29,10 @@
 
 - (void)genericInitialisation
 {
-    waitingQueue    = [[UMSMSWaitingQueue alloc]init];
-    inProgressQueue = [[UMSMSInProgressQueue  alloc]init];
-    retryQueue      = [[UMSMSRetryQueue alloc]init];
-    hlrCache        = [[UMHLRCache alloc]init];
+    _waitingQueue    = [[UMSMSWaitingQueue alloc]init];
+    _inProgressQueue = [[UMSMSInProgressQueue  alloc]init];
+    _retryQueue      = [[UMSMSRetryQueue alloc]init];
+    _hlrCache        = [[UMHLRCache alloc]init];
 }
 
 - (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq

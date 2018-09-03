@@ -30,8 +30,8 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
 @implementation UMSMS
 
-
-@synthesize tp_mti; /* message type */
+#if 0
+@synthesize _tp_mti; /* message type */
 @synthesize tp_mms; /* more message to send */
 @synthesize tp_sri; /* status report qualifier: 0 report to SUBMIT, 1 = report to COMMAND */
 @synthesize tp_udhi; /*user data header indicator */
@@ -56,6 +56,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 @synthesize tp_da;
 @synthesize t_content;
 @synthesize udh_decoded;
+#endif
 
 + (NSData *) decode7bituncompressed:(NSData *)input len:(NSUInteger)len offset:(NSUInteger) offset
 {
@@ -123,7 +124,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     NSUInteger     pos = 0;
     
     /* see ETS 300 536 GSM 3.40 version 4.13.0 page 45 section 9.2.3.1 */
-#define	TP_MTI(a)	(a & 0x03)
+#define	_tp_mti(a)	(a & 0x03)
     /* value 1 means no more message are waiting for the MS in this SC so we negate it */
 #define	TP_MMS(a)	(((a >> 2) & 0x01) ? 0 : 1)
 #define	TP_VPF(a)	((a >> 3) & 0x03)
@@ -133,28 +134,28 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
     
     uint8_t	oct1 = GRAB(bytes,len,pos);
-    tp_mti	= TP_MTI(oct1);
-    tp_mms	= TP_MMS(oct1);
-    tp_vpf	= TP_VPF(oct1);
-    tp_srr	= TP_SRR(oct1);
-    tp_udhi = TP_UDHI(oct1);
-    tp_rp	= TP_RP(oct1);
+    _tp_mti	= _tp_mti(oct1);
+    _tp_mms	= TP_MMS(oct1);
+    _tp_vpf	= TP_VPF(oct1);
+    _tp_srr	= TP_SRR(oct1);
+    _tp_udhi = TP_UDHI(oct1);
+    _tp_rp	= TP_RP(oct1);
     
-    switch(tp_mti)
+    switch(_tp_mti)
     {
         case UMSMS_MessageType_DELIVER:
         {
-            tp_oa = [self grabAddress:bytes len:len pos:&pos];
-            tp_pid = GRAB(bytes,len,pos);
-            tp_dcs = GRAB(bytes,len,pos);
-            scts[0] = GRAB(bytes,len,pos);
-            scts[1] = GRAB(bytes,len,pos);
-            scts[2] = GRAB(bytes,len,pos);
-            scts[3] = GRAB(bytes,len,pos);
-            scts[4] = GRAB(bytes,len,pos);
-            scts[5] = GRAB(bytes,len,pos);
-            scts[6] = GRAB(bytes,len,pos);
-            scts[7] = 0;
+            _tp_oa = [self grabAddress:bytes len:len pos:&pos];
+            _tp_pid = GRAB(bytes,len,pos);
+            _tp_dcs = GRAB(bytes,len,pos);
+            _scts[0] = GRAB(bytes,len,pos);
+            _scts[1] = GRAB(bytes,len,pos);
+            _scts[2] = GRAB(bytes,len,pos);
+            _scts[3] = GRAB(bytes,len,pos);
+            _scts[4] = GRAB(bytes,len,pos);
+            _scts[5] = GRAB(bytes,len,pos);
+            _scts[6] = GRAB(bytes,len,pos);
+            _scts[7] = 0;
             /*
              timestamp to string
             tscts = octstr_create(scts);
@@ -175,41 +176,41 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                                octstr_get_char(tscts,13),
                                octstr_get_char(tscts,12));
             */
-            tp_udl = GRAB(bytes,len,pos);
+            _tp_udl = GRAB(bytes,len,pos);
             
             /* tp_udl is in characters not bytes */
             NSUInteger remaining_bytes = len - pos;
-            t_ud = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
-            tp_udhlen = 0;
-            if(tp_udhi && tp_udl > 0)
+            _t_ud = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
+            _tp_udhlen = 0;
+            if(_tp_udhi && _tp_udl > 0)
             {
-                tp_udhlen = GRAB(bytes,len,pos);
+                _tp_udhlen = GRAB(bytes,len,pos);
                 remaining_bytes--;
-                t_udh = [NSData dataWithBytes:&bytes[pos-1] length:tp_udhlen+1];
-                pos += tp_udhlen;
-                remaining_bytes -= tp_udhlen;
-                if (((tp_dcs & 0xF4) == 0xF4) || (tp_dcs == 0x08))
+                _t_udh = [NSData dataWithBytes:&bytes[pos-1] length:_tp_udhlen+1];
+                pos += _tp_udhlen;
+                remaining_bytes -= _tp_udhlen;
+                if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08))
                 {
-                    tp_udl -= (tp_udhlen + 1);
+                    _tp_udl -= (_tp_udhlen + 1);
                 }
                 else
                 {
-                    int total_udhlen = tp_udhlen + 1;
+                    int total_udhlen = _tp_udhlen + 1;
                     int num_of_septep = ((total_udhlen * 8) + 6) / 7;
-                    tp_udl -= num_of_septep;
+                    _tp_udl -= num_of_septep;
                 }
             }
             else
             {
-                t_udh = NULL;
-                tp_udhlen = 0;
+                _t_udh = NULL;
+                _tp_udhlen = 0;
             }
 
-            if(t_udh)
+            if(_t_udh)
             {
                 @try
                 {
-                    udh_decoded = [self decodeUdh:t_udh];
+                    _udh_decoded = [self decodeUdh:_t_udh];
                 }
                 @catch(NSException *e)
                 {
@@ -218,23 +219,23 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             }
             /* deal with the user data -- 7 or 8 bit encoded */
             NSData *tmp = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
-            if(((tp_dcs & 0xF4) == 0xF4) || (tp_dcs == 0x08)) /* 8 bit encoded */
+            if(((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08)) /* 8 bit encoded */
             {
                 /* 8 bit encoding */
-                t_ud = tmp;
+                _t_ud = tmp;
                 tmp = NULL;
             }
             else
             {
                 /* 7 bit encoded */
-                t_ud = [[NSMutableData alloc]init];
+                _t_ud = [[NSMutableData alloc]init];
                 int offset = 0;
-                if (tp_udhi && (((tp_dcs & 0xF4) == 0xF4) || (tp_dcs == 0x00)))
+                if (_tp_udhi && (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x00)))
                 {
-                    int nbits = (tp_udhlen + 1) * 8;
+                    int nbits = (_tp_udhlen + 1) * 8;
                     offset = (((nbits / 7) + 1) * 7 - nbits) % 7;
                 }
-                t_ud = [UMSMS decode7bituncompressed:tmp len:tp_udl offset:offset];
+                _t_ud = [UMSMS decode7bituncompressed:tmp len:_tp_udl offset:offset];
             }
             [self dcs_to_fields];
         }
@@ -301,35 +302,35 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
 -(void) dcs_to_fields
 {
-    int dcs = tp_dcs;
+    int dcs = _tp_dcs;
     
     /* Non-MWI Mode 1 */
     if ((dcs & 0xF0) == 0xF0)
     {
         dcs &= 0x07;
-        coding = (dcs & 0x04) ? DC_8BIT : DC_7BIT; /* grab bit 2 */
-        messageClass = (dcs & 0x03); /* grab bits 1,0 */
+        _coding = (dcs & 0x04) ? DC_8BIT : DC_7BIT; /* grab bit 2 */
+        _messageClass = (dcs & 0x03); /* grab bits 1,0 */
     }
     
     /* Non-MWI Mode 0 */
     else if ((dcs & 0xC0) == 0x00)
     {
-        compress = ((dcs & 0x20) == 0x20) ? 1 : 0; /* grab bit 5 */
-        messageClass = ((dcs & 0x10) == 0x10) ?  (dcs & 0x03) : MC_UNDEF;
+        _compress = ((dcs & 0x20) == 0x20) ? 1 : 0; /* grab bit 5 */
+        _messageClass = ((dcs & 0x10) == 0x10) ?  (dcs & 0x03) : MC_UNDEF;
         /* grab bit 0,1 if bit 4 is on */
-        coding = ((dcs & 0x0C) >> 2); /* grab bit 3,2 */
+        _coding = ((dcs & 0x0C) >> 2); /* grab bit 3,2 */
     }
     
     /* MWI */
     else if ((dcs & 0xC0) == 0xC0)
     {
-        coding = ((dcs & 0x30) == 0x30) ? DC_UCS2 : DC_7BIT;
+        _coding = ((dcs & 0x30) == 0x30) ? DC_UCS2 : DC_7BIT;
         if (dcs & 0x08)
         {
             dcs |= 0x04; /* if bit 3 is active, have mwi += 4 */
         }
         dcs &= 0x07;
-        mwi_pdu =  dcs ; /* grab bits 1,0 */
+        _mwi_pdu =  dcs ; /* grab bits 1,0 */
     } 
 }
 
@@ -338,15 +339,15 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 - (NSData *)encodedContent
 {
     NSMutableData *pdu = [[NSMutableData alloc]init];
-    NSUInteger len = t_content.length;
-    if (((tp_dcs & 0xF4) == 0xF4) || (tp_dcs == 0x08))
+    NSUInteger len = _t_content.length;
+    if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08))
     {
         /*  dcs+message class = 8 bit or Unicode */
-        len += t_udh.length;
+        len +=_t_udh.length;
     }
     else
     {
-        len += (((8* t_udh.length) + 6)/7);
+        len += (((8* _t_udh.length) + 6)/7);
     }
     /* see ets_300 536 e4p.pdf (GSM 03.40) page 55 */
     /* http://www.3gpp.org/ftp/Specs/html-info/0340.htm */
@@ -366,23 +367,23 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                                      userInfo:@{@"file": @(__FILE__), @"line": @(__LINE__)} ]);
     }
     [pdu appendByte:(uint8_t)len];
-    if(tp_udhi)
+    if(_tp_udhi)
     {
-        [pdu appendData:t_udh];
+        [pdu appendData:_t_udh];
     }
-    if (((tp_dcs & 0xF4) == 0xF4) || (tp_dcs == 0x08)) /* 8 bit */
+    if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08)) /* 8 bit */
     {
-        [pdu appendData:t_content];
+        [pdu appendData:_t_content];
     }
     else
     {
         NSUInteger fillers;
-        fillers =  (((8*t_udh.length) + 6)/7); /* filled up septets */
+        fillers =  (((8*_t_udh.length) + 6)/7); /* filled up septets */
         fillers = fillers * 7; /* bits */
-        fillers -= 8* t_udh.length; /*bits */
+        fillers -= 8* _t_udh.length; /*bits */
         
         NSUInteger newlen;
-        NSData *packed =[UMSMS pack7bit:t_content fillBits:fillers newLength:&newlen];
+        NSData *packed =[UMSMS pack7bit:_t_content fillBits:fillers newLength:&newlen];
         [pdu appendData:packed];
     }
     return pdu;
@@ -390,7 +391,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
 - (NSString *)tp_mti_string
 {
-    switch(tp_mti)
+    switch(_tp_mti)
     {
         case UMSMS_MessageType_SUBMIT:
             return @"SUBMIT";
@@ -407,31 +408,31 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 {
     if([s caseInsensitiveCompare:@"SUBMIT"]==NSOrderedSame)
     {
-        tp_mti = UMSMS_MessageType_SUBMIT;
+        _tp_mti = UMSMS_MessageType_SUBMIT;
     }
     if([s caseInsensitiveCompare:@"SUBMIT_REPORT"]==NSOrderedSame)
     {
-        tp_mti = UMSMS_MessageType_SUBMIT_REPORT;
+        _tp_mti = UMSMS_MessageType_SUBMIT_REPORT;
     }
     else if([s caseInsensitiveCompare:@"DELIVER"]==NSOrderedSame)
     {
-        tp_mti = UMSMS_MessageType_DELIVER;
+        _tp_mti = UMSMS_MessageType_DELIVER;
     }
     else if([s caseInsensitiveCompare:@"DELIVER_REPORT"]==NSOrderedSame)
     {
-        tp_mti = UMSMS_MessageType_DELIVER_REPORT;
+        _tp_mti = UMSMS_MessageType_DELIVER_REPORT;
     }
     else if([s caseInsensitiveCompare:@"STATUS_REPORT"]==NSOrderedSame)
     {
-        tp_mti = UMSMS_MessageType_STATUS_REPORT;
+        _tp_mti = UMSMS_MessageType_STATUS_REPORT;
     }
     else if([s caseInsensitiveCompare:@"RESERVED"]==NSOrderedSame)
     {
-        tp_mti = UMSMS_MessageType_RESERVED;
+        _tp_mti = UMSMS_MessageType_RESERVED;
     }
     else if([s caseInsensitiveCompare:@"COMMAND"]==NSOrderedSame)
     {
-        tp_mti = UMSMS_MessageType_COMMAND;
+        _tp_mti = UMSMS_MessageType_COMMAND;
     }
 }
 
@@ -440,23 +441,23 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 {
     NSMutableData *pdu = [[NSMutableData alloc]init];
 
-    switch(tp_mti)
+    switch(_tp_mti)
     {
         case UMSMS_MessageType_DELIVER:	/* SMS-DELIVER */
         {
             /* normal message from SMSC to mobile */
-            uint8_t o = tp_mti;
-            o += tp_mms << 2;
-            o += (tp_sri ? 1 : 0) << 5;
-            o += tp_udhi<< 6;
-            o += tp_rp << 7;
+            uint8_t o = _tp_mti;
+            o += _tp_mms << 2;
+            o += (_tp_sri ? 1 : 0) << 5;
+            o += _tp_udhi<< 6;
+            o += _tp_rp << 7;
             
             [pdu appendByte:o];
-            NSData *tp_oa_encoded = [tp_oa encoded];
+            NSData *tp_oa_encoded = [_tp_oa encoded];
             [pdu appendData:tp_oa_encoded];
-            [pdu appendByte:tp_pid];
-            [pdu appendByte:tp_dcs];
-            [pdu appendBytes:scts length:7];
+            [pdu appendByte:_tp_pid];
+            [pdu appendByte:_tp_dcs];
+            [pdu appendBytes:_scts length:7];
             [pdu appendData:[self encodedContent]];
         }
             break;
@@ -464,28 +465,28 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         {
             /* a message from the MSC to a SMSC */
             /* normal MO from mobile to SMSC */
-            uint8_t o = tp_mti;
-            o += tp_rd << 2;
-            o += tp_srr << 5;
-            o += tp_udhi<< 6;
-            o += tp_rp << 7;
-            o += tp_vpf << 3;
+            uint8_t o = _tp_mti;
+            o += _tp_rd << 2;
+            o += _tp_srr << 5;
+            o += _tp_udhi<< 6;
+            o += _tp_rp << 7;
+            o += _tp_vpf << 3;
             
             [pdu appendByte:o];
-            [pdu appendByte:tp_mr];
+            [pdu appendByte:_tp_mr];
             
             /* destination address */
-            NSData *tp_da_encoded = [tp_da encoded];
+            NSData *tp_da_encoded = [_tp_da encoded];
             [pdu appendData:tp_da_encoded];
-            [pdu appendByte:tp_pid];
-            [pdu appendByte:tp_dcs];
-            if(tp_vpf)
+            [pdu appendByte:_tp_pid];
+            [pdu appendByte:_tp_dcs];
+            if(_tp_vpf)
             {
-                if(validity_time==0)
+                if(_validity_time==0)
                 {
-                    validity_time = 0xFF;
+                    _validity_time = 0xFF;
                 }
-                [pdu appendByte:validity_time];
+                [pdu appendByte:_validity_time];
             }
             [pdu appendData:[self encodedContent]];
         }
@@ -493,15 +494,15 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         case UMSMS_MessageType_STATUS_REPORT:	/* SMS-STATUS-REPORT */
         {
             /* message from SMSC to mobile indicating a delivery report */
-            uint8_t o = tp_mti;
-            o += tp_mms << 2;
-            o += tp_sri << 5; /* status report qualifier: 0 report to SUBMIT, 1 = report to COMMAND */
+            uint8_t o = _tp_mti;
+            o += _tp_mms << 2;
+            o += _tp_sri << 5; /* status report qualifier: 0 report to SUBMIT, 1 = report to COMMAND */
             [pdu appendByte:o];
-            [pdu appendByte:tp_mr];
-            NSData *tp_da_encoded = [tp_da encoded];
+            [pdu appendByte:_tp_mr];
+            NSData *tp_da_encoded = [_tp_da encoded];
             [pdu appendData:tp_da_encoded];
-            [pdu appendBytes:scts length:7];
-            [pdu appendByte:tp_fcs];
+            [pdu appendBytes:_scts length:7];
+            [pdu appendByte:_tp_fcs];
         }
             break;
         case UMSMS_MessageType_RESERVED:	/* reserved */
@@ -551,50 +552,50 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 - (UMSynchronizedSortedDictionary *)objectValue
 {
     UMSynchronizedSortedDictionary *dict = [[UMSynchronizedSortedDictionary alloc]init];
-    dict[@"tp_mti"] = @(tp_mti);
-    dict[@"tp_mms"] = @(tp_mms);
-    dict[@"tp_sri"] = @(tp_sri);
-    dict[@"tp_udhi"] = @(tp_udhi);
-    dict[@"tp_rp"] = @(tp_rp);
-    dict[@"tp_vpf"] = @(tp_vpf);
-    dict[@"tp_srr"] = @(tp_srr);
-    dict[@"tp_pid"] = @(tp_pid);
-    dict[@"tp_dcs"] = @(tp_dcs);
-    dict[@"tp_udl"] = @(tp_udl);
-    dict[@"tp_mr"] = @(tp_mr);
-    dict[@"tp_rd"] = @(tp_rd);
-    dict[@"tp_fcs"] = @(tp_fcs);
-    dict[@"t_ud"] = t_ud;
-    dict[@"t_udh"] =t_udh;
-    if(t_content)
+    dict[@"_tp_mti"] = @(_tp_mti);
+    dict[@"tp_mms"] = @(_tp_mms);
+    dict[@"tp_sri"] = @(_tp_sri);
+    dict[@"tp_udhi"] = @(_tp_udhi);
+    dict[@"tp_rp"] = @(_tp_rp);
+    dict[@"tp_vpf"] = @(_tp_vpf);
+    dict[@"tp_srr"] = @(_tp_srr);
+    dict[@"tp_pid"] = @(_tp_pid);
+    dict[@"tp_dcs"] = @(_tp_dcs);
+    dict[@"tp_udl"] = @(_tp_udl);
+    dict[@"tp_mr"] = @(_tp_mr);
+    dict[@"tp_rd"] = @(_tp_rd);
+    dict[@"tp_fcs"] = @(_tp_fcs);
+    dict[@"t_ud"] = _t_ud;
+    dict[@"t_udh"] = _t_udh;
+    if(_t_content)
     {
-        dict[@"t_content"] =t_content;
+        dict[@"t_content"] =_t_content;
     }
-    if(tp_oa)
+    if(_tp_oa)
     {
         dict[@"tp_oa"] =
         @{
-          @"ton" : @(tp_oa.ton),
-          @"npi" : @(tp_oa.npi),
-          @"address" : tp_oa.address,
+          @"ton" : @(_tp_oa.ton),
+          @"npi" : @(_tp_oa.npi),
+          @"address" : _tp_oa.address,
           };
     }
-    if(tp_da)
+    if(_tp_da)
     {
         dict[@"tp_da"] =
         @{
-          @"ton" : @(tp_da.ton),
-          @"npi" : @(tp_da.npi),
-          @"address" : tp_da.address,
+          @"ton" : @(_tp_da.ton),
+          @"npi" : @(_tp_da.npi),
+          @"address" : _tp_da.address,
         };
     }
-    dict[@"udh"] = udh_decoded;
+    dict[@"udh"] = _udh_decoded;
     return dict;
 }
 
 - (void)setText:(NSString *)text
 {
-    t_content = [text gsm8];
+    _t_content = [text gsm8];
  }
 
 
@@ -606,9 +607,9 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     
     char buffer[300];
     memset(buffer,0x00,sizeof(buffer));
-    char const *inbuf = t_ud.bytes;
+    char const *inbuf = _t_ud.bytes;
     char *outbuf = &buffer[0];
-    size_t inbytesleft = t_ud.length;
+    size_t inbytesleft = _t_ud.length;
     size_t outsize = sizeof(buffer)-1;
     size_t outbytesleft = outsize;
     iconv(cd,(char **)&inbuf,&inbytesleft,&outbuf,&outbytesleft);
@@ -620,33 +621,33 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 - (NSString *)text
 {
     NSString *t = @"unknown encoding";
-    switch(tp_dcs)
+    switch(_tp_dcs)
     {
         case 0:
-            t = [t_ud stringFromGsm8];
+            t = [_t_ud stringFromGsm8];
             break;
         case 0x08:
             t = [self textFromUCS2];
             break;
         case 0x03:
-            t =  [[NSString alloc]initWithData:t_ud encoding:NSISOLatin1StringEncoding];
+            t =  [[NSString alloc]initWithData:_t_ud encoding:NSISOLatin1StringEncoding];
             break;
         case 0x04:
-            t = [t_ud hexString];
+            t = [_t_ud hexString];
             break;
         default:
         {
-            switch(coding)
+            switch(_coding)
             {
                 case DC_7BIT:
                 case DC_8BIT:
-                    t= [t_ud stringFromGsm8];
+                    t= [_t_ud stringFromGsm8];
                     break;
                 case DC_UCS2:
                     t = [self textFromUCS2];
                     break;
                 default:
-                    t = [t_ud hexString];
+                    t = [_t_ud hexString];
                     break;
             }
         }
@@ -1170,92 +1171,92 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
         if([web_tp_mti isEqualToStringCaseInsensitive:@"DELIVER"])
         {
-            tp_mti = UMSMS_MessageType_DELIVER;
+            _tp_mti = UMSMS_MessageType_DELIVER;
         }
         else if([web_tp_mti isEqualToStringCaseInsensitive:@"DELIVER-REPORT"])
         {
-            tp_mti = UMSMS_MessageType_DELIVER_REPORT;
+            _tp_mti = UMSMS_MessageType_DELIVER_REPORT;
         }
         else if([web_tp_mti isEqualToStringCaseInsensitive:@"SUBMIT"])
         {
-            tp_mti = UMSMS_MessageType_SUBMIT;
+            _tp_mti = UMSMS_MessageType_SUBMIT;
         }
         else if([web_tp_mti isEqualToStringCaseInsensitive:@"SUBMIT-REPORT"])
         {
-            tp_mti = UMSMS_MessageType_SUBMIT_REPORT;
+            _tp_mti = UMSMS_MessageType_SUBMIT_REPORT;
         }
         else if([web_tp_mti isEqualToStringCaseInsensitive:@"STATUS-REPORT"])
         {
-            tp_mti = UMSMS_MessageType_STATUS_REPORT;
+            _tp_mti = UMSMS_MessageType_STATUS_REPORT;
         }
         else if([web_tp_mti isEqualToStringCaseInsensitive:@"COMMAND"])
         {
-            tp_mti = UMSMS_MessageType_COMMAND;
+            _tp_mti = UMSMS_MessageType_COMMAND;
         }
         else if([web_tp_mti isEqualToStringCaseInsensitive:@"RESERVED"])
         {
-            tp_mti = UMSMS_MessageType_RESERVED;
+            _tp_mti = UMSMS_MessageType_RESERVED;
         }
 
         if(web_tp_mms.length>0)
         {
-            tp_mms = [web_tp_mms boolValue];
+            _tp_mms = [web_tp_mms boolValue];
         }
         if(web_tp_sri.length>0)
         {
-            tp_sri = [web_tp_sri boolValue];
+            _tp_sri = [web_tp_sri boolValue];
         }
         if(web_tp_udhi.length>0)
         {
-            tp_udhi = [web_tp_udhi boolValue];
+            _tp_udhi = [web_tp_udhi boolValue];
         }
         if(web_tp_rp.length>0)
         {
-            tp_rp = [web_tp_rp boolValue];
+            _tp_rp = [web_tp_rp boolValue];
         }
         if(web_tp_vpf.length>0) /* this is only present on SUBMIT */
         {
-            tp_vpf = [web_tp_vpf intValue];
+            _tp_vpf = [web_tp_vpf intValue];
         }
         if(web_tp_srr.length>0)
         {
-            tp_srr = [web_tp_srr boolValue];
+            _tp_srr = [web_tp_srr boolValue];
         }
         if(web_tp_pid.length>0)
         {
-            tp_pid = [web_tp_pid intValue] & 0xFF;
+            _tp_pid = [web_tp_pid intValue] & 0xFF;
         }
         if(web_tp_dcs.length>0)
         {
-            tp_dcs = [web_tp_dcs intValue] & 0xFF;
+            _tp_dcs = [web_tp_dcs intValue] & 0xFF;
         }
         if(web_tp_mr.length>0)
         {
-            tp_mr = [web_tp_mr intValue] & 0xFF;
+            _tp_mr = [web_tp_mr intValue] & 0xFF;
         }
         if(web_tp_rd.length>0)
         {
-            tp_rd = [web_tp_rd boolValue];
+            _tp_rd = [web_tp_rd boolValue];
         }
         if(web_validity_time.length>0)
         {
-            validity_time = [web_validity_time intValue];
+            _validity_time = [web_validity_time intValue];
         }
         if(web_t_udh.length>0)
         {
-            t_udh = [web_t_udh unhexData];
+            _t_udh = [web_t_udh unhexData];
         }
         if(web_tp_oa.length > 0)
         {
-            tp_oa = [[UMSMS_Address alloc]initWithString:web_tp_oa]; /*oa msisdn */
+            _tp_oa = [[UMSMS_Address alloc]initWithString:web_tp_oa]; /*oa msisdn */
         }
         if(web_tp_da.length > 0)
         {
-            tp_da = [[UMSMS_Address alloc]initWithString:web_tp_da];
+            _tp_da = [[UMSMS_Address alloc]initWithString:web_tp_da];
         }
         if(web_text.length > 0)
         {
-            t_content = [web_text gsm8];
+            _t_content = [web_text gsm8];
         }
 
         NSTimeZone *tz      = [NSTimeZone systemTimeZone];
@@ -1289,23 +1290,23 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         timeStamp = [dateFormatter stringFromDate:sctsDate];
 
         const char *tmp_dt = [timeStamp UTF8String];
-        scts[0]  = (tmp_dt[2] - '0') << 0; /* YY */
-        scts[0] |= (tmp_dt[3] - '0') << 4;
-        scts[1]  = (tmp_dt[4] - '0') << 0; /* MM */
-        scts[1] |= (tmp_dt[5] - '0') << 4;
-        scts[2]  = (tmp_dt[6] - '0') << 0; /* DD */
-        scts[2] |= (tmp_dt[7] - '0') << 4;
-        scts[3]  = (tmp_dt[8] - '0') << 0; /* hh */
-        scts[3] |= (tmp_dt[9] - '0') << 4;
-        scts[4]  = (tmp_dt[10] - '0') << 0; /* mm */
-        scts[4] |= (tmp_dt[11] - '0') << 4;
-        scts[5]  = (tmp_dt[12] - '0') << 0; /* ss */
-        scts[5] |= (tmp_dt[13] - '0') << 4;
-        scts[6]  = (offset_15min & 0xF0) >> 4;
-        scts[6] |= (offset_15min & 0x0F) << 4;
+        _scts[0]  = (tmp_dt[2] - '0') << 0; /* YY */
+        _scts[0] |= (tmp_dt[3] - '0') << 4;
+        _scts[1]  = (tmp_dt[4] - '0') << 0; /* MM */
+        _scts[1] |= (tmp_dt[5] - '0') << 4;
+        _scts[2]  = (tmp_dt[6] - '0') << 0; /* DD */
+        _scts[2] |= (tmp_dt[7] - '0') << 4;
+        _scts[3]  = (tmp_dt[8] - '0') << 0; /* hh */
+        _scts[3] |= (tmp_dt[9] - '0') << 4;
+        _scts[4]  = (tmp_dt[10] - '0') << 0; /* mm */
+        _scts[4] |= (tmp_dt[11] - '0') << 4;
+        _scts[5]  = (tmp_dt[12] - '0') << 0; /* ss */
+        _scts[5] |= (tmp_dt[13] - '0') << 4;
+        _scts[6]  = (offset_15min & 0xF0) >> 4;
+        _scts[6] |= (offset_15min & 0x0F) << 4;
         if(offset_negative)
         {
-            scts[6]  |= 0x08;
+            _scts[6]  |= 0x08;
         }
     }
     return self;

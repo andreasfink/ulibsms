@@ -61,32 +61,32 @@ typedef enum UMSMS_MessageType
 
 @interface UMSMS : UMObject
 {
-    int tp_mti; /* message type */
-    int tp_mms; /* more message to send */
-    int tp_sri; /* status report qualifier: 0 report to SUBMIT, 1 = report to COMMAND */
-    int tp_udhi; /*user data header indicator */
-    int tp_rp; /* reply path */
-    int tp_vpf; /* validity period present */
-    int tp_srr; /* status report requested */
-    int tp_pid; /* */
-    int tp_dcs; /* data coding scheme */
-    int tp_udl; /* user data length */
-    int tp_udhlen; /*user data header length */
-    int tp_mr; /* message refrence */
-    int tp_rd; /* reject duplicates */
-    int validity_time;
-    int coding;
-    int messageClass;
-    int compress;
-    int mwi_pdu;
-    int tp_fcs; /* status cause */
-    NSData *t_ud;
-    NSData *t_udh;
-    UMSynchronizedArray *udh_decoded;
-    char scts[8];
-    UMSMS_Address *tp_oa;
-    UMSMS_Address *tp_da;
-    NSData *t_content;
+    int _tp_mti; /* message type */
+    int _tp_mms; /* more message to send */
+    int _tp_sri; /* status report qualifier: 0 report to SUBMIT, 1 = report to COMMAND */
+    int _tp_udhi; /*user data header indicator */
+    int _tp_rp; /* reply path */
+    int _tp_vpf; /* validity period present */
+    int _tp_srr; /* status report requested */
+    int _tp_pid; /* */
+    int _tp_dcs; /* data coding scheme */
+    int _tp_udl; /* user data length */
+    int _tp_udhlen; /*user data header length */
+    int _tp_mr; /* message refrence */
+    int _tp_rd; /* reject duplicates */
+    int _validity_time;
+    int _coding;
+    int _messageClass;
+    int _compress;
+    int _mwi_pdu;
+    int _tp_fcs; /* status cause */
+    NSData *_t_ud;
+    NSData *_t_udh;
+    UMSynchronizedArray *_udh_decoded;
+    char _scts[8];
+    UMSMS_Address *_tp_oa;
+    UMSMS_Address *_tp_da;
+    NSData *_t_content;
     int _multipart_ref;
     int _multipart_max;
     int _multipart_current;

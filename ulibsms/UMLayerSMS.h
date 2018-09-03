@@ -19,12 +19,12 @@
 
 @interface UMLayerSMS : UMLayer
 {
-    UMLayerGSMMAP           *mapInstance;
-    NSString                *smscNumber;
-    UMSMSWaitingQueue       *waitingQueue;      /* SMS waiting to be sent as soon as the number becomes free */
-    UMSMSInProgressQueue    *inProgressQueue;   /* SMS currently being sent */
-    UMSMSRetryQueue         *retryQueue;        /* SMS to be resent after some time (during normal retry) */
-    UMHLRCache              *hlrCache;
+    UMLayerGSMMAP           *_mapInstance;
+    NSString                *_smscNumber;
+    UMSMSWaitingQueue       *_waitingQueue;      /* SMS waiting to be sent as soon as the number becomes free */
+    UMSMSInProgressQueue    *_inProgressQueue;   /* SMS currently being sent */
+    UMSMSRetryQueue         *_retryQueue;        /* SMS to be resent after some time (during normal retry) */
+    UMHLRCache              *_hlrCache;
 }
 
 @property (readwrite,strong)    UMSMSInProgressQueue    *inProgressQueue;
