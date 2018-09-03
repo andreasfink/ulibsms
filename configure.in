@@ -97,7 +97,6 @@ case "$host" in
     fi
 	CFLAGS="$CFLAGS `pkg-config  --cflags $DEPENDENT_PKGCONFIGS`"
 	LDFLAGS="$LDFLAGS `pkg-config --libs $DEPENDENT_PKGCONFIGS`"
-	LDFLAGS="$LDFLAGS `xml2-config --libs`"
     SHARED_LIBRARY_EXTENSION=so
     SHARED_FLAGS="-shared"
     ;;
@@ -152,7 +151,7 @@ AC_ARG_ENABLE(debug,
 ,
 [
 	echo Using Release target
-	CFLAGS="$CFLAGS -Os -D${CONFIG_DEFINE}=Release"
+	CFLAGS="$CFLAGS -O2 -D${CONFIG_DEFINE}=Release"
 	CONFIGURATION="-configuration Release"
 ])])
 
