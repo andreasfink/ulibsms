@@ -14,6 +14,7 @@ MINORVER=@MINORVER@
 REVISION=@REVISION@
 
 LIB=lib@PROJECT_NAME@.@SHARED_LIBRARY_EXTENSION@
+SLIB=lib@PROJECT_NAME@.a
 PKGCONFIGFILE=@PROJECT_NAME@.pc
 
 MFILES = $(wildcard @PROJECT_NAME@/*.m) $(wildcard @PROJECT_NAME@/*/*.m)
@@ -23,16 +24,21 @@ OFILES = $(MOFILES)
 
 INCLUDEDIRS=-I @PROJECT_NAME@
 
-lib@PROJECT_NAME@.so: ${OFILES}
+${LIB}: ${OFILES}
 	${CC} -shared -o ${LIB}  ${LDFLAGS} ${OFILES} ${LIBS} ${STATIC_LIBS}
 
-install: ${LIB}
+${SLIB}: ${OFILES}
+	ar rcs ${SLIB} ${OFILES}
+	ranlib ${SLIB}
+
+install: ${LIB} ${SLIB}
 	-mkdir -p ${DESTDIR}/usr/local/lib/pkgconfig
 	rm -f "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}.${MINORVER}.${REVISION}"
 	rm -f "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}.${MINORVER}"
 	rm -f "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}"
 	rm -f "${DESTDIR}/usr/local/lib/${LIB}"
 	install -b -g root -o root -m 644 "${LIB}" "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}.${MINORVER}.${REVISION}"	
+	install -b -g root -o root -m 644 "${SLIB}" "${DESTDIR}/usr/local/lib/${SLIB}"
 	ln -s "${LIB}.${MAJORVER}.${MINORVER}.${REVISION}" "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}.${MINORVER}"
 	ln -s "${LIB}.${MAJORVER}.${MINORVER}"             "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}"
 	ln -s "${LIB}.${MAJORVER}"                         "${DESTDIR}/usr/local/lib/${LIB}"
@@ -42,7 +48,7 @@ install: ${LIB}
 	ldconfig
 
 clean:
-	rm -f $(LIB) $(OFILES)
+	rm -f $(LIB) $(OFILES) ${SLIB}
 
 .SUFFIXES: .m.o .o .m .c
 
