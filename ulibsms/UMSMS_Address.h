@@ -22,6 +22,7 @@
 @property(readwrite,assign) GSMMAP_NpiType npi;
 @property(readwrite,strong) NSString *address;
 
+- (UMSMS_Address *)initWithAlpha:(NSString *)digits;
 - (UMSMS_Address *)initWithString:(NSString *)addr;
 - (UMSMS_Address *)initWithAddress:(NSString *)msisdn ton:(GSMMAP_TonType)xton npi:(GSMMAP_NpiType)xnpi;
 - (NSData *)encoded;

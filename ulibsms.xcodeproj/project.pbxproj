@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A61958992192D76B00BEB8A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A61958982192D76B00BEB8A5 /* main.m */; };
+		A619589E2192D77C00BEB8A5 /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED5C7E1B435C4100854472 /* ulib.framework */; };
+		A619589F2192D78300BEB8A5 /* ulibsms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F9FE461EF7FA33007C203A /* ulibsms.framework */; };
 		A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CEB11B42014800854472 /* ulibsmsTests.m */; };
 		A664D57A1F6A60E500BD455E /* UMSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A64612D51D41F12B00211137 /* UMSMS.m */; };
 		A664D57B1F6A60EB00BD455E /* UMSMS_Address.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D10CD01D4F34EB001D021B /* UMSMS_Address.m */; };
@@ -64,7 +67,21 @@
 		A6F9FE6B1EF7FC39007C203A /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A61958942192D76B00BEB8A5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A61958962192D76B00BEB8A5 /* decode-sms */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "decode-sms"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A61958982192D76B00BEB8A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A641CEA31B42014800854472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A641CEA41B42014800854472 /* ulibsms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ulibsms.h; sourceTree = "<group>"; };
 		A641CEAA1B42014800854472 /* ulibsmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ulibsmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +131,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A61958932192D76B00BEB8A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A619589F2192D78300BEB8A5 /* ulibsms.framework in Frameworks */,
+				A619589E2192D77C00BEB8A5 /* ulib.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A641CEA71B42014800854472 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -149,6 +175,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A61958972192D76B00BEB8A5 /* decode-sms */ = {
+			isa = PBXGroup;
+			children = (
+				A61958982192D76B00BEB8A5 /* main.m */,
+			);
+			path = "decode-sms";
+			sourceTree = "<group>";
+		};
 		A641CE951B42014800854472 = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +194,7 @@
 				A641CEA11B42014800854472 /* ulibsms */,
 				A641CEAE1B42014800854472 /* ulibsmsTests */,
 				A6F9FE471EF7FA33007C203A /* ulibsms */,
+				A61958972192D76B00BEB8A5 /* decode-sms */,
 				A641CEA01B42014800854472 /* Products */,
 				A6ED5C8E1B435C4500854472 /* Frameworks */,
 			);
@@ -170,6 +205,7 @@
 			children = (
 				A641CEAA1B42014800854472 /* ulibsmsTests.xctest */,
 				A6F9FE461EF7FA33007C203A /* ulibsms.framework */,
+				A61958962192D76B00BEB8A5 /* decode-sms */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,6 +321,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		A61958952192D76B00BEB8A5 /* decode-sms */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A619589A2192D76B00BEB8A5 /* Build configuration list for PBXNativeTarget "decode-sms" */;
+			buildPhases = (
+				A61958922192D76B00BEB8A5 /* Sources */,
+				A61958932192D76B00BEB8A5 /* Frameworks */,
+				A61958942192D76B00BEB8A5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "decode-sms";
+			productName = "decode-sms";
+			productReference = A61958962192D76B00BEB8A5 /* decode-sms */;
+			productType = "com.apple.product-type.tool";
+		};
 		A641CEA91B42014800854472 /* ulibsmsTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A641CEB81B42014800854472 /* Build configuration list for PBXNativeTarget "ulibsmsTests" */;
@@ -329,6 +382,11 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Andreas Fink (andreas@fink.org)";
 				TargetAttributes = {
+					A61958952192D76B00BEB8A5 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = 2GSNWPNR77;
+						ProvisioningStyle = Automatic;
+					};
 					A641CEA91B42014800854472 = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
@@ -352,6 +410,7 @@
 			targets = (
 				A6F9FE451EF7FA33007C203A /* ulibsms */,
 				A641CEA91B42014800854472 /* ulibsmsTests */,
+				A61958952192D76B00BEB8A5 /* decode-sms */,
 			);
 		};
 /* End PBXProject section */
@@ -374,6 +433,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A61958922192D76B00BEB8A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A61958992192D76B00BEB8A5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A641CEA61B42014800854472 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +481,55 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		A619589B2192D76B00BEB8A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A619589C2192D76B00BEB8A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		A641CEB31B42014800854472 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -629,6 +745,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A619589A2192D76B00BEB8A5 /* Build configuration list for PBXNativeTarget "decode-sms" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A619589B2192D76B00BEB8A5 /* Debug */,
+				A619589C2192D76B00BEB8A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A641CE991B42014800854472 /* Build configuration list for PBXProject "ulibsms" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

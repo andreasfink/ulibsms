@@ -44,6 +44,12 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
 
 @implementation UMSMS_Address
 
+- (UMSMS_Address *)initWithAlpha:(NSString *)digits
+{
+	NSString *addr = [[[digits gsm8]gsm8to7withNibbleLengthPrefix]hexString];
+	return [self initWithAddress:addr ton:GSMMAP_TON_ALPHANUMERIC npi:GSMMAP_NPI_UNKNOWN];
+}
+
 - (UMSMS_Address *)initWithString:(NSString *)digits
 {
     self = [super init];

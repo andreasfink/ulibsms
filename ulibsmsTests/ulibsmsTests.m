@@ -50,4 +50,17 @@
     [sms decodePdu:d context:NULL];
     NSLog(@"%@",sms.text);
 }
+
+
+- (void)testEncoding8to7
+{
+	NSString *s = @"Verify";
+	NSData *d = [s dataUsingEncoding:NSISOLatin1StringEncoding];
+
+	NSString *s2 = @"D6B23C6DCE03";
+	NSData *d2 = [s2 unhexedData];
+	NSData *d_encoded = [d gsm8to7withNibbleLengthPrefix];
+	XCTAssert([d_encoded isEqual:d2],@"Data doesnt match");
+	
+}
 @end
