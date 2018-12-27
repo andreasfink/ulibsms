@@ -1100,6 +1100,16 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     } \
 }
 
+#define SET_OPTIONAL_CLEAN_PARAMETER(p,var,name)   \
+{\
+	var = [p[name]urldecode];\
+	var = [var stringByTrimmingCharactersInSet:[UMObject whitespaceAndNewlineCharacterSet]];\
+	if([var isEqualToString:@"default" ])\
+	{\
+		var = NULL;\
+	} \
+}
+
 - (UMSMS *)initWithHttpRequest:(UMHTTPRequest *)req
 {
     self = [super init];
@@ -1125,23 +1135,23 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         NSString *web_text;
         NSString *web_scts;
 
-        SET_OPTIONAL_PARAMETER(p,web_tp_mti,@"tp-mti");
-        SET_OPTIONAL_PARAMETER(p,web_tp_mms,@"tp-mms");
-        SET_OPTIONAL_PARAMETER(p,web_tp_sri,@"tp-sri");
-        SET_OPTIONAL_PARAMETER(p,web_tp_udhi,@"tp-udhi");
-        SET_OPTIONAL_PARAMETER(p,web_tp_rp,@"tp-rp");
-        SET_OPTIONAL_PARAMETER(p,web_tp_vpf,@"tp-vpf");
-        SET_OPTIONAL_PARAMETER(p,web_tp_srr,@"tp-srr");
-        SET_OPTIONAL_PARAMETER(p,web_tp_pid,@"tp-pid");
-        SET_OPTIONAL_PARAMETER(p,web_tp_dcs,@"tp-dcs");
-        SET_OPTIONAL_PARAMETER(p,web_tp_mr,@"tp-mr");
-        SET_OPTIONAL_PARAMETER(p,web_tp_rd,@"tp-rd");
-        SET_OPTIONAL_PARAMETER(p,web_validity_time,@"validity-time");
-        SET_OPTIONAL_PARAMETER(p,web_t_udh,@"t-udh");
-        SET_OPTIONAL_PARAMETER(p,web_tp_oa,@"tp-oa");
-        SET_OPTIONAL_PARAMETER(p,web_tp_da,@"tp-da");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_mti,@"tp-mti");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_mms,@"tp-mms");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_sri,@"tp-sri");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_udhi,@"tp-udhi");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_rp,@"tp-rp");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_vpf,@"tp-vpf");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_srr,@"tp-srr");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_pid,@"tp-pid");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_dcs,@"tp-dcs");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_mr,@"tp-mr");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_rd,@"tp-rd");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_validity_time,@"validity-time");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_t_udh,@"t-udh");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_oa,@"tp-oa");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_da,@"tp-da");
         SET_OPTIONAL_PARAMETER(p,web_text,@"text");
-        SET_OPTIONAL_PARAMETER(p,web_scts,@"scts");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_scts,@"scts");
 
         if([web_tp_mti isEqualToStringCaseInsensitive:@"DELIVER"])
         {
