@@ -29,24 +29,21 @@
 
 -(void) queueForRetry:(id)msg
             messageId:(NSString *)messageId
-            retryTime:(time_t) next_consideration
-           expireTime:(time_t) last_considersation
+            retryTime:(NSDate *) next_consideration
+           expireTime:(NSDate *) last_considersation
              priority:(int) priority
 {
 #ifdef DEBUG_LOGGING
-    NSString *retryTimeString  = UMTimeStampDTfromTime(next_consideration);
-    NSString *expireTimeString = UMTimeStampDTfromTime(last_considersation);
-
-    NSLog(@"retryQueue queueForRetry:%@ retryTime: %@ expireTime:%@ priority: %d", messageId,retryTimeString,expireTimeString,priority);
+    NSLog(@"retryQueue queueForRetry:%@ retryTime: %@ expireTime:%@ priority: %d", messageId,next_consideration,last_considersation,priority);
 #endif
 
     @synchronized(self)
     {
         NSDictionary *entry = @{ @"msg":msg,
                                  @"messageId" : messageId,
-                                 @"retry-time":[NSNumber numberWithLong:(long)next_consideration],
-                                 @"expire-time":[NSNumber numberWithLong:(long)last_considersation],
-                                 @"priority":  [NSNumber numberWithInt:priority],
+                                 @"retry-time":next_consideration,
+                                 @"expire-time":last_considersation,
+                                 @"priority":  @(priority),
                                  };
         [_messageCache retainMessage:msg forMessageId:messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
         [retry_entries addObject:entry];

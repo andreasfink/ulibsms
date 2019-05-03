@@ -23,8 +23,8 @@
 
 -(void) queueForRetry:(id)msg
             messageId:(NSString *)messageId
-            retryTime:(time_t) next_consideration
-           expireTime:(time_t) last_considersation
+            retryTime:(NSDate *) next_consideration
+           expireTime:(NSDate *) last_considersation
              priority:(int) priority;
 
 - (void)messagesNeedingRetrying:(NSArray **)needsRetry1
