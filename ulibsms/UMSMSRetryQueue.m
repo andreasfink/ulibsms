@@ -55,9 +55,7 @@
     UMAssert(needsRetry1, @"needsRetry is pointing to NULL");
     UMAssert(hasExpired1, @"hasExpired is pointing to NULL");
     
-    time_t now;
-    time(&now);
-
+    NSDate *now = [NSDate date];
     NSMutableArray *needsRetry = [[NSMutableArray alloc]init];
     NSMutableArray *hasExpired = [[NSMutableArray alloc]init];
     @synchronized(self)
@@ -66,7 +64,9 @@
         for(NSUInteger i=0;i<n; )
         {
             NSDictionary *entry = retry_entries[i];
-            if([entry[@"retry-time"]longValue] < now)
+            NSDate *retryTime = entry[@"retry-time"];
+            NSDate *expireTime = entry[@"expire-time"];
+            if(retryTime.timeIntervalSinceReferenceDate < now.timeIntervalSinceReferenceDate)
             {
 #ifdef DEBUG_LOGGING
                 NSLog(@"retryQueue messagesNeedingRetrying:%@",entry[@"messageId"]);
@@ -77,7 +77,7 @@
                 [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
                 n--;
             }
-            else if([entry[@"expire-time"]longValue] <= now)
+            else if(expireTime.timeIntervalSinceReferenceDate <= now.timeIntervalSinceReferenceDate)
             {
                 [hasExpired addObject:entry[@"msg"]];
                 [retry_entries removeObjectAtIndex:i];
