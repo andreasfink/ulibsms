@@ -21,7 +21,7 @@
     {
         _entries= [[NSMutableDictionary alloc] init];
         _expiration_seconds = 0;
-        _lock = [[UMMutex alloc]init];
+        _lock = [[UMMutex alloc]initWithName:@"UMHLRCache"];
     }
     return self;
 }

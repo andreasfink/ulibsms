@@ -20,7 +20,7 @@
     if(self)
     {
         _cache = [[NSMutableDictionary alloc]init];
-        _lock =[[UMMutex alloc]init];
+        _lock =[[UMMutex alloc]initWithName:@"UMGlobalMessageCache"];
     }
     return self;
 }

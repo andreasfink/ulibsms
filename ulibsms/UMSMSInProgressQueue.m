@@ -25,7 +25,7 @@
     {
         _dictById     = [[NSMutableDictionary alloc]init];
         _dictByNumber = [[NSMutableDictionary alloc]init];
-        _lock = [[UMMutex alloc]init];
+        _lock = [[UMMutex alloc]initWithName:@"UMSMSInProgressQueue"];
     }
     return self;
 }

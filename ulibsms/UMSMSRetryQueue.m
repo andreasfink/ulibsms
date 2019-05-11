@@ -22,7 +22,7 @@
     if(self)
     {
         _retry_entries = [[NSMutableArray alloc]init];
-        _lock = [[UMMutex alloc]init];
+        _lock = [[UMMutex alloc]initWithName:@"UMSMSRetryQueue"];
     }
     return self;
 }
