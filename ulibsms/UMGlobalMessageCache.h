@@ -15,8 +15,9 @@
 
 @interface UMGlobalMessageCache : UMObject
 {
-    UMSynchronizedDictionary    *cache;
-    FILE *flog;
+    NSMutableDictionary *_cache;
+    UMMutex             *_lock;
+    FILE *_flog;
 }
 
 //+ (UMGlobalMessageCache *)sharedInstance;
@@ -30,5 +31,5 @@
 - (void)releaseMessage:(id)msg forMessageId:(NSString *)messageId  file:(const char *)file line:(long)line func:(const char *)func;
 //- (void)releaseMessage:(id)msg forMessageId:(NSString *)messageId;
 - (id)findMessage:(NSString *)messageId;
-
+- (NSInteger)count; 
 @end

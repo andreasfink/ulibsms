@@ -16,7 +16,8 @@
 
 @interface UMSMSRetryQueue : UMObject
 {
-    NSMutableArray *retry_entries;
+    NSMutableArray       *_retry_entries;
+    UMMutex              *_lock;
     UMGlobalMessageCache *_messageCache;
 }
 @property (readwrite,strong)    UMGlobalMessageCache    *messageCache;
@@ -29,5 +30,5 @@
 
 - (void)messagesNeedingRetrying:(NSArray **)needsRetry1
                      orExpiring:(NSArray **)hasExpired1;
-
+- (NSInteger)count;
 @end

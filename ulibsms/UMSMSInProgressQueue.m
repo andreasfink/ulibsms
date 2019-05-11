@@ -23,8 +23,9 @@
     self = [super init];
     if(self)
     {
-        dictById = [[UMSynchronizedDictionary alloc]init];
-        dictByNumber = [[UMSynchronizedDictionary alloc]init];
+        _dictById     = [[NSMutableDictionary alloc]init];
+        _dictByNumber = [[NSMutableDictionary alloc]init];
+        _lock = [[UMMutex alloc]init];
     }
     return self;
 }
@@ -40,8 +41,8 @@
     {
         NSString *msgid = transaction.messageId;
         NSString *number = transaction.destinationNumber;
-        dictById[msgid] = transaction;
-        dictByNumber[number] = transaction;  
+        _dictById[msgid] = transaction;
+        _dictByNumber[number] = transaction;
         [_messageCache retainMessage:transaction.msg forMessageId:msgid file:__FILE__ line:__LINE__ func:__FUNCTION__];
     }
 }
@@ -53,12 +54,12 @@
     NSLog(@"inProgressQueue remove:%@",transaction);
 #endif
 
-    @synchronized(self)
-    {
-        [dictById removeObjectForKey:transaction.messageId];
-        [dictByNumber removeObjectForKey:transaction.destinationNumber];
-        [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
-    }
+    [_lock lock];
+    [_dictById removeObjectForKey:transaction.messageId];
+    [_dictByNumber removeObjectForKey:transaction.destinationNumber];
+    [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+    [_lock unlock];
+
 }
 
 
@@ -67,16 +68,15 @@
 #ifdef DEBUG_LOGGING
     NSLog(@"inProgressQueue removeId:%@ destinationNumber:%@",msgid,number);
 #endif
-    @synchronized(self)
+    [_lock lock];
+    id msg = [_messageCache findMessage:msgid];
+    if(msg)
     {
-        id msg = [_messageCache findMessage:msgid];
-        if(msg)
-        {
-            [_messageCache releaseMessage:msg forMessageId:msgid file:__FILE__ line:__LINE__ func:__FUNCTION__];
-            [dictById removeObjectForKey:msgid];
-            [dictByNumber removeObjectForKey:number];
-        }
+        [_messageCache releaseMessage:msg forMessageId:msgid file:__FILE__ line:__LINE__ func:__FUNCTION__];
+        [_dictById removeObjectForKey:msgid];
+        [_dictByNumber removeObjectForKey:number];
     }
+    [_lock unlock];
 }
 
 
@@ -86,24 +86,23 @@
     NSLog(@"inProgressQueue findTransactionById:%@",msgid);
 #endif
 
-    @synchronized(self)
+    [_lock lock];
+    id t= _dictById[msgid];
+    if(t)
     {
-        id t= dictById[msgid];
-        if(t)
-        {
 #ifdef DEBUG_LOGGING
-            NSLog(@"  found: %@",t);
+        NSLog(@"  found: %@",t);
 #endif
-        }
-        else
-        {
-#ifdef DEBUG_LOGGING
-            NSLog(@"  not found");
-#endif 
-        }
-        return t;
     }
-    return NULL;
+    else
+    {
+#ifdef DEBUG_LOGGING
+        NSLog(@"  not found");
+#endif 
+    }
+    [_lock unlock];
+    return t;
+
 }
 
 - (id) findTransactionByNumber:(NSString *)number
@@ -112,23 +111,22 @@
     NSLog(@"inProgressQueue findTransactionByNumber:%@",number);
 #endif
 
-    @synchronized(self)
+    [_lock lock];
+    id t = _dictByNumber[number];
+    if(t)
     {
-        id t = dictByNumber[number];
-        if(t)
-        {
 #ifdef DEBUG_LOGGING
-            NSLog(@"  found: %@",t);
+        NSLog(@"  found: %@",t);
 #endif
-        }
-        else
-        {
-#ifdef DEBUG_LOGGING
-            NSLog(@"  not found");
-#endif
-        }
-        return t;
     }
+    else
+    {
+#ifdef DEBUG_LOGGING
+        NSLog(@"  not found");
+#endif
+    }
+    [_lock unlock];
+    return t;
 }
 
 -(BOOL)hasExistingTransactionTo:(NSString *)number
@@ -136,79 +134,73 @@
 #ifdef DEBUG_LOGGING
     NSLog(@"inProgressQueue hasExistingTransactionTo:%@",number);
 #endif
-@synchronized(self)
+
+    [_lock lock];
+    BOOL returnValue = NO;
+    id t = [self findTransactionByNumber:number];
+    if(t)
     {
-        id t = [self findTransactionByNumber:number];
-        if(t)
-        {
-#ifdef DEBUG_LOGGING
-            NSLog(@"  YES");
-#endif
-            return YES;
-        }
-#ifdef DEBUG_LOGGING
-        NSLog(@"  NO");
-#endif
+        returnValue = YES;
     }
-    return NO;
+    [_lock unlock];
+    return returnValue;
 }
 
 - (NSArray *) expiredTransactions
 {
     NSMutableArray *expiredObjects = [[NSMutableArray alloc]init];
-    @synchronized(self)
+    [_lock lock];
+    NSArray *keys = [_dictById allKeys];
+    for (NSString *key in keys)
     {
-        NSArray *keys = [dictById allKeys];
-        for (NSString *key in keys)
+        UMObject<UMSMSTransactionProtocol> *transaction = _dictById[key];
+        if([transaction isExpired])
         {
-            UMObject<UMSMSTransactionProtocol> *transaction = dictById[key];
-            if([transaction isExpired])
-            {
-                [expiredObjects addObject:transaction];
+            [expiredObjects addObject:transaction];
 #ifdef DEBUG_LOGGING
-                NSLog(@"inProgressQueue expiredTransaction %@",transaction);
+            NSLog(@"inProgressQueue expiredTransaction %@",transaction);
 #endif
 
-                [dictById removeObjectForKey:transaction.messageId];
-                [dictByNumber removeObjectForKey:transaction.destinationNumber];
-                [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+            [_dictById removeObjectForKey:transaction.messageId];
+            [_dictByNumber removeObjectForKey:transaction.destinationNumber];
+            [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
 
-            }
         }
     }
+    [_lock unlock];
+
     return expiredObjects;
 }
 
 - (NSArray *) checkForTasks
 {
     NSMutableArray *arr = [[NSMutableArray alloc]init];
-    @synchronized(self)
-    {
-        NSArray *keys = [dictById allKeys];
-        for (NSString *key in keys)
-        {
-            UMObject<UMSMSTransactionProtocol> *transaction = dictById[key];
-            NSDictionary *dict = [transaction checkForTasks];
-            if(dict)
-            {
-#ifdef DEBUG_LOGGING
-                NSLog(@"inProgressQueue check for tasks %@",dict);
-#endif
 
-                [arr addObject:dict];
-            }
+    [_lock lock];
+
+    NSArray *keys = [_dictById allKeys];
+    for (NSString *key in keys)
+    {
+        UMObject<UMSMSTransactionProtocol> *transaction = _dictById[key];
+        NSDictionary *dict = [transaction checkForTasks];
+        if(dict)
+        {
+#ifdef DEBUG_LOGGING
+            NSLog(@"inProgressQueue check for tasks %@",dict);
+#endif
+            [arr addObject:dict];
         }
     }
+    [_lock unlock];
     return arr;
 }
 
 - (NSUInteger)count
 {
     NSInteger i;
-    @synchronized (self)
-    {
-        i = dictById.count;
-    }
+    [_lock lock];
+    i = _dictById.count;
+    [_lock unlock];
     return i;
 }
 

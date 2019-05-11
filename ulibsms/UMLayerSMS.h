@@ -26,8 +26,6 @@
     UMSMSRetryQueue         *_retryQueue;        /* SMS to be resent after some time (during normal retry) */
     UMHLRCache              *_hlrCache;
     UMGlobalMessageCache    *_messageCache;
-
-
 }
 
 @property (readwrite,strong)    UMSMSInProgressQueue    *inProgressQueue;

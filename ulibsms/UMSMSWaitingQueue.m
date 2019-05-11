@@ -99,4 +99,12 @@
     }
 }
 
+- (NSInteger)count
+{
+    @synchronized(numbersInProgress)
+    {
+        return [numbersInProgress count];
+    }
+}
+
 @end

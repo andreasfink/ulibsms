@@ -19,46 +19,44 @@
     self = [super init];
     if(self)
     {
-        _entries= [[UMSynchronizedDictionary alloc] init];
+        _entries= [[NSMutableDictionary alloc] init];
         _expiration_seconds = 0;
+        _lock = [[UMMutex alloc]init];
     }
     return self;
 }
 
-- (void)addToCacheMSISDN:(NSString *)msisdn msc:(NSString *)msc imsi:(NSString *)imsi hlr:(NSString *)hlr
+- (void)addToCacheMSISDN:(NSString *)msisdn
+                     msc:(NSString *)msc
+                    imsi:(NSString *)imsi
+                     hlr:(NSString *)hlr
 {
     if(_expiration_seconds<1)
     {
         return;
     }
     [_lock lock];
-    @try
+    UMHLRCacheEntry *entry = _entries[msisdn];
+    if(entry==NULL)
     {
-        UMHLRCacheEntry *entry = _entries[msisdn];
-        if(entry==NULL)
-        {
-            time_t now;
-            time(&now);
-            
-            entry = [[UMHLRCacheEntry alloc]init];
-            entry.msisdn = msisdn;
-            entry.imsi = imsi;
-            entry.hlr = hlr;
-            entry.msc = msc;
-            entry.expires = now + _expiration_seconds;
-        }
-        else
-        {
-            entry.imsi = imsi;
-            entry.hlr = hlr;
-            entry.msc = msc;
-        }
-        _entries[msisdn] = entry;
+        time_t now;
+        time(&now);
+
+        entry = [[UMHLRCacheEntry alloc]init];
+        entry.msisdn = msisdn;
+        entry.imsi = imsi;
+        entry.hlr = hlr;
+        entry.msc = msc;
+        entry.expires = now + _expiration_seconds;
     }
-    @finally
+    else
     {
-        [_lock unlock];
+        entry.imsi = imsi;
+        entry.hlr = hlr;
+        entry.msc = msc;
     }
+    _entries[msisdn] = entry;
+    [_lock unlock];
 }
 
 
@@ -88,5 +86,13 @@
     return entry;
 }
 
+-(NSInteger)count
+{
+    NSInteger i;
+    [_lock lock];
+    i = _entries.count;
+    [_lock unlock];
+    return i;
+}
 
 @end

@@ -14,9 +14,10 @@
 @class UMGlobalMessageCache;
 @interface UMSMSInProgressQueue : UMObject
 {
-    UMSynchronizedDictionary *dictById;
-    UMSynchronizedDictionary *dictByNumber;
+    NSMutableDictionary *_dictById;
+    NSMutableDictionary *_dictByNumber;
     UMGlobalMessageCache *_messageCache;
+    UMMutex             *_lock;
 }
 
 @property(readwrite,strong) UMGlobalMessageCache *messageCache;

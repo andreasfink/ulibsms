@@ -25,5 +25,5 @@
                forNumber:(NSString *)number;
 
 - (id<UMSMSTransactionProtocol>)getNextTransactionForNumber:(NSString *)number;
-
+- (NSInteger)count;
 @end

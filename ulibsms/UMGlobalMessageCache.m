@@ -19,140 +19,155 @@
     self = [super init];
     if(self)
     {
-        cache = [[UMSynchronizedDictionary alloc]init];
+        _cache = [[NSMutableDictionary alloc]init];
+        _lock =[[UMMutex alloc]init];
     }
     return self;
 }
 
 - (void)retainMessage:(id)msg forMessageId:(NSString *)messageId file:(const char *)file line:(long)line func:(const char *)func
 {
-    @synchronized(self)
+    [_lock lock];
+    UMGlobalMessageCacheEntry *entry = _cache[messageId];
+    if(entry == NULL)
     {
-        UMGlobalMessageCacheEntry *entry = cache[messageId];
-        if(entry == NULL)
-        {
-            entry = [[UMGlobalMessageCacheEntry alloc]init];
-            entry.messageId = messageId;
-            entry.msg = msg;
-            entry.cacheRetainCounter = 1;
-            [self logEvent:[NSString stringWithFormat:@"retain 0->1 %s:%ld %s",file,line,func] messageId:messageId];
+        entry = [[UMGlobalMessageCacheEntry alloc]init];
+        entry.messageId = messageId;
+        entry.msg = msg;
+        entry.cacheRetainCounter = 1;
+        [self logEvent:[NSString stringWithFormat:@"retain 0->1 %s:%ld %s",file,line,func] messageId:messageId];
 
-        }
-        else
-        {
-            UMAssert(msg == entry.msg,@"two messages with same ID??");
-            entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
-            [self logEvent:[NSString stringWithFormat:@"retain %d->%d %s:%ld %s",entry.cacheRetainCounter-1,entry.cacheRetainCounter,file,line,func] messageId:messageId];
-        }
-        cache[messageId]=entry;
     }
+    else
+    {
+        UMAssert(msg == entry.msg,@"two messages with same ID??");
+        entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
+        [self logEvent:[NSString stringWithFormat:@"retain %d->%d %s:%ld %s",entry.cacheRetainCounter-1,entry.cacheRetainCounter,file,line,func] messageId:messageId];
+    }
+    _cache[messageId]=entry;
+    [_lock unlock];
 }
 
 - (void)retainMessage:(id)msg forMessageId:(NSString *)messageId
 {
-    @synchronized(self)
+    [_lock lock];
+    UMGlobalMessageCacheEntry *entry = _cache[messageId];
+    if(entry == NULL)
     {
-        UMGlobalMessageCacheEntry *entry = cache[messageId];
-        if(entry == NULL)
-        {
-            entry = [[UMGlobalMessageCacheEntry alloc]init];
-            entry.messageId = messageId;
-            entry.msg = msg;
-            entry.cacheRetainCounter = 1;
-        }
-        else
-        {
-            UMAssert(msg == entry.msg,@"two messages with same ID??");
-            entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
-        }
-        cache[messageId]=entry;
+        entry = [[UMGlobalMessageCacheEntry alloc]init];
+        entry.messageId = messageId;
+        entry.msg = msg;
+        entry.cacheRetainCounter = 1;
     }
+    else
+    {
+        UMAssert(msg == entry.msg,@"two messages with same ID??");
+        entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
+    }
+    _cache[messageId]=entry;
+    [_lock unlock];
 }
 
 - (void)releaseMessage:(id)msg forMessageId:(NSString *)messageId file:(const char *)file line:(long)line func:(const char *)func
 {
-    @synchronized(self)
+    [_lock lock];
+    UMGlobalMessageCacheEntry *entry = _cache[messageId];
+    if(entry)
     {
-        UMGlobalMessageCacheEntry *entry = cache[messageId];
-        if(entry)
+        [self logEvent:[NSString stringWithFormat:@"release %d->%d %s:%ld %s",entry.cacheRetainCounter,entry.cacheRetainCounter-1,file,line,func] messageId:messageId];
+        entry.cacheRetainCounter = entry.cacheRetainCounter - 1;
+        if(entry.cacheRetainCounter<1)
         {
-            [self logEvent:[NSString stringWithFormat:@"release %d->%d %s:%ld %s",entry.cacheRetainCounter,entry.cacheRetainCounter-1,file,line,func] messageId:messageId];
-            entry.cacheRetainCounter = entry.cacheRetainCounter - 1;
-            if(entry.cacheRetainCounter<1)
-            {
-                [cache removeObjectForKey:messageId];
-            }
-        }
-        else
-        {
-            [self logEvent:[NSString stringWithFormat:@"not-found %s:%ld %s",file,line,func] messageId:messageId];
+            [_cache removeObjectForKey:messageId];
         }
     }
+    else
+    {
+        [self logEvent:[NSString stringWithFormat:@"not-found %s:%ld %s",file,line,func] messageId:messageId];
+    }
+    [_lock unlock];
+
 }
 
 - (void)releaseMessage:(id)msg forMessageId:(NSString *)messageId
 {
-    @synchronized(self)
+    [_lock lock];
+    UMGlobalMessageCacheEntry *entry = _cache[messageId];
+    if(entry)
     {
-        UMGlobalMessageCacheEntry *entry = cache[messageId];
-        if(entry)
+        entry.cacheRetainCounter = entry.cacheRetainCounter - 1;
+        if(entry.cacheRetainCounter<1)
         {
-            entry.cacheRetainCounter = entry.cacheRetainCounter - 1;
-            if(entry.cacheRetainCounter<1)
-            {
-                [cache removeObjectForKey:messageId];
-            }
+            [_cache removeObjectForKey:messageId];
         }
     }
+    [_lock unlock];
+
 }
 
 - (id)findMessage:(NSString *)messageId
 {
-    @synchronized(self)
-    {
-        UMGlobalMessageCacheEntry *entry = cache[messageId];
-        if(entry)
-        {
-            return entry.msg;
-        }
-    }
-    return NULL;
+    [_lock lock];
+    UMGlobalMessageCacheEntry *entry = _cache[messageId];
+    [_lock unlock];
+    return entry.msg;
 }
 
 - (void)logEvent:(NSString *)event messageId:(NSString *)messageId
 {
-    if(flog)
+    if(_flog)
     {
+        [_lock lock];
         NSString *logLine = [NSString stringWithFormat:@"MessageCache: %@ %@",messageId,event];
         NSLog(@"%@",logLine);
-        fprintf(flog,"%s\n",logLine.UTF8String);
-        fflush(flog);
+        fprintf(_flog,"%s\n",logLine.UTF8String);
+        fflush(_flog);
+        [_lock unlock];
     }
 }
 
 - (void)openLog:(NSString *)logfilename
 {
-    if(flog)
+    [_lock lock];
+    if(_flog)
     {
-        fclose(flog);
-        flog = NULL;
+        fclose(_flog);
+        _flog = NULL;
     }
-    flog = fopen(logfilename.UTF8String,"w+");
-    fprintf(flog,"open log\n");
-    fflush(flog);
+    _flog = fopen(logfilename.UTF8String,"w+");
+    fprintf(_flog,"open log\n");
+    fflush(_flog);
+    [_lock unlock];
+
 }
 
 - (void)closeLog
 {
-    if(flog)
+    [_lock lock];
+    if(_flog)
     {
-        fclose(flog);
-        flog = NULL;
+        fclose(_flog);
+        _flog = NULL;
     }
+    [_lock unlock];
+
 }
+
 -(void)flush
 {
-    [cache flush];
+    [_lock lock];
+    _cache = [[NSMutableDictionary alloc]init];
+    [_lock unlock];
+
+}
+
+- (NSInteger)count
+{
+    NSInteger i;
+    [_lock lock];
+    i = _cache.count;
+    [_lock unlock];
+    return i;
 }
 
 @end

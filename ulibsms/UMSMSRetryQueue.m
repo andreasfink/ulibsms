@@ -21,7 +21,8 @@
     self = [super init];
     if(self)
     {
-        retry_entries = [[NSMutableArray alloc]init];
+        _retry_entries = [[NSMutableArray alloc]init];
+        _lock = [[UMMutex alloc]init];
     }
     return self;
 }
@@ -36,18 +37,16 @@
 #ifdef DEBUG_LOGGING
     NSLog(@"retryQueue queueForRetry:%@ retryTime: %@ expireTime:%@ priority: %d", messageId,next_consideration,last_considersation,priority);
 #endif
-
-    @synchronized(self)
-    {
-        NSDictionary *entry = @{ @"msg":msg,
-                                 @"messageId" : messageId,
-                                 @"retry-time":next_consideration,
-                                 @"expire-time":last_considersation,
-                                 @"priority":  @(priority),
-                                 };
-        [_messageCache retainMessage:msg forMessageId:messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
-        [retry_entries addObject:entry];
-    }
+    [_lock lock];
+    NSDictionary *entry = @{ @"msg":msg,
+                             @"messageId" : messageId,
+                             @"retry-time":next_consideration,
+                             @"expire-time":last_considersation,
+                             @"priority":  @(priority),
+                             };
+    [_messageCache retainMessage:msg forMessageId:messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+    [_retry_entries addObject:entry];
+    [_lock unlock];
 }
 
 - (void)messagesNeedingRetrying:(NSArray **)needsRetry1 orExpiring:(NSArray **)hasExpired1
@@ -58,40 +57,49 @@
     NSDate *now = [NSDate date];
     NSMutableArray *needsRetry = [[NSMutableArray alloc]init];
     NSMutableArray *hasExpired = [[NSMutableArray alloc]init];
-    @synchronized(self)
+
+    [_lock lock];
+    NSUInteger n =[_retry_entries count];
+    for(NSUInteger i=0;i<n; )
     {
-        NSUInteger n =[retry_entries count];
-        for(NSUInteger i=0;i<n; )
+        NSDictionary *entry = _retry_entries[i];
+        NSDate *retryTime = entry[@"retry-time"];
+        NSDate *expireTime = entry[@"expire-time"];
+        if(retryTime.timeIntervalSinceReferenceDate < now.timeIntervalSinceReferenceDate)
         {
-            NSDictionary *entry = retry_entries[i];
-            NSDate *retryTime = entry[@"retry-time"];
-            NSDate *expireTime = entry[@"expire-time"];
-            if(retryTime.timeIntervalSinceReferenceDate < now.timeIntervalSinceReferenceDate)
-            {
 #ifdef DEBUG_LOGGING
-                NSLog(@"retryQueue messagesNeedingRetrying:%@",entry[@"messageId"]);
+            NSLog(@"retryQueue messagesNeedingRetrying:%@",entry[@"messageId"]);
 #endif
 
-                [needsRetry addObject:entry[@"msg"]];
-                [retry_entries removeObjectAtIndex:i];
-                [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
-                n--;
-            }
-            else if(expireTime.timeIntervalSinceReferenceDate <= now.timeIntervalSinceReferenceDate)
-            {
-                [hasExpired addObject:entry[@"msg"]];
-                [retry_entries removeObjectAtIndex:i];
-                [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
-                n--;
-            }
-            else
-            {
-                i++;
-            }
+            [needsRetry addObject:entry[@"msg"]];
+            [_retry_entries removeObjectAtIndex:i];
+            [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
+            n--;
+        }
+        else if(expireTime.timeIntervalSinceReferenceDate <= now.timeIntervalSinceReferenceDate)
+        {
+            [hasExpired addObject:entry[@"msg"]];
+            [_retry_entries removeObjectAtIndex:i];
+            [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
+            n--;
+        }
+        else
+        {
+            i++;
         }
     }
+    [_lock unlock];
     *needsRetry1 = needsRetry;
     *hasExpired1 = hasExpired;
+}
+
+- (NSInteger)count
+{
+    NSInteger i;
+    [_lock unlock];
+    i = [_retry_entries count];
+    [_lock unlock];
+    return i;
 }
 
 @end

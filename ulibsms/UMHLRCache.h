@@ -15,9 +15,9 @@
 
 @interface UMHLRCache : UMObject
 {
-    UMSynchronizedDictionary *_entries;
-    int _expiration_seconds;
-    UMMutex* _lock;
+    NSMutableDictionary *   _entries;
+    int                     _expiration_seconds;
+    UMMutex*                _lock;
 }
 
 @property(readwrite,assign)    int expiration_seconds;
@@ -25,5 +25,5 @@
 - (void)addToCacheMSISDN:(NSString *)msisdn msc:(NSString *)msc imsi:(NSString *)imsi hlr:(NSString *)hlr;
 - (void)expire;
 - (UMHLRCacheEntry *)find:(NSString *)msisdn;
-
+- (NSInteger)count;
 @end
