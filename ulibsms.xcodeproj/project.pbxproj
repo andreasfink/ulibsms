@@ -424,7 +424,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\n\nif [ -f version.h ]\nthen\n    if [ VERSION -nt version.h ]\n    then\n        ./configure\n    fi\nelse\n    ./configure\nfi\nmkdir -p /opt/ulibss7/frameworks\n";
+			shellScript = "#\n\nif [ -f version.h ]\nthen\n    if [ VERSION -nt version.h ]\n    then\n        ./configure\n    fi\nelse\n    ./configure\nfi\nmkdir -p \"/Library/Application Support/FinkTelecomServices\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
