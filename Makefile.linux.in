@@ -22,6 +22,8 @@ HFILES =  $(wildcard @PROJECT_NAME@/*.h) $(wildcard @PROJECT_NAME@/*/*.h)
 MOFILES  = $(MFILES:.m=.m.o)
 OFILES = $(MOFILES)
 
+build/diameter-cmd-gen
+
 INCLUDEDIRS=-I @PROJECT_NAME@
 
 ${LIB}: ${OFILES}
@@ -31,7 +33,7 @@ ${SLIB}: ${OFILES}
 	ar rcs ${SLIB} ${OFILES}
 	ranlib ${SLIB}
 
-install: ${LIB} ${SLIB}
+install: ${LIB} ${SLIB} build/decode-sms
 	-mkdir -p ${DESTDIR}/usr/local/lib/pkgconfig
 	rm -f "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}.${MINORVER}.${REVISION}"
 	rm -f "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}.${MINORVER}"
@@ -43,12 +45,17 @@ install: ${LIB} ${SLIB}
 	ln -s "${LIB}.${MAJORVER}.${MINORVER}"             "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}"
 	ln -s "${LIB}.${MAJORVER}"                         "${DESTDIR}/usr/local/lib/${LIB}"
 	-install -b -g root -o root -m 644 ${PKGCONFIGFILE} ${DESTDIR}/usr/local/lib/pkgconfig/
+	-install -b -g root -o root -m 755 build/decode-sms ${DESTDIR}/usr/local/bin/decode-sms
 	-mkdir -p ${DESTDIR}/usr/local/include/@PROJECT_NAME@
 	cp $(HFILES) ${DESTDIR}/usr/local/include/@PROJECT_NAME@
 	ldconfig
 
+build/decode-sms: decode-sms/main.m.o lib@PROJECT_NAME@.so
+	mkdir -p build
+	${CC} -o build/decode-sms  -L. -l@PROJECT_NAME@ ${LDFLAGS} decode-sms/main.m.o
+
 clean:
-	rm -f $(LIB) $(OFILES) ${SLIB}
+	rm -f $(LIB) $(OFILES) ${SLIB} build/decode-sms
 
 .SUFFIXES: .m.o .o .m .c
 
