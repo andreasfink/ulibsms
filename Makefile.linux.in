@@ -22,8 +22,6 @@ HFILES =  $(wildcard @PROJECT_NAME@/*.h) $(wildcard @PROJECT_NAME@/*/*.h)
 MOFILES  = $(MFILES:.m=.m.o)
 OFILES = $(MOFILES)
 
-build/diameter-cmd-gen
-
 INCLUDEDIRS=-I @PROJECT_NAME@
 
 ${LIB}: ${OFILES}
