@@ -33,7 +33,7 @@ int main(int argc, const char * argv[])
 		len2 = (len * 7 + 3) / 4;
 		if(len2 > 0x7F)
 		{
-			NSLog(@"trying to do gsm8to7 with len2 = %ld. That can't work as nibblelen > 256",len2);
+			NSLog(@"trying to do gsm8to7 with len2 = %ld. That can't work as nibblelen > 256",(long)len2);
 		}
 		nibblelen = len2 & 0xFF;
 		
@@ -84,7 +84,7 @@ int main(int argc, const char * argv[])
         len2 = (len * 7 + 3) / 4;
         if(len2 > 0x7F)
         {
-            NSLog(@"trying to do gsm8to7 with len2 = %ld. That can't work as nibblelen > 256",len2);
+            NSLog(@"trying to do gsm8to7 with len2 = %ld. That can't work as nibblelen > 256",(long)len2);
         }
         nibblelen = len2 & 0xFF;
 

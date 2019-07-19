@@ -107,6 +107,10 @@ case "$host" in
 	LDFLAGS="$LDFLAGS `/usr/local/bin/gnustep-config --base-libs --objc-libs`"
 	CFLAGS="$CFLAGS `pkg-config  --cflags ${DEPENDENT_PKGCONFIGS}`"
 	LDFLAGS="$LDFLAGS `pkg-config --libs ${DEPENDENT_PKGCONFIGS}`"
+	if [[ -f /usr/local/lib/libiconv.a ]]
+    then
+            STATIC_LIBS="-l:libiconv.a"
+    fi
 	SHARED_LIBRARY_EXTENSION=so
     SHARED_FLAGS="-shared"
     ;;
@@ -139,6 +143,10 @@ case "$host" in
 	CFLAGS="$CFLAGS -DHAVE_OPENSSL=1"
 	CFLAGS="$CFLAGS `pkg-config --cflags libssl libcrypto`"
 	LDFLAGS="$LDFLAGS `pkg-config --libs libssl libcrypto`"
+	if [[ -f /usr/local/lib/libiconv.a ]]
+	then
+			STATIC_LIBS="-l:libiconv.a"
+	fi
 	AC_DEFINE(HAVE_OPENSSL)
 	;;
 esac
@@ -209,6 +217,7 @@ AC_SUBST(MAJORVER)
 AC_SUBST(MINORVER)
 AC_SUBST(REVISION)
 AC_SUBST(SHARED_LIBRARY_EXTENSION)
+AC_SUBST(STATIC_LIBS)
 AC_CONFIG_SECTION([Generating output files]) 
 AC_CONFIG_FILES([Makefile.osx])
 AC_CONFIG_FILES([Makefile.linux])
