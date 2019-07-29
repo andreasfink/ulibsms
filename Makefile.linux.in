@@ -13,6 +13,7 @@ MAJORVER=@MAJORVER@
 MINORVER=@MINORVER@
 REVISION=@REVISION@
 STATIC_LIBS=@STATIC_LIBS@
+LIBS=@LIBS@
 
 LIB=lib@PROJECT_NAME@.@SHARED_LIBRARY_EXTENSION@
 SLIB=lib@PROJECT_NAME@.a
@@ -51,7 +52,7 @@ install: ${LIB} ${SLIB} build/decode-sms
 
 build/decode-sms: decode-sms/main.m.o lib@PROJECT_NAME@.so
 	mkdir -p build
-	${CC} -o build/decode-sms  -L. -l@PROJECT_NAME@ ${LDFLAGS} decode-sms/main.m.o
+	${CC} -o build/decode-sms  -L. -l@PROJECT_NAME@ ${LDFLAGS} decode-sms/main.m.o lib@PROJECT_NAME@.so -l:libiconv.so.2.6.0
 
 clean:
 	rm -f $(LIB) $(OFILES) ${SLIB} build/decode-sms
