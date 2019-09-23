@@ -224,8 +224,8 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
 
 - (UMSMS_Address *)grabAddress:(const uint8_t *)bytes
-                                            len:(NSUInteger)pdu_len
-                                            pos:(NSUInteger *)p
+                           len:(NSUInteger)pdu_len
+                           pos:(NSUInteger *)p
 {
     UMSMS_Address *tpa = [[UMSMS_Address alloc]init];
     
@@ -253,8 +253,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     NSData *tmp = [NSData dataWithBytes:&bytes[*p] length:len2];
     if(ton == 5) /* alphanumeric */
     {
-        tpa.address = [NSString stringWithFormat:@"%02X%@",len,[tmp hexString]];
-        /* FIXME: decode to UTF8String */
+        tpa.address = [tmp stringFromGsm7withNibbleLengthPrefix];
     }
     else
     {
@@ -272,7 +271,6 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     (*p) += len2;
     return tpa;
 }
-
 
 -(void) dcs_to_fields
 {

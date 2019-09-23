@@ -15,6 +15,7 @@ CC=@CC@
 all:
 	./codesign_environment.sh
 	xcodebuild $(CONFIGURATION) ${XCODESIGN}
+	xcodebuild $(CONFIGURATION) ${XCODESIGN} -target decode-sms
 	
 unlock:
 	security unlock-keychain ~/Library/Keychains/login.keychain
@@ -25,15 +26,21 @@ clean:
 install:
 	./codesign_environment.sh
 	xcodebuild $(CONFIGURATION) install
+	xcodebuild $(CONFIGURATION) -target decode-sms install
+	xcodebuild $(CONFIGURATION) -target decode-gsm7 install
 
 install_for_pkg: 
 	xcodebuild $(CONFIGURATION)  DSTROOT="install_root"  install
+	xcodebuild $(CONFIGURATION)  DSTROOT="install_root" -target decode-sms install
+	xcodebuild $(CONFIGURATION)  DSTROOT="install_root" -target decode-gsm7 install
 
 
 install_root_prepare:
 	-rm -rf install_root
 	mkdir -p install_root
 	xcodebuild $(CONFIGURATION)  DSTROOT="install_root" install
+	xcodebuild $(CONFIGURATION)  DSTROOT="install_root" -target decode-sms install
+	xcodebuild $(CONFIGURATION)  DSTROOT="install_root" -target decode-gsm7 install
 
 pkg:	install_root_prepare
 	./make_pkg.sh "$(PROJECT_NAME)" "$(PROJECT_ID)" install_root "`cat VERSION`"

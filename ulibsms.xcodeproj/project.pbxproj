@@ -10,6 +10,11 @@
 		A61958992192D76B00BEB8A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A61958982192D76B00BEB8A5 /* main.m */; };
 		A619589F2192D78300BEB8A5 /* ulibsms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F9FE461EF7FA33007C203A /* ulibsms.framework */; };
 		A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CEB11B42014800854472 /* ulibsmsTests.m */; };
+		A6521E082334E5A0004C8C1F /* sctp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B7FBC61B44B54100854472 /* sctp.framework */; };
+		A6521E092334E5A0004C8C1F /* ulibgsmmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D422BB68F40019806C /* ulibgsmmap.framework */; };
+		A6521E0A2334E5A0004C8C1F /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D022BB68DB0019806C /* ulib.framework */; };
+		A6521E0B2334E5A0004C8C1F /* ulibsms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F9FE461EF7FA33007C203A /* ulibsms.framework */; };
+		A6521E142334E5C7004C8C1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6521E132334E5C7004C8C1F /* main.m */; };
 		A664D57A1F6A60E500BD455E /* UMSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A64612D51D41F12B00211137 /* UMSMS.m */; };
 		A664D57B1F6A60EB00BD455E /* UMSMS_Address.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D10CD01D4F34EB001D021B /* UMSMS_Address.m */; };
 		A664D57C1F6A60EE00BD455E /* UMLayerSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED5C3A1B434FAD00854472 /* UMLayerSMS.m */; };
@@ -69,6 +74,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		A6521E0C2334E5A0004C8C1F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +95,8 @@
 		A641CEB11B42014800854472 /* ulibsmsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ulibsmsTests.m; sourceTree = "<group>"; };
 		A64612D41D41F12B00211137 /* UMSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSMS.h; sourceTree = "<group>"; };
 		A64612D51D41F12B00211137 /* UMSMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMSMS.m; sourceTree = "<group>"; };
+		A6521E102334E5A0004C8C1F /* decode-gsm7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "decode-gsm7"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6521E132334E5C7004C8C1F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A67989D022BB68DB0019806C /* ulib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulib.framework; path = "/Library/Application Support/FinkTelecomServices/frameworks/ulib.framework"; sourceTree = "<absolute>"; };
 		A67989D422BB68F40019806C /* ulibgsmmap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibgsmmap.framework; path = "../Application Support/FinkTelecomServices/frameworks/ulibgsmmap.framework"; sourceTree = "<group>"; };
 		A682DB5A1B455ADF0090FC94 /* UMSMSRetryQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSMSRetryQueue.h; sourceTree = "<group>"; };
@@ -140,6 +156,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A6521E072334E5A0004C8C1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6521E082334E5A0004C8C1F /* sctp.framework in Frameworks */,
+				A6521E092334E5A0004C8C1F /* ulibgsmmap.framework in Frameworks */,
+				A6521E0A2334E5A0004C8C1F /* ulib.framework in Frameworks */,
+				A6521E0B2334E5A0004C8C1F /* ulibsms.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6F9FE421EF7FA33007C203A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -173,6 +200,7 @@
 				A641CEA11B42014800854472 /* ulibsms */,
 				A641CEAE1B42014800854472 /* ulibsmsTests */,
 				A6F9FE471EF7FA33007C203A /* ulibsms */,
+				A6521E112334E5AD004C8C1F /* decode-gsm7 */,
 				A61958972192D76B00BEB8A5 /* decode-sms */,
 				A641CEA01B42014800854472 /* Products */,
 				A6ED5C8E1B435C4500854472 /* Frameworks */,
@@ -185,6 +213,7 @@
 				A641CEAA1B42014800854472 /* ulibsmsTests.xctest */,
 				A6F9FE461EF7FA33007C203A /* ulibsms.framework */,
 				A61958962192D76B00BEB8A5 /* decode-sms */,
+				A6521E102334E5A0004C8C1F /* decode-gsm7 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,6 +274,14 @@
 				A641CEB01B42014800854472 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A6521E112334E5AD004C8C1F /* decode-gsm7 */ = {
+			isa = PBXGroup;
+			children = (
+				A6521E132334E5C7004C8C1F /* main.m */,
+			);
+			path = "decode-gsm7";
 			sourceTree = "<group>";
 		};
 		A6ED5C8E1B435C4500854472 /* Frameworks */ = {
@@ -329,6 +366,23 @@
 			productReference = A641CEAA1B42014800854472 /* ulibsmsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A6521E042334E5A0004C8C1F /* decode-gsm7 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6521E0D2334E5A0004C8C1F /* Build configuration list for PBXNativeTarget "decode-gsm7" */;
+			buildPhases = (
+				A6521E052334E5A0004C8C1F /* Sources */,
+				A6521E072334E5A0004C8C1F /* Frameworks */,
+				A6521E0C2334E5A0004C8C1F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "decode-gsm7";
+			productName = "decode-sms";
+			productReference = A6521E102334E5A0004C8C1F /* decode-gsm7 */;
+			productType = "com.apple.product-type.tool";
+		};
 		A6F9FE451EF7FA33007C203A /* ulibsms */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A6F9FE4D1EF7FA33007C203A /* Build configuration list for PBXNativeTarget "ulibsms" */;
@@ -354,7 +408,7 @@
 		A641CE961B42014800854472 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Andreas Fink (andreas@fink.org)";
 				TargetAttributes = {
 					A61958952192D76B00BEB8A5 = {
@@ -364,6 +418,10 @@
 					};
 					A641CEA91B42014800854472 = {
 						CreatedOnToolsVersion = 6.3.2;
+					};
+					A6521E042334E5A0004C8C1F = {
+						DevelopmentTeam = 2GSNWPNR77;
+						ProvisioningStyle = Automatic;
 					};
 					A6F9FE451EF7FA33007C203A = {
 						CreatedOnToolsVersion = 9.0;
@@ -387,6 +445,7 @@
 				A6F9FE451EF7FA33007C203A /* ulibsms */,
 				A641CEA91B42014800854472 /* ulibsmsTests */,
 				A61958952192D76B00BEB8A5 /* decode-sms */,
+				A6521E042334E5A0004C8C1F /* decode-gsm7 */,
 			);
 		};
 /* End PBXProject section */
@@ -456,6 +515,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A6521E052334E5A0004C8C1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6521E142334E5C7004C8C1F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6F9FE411EF7FA33007C203A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,6 +559,7 @@
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				DSTROOT = /;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -522,6 +590,7 @@
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				DSTROOT = /;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -688,6 +757,67 @@
 			};
 			name = Release;
 		};
+		A6521E0E2334E5A0004C8C1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEPLOYMENT_LOCATION = YES;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
+				DSTROOT = /;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A6521E0F2334E5A0004C8C1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEPLOYMENT_LOCATION = YES;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
+				DSTROOT = /;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		A6F9FE4B1EF7FA33007C203A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -786,6 +916,15 @@
 			buildConfigurations = (
 				A641CEB91B42014800854472 /* Debug */,
 				A641CEBA1B42014800854472 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6521E0D2334E5A0004C8C1F /* Build configuration list for PBXNativeTarget "decode-gsm7" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6521E0E2334E5A0004C8C1F /* Debug */,
+				A6521E0F2334E5A0004C8C1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

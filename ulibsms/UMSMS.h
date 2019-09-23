@@ -127,6 +127,7 @@ typedef enum UMSMS_MessageType
 @property(readonly,assign) int language_lock_table_number;
 @property(readonly,assign) int language_shift_table_number;
 
+- (UMSMS *)initWithHttpRequest:(UMHTTPRequest *)req;
 + (NSData *) decode7bituncompressed:(NSData *)input len:(NSUInteger)len offset:(NSUInteger) offset;
 + (NSData *) pack7bit:(NSData *)input fillBits:(NSUInteger)fillers newLength:(NSUInteger *)newlen;
 - (void)decodePdu:(NSData *)data context:(id)context;
@@ -138,6 +139,5 @@ typedef enum UMSMS_MessageType
 + (void)appendSmsMoForm:(NSMutableString *)s;
 + (void)appendSmsMtForm:(NSMutableString *)s;
 
-- (UMSMS *)initWithHttpRequest:(UMHTTPRequest *)req;
 
 @end
