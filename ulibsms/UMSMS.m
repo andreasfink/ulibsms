@@ -1016,7 +1016,12 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     [s appendString:@"    <td class=optional><input name=\"text\" type=text>Text</td>\n"];
     [s appendString:@"</tr>\n"];
 
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>binary-pdu</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"binary-pdu\" type=text>HexBytes</td>\n"];
+    [s appendString:@"</tr>\n"];
 }
+
 + (void)appendSmsMtForm:(NSMutableString *)s
 {
     [s appendString:@"<tr><td colspan=2 class=subtitle>SMS Parameters:</td></tr>\n"];
@@ -1085,9 +1090,13 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     [s appendString:@"    <td class=optional>text</td>\n"];
     [s appendString:@"    <td class=optional><input name=\"text\" type=text>Text</td>\n"];
     [s appendString:@"</tr>\n"];
+
+    [s appendString:@"<tr>\n"];
+    [s appendString:@"    <td class=optional>binary-pdu</td>\n"];
+    [s appendString:@"    <td class=optional><input name=\"binary-pdu\" type=text>HexBytes</td>\n"];
+    [s appendString:@"</tr>\n"];
+
 }
-
-
 
 #define SET_OPTIONAL_PARAMETER(p,var,name)   \
 {\
@@ -1131,6 +1140,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         NSString *web_tp_oa;
         NSString *web_tp_da;
         NSString *web_text;
+        NSString *web_binary;
         NSString *web_scts;
 
         SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_mti,@"tp-mti");
@@ -1149,6 +1159,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_oa,@"tp-oa");
         SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_da,@"tp-da");
         SET_OPTIONAL_PARAMETER(p,web_text,@"text");
+        SET_OPTIONAL_PARAMETER(p,web_binary,@"binary-pdu");
         SET_OPTIONAL_CLEAN_PARAMETER(p,web_scts,@"scts");
 
         if([web_tp_mti isEqualToStringCaseInsensitive:@"DELIVER"])
@@ -1239,6 +1250,10 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         if(web_text.length > 0)
         {
             _t_content = [web_text gsm8];
+        }
+        if(web_binary.length > 0)
+        {
+            _t_content = [web_binary unhexData];
         }
 
         NSTimeZone *tz      = [NSTimeZone systemTimeZone];
