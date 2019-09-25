@@ -78,8 +78,8 @@ void DecodeST(NSData *data)
     }
     CHL = bytes[p++];
     
-    int spipos = p;
-    int rcend = p + CHL;
+    NSInteger spipos = p;
+    NSInteger rcend = p + CHL;
     SPI = (bytes[p] << 8) || bytes[p+1];
     p+=2;
 
@@ -98,7 +98,7 @@ void DecodeST(NSData *data)
     PCNTR = bytes[p++];
 
     int j=0;
-    for(int i=spipos;i<rcend;i++)
+    for(int i=p;i<rcend;i++)
     {
         RC_CC_DS[j++] = bytes[i];
     }
@@ -107,16 +107,198 @@ void DecodeST(NSData *data)
     
     NSLog(@"CHL: %d (%02X)",CHL,CHL);
     NSLog(@"SPI: %d (%02X %02X)",SPI, ((SPI>>8) & 0xFF), (SPI & 0xFF));
+
+    int c;
+    NSLog(@"    X X X - - - - -   . . . . . . . . Reserved");
+    c = (SPI >> 11) & 0x03;
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    - - - 0 0 - - -   . . . . . . . . No counter available");
+            break;
+        case 1:
+            NSLog(@"    - - - 0 1 - - -   . . . . . . . . Counter available; no replay or sequence checking");
+            break;
+        case 2:
+            NSLog(@"    - - - 1 0 - - -   . . . . . . . . Process if and only if counter value is higher than the value in the RE");
+            break;
+        case 3:
+            NSLog(@"    - - - 1 1 - - -   . . . . . . . . Process if and only if counter value is one higher than the value in the RE");
+            break;
+    }
+    c = (SPI >> 10) & 0x01;
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    - - - - - 0 - -   . . . . . . . . No Ciphering");
+            break;
+        case 1:
+            NSLog(@"    - - - - - 1 - -   . . . . . . . . Ciphering");
+            break;
+    }
+    c = (SPI >> 8) & 0x03;
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    - - - - - - 0 0   . . . . . . . . No RC, CC or DS");
+            break;
+        case 1:
+            NSLog(@"    - - - - - - 0 1   . . . . . . . . Redundancy Check");
+            break;
+        case 2:
+            NSLog(@"    - - - - - - 1 0   . . . . . . . . Cryptographic Checksum");
+            break;
+        case 3:
+            NSLog(@"    - - - - - - 1 1   . . . . . . . . Digital Signature");
+            break;
+    }
+
+    NSLog(@"    . . . . . . . .   X X - - - - - - Reserved");
+
+    c = (SPI >> 5) & 0x01;
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    . . . . . . . .   - - 0 - - - - - PoR response shall be sent using SMS-DELIVER-REPORT");
+            break;
+        case 1:
+            NSLog(@"    . . . . . . . .   - - 1 - - - - - PoR response shall be sent using SMS-SUBMIT");
+            break;
+    }
+    c = (SPI >> 4) & 0x01;
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    . . . . . . . .   - - - 0 - - - - PoR response shall not be ciphered");
+            break;
+        case 1:
+            NSLog(@"    . . . . . . . .   - - - 1 - - - - PoR response shall be ciphered");
+            break;
+    }
+    c = (SPI >> 2) & 0x03;
+
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    . . . . . . . .   - - - - 0 0 - - No RC, CC or DS applied to PoR response to SE");
+            break;
+        case 1:
+            NSLog(@"    . . . . . . . .   - - - - 0 1 - - PoR response with simple RC applied to it");
+            break;
+        case 2:
+            NSLog(@"    . . . . . . . .   - - - - 1 0 - - PoR response with CC applied to it");
+            break;
+        case 3:
+            NSLog(@"    . . . . . . . .   - - - - 1 1 - - PoR response with DS applied to it");
+            break;
+    }
+    c = (SPI >> 0) & 0x03;
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    . . . . . . . .   - - - - - - 0 0 No PoR reply to the Sending Entity (SE)");
+            break;
+        case 1:
+            NSLog(@"    . . . . . . . .   - - - - - - 0 1 PoR required to be sent to the SE");
+            break;
+        case 2:
+            NSLog(@"    . . . . . . . .   - - - - - - 1 0 PoR required only when an error has occured");
+            break;
+        case 3:
+            NSLog(@"    . . . . . . . .   - - - - - - 1 1 Reserved");
+            break;
+    }
+
     NSLog(@"KIc: %d",KIc);
+
+    NSLog(@"    %d %d %d %d - - - -                   indication of Keys to be used", ((KIc >>7)?1:0),((KIc >>6)?1:0),((KIc >>5)?1:0),((KIc >>4)?1:0) );
+
+    c = (KIc >> 2) & 0x03;
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    - - - - 0 0 - -                   DES in CBC mode");
+            break;
+        case 1:
+            NSLog(@"    - - - - 0 1 - -                   Triple DES in outer-CBC mode using two different keys");
+            break;
+        case 2:
+            NSLog(@"    - - - - 1 0 - -                   Triple DES in outer-CBC mode using three different keys");
+            break;
+        case 3:
+            NSLog(@"    - - - - 1 1 - -                   DES in ECB mode");
+            break;
+    }
+    c = (KIc >> 0) & 0x03;
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    - - - - - - 0 0                   Algorithm known implicitly by both entities");
+            break;
+        case 1:
+            NSLog(@"    - - - - - - 0 1                   DES");
+            break;
+        case 2:
+            NSLog(@"    - - - - - - 1 0                   Reserved");
+            break;
+        case 3:
+            NSLog(@"    - - - - - - 1 1                   proprietary Implementations");
+            break;
+    }
+
     NSLog(@"KID: %d",KID);
+    NSLog(@"    %d %d %d %d - - - -                   indication of Keys to be used", ((KID >>7)?1:0),((KID >>6)?1:0),((KID >>5)?1:0),((KID >>4)?1:0) );
+
+    c = (KID >> 2) & 0x03;
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    - - - - 0 0 - -                   DES in CBC mode");
+            break;
+        case 1:
+            NSLog(@"    - - - - 0 1 - -                   Triple DES in outer-CBC mode using two different keys");
+            break;
+        case 2:
+            NSLog(@"    - - - - 1 0 - -                   Triple DES in outer-CBC mode using three different keys");
+            break;
+        case 3:
+            NSLog(@"    - - - - 1 1 - -                   DES in ECB mode");
+            break;
+    }
+    c = (KID >> 0) & 0x03;
+    switch(c)
+    {
+        case 0:
+            NSLog(@"    - - - - - - 0 0                   Algorithm known implicitly by both entities");
+            break;
+        case 1:
+            NSLog(@"    - - - - - - 0 1                   DES");
+            break;
+        case 2:
+            NSLog(@"    - - - - - - 1 0                   Reserved");
+            break;
+        case 3:
+            NSLog(@"    - - - - - - 1 1                   proprietary Implementations");
+            break;
+    }
+
     NSLog(@"TAR: %02X %02X %02X (%d)",TAR_bytes[0],TAR_bytes[1],TAR_bytes[2],TAR);
     NSLog(@"CNTR: %02X %02X %02X %02X %02X",CNTR[0],CNTR[1],CNTR[2],CNTR[3],CNTR[4]);
     NSLog(@"PCNTR: %d",PCNTR);
     NSMutableString *s = [[NSMutableString alloc]init];
-    for(int i=0;i<8;i++)
+    for(int i=0;i<j;i++)
     {
         [s appendFormat:@" %02X",RC_CC_DS[i]];
     }
+
     NSLog(@"RC_CC_DS:%@",s);
+
+    s = [[NSMutableString alloc]init];
+    for(int i=p;i<len;i++)
+    {
+        [s appendFormat:@" %02X",bytes[i]];
+    }
+    NSLog(@"Payload:%@",s);
+
 
 }
