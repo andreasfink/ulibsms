@@ -98,7 +98,7 @@ void DecodeST(NSData *data)
     PCNTR = bytes[p++];
 
     int j=0;
-    for(int i=p;i<rcend;i++)
+    for(NSInteger i=p;i<rcend;i++)
     {
         RC_CC_DS[j++] = bytes[i];
     }
