@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <ulib/ulib.h>
+#import "UMSATCommands.h"
 
+void DecodeSTPayload(NSData *data,NSString *ident);
 void DecodeST(NSData *data);
 
 int main(int argc, const char * argv[])
 {
-#if 0
-   // NSString *s = @"027000002e0d00000000505348000000000000421e811c200201618516702d112181020d0cf468656c6c6f20776f726c642b00";
-    NSString *s=@"00501115001500b00010da16d560989b32c302bcf9e3a68d55663d58d794468020a6dd8692037a2d9719b39e489220de600645a6409ca954247542ba6b84756d0a864008d4e76ddd97299dc69b3f59d13c18";
+#if 1
+    NSString *s = @"027000002e0d00000000505348000000000000421e811c200201618516702d112181020d0cf468656c6c6f20776f726c642b00";
+   // NSString *s=@"00501115001500b00010da16d560989b32c302bcf9e3a68d55663d58d794468020a6dd8692037a2d9719b39e489220de600645a6409ca954247542ba6b84756d0a864008d4e76ddd97299dc69b3f59d13c18";
 
     NSData *d = [s unhexedData];
     DecodeST(d);
@@ -298,6 +300,7 @@ void DecodeST(NSData *data)
     fprintf(stdout,"RC_CC_DS: 0x%s\n",s.UTF8String);
 
     s = [[NSMutableString alloc]init];
+    NSData *payload = [NSData dataWithBytes:&bytes[p] length:len-p];
     for(NSInteger i=p;i<len;i++)
     {
         [s appendFormat:@" %02X",bytes[i]];
@@ -307,4 +310,50 @@ void DecodeST(NSData *data)
         }
     }
     fprintf(stdout,"Payload: %s\n",s.UTF8String);
+    DecodeSTPayload(payload,@"");
+}
+
+
+
+void DecodeSTPayload(NSData *data, NSString *ident)
+{
+    uint8_t *bytes = (uint8_t *)data.bytes;
+    int len = (int)data.length;
+    for(int i=0;i<len;)
+    {
+        BOOL container = NO;
+        uint8_t token = bytes[i++];
+        NSString *s = [UMSATCommands tagName:token];
+        
+        token = 0x7F & token;
+        fprintf(stdout,"%sTAG     0x%02X %s\n",ident.UTF8String,token,s.UTF8String);
+        int taglen = [UMSATCommands readLength:bytes pos:&i len:len];
+        fprintf(stdout,"%sLEN     0x%02X (%d)\n",ident.UTF8String,taglen,taglen);
+
+        if((token==0x42) || (token==STK_TAG_Deck))
+        {
+            container = YES;
+        }
+        if(token & 0x80)
+        {
+            uint8_t attribute = bytes[i++];
+            fprintf(stdout,"%sATTR    0x%02X\n",ident.UTF8String,attribute);
+
+        }
+        if(taglen>0)
+        {
+            fprintf(stdout,"%sDATA    ",ident.UTF8String);
+            for(int j=0;j<taglen;j++)
+            {
+                fprintf(stdout,"0x%02X ",(int)bytes[i++]);
+            }
+            fprintf(stdout,"\n");
+        }
+        if(container)
+        {
+            ident = [NSString stringWithFormat:@"   %@",ident];
+            NSData *d = [NSData dataWithBytes:&bytes[i-taglen] length:taglen];
+            DecodeSTPayload(d,ident);
+        }
+    }
 }
