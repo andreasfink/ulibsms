@@ -461,7 +461,7 @@
 		A641CE961B42014800854472 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Andreas Fink (andreas@fink.org)";
 				TargetAttributes = {
 					A61958952192D76B00BEB8A5 = {
@@ -1049,7 +1049,7 @@
 				A619589C2192D76B00BEB8A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		A641CE991B42014800854472 /* Build configuration list for PBXProject "ulibsms" */ = {
 			isa = XCConfigurationList;
@@ -1058,7 +1058,7 @@
 				A641CEB41B42014800854472 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		A641CEB81B42014800854472 /* Build configuration list for PBXNativeTarget "ulibsmsTests" */ = {
 			isa = XCConfigurationList;
@@ -1067,7 +1067,7 @@
 				A641CEBA1B42014800854472 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		A6521E0D2334E5A0004C8C1F /* Build configuration list for PBXNativeTarget "decode-gsm7" */ = {
 			isa = XCConfigurationList;
@@ -1076,7 +1076,7 @@
 				A6521E0F2334E5A0004C8C1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		A6981AB1233B2B7800D666D4 /* Build configuration list for PBXNativeTarget "decode-st" */ = {
 			isa = XCConfigurationList;
@@ -1085,7 +1085,7 @@
 				A6981AB3233B2B7800D666D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		A6F9FE4D1EF7FA33007C203A /* Build configuration list for PBXNativeTarget "ulibsms" */ = {
 			isa = XCConfigurationList;
@@ -1094,7 +1094,7 @@
 				A6F9FE4C1EF7FA33007C203A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
