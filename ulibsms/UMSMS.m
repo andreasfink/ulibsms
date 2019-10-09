@@ -102,11 +102,11 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     /* value 1 means no more message are waiting for the MS in this SC so we negate it */
 #define	TP_MMS(a)	(((a >> 2) & 0x01) ? 0 : 1)
 #define	TP_VPF(a)	((a >> 3) & 0x03)
+#define TP_LP(a)    ((a >> 4) & 0x01)
 #define TP_SRR(a)	((a >> 5) & 0x01)  /* 1 means status report requested */
 #define	TP_UDHI(a)	((a >> 6) & 0x01)  /* 1 means udh present */
 #define	TP_RP(a)	((a >> 7) & 0x01)  /* 1 means reply path set */
 
-    
     uint8_t	oct1 = GRAB(bytes,len,pos);
     _tp_mti	= _tp_mti(oct1);
     _tp_mms	= TP_MMS(oct1);
@@ -114,7 +114,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     _tp_srr	= TP_SRR(oct1);
     _tp_udhi = TP_UDHI(oct1);
     _tp_rp	= TP_RP(oct1);
-    
+    _tp_lp = TP_LP(oct1); /* this overlaps with VPS. Depends on SUBMIT or DELIVER direction */
     switch(_tp_mti)
     {
         case UMSMS_MessageType_DELIVER:
@@ -419,11 +419,11 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         {
             /* normal message from SMSC to mobile */
             uint8_t o = _tp_mti;
-            o += _tp_mms << 2;
-            o += (_tp_sri ? 1 : 0) << 5;
-            o += _tp_udhi<< 6;
-            o += _tp_rp << 7;
-            
+            o |= _tp_mms ? 1 << 2 : 0;
+            o |= (_tp_sri ? 1 : 0) << 5;
+            o |= (_tp_udhi ? 1 : 0) << 6;
+            o |= (_tp_rp ? 1 : 0 ) << 7;
+
             [pdu appendByte:o];
             NSData *tp_oa_encoded = [_tp_oa encoded];
             [pdu appendData:tp_oa_encoded];
@@ -438,12 +438,12 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             /* a message from the MSC to a SMSC */
             /* normal MO from mobile to SMSC */
             uint8_t o = _tp_mti;
-            o += _tp_rd << 2;
-            o += _tp_srr << 5;
-            o += _tp_udhi<< 6;
-            o += _tp_rp << 7;
-            o += _tp_vpf << 3;
-            
+            o |= (_tp_rd ? 1:0) << 2;
+            o |= (_tp_srr ? 1:0) << 5;
+            o |= (_tp_udhi ? 1:0 )<< 6;
+            o |= (_tp_rp ? 1:0 )<< 7;
+            o |= (_tp_vpf & 0x3) << 3;
+
             [pdu appendByte:o];
             [pdu appendByte:_tp_mr];
             
@@ -1125,6 +1125,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         NSDictionary *p = req.params;
 
         NSString *web_tp_mti;
+        NSString *web_tp_lp;
         NSString *web_tp_mms;
         NSString *web_tp_sri;
         NSString *web_tp_udhi;
@@ -1144,6 +1145,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         NSString *web_scts;
 
         SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_mti,@"tp-mti");
+        SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_lp,@"tp-lp");
         SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_mms,@"tp-mms");
         SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_sri,@"tp-sri");
         SET_OPTIONAL_CLEAN_PARAMETER(p,web_tp_udhi,@"tp-udhi");
@@ -1189,6 +1191,11 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         else if([web_tp_mti isEqualToStringCaseInsensitive:@"RESERVED"])
         {
             _tp_mti = UMSMS_MessageType_RESERVED;
+        }
+
+        if(web_tp_lp.length>0)
+        {
+            _tp_lp = [web_tp_mms boolValue];
         }
 
         if(web_tp_mms.length>0)
