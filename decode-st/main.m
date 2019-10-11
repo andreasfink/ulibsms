@@ -11,6 +11,8 @@
 #import "UMSATCommands.h"
 
 void DecodeSTPayload(NSData *data,NSString *ident);
+void DecodeDeck(NSData *data,NSString *ident);
+void DecodeCard(NSData *data,NSString *ident);
 void DecodeST(NSData *data);
 
 int main(int argc, const char * argv[])
@@ -324,9 +326,9 @@ void DecodeSTPayload(NSData *data, NSString *ident)
         BOOL container = NO;
         uint8_t token = bytes[i++];
         NSString *s = [UMSATCommands tagName:token];
-        
+
         token = 0x7F & token;
-        fprintf(stdout,"%sTAG     0x%02X %s\n",ident.UTF8String,token,s.UTF8String);
+        fprintf(stdout,"\n%sTAG     0x%02X %s\n",ident.UTF8String,token,s.UTF8String);
         int taglen = [UMSATCommands readLength:bytes pos:&i len:len];
         fprintf(stdout,"%sLEN     0x%02X (%d)\n",ident.UTF8String,taglen,taglen);
 
@@ -336,9 +338,139 @@ void DecodeSTPayload(NSData *data, NSString *ident)
         }
         if(token & 0x80)
         {
-            uint8_t attribute = bytes[i++];
-            fprintf(stdout,"%sATTR    0x%02X\n",ident.UTF8String,attribute);
+            uint64_t attributes = 0;
+            int bitshift = 0;
 
+            uint8_t attribute = bytes[i++];
+            do
+            {
+                attribute = bytes[i++];
+                attributes = attributes | ((attribute & 0x7F) << bitshift);
+                bitshift +=7;
+                fprintf(stdout,"%sATTR    0x%02X\n",ident.UTF8String,attribute);
+            } while(attribute & 80);
+            for(i=0;i<64;i++)
+            {
+                if((1<<i) & attributes)
+                {
+                    fprintf(stdout,"%s        Attribute_%d set\n",ident.UTF8String,i);
+                }
+            }
+        }
+        if(taglen>0)
+        {
+            fprintf(stdout,"%sDATA    ",ident.UTF8String);
+            for(int j=0;j<taglen;j++)
+            {
+                fprintf(stdout,"0x%02X ",(int)bytes[i++]);
+            }
+            fprintf(stdout,"\n");
+        }
+        if(container)
+        {
+            ident = [NSString stringWithFormat:@"   %@",ident];
+            NSData *d = [NSData dataWithBytes:&bytes[i-taglen] length:taglen];
+            DecodeSTPayload(d,ident);
+        }
+    }
+}
+
+
+
+void DecodeDeck(NSData *data, NSString *ident)
+{
+    uint8_t *bytes = (uint8_t *)data.bytes;
+    int len = (int)data.length;
+    for(int i=0;i<len;)
+    {
+        BOOL container = NO;
+        uint8_t token = bytes[i++];
+        NSString *s = [UMSATCommands tagName:token];
+
+        token = 0x7F & token;
+        fprintf(stdout,"\n%sTAG     0x%02X %s\n",ident.UTF8String,token,s.UTF8String);
+        int taglen = [UMSATCommands readLength:bytes pos:&i len:len];
+        fprintf(stdout,"%sLEN     0x%02X (%d)\n",ident.UTF8String,taglen,taglen);
+
+        if((token==0x42) || (token==STK_TAG_Deck))
+        {
+            container = YES;
+        }
+        if(token & 0x80)
+        {
+            uint64_t attributes = 0;
+            int bitshift = 0;
+
+            uint8_t attribute = bytes[i++];
+            do
+            {
+                attribute = bytes[i++];
+                attributes = attributes | ((attribute & 0x7F) << bitshift);
+                bitshift +=7;
+                fprintf(stdout,"%sATTR    0x%02X\n",ident.UTF8String,attribute);
+            } while(attribute & 80);
+            for(i=0;i<64;i++)
+            {
+                if((1<<i) & attributes)
+                {
+                    fprintf(stdout,"%s        Attribute_%d set\n",ident.UTF8String,i);
+                }
+            }
+        }
+        if(taglen>0)
+        {
+            fprintf(stdout,"%sDATA    ",ident.UTF8String);
+            for(int j=0;j<taglen;j++)
+            {
+                fprintf(stdout,"0x%02X ",(int)bytes[i++]);
+            }
+            fprintf(stdout,"\n");
+        }
+        ident = [NSString stringWithFormat:@"   %@",ident];
+
+    }
+}
+
+
+void DecodeCard(NSData *data, NSString *ident)
+{
+    uint8_t *bytes = (uint8_t *)data.bytes;
+    int len = (int)data.length;
+    for(int i=0;i<len;)
+    {
+        BOOL container = NO;
+        uint8_t token = bytes[i++];
+        NSString *s = [UMSATCommands tagName:token];
+
+        token = 0x7F & token;
+        fprintf(stdout,"\n%sTAG     0x%02X %s\n",ident.UTF8String,token,s.UTF8String);
+        int taglen = [UMSATCommands readLength:bytes pos:&i len:len];
+        fprintf(stdout,"%sLEN     0x%02X (%d)\n",ident.UTF8String,taglen,taglen);
+
+        if((token==0x42) || (token==STK_TAG_Deck))
+        {
+            container = YES;
+        }
+        if(token & 0x80)
+        {
+            uint64_t attributes = 0;
+            int bitshift = 0;
+
+            uint8_t attribute = bytes[i++];
+            do
+            {
+                attribute = bytes[i++];
+                attributes = attributes | ((attribute & 0x7F) << bitshift);
+                bitshift +=7;
+                fprintf(stdout,"%sATTR    0x%02X\n",ident.UTF8String,attribute);
+            } while(attribute & 80);
+            for(i=0;i<64;i++)
+            {
+                if((1<<i) & attributes)
+                {
+                    fprintf(stdout,"%s        Attribute_%d set\n",ident.UTF8String,i);
+                }
+            }
         }
         if(taglen>0)
         {

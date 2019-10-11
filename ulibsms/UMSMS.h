@@ -62,6 +62,7 @@ typedef enum UMSMS_MessageType
 @interface UMSMS : UMObject
 {
     int _tp_mti; /* message type */
+    int _tp_lp; /* loop prevention */
     int _tp_mms; /* more message to send */
     int _tp_sri; /* status report qualifier: 0 report to SUBMIT, 1 = report to COMMAND */
     int _tp_udhi; /*user data header indicator */
