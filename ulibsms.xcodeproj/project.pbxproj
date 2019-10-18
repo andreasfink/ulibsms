@@ -29,6 +29,71 @@
 		A664D5841F6A616400BD455E /* UMGSMCharacterTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A6909AB11F694638000254E8 /* UMGSMCharacterTable.m */; };
 		A664D5861F6A616F00BD455E /* sctp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B7FBC61B44B54100854472 /* sctp.framework */; };
 		A664D58D1F6A61BB00BD455E /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */; };
+		A66C142223592D9A0019C5EA /* UMSATTokenDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C142123592D9A0019C5EA /* UMSATTokenDeck.m */; };
+		A66C142523592DA70019C5EA /* UMSATTokenCard.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C142423592DA70019C5EA /* UMSATTokenCard.m */; };
+		A66C14282359322D0019C5EA /* UMSATTokenDeckId.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C14272359322D0019C5EA /* UMSATTokenDeckId.m */; };
+		A66C142B235932360019C5EA /* UMSATTokenSPS.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C142A235932360019C5EA /* UMSATTokenSPS.m */; };
+		A66C142E2359323F0019C5EA /* UMSATTokenTextElementTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C142D2359323F0019C5EA /* UMSATTokenTextElementTable.m */; };
+		A66C1431235932530019C5EA /* UMSATTokenCardId.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1430235932530019C5EA /* UMSATTokenCardId.m */; };
+		A66C14342359325C0019C5EA /* UMSATTokenCardTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C14332359325C0019C5EA /* UMSATTokenCardTemplate.m */; };
+		A66C1437235932640019C5EA /* UMSATTokenVariableReference.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1436235932640019C5EA /* UMSATTokenVariableReference.m */; };
+		A66C143A2359326C0019C5EA /* UMSATTokenVariableReferenceList.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C14392359326C0019C5EA /* UMSATTokenVariableReferenceList.m */; };
+		A66C143D235932740019C5EA /* UMSATTokenInlineValue.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C143C235932740019C5EA /* UMSATTokenInlineValue.m */; };
+		A66C14402359327C0019C5EA /* UMSATTokenInputList.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C143F2359327C0019C5EA /* UMSATTokenInputList.m */; };
+		A66C1443235932850019C5EA /* UMSATTokenParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1442235932850019C5EA /* UMSATTokenParameter.m */; };
+		A66C14462359328E0019C5EA /* UMSATTokenURLReference.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C14452359328E0019C5EA /* UMSATTokenURLReference.m */; };
+		A66C1449235932960019C5EA /* UMSATTokenAddressReference.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1448235932960019C5EA /* UMSATTokenAddressReference.m */; };
+		A66C144C2359329E0019C5EA /* UMSATTokenConstantParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C144B2359329E0019C5EA /* UMSATTokenConstantParameter.m */; };
+		A66C144F235932A50019C5EA /* UMSATTokenSecureMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C144E235932A50019C5EA /* UMSATTokenSecureMessage.m */; };
+		A66C1452235932AD0019C5EA /* UMSATTokenCouple.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1451235932AD0019C5EA /* UMSATTokenCouple.m */; };
+		A66C1455235932B40019C5EA /* UMSATTokenInitVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1454235932B40019C5EA /* UMSATTokenInitVariable.m */; };
+		A66C1458235932BD0019C5EA /* UMSATTokenInitVariableSelected.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1457235932BD0019C5EA /* UMSATTokenInitVariableSelected.m */; };
+		A66C145B235932C50019C5EA /* UMSATTokenGetEnvironmentVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C145A235932C50019C5EA /* UMSATTokenGetEnvironmentVariable.m */; };
+		A66C145E235932CD0019C5EA /* UMSATTokenSetHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C145D235932CD0019C5EA /* UMSATTokenSetHelp.m */; };
+		A66C1461235932D50019C5EA /* UMSATTokenConcatenate.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1460235932D50019C5EA /* UMSATTokenConcatenate.m */; };
+		A66C1464235932DD0019C5EA /* UMSATTokenExtract.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1463235932DD0019C5EA /* UMSATTokenExtract.m */; };
+		A66C1467235932E50019C5EA /* UMSATTokenEcrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1466235932E50019C5EA /* UMSATTokenEcrypt.m */; };
+		A66C146A235932EE0019C5EA /* UMSATTokenDecrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1469235932EE0019C5EA /* UMSATTokenDecrypt.m */; };
+		A66C146D235932F50019C5EA /* UMSATTokenGoBack.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C146C235932F50019C5EA /* UMSATTokenGoBack.m */; };
+		A66C1470235932FC0019C5EA /* UMSATTokenGoSelected.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C146F235932FC0019C5EA /* UMSATTokenGoSelected.m */; };
+		A66C1473235933030019C5EA /* UMSATTokenSwitchCaseOnVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1472235933030019C5EA /* UMSATTokenSwitchCaseOnVariable.m */; };
+		A66C14762359330B0019C5EA /* UMSATTokenExit.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C14752359330B0019C5EA /* UMSATTokenExit.m */; };
+		A66C1479235933120019C5EA /* UMSATTokenManageContextualMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C1478235933120019C5EA /* UMSATTokenManageContextualMenu.m */; };
+		A66C147C235933190019C5EA /* UMSATTokenExecuteSTKCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C147B235933190019C5EA /* UMSATTokenExecuteSTKCommand.m */; };
+		A66C147F235933220019C5EA /* UMSATTokenExecutePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C147E235933220019C5EA /* UMSATTokenExecutePlugin.m */; };
+		A66C1480235933620019C5EA /* UMSATToken.h in Headers */ = {isa = PBXBuildFile; fileRef = A6645191234CE5CB006A2FA2 /* UMSATToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1481235933620019C5EA /* UMSATTokenDeckId.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C14262359322D0019C5EA /* UMSATTokenDeckId.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1482235933620019C5EA /* UMSATTokenSPS.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1429235932360019C5EA /* UMSATTokenSPS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1483235933620019C5EA /* UMSATTokenTextElementTable.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C142C2359323F0019C5EA /* UMSATTokenTextElementTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1484235933620019C5EA /* UMSATTokenCardId.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C142F235932530019C5EA /* UMSATTokenCardId.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1485235933620019C5EA /* UMSATTokenCardTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C14322359325C0019C5EA /* UMSATTokenCardTemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1486235933620019C5EA /* UMSATTokenVariableReference.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1435235932640019C5EA /* UMSATTokenVariableReference.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1487235933620019C5EA /* UMSATTokenVariableReferenceList.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C14382359326C0019C5EA /* UMSATTokenVariableReferenceList.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1488235933620019C5EA /* UMSATTokenInlineValue.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C143B235932740019C5EA /* UMSATTokenInlineValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1489235933620019C5EA /* UMSATTokenInputList.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C143E2359327C0019C5EA /* UMSATTokenInputList.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C148A235933620019C5EA /* UMSATTokenParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1441235932850019C5EA /* UMSATTokenParameter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C148B235933620019C5EA /* UMSATTokenURLReference.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C14442359328E0019C5EA /* UMSATTokenURLReference.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C148C235933620019C5EA /* UMSATTokenAddressReference.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1447235932960019C5EA /* UMSATTokenAddressReference.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C148D235933620019C5EA /* UMSATTokenConstantParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C144A2359329E0019C5EA /* UMSATTokenConstantParameter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C148E235933620019C5EA /* UMSATTokenSecureMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C144D235932A50019C5EA /* UMSATTokenSecureMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C148F235933620019C5EA /* UMSATTokenCouple.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1450235932AD0019C5EA /* UMSATTokenCouple.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1490235933620019C5EA /* UMSATTokenInitVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1453235932B40019C5EA /* UMSATTokenInitVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1491235933620019C5EA /* UMSATTokenInitVariableSelected.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1456235932BD0019C5EA /* UMSATTokenInitVariableSelected.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1492235933620019C5EA /* UMSATTokenGetEnvironmentVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1459235932C50019C5EA /* UMSATTokenGetEnvironmentVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1493235933620019C5EA /* UMSATTokenSetHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C145C235932CD0019C5EA /* UMSATTokenSetHelp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1494235933620019C5EA /* UMSATTokenConcatenate.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C145F235932D50019C5EA /* UMSATTokenConcatenate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1495235933620019C5EA /* UMSATTokenExtract.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1462235932DD0019C5EA /* UMSATTokenExtract.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1496235933620019C5EA /* UMSATTokenEcrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1465235932E50019C5EA /* UMSATTokenEcrypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1497235933620019C5EA /* UMSATTokenDecrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1468235932EE0019C5EA /* UMSATTokenDecrypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1498235933620019C5EA /* UMSATTokenGoBack.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C146B235932F50019C5EA /* UMSATTokenGoBack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C1499235933620019C5EA /* UMSATTokenGoSelected.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C146E235932FC0019C5EA /* UMSATTokenGoSelected.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C149A235933620019C5EA /* UMSATTokenSwitchCaseOnVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1471235933030019C5EA /* UMSATTokenSwitchCaseOnVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C149B235933620019C5EA /* UMSATTokenExit.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C14742359330B0019C5EA /* UMSATTokenExit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C149C235933620019C5EA /* UMSATTokenManageContextualMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C1477235933120019C5EA /* UMSATTokenManageContextualMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C149D235933620019C5EA /* UMSATTokenExecuteSTKCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C147A235933190019C5EA /* UMSATTokenExecuteSTKCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C149E235933620019C5EA /* UMSATTokenExecutePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C147D235933220019C5EA /* UMSATTokenExecutePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C149F235933620019C5EA /* UMSATTokenDeck.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C142023592D9A0019C5EA /* UMSATTokenDeck.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A66C14A0235933620019C5EA /* UMSATTokenCard.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C142323592DA70019C5EA /* UMSATTokenCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A67989CF22BB686F0019806C /* sctp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B7FBC61B44B54100854472 /* sctp.framework */; };
 		A67989D122BB68DB0019806C /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D022BB68DB0019806C /* ulib.framework */; };
 		A67989D222BB68DB0019806C /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D022BB68DB0019806C /* ulib.framework */; };
@@ -114,6 +179,70 @@
 		A65C7C0C23460A110013DDC3 /* UMSATCommands.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATCommands.m; sourceTree = "<group>"; };
 		A6645191234CE5CB006A2FA2 /* UMSATToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATToken.h; sourceTree = "<group>"; };
 		A6645192234CE5CB006A2FA2 /* UMSATToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATToken.m; sourceTree = "<group>"; };
+		A66C142023592D9A0019C5EA /* UMSATTokenDeck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenDeck.h; sourceTree = "<group>"; };
+		A66C142123592D9A0019C5EA /* UMSATTokenDeck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenDeck.m; sourceTree = "<group>"; };
+		A66C142323592DA70019C5EA /* UMSATTokenCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenCard.h; sourceTree = "<group>"; };
+		A66C142423592DA70019C5EA /* UMSATTokenCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenCard.m; sourceTree = "<group>"; };
+		A66C14262359322D0019C5EA /* UMSATTokenDeckId.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenDeckId.h; sourceTree = "<group>"; };
+		A66C14272359322D0019C5EA /* UMSATTokenDeckId.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenDeckId.m; sourceTree = "<group>"; };
+		A66C1429235932360019C5EA /* UMSATTokenSPS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenSPS.h; sourceTree = "<group>"; };
+		A66C142A235932360019C5EA /* UMSATTokenSPS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenSPS.m; sourceTree = "<group>"; };
+		A66C142C2359323F0019C5EA /* UMSATTokenTextElementTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenTextElementTable.h; sourceTree = "<group>"; };
+		A66C142D2359323F0019C5EA /* UMSATTokenTextElementTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenTextElementTable.m; sourceTree = "<group>"; };
+		A66C142F235932530019C5EA /* UMSATTokenCardId.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenCardId.h; sourceTree = "<group>"; };
+		A66C1430235932530019C5EA /* UMSATTokenCardId.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenCardId.m; sourceTree = "<group>"; };
+		A66C14322359325C0019C5EA /* UMSATTokenCardTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenCardTemplate.h; sourceTree = "<group>"; };
+		A66C14332359325C0019C5EA /* UMSATTokenCardTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenCardTemplate.m; sourceTree = "<group>"; };
+		A66C1435235932640019C5EA /* UMSATTokenVariableReference.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenVariableReference.h; sourceTree = "<group>"; };
+		A66C1436235932640019C5EA /* UMSATTokenVariableReference.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenVariableReference.m; sourceTree = "<group>"; };
+		A66C14382359326C0019C5EA /* UMSATTokenVariableReferenceList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenVariableReferenceList.h; sourceTree = "<group>"; };
+		A66C14392359326C0019C5EA /* UMSATTokenVariableReferenceList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenVariableReferenceList.m; sourceTree = "<group>"; };
+		A66C143B235932740019C5EA /* UMSATTokenInlineValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenInlineValue.h; sourceTree = "<group>"; };
+		A66C143C235932740019C5EA /* UMSATTokenInlineValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenInlineValue.m; sourceTree = "<group>"; };
+		A66C143E2359327C0019C5EA /* UMSATTokenInputList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenInputList.h; sourceTree = "<group>"; };
+		A66C143F2359327C0019C5EA /* UMSATTokenInputList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenInputList.m; sourceTree = "<group>"; };
+		A66C1441235932850019C5EA /* UMSATTokenParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenParameter.h; sourceTree = "<group>"; };
+		A66C1442235932850019C5EA /* UMSATTokenParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenParameter.m; sourceTree = "<group>"; };
+		A66C14442359328E0019C5EA /* UMSATTokenURLReference.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenURLReference.h; sourceTree = "<group>"; };
+		A66C14452359328E0019C5EA /* UMSATTokenURLReference.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenURLReference.m; sourceTree = "<group>"; };
+		A66C1447235932960019C5EA /* UMSATTokenAddressReference.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenAddressReference.h; sourceTree = "<group>"; };
+		A66C1448235932960019C5EA /* UMSATTokenAddressReference.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenAddressReference.m; sourceTree = "<group>"; };
+		A66C144A2359329E0019C5EA /* UMSATTokenConstantParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenConstantParameter.h; sourceTree = "<group>"; };
+		A66C144B2359329E0019C5EA /* UMSATTokenConstantParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenConstantParameter.m; sourceTree = "<group>"; };
+		A66C144D235932A50019C5EA /* UMSATTokenSecureMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenSecureMessage.h; sourceTree = "<group>"; };
+		A66C144E235932A50019C5EA /* UMSATTokenSecureMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenSecureMessage.m; sourceTree = "<group>"; };
+		A66C1450235932AD0019C5EA /* UMSATTokenCouple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenCouple.h; sourceTree = "<group>"; };
+		A66C1451235932AD0019C5EA /* UMSATTokenCouple.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenCouple.m; sourceTree = "<group>"; };
+		A66C1453235932B40019C5EA /* UMSATTokenInitVariable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenInitVariable.h; sourceTree = "<group>"; };
+		A66C1454235932B40019C5EA /* UMSATTokenInitVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenInitVariable.m; sourceTree = "<group>"; };
+		A66C1456235932BD0019C5EA /* UMSATTokenInitVariableSelected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenInitVariableSelected.h; sourceTree = "<group>"; };
+		A66C1457235932BD0019C5EA /* UMSATTokenInitVariableSelected.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenInitVariableSelected.m; sourceTree = "<group>"; };
+		A66C1459235932C50019C5EA /* UMSATTokenGetEnvironmentVariable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenGetEnvironmentVariable.h; sourceTree = "<group>"; };
+		A66C145A235932C50019C5EA /* UMSATTokenGetEnvironmentVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenGetEnvironmentVariable.m; sourceTree = "<group>"; };
+		A66C145C235932CD0019C5EA /* UMSATTokenSetHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenSetHelp.h; sourceTree = "<group>"; };
+		A66C145D235932CD0019C5EA /* UMSATTokenSetHelp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenSetHelp.m; sourceTree = "<group>"; };
+		A66C145F235932D50019C5EA /* UMSATTokenConcatenate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenConcatenate.h; sourceTree = "<group>"; };
+		A66C1460235932D50019C5EA /* UMSATTokenConcatenate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenConcatenate.m; sourceTree = "<group>"; };
+		A66C1462235932DD0019C5EA /* UMSATTokenExtract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenExtract.h; sourceTree = "<group>"; };
+		A66C1463235932DD0019C5EA /* UMSATTokenExtract.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenExtract.m; sourceTree = "<group>"; };
+		A66C1465235932E50019C5EA /* UMSATTokenEcrypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenEcrypt.h; sourceTree = "<group>"; };
+		A66C1466235932E50019C5EA /* UMSATTokenEcrypt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenEcrypt.m; sourceTree = "<group>"; };
+		A66C1468235932EE0019C5EA /* UMSATTokenDecrypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenDecrypt.h; sourceTree = "<group>"; };
+		A66C1469235932EE0019C5EA /* UMSATTokenDecrypt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenDecrypt.m; sourceTree = "<group>"; };
+		A66C146B235932F50019C5EA /* UMSATTokenGoBack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenGoBack.h; sourceTree = "<group>"; };
+		A66C146C235932F50019C5EA /* UMSATTokenGoBack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenGoBack.m; sourceTree = "<group>"; };
+		A66C146E235932FC0019C5EA /* UMSATTokenGoSelected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenGoSelected.h; sourceTree = "<group>"; };
+		A66C146F235932FC0019C5EA /* UMSATTokenGoSelected.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenGoSelected.m; sourceTree = "<group>"; };
+		A66C1471235933030019C5EA /* UMSATTokenSwitchCaseOnVariable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenSwitchCaseOnVariable.h; sourceTree = "<group>"; };
+		A66C1472235933030019C5EA /* UMSATTokenSwitchCaseOnVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenSwitchCaseOnVariable.m; sourceTree = "<group>"; };
+		A66C14742359330B0019C5EA /* UMSATTokenExit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenExit.h; sourceTree = "<group>"; };
+		A66C14752359330B0019C5EA /* UMSATTokenExit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenExit.m; sourceTree = "<group>"; };
+		A66C1477235933120019C5EA /* UMSATTokenManageContextualMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenManageContextualMenu.h; sourceTree = "<group>"; };
+		A66C1478235933120019C5EA /* UMSATTokenManageContextualMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenManageContextualMenu.m; sourceTree = "<group>"; };
+		A66C147A235933190019C5EA /* UMSATTokenExecuteSTKCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenExecuteSTKCommand.h; sourceTree = "<group>"; };
+		A66C147B235933190019C5EA /* UMSATTokenExecuteSTKCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenExecuteSTKCommand.m; sourceTree = "<group>"; };
+		A66C147D235933220019C5EA /* UMSATTokenExecutePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenExecutePlugin.h; sourceTree = "<group>"; };
+		A66C147E235933220019C5EA /* UMSATTokenExecutePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenExecutePlugin.m; sourceTree = "<group>"; };
 		A67989D022BB68DB0019806C /* ulib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulib.framework; path = "/Library/Application Support/FinkTelecomServices/frameworks/ulib.framework"; sourceTree = "<absolute>"; };
 		A67989D422BB68F40019806C /* ulibgsmmap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibgsmmap.framework; path = "../Application Support/FinkTelecomServices/frameworks/ulibgsmmap.framework"; sourceTree = "<group>"; };
 		A682DB5A1B455ADF0090FC94 /* UMSMSRetryQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSMSRetryQueue.h; sourceTree = "<group>"; };
@@ -321,6 +450,70 @@
 				A65C7C0C23460A110013DDC3 /* UMSATCommands.m */,
 				A6645191234CE5CB006A2FA2 /* UMSATToken.h */,
 				A6645192234CE5CB006A2FA2 /* UMSATToken.m */,
+				A66C14262359322D0019C5EA /* UMSATTokenDeckId.h */,
+				A66C14272359322D0019C5EA /* UMSATTokenDeckId.m */,
+				A66C1429235932360019C5EA /* UMSATTokenSPS.h */,
+				A66C142A235932360019C5EA /* UMSATTokenSPS.m */,
+				A66C142C2359323F0019C5EA /* UMSATTokenTextElementTable.h */,
+				A66C142D2359323F0019C5EA /* UMSATTokenTextElementTable.m */,
+				A66C142F235932530019C5EA /* UMSATTokenCardId.h */,
+				A66C1430235932530019C5EA /* UMSATTokenCardId.m */,
+				A66C14322359325C0019C5EA /* UMSATTokenCardTemplate.h */,
+				A66C14332359325C0019C5EA /* UMSATTokenCardTemplate.m */,
+				A66C1435235932640019C5EA /* UMSATTokenVariableReference.h */,
+				A66C1436235932640019C5EA /* UMSATTokenVariableReference.m */,
+				A66C14382359326C0019C5EA /* UMSATTokenVariableReferenceList.h */,
+				A66C14392359326C0019C5EA /* UMSATTokenVariableReferenceList.m */,
+				A66C143B235932740019C5EA /* UMSATTokenInlineValue.h */,
+				A66C143C235932740019C5EA /* UMSATTokenInlineValue.m */,
+				A66C143E2359327C0019C5EA /* UMSATTokenInputList.h */,
+				A66C143F2359327C0019C5EA /* UMSATTokenInputList.m */,
+				A66C1441235932850019C5EA /* UMSATTokenParameter.h */,
+				A66C1442235932850019C5EA /* UMSATTokenParameter.m */,
+				A66C14442359328E0019C5EA /* UMSATTokenURLReference.h */,
+				A66C14452359328E0019C5EA /* UMSATTokenURLReference.m */,
+				A66C1447235932960019C5EA /* UMSATTokenAddressReference.h */,
+				A66C1448235932960019C5EA /* UMSATTokenAddressReference.m */,
+				A66C144A2359329E0019C5EA /* UMSATTokenConstantParameter.h */,
+				A66C144B2359329E0019C5EA /* UMSATTokenConstantParameter.m */,
+				A66C144D235932A50019C5EA /* UMSATTokenSecureMessage.h */,
+				A66C144E235932A50019C5EA /* UMSATTokenSecureMessage.m */,
+				A66C1450235932AD0019C5EA /* UMSATTokenCouple.h */,
+				A66C1451235932AD0019C5EA /* UMSATTokenCouple.m */,
+				A66C1453235932B40019C5EA /* UMSATTokenInitVariable.h */,
+				A66C1454235932B40019C5EA /* UMSATTokenInitVariable.m */,
+				A66C1456235932BD0019C5EA /* UMSATTokenInitVariableSelected.h */,
+				A66C1457235932BD0019C5EA /* UMSATTokenInitVariableSelected.m */,
+				A66C1459235932C50019C5EA /* UMSATTokenGetEnvironmentVariable.h */,
+				A66C145A235932C50019C5EA /* UMSATTokenGetEnvironmentVariable.m */,
+				A66C145C235932CD0019C5EA /* UMSATTokenSetHelp.h */,
+				A66C145D235932CD0019C5EA /* UMSATTokenSetHelp.m */,
+				A66C145F235932D50019C5EA /* UMSATTokenConcatenate.h */,
+				A66C1460235932D50019C5EA /* UMSATTokenConcatenate.m */,
+				A66C1462235932DD0019C5EA /* UMSATTokenExtract.h */,
+				A66C1463235932DD0019C5EA /* UMSATTokenExtract.m */,
+				A66C1465235932E50019C5EA /* UMSATTokenEcrypt.h */,
+				A66C1466235932E50019C5EA /* UMSATTokenEcrypt.m */,
+				A66C1468235932EE0019C5EA /* UMSATTokenDecrypt.h */,
+				A66C1469235932EE0019C5EA /* UMSATTokenDecrypt.m */,
+				A66C146B235932F50019C5EA /* UMSATTokenGoBack.h */,
+				A66C146C235932F50019C5EA /* UMSATTokenGoBack.m */,
+				A66C146E235932FC0019C5EA /* UMSATTokenGoSelected.h */,
+				A66C146F235932FC0019C5EA /* UMSATTokenGoSelected.m */,
+				A66C1471235933030019C5EA /* UMSATTokenSwitchCaseOnVariable.h */,
+				A66C1472235933030019C5EA /* UMSATTokenSwitchCaseOnVariable.m */,
+				A66C14742359330B0019C5EA /* UMSATTokenExit.h */,
+				A66C14752359330B0019C5EA /* UMSATTokenExit.m */,
+				A66C1477235933120019C5EA /* UMSATTokenManageContextualMenu.h */,
+				A66C1478235933120019C5EA /* UMSATTokenManageContextualMenu.m */,
+				A66C147A235933190019C5EA /* UMSATTokenExecuteSTKCommand.h */,
+				A66C147B235933190019C5EA /* UMSATTokenExecuteSTKCommand.m */,
+				A66C147D235933220019C5EA /* UMSATTokenExecutePlugin.h */,
+				A66C147E235933220019C5EA /* UMSATTokenExecutePlugin.m */,
+				A66C142023592D9A0019C5EA /* UMSATTokenDeck.h */,
+				A66C142123592D9A0019C5EA /* UMSATTokenDeck.m */,
+				A66C142323592DA70019C5EA /* UMSATTokenCard.h */,
+				A66C142423592DA70019C5EA /* UMSATTokenCard.m */,
 			);
 			path = "decode-st";
 			sourceTree = "<group>";
@@ -353,19 +546,52 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A66C1482235933620019C5EA /* UMSATTokenSPS.h in Headers */,
+				A66C1486235933620019C5EA /* UMSATTokenVariableReference.h in Headers */,
 				A6F9FE521EF7FB79007C203A /* UMSMSWaitingQueue.h in Headers */,
 				A6F9FE551EF7FB79007C203A /* UMHLRCacheEntry.h in Headers */,
+				A66C149F235933620019C5EA /* UMSATTokenDeck.h in Headers */,
 				A6F9FE531EF7FB79007C203A /* UMSMSInProgressQueue.h in Headers */,
+				A66C148F235933620019C5EA /* UMSATTokenCouple.h in Headers */,
 				A6F9FE4E1EF7FB67007C203A /* UMSMS.h in Headers */,
+				A66C148E235933620019C5EA /* UMSATTokenSecureMessage.h in Headers */,
+				A66C1491235933620019C5EA /* UMSATTokenInitVariableSelected.h in Headers */,
 				A6F9FE501EF7FB79007C203A /* UMSMSTransactionProtocol.h in Headers */,
+				A66C148B235933620019C5EA /* UMSATTokenURLReference.h in Headers */,
 				A6909AAE1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h in Headers */,
+				A66C1494235933620019C5EA /* UMSATTokenConcatenate.h in Headers */,
+				A66C148D235933620019C5EA /* UMSATTokenConstantParameter.h in Headers */,
+				A66C149D235933620019C5EA /* UMSATTokenExecuteSTKCommand.h in Headers */,
+				A66C148C235933620019C5EA /* UMSATTokenAddressReference.h in Headers */,
 				A6F9FE4F1EF7FB79007C203A /* UMSMS_Address.h in Headers */,
+				A66C1481235933620019C5EA /* UMSATTokenDeckId.h in Headers */,
+				A66C1489235933620019C5EA /* UMSATTokenInputList.h in Headers */,
 				A6F9FE511EF7FB79007C203A /* UMLayerSMS.h in Headers */,
+				A66C1497235933620019C5EA /* UMSATTokenDecrypt.h in Headers */,
+				A66C1487235933620019C5EA /* UMSATTokenVariableReferenceList.h in Headers */,
+				A66C1493235933620019C5EA /* UMSATTokenSetHelp.h in Headers */,
+				A66C149C235933620019C5EA /* UMSATTokenManageContextualMenu.h in Headers */,
+				A66C149E235933620019C5EA /* UMSATTokenExecutePlugin.h in Headers */,
+				A66C1499235933620019C5EA /* UMSATTokenGoSelected.h in Headers */,
+				A66C1490235933620019C5EA /* UMSATTokenInitVariable.h in Headers */,
+				A66C1492235933620019C5EA /* UMSATTokenGetEnvironmentVariable.h in Headers */,
 				A6909AB21F694638000254E8 /* UMGSMCharacterTable.h in Headers */,
+				A66C1485235933620019C5EA /* UMSATTokenCardTemplate.h in Headers */,
+				A66C1480235933620019C5EA /* UMSATToken.h in Headers */,
+				A66C1496235933620019C5EA /* UMSATTokenEcrypt.h in Headers */,
+				A66C14A0235933620019C5EA /* UMSATTokenCard.h in Headers */,
+				A66C1488235933620019C5EA /* UMSATTokenInlineValue.h in Headers */,
+				A66C1495235933620019C5EA /* UMSATTokenExtract.h in Headers */,
+				A66C149B235933620019C5EA /* UMSATTokenExit.h in Headers */,
+				A66C1483235933620019C5EA /* UMSATTokenTextElementTable.h in Headers */,
+				A66C149A235933620019C5EA /* UMSATTokenSwitchCaseOnVariable.h in Headers */,
+				A66C148A235933620019C5EA /* UMSATTokenParameter.h in Headers */,
 				A6F9FE541EF7FB79007C203A /* UMHLRCache.h in Headers */,
 				A6F9FE571EF7FB79007C203A /* UMGlobalMessageCache.h in Headers */,
 				A6F9FE4A1EF7FA33007C203A /* ulibsms.h in Headers */,
 				A6F9FE561EF7FB79007C203A /* UMSMSRetryQueue.h in Headers */,
+				A66C1484235933620019C5EA /* UMSATTokenCardId.h in Headers */,
+				A66C1498235933620019C5EA /* UMSATTokenGoBack.h in Headers */,
 				A6F9FE581EF7FB79007C203A /* UMGlobalMessageCacheEntry.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,9 +819,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A66C1452235932AD0019C5EA /* UMSATTokenCouple.m in Sources */,
+				A66C1473235933030019C5EA /* UMSATTokenSwitchCaseOnVariable.m in Sources */,
+				A66C14462359328E0019C5EA /* UMSATTokenURLReference.m in Sources */,
 				A65C7C0D23460A110013DDC3 /* UMSATCommands.m in Sources */,
+				A66C142E2359323F0019C5EA /* UMSATTokenTextElementTable.m in Sources */,
+				A66C145B235932C50019C5EA /* UMSATTokenGetEnvironmentVariable.m in Sources */,
+				A66C142523592DA70019C5EA /* UMSATTokenCard.m in Sources */,
+				A66C1479235933120019C5EA /* UMSATTokenManageContextualMenu.m in Sources */,
+				A66C1449235932960019C5EA /* UMSATTokenAddressReference.m in Sources */,
+				A66C147F235933220019C5EA /* UMSATTokenExecutePlugin.m in Sources */,
+				A66C1458235932BD0019C5EA /* UMSATTokenInitVariableSelected.m in Sources */,
+				A66C146D235932F50019C5EA /* UMSATTokenGoBack.m in Sources */,
+				A66C144F235932A50019C5EA /* UMSATTokenSecureMessage.m in Sources */,
+				A66C142223592D9A0019C5EA /* UMSATTokenDeck.m in Sources */,
+				A66C143A2359326C0019C5EA /* UMSATTokenVariableReferenceList.m in Sources */,
 				A6645193234CE5CB006A2FA2 /* UMSATToken.m in Sources */,
+				A66C14282359322D0019C5EA /* UMSATTokenDeckId.m in Sources */,
+				A66C1437235932640019C5EA /* UMSATTokenVariableReference.m in Sources */,
+				A66C14762359330B0019C5EA /* UMSATTokenExit.m in Sources */,
+				A66C14342359325C0019C5EA /* UMSATTokenCardTemplate.m in Sources */,
+				A66C14402359327C0019C5EA /* UMSATTokenInputList.m in Sources */,
+				A66C1431235932530019C5EA /* UMSATTokenCardId.m in Sources */,
+				A66C1467235932E50019C5EA /* UMSATTokenEcrypt.m in Sources */,
+				A66C1461235932D50019C5EA /* UMSATTokenConcatenate.m in Sources */,
+				A66C1464235932DD0019C5EA /* UMSATTokenExtract.m in Sources */,
+				A66C146A235932EE0019C5EA /* UMSATTokenDecrypt.m in Sources */,
+				A66C1455235932B40019C5EA /* UMSATTokenInitVariable.m in Sources */,
+				A66C143D235932740019C5EA /* UMSATTokenInlineValue.m in Sources */,
+				A66C144C2359329E0019C5EA /* UMSATTokenConstantParameter.m in Sources */,
 				A6981AB8233B2B9C00D666D4 /* main.m in Sources */,
+				A66C1443235932850019C5EA /* UMSATTokenParameter.m in Sources */,
+				A66C1470235932FC0019C5EA /* UMSATTokenGoSelected.m in Sources */,
+				A66C145E235932CD0019C5EA /* UMSATTokenSetHelp.m in Sources */,
+				A66C142B235932360019C5EA /* UMSATTokenSPS.m in Sources */,
+				A66C147C235933190019C5EA /* UMSATTokenExecuteSTKCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

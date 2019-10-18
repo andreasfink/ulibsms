@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ulib/ulib.h>
 #import "UMSATCommands.h"
+#import "UMSATToken.h"
 
 void DecodeSTPayload(NSData *data,NSString *ident);
 void DecodeDeck(NSData *data,NSString *ident);
@@ -18,7 +19,8 @@ void DecodeST(NSData *data);
 int main(int argc, const char * argv[])
 {
 #if 1
-    NSString *s = @"027000002e0d00000000505348000000000000421e811c200201618516702d112181020d0cf468656c6c6f20776f726c642b00";
+    NSString *s = //@"027000002e0d00000000505348000000000000421e811c200201618516702d112181020d0cf468656c6c6f20776f726c642b00";
+    @"02700000610d000000005053480000000000004251814f200201708549782d04260082172d04260182182010098a0d6011000a8155947690380004a8241c100801098a0260160801178a0460cccccc0801188a0660cccccccccc2d0813008305000bff102b0000489d5f0a";
    // NSString *s=@"00501115001500b00010da16d560989b32c302bcf9e3a68d55663d58d794468020a6dd8692037a2d9719b39e489220de600645a6409ca954247542ba6b84756d0a864008d4e76ddd97299dc69b3f59d13c18";
 
     NSData *d = [s unhexedData];
@@ -292,15 +294,21 @@ void DecodeST(NSData *data)
 
     fprintf(stdout,"TAR:      0x%02X%02X%02X (%d)\n",TAR_bytes[0],TAR_bytes[1],TAR_bytes[2],TAR);
     fprintf(stdout,"CNTR:     0x%02X%02X%02X%02X%02X\n",CNTR[0],CNTR[1],CNTR[2],CNTR[3],CNTR[4]);
-    fprintf(stdout,"PCNTR:    0x%2X (%d)\n",PCNTR,PCNTR);
+    fprintf(stdout,"PCNTR:    0x%02X (%d)\n",PCNTR,PCNTR);
     NSMutableString *s = [[NSMutableString alloc]init];
-    for(int i=0;i<j;i++)
+    int i=0;
+    for(;i<j;i++)
     {
         [s appendFormat:@"%02X",RC_CC_DS[i]];
     }
-
-    fprintf(stdout,"RC_CC_DS: 0x%s\n",s.UTF8String);
-
+    if(i>0)
+    {
+        fprintf(stdout,"RC_CC_DS: 0x%s\n",s.UTF8String);
+    }
+    else
+    {
+        fprintf(stdout,"RC_CC_DS: -\n");
+    }
     s = [[NSMutableString alloc]init];
     NSData *payload = [NSData dataWithBytes:&bytes[p] length:len-p];
     for(NSInteger i=p;i<len;i++)
@@ -312,7 +320,20 @@ void DecodeST(NSData *data)
         }
     }
     fprintf(stdout,"Payload: %s\n",s.UTF8String);
-    DecodeSTPayload(payload,@"");
+
+    NSInteger len0 = payload.length;
+    UMSATToken *token = [[UMSATToken alloc]initWithData:payload];
+    NSInteger len1 = token.len;
+    len0 -= len1;
+    [token lookForSubtokens];
+    fprintf(stdout,"%s",token.description.UTF8String);
+    payload = [NSData dataWithBytes:&payload.bytes[len1] length:len0];
+
+    if(payload.length > 0)
+    {
+        fprintf(stdout,"Trailing bytes %s\n",payload.hexString.UTF8String);
+
+    }
 }
 
 
@@ -332,7 +353,7 @@ void DecodeSTPayload(NSData *data, NSString *ident)
         int taglen = [UMSATCommands readLength:bytes pos:&i len:len];
         fprintf(stdout,"%sLEN     0x%02X (%d)\n",ident.UTF8String,taglen,taglen);
 
-        if((token==0x42) || (token==STK_TAG_Deck))
+        if((token==0x42) || (token==STK_TAG_Deck) || (token==STK_TAG_Card))
         {
             container = YES;
         }

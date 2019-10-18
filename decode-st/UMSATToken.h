@@ -48,11 +48,12 @@ typedef enum STK_TAG
 
 @interface UMSATToken : UMObject
 {
-    int _token;
-    int _len;
-    BOOL _attributesPresent;
+    int     _token;
+    int     _len;
+    BOOL    _attributesPresent;
     int64_t _attributes;
-    NSData *p_ayload;
+    NSData *_payload;
+    NSArray *_subEntries;
 }
 
 @property(readwrite,assign) int token;
@@ -60,6 +61,15 @@ typedef enum STK_TAG
 @property(readwrite,assign) BOOL attributesPresent;
 @property(readwrite,assign) int64_t attributes;
 @property(readwrite,strong) NSData *payload;
+@property(readwrite,strong) NSArray *subEntries;
 
+
+- (UMSATToken *)initWithData:(NSData *)data;
+- (UMSATToken *)initWithToken:(UMSATToken *)token;
+- (void)lookForSubtokens;
+- (NSString *)descriptionWithPrefix:(NSString *)ident;
+- (NSString *)tokenName;
+- (void)appendAttributesToString:(NSMutableString *)s prefix:ident;
+- (void)decodePayload;
 @end
 
