@@ -8,10 +8,11 @@
 
 #import "UMSATToken.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface UMSATTokenCouple : UMSATToken
-
+{
+    UMSATToken *_parameterA;
+    UMSATToken *_parameterB;
+}
 @end
 
-NS_ASSUME_NONNULL_END

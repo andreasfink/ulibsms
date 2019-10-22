@@ -10,4 +10,11 @@
 
 @implementation UMSATTokenAddressReference
 
+
+- (NSString *)descriptionWithPrefixMain:(NSString *)ident
+{
+    NSMutableString *s = [[NSMutableString alloc]init];
+    [s appendFormat:@"%@AddressReference:       %@\n",ident,[_payload hexString]];
+    return s;
+}
 @end

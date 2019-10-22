@@ -8,10 +8,17 @@
 
 #import "UMSATToken.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface UMSATTokenURLReference : UMSATToken
+{
+    BOOL _usePost;
+    BOOL _sendReferer;
+    BOOL _forcedResident;
+    BOOL _doNotWait;
+
+    UMSATToken *_addressReference;
+    NSArray *_parameters;
+}
 
 @end
 
-NS_ASSUME_NONNULL_END

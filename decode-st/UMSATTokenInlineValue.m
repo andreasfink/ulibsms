@@ -10,6 +10,11 @@
 
 @implementation UMSATTokenInlineValue
 
+- (void) decodePayload
+{
+    _dcs = (_attributes >> 5) & 0x03;
+}
+
 - (void)appendAttributesToString:(NSMutableString *)s prefix:ident
 {
     switch(_dcs)

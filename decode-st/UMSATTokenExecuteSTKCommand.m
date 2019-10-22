@@ -13,6 +13,8 @@ static const char *stk_command_name(UMSAT_STKCommand_Type command);
 
 - (void) decodePayload
 {
+
+    _tlvSequence = (_attributes & 0x40) ? YES : NO;
     uint8_t *bytes = (uint8_t *)_payload.bytes;
     NSUInteger len = _payload.length;
     if(len>=3)
@@ -77,7 +79,6 @@ static const char *stk_command_name(UMSAT_STKCommand_Type command);
             }
     }
     [s appendFormat:@"\n"];
-
     return s;
 }
 

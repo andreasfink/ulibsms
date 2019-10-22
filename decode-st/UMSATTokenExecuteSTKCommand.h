@@ -10,16 +10,16 @@
 
 typedef enum UMSAT_STKCommand_Type
 {
-    STK_REFRESH                 = 0x01,
-    STK_MORE_TIME               = 0x02,
-    STK_POLL_INTERVAL           = 0x03,
-    STK_POLLING_OFF             = 0x04,
-    STK_SET_UP_EVENT_LIST       = 0x05,
-    STK_SET_UP_CALL             = 0x10,
-    STK_GSM_3G_SEND_SS          = 0x11,
-    STK_GSM_3G_SEND_USSD        = 0x12,
-    STK_SEND_SHORT_MESSAGE      = 0x13,
-    STK_SEND_DTMF               = 0x14,
+    STK_REFRESH                             = 0x01,
+    STK_MORE_TIME                           = 0x02,
+    STK_POLL_INTERVAL                       = 0x03,
+    STK_POLLING_OFF                         = 0x04,
+    STK_SET_UP_EVENT_LIST                   = 0x05,
+    STK_SET_UP_CALL                         = 0x10,
+    STK_GSM_3G_SEND_SS                      = 0x11,
+    STK_GSM_3G_SEND_USSD                    = 0x12,
+    STK_SEND_SHORT_MESSAGE                  = 0x13,
+    STK_SEND_DTMF                           = 0x14,
     STK_LAUNCH_BROWSER                      = 0x15,
     STK_3GPP_GEOGRAPHICAL_LOCATION_REQUEST  = 0x16,
     STK_PLAY_TONE                           = 0x20,
@@ -75,10 +75,13 @@ typedef enum UMSAT_STKCommand_Type
 
 @interface UMSATTokenExecuteSTKCommand : UMSATToken
 {
+    BOOL _tlvSequence;
+    
     UMSAT_STKCommand_Type _command_type;
-    int _command_qualifier;
-    int _destination_device;
-    NSString *_varId;
+    int     _command_qualifier;
+    int     _destination_device;
+    int     _varId;
+    NSArray *_tlvs;
 }
 
 @end
