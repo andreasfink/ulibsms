@@ -8,10 +8,12 @@
 
 #import "UMSATToken.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface UMSATTokenVariableReference : UMSATToken
+{
+    int _variableId;
+}
+@property(readwrite,assign) int variableId;
 
 @end
 
-NS_ASSUME_NONNULL_END

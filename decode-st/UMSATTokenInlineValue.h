@@ -8,10 +8,8 @@
 
 #import "UMSATToken.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface UMSATTokenInlineValue : UMSATToken
-
+{
+    int _dcs;
+}
 @end
-
-NS_ASSUME_NONNULL_END

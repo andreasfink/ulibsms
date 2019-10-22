@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UMSATTokenVariableReferenceList : UMSATToken
-
+{
+    int _variableReferenceCount;
+    int _variableReference[256];
+}
 @end
 
 NS_ASSUME_NONNULL_END
