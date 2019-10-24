@@ -63,7 +63,6 @@ typedef enum STK_TAG
 @property(readwrite,strong) NSData *payload;
 @property(readwrite,strong) NSArray *subEntries;
 
-
 - (UMSATToken *)initWithData:(NSData *)data;
 - (UMSATToken *)initWithToken:(UMSATToken *)token;
 - (void)lookForSubtokens;
@@ -71,5 +70,6 @@ typedef enum STK_TAG
 - (NSString *)tokenName;
 - (void)appendAttributesToString:(NSMutableString *)s prefix:ident;
 - (void)decodePayload;
+
 @end
 

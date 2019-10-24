@@ -25,8 +25,11 @@ static const char *stk_command_name(UMSAT_STKCommand_Type command);
     }
     if(len>3)
     {
-        NSData *d = [[NSData alloc]initWithBytes:&_payload.bytes[3] length:len-3];
-        _varId = [d hexString];
+        _varId = bytes[3];
+    }
+    if(len>4)
+    {
+        NSData *payload = [[NSData alloc]initWithBytes:&_payload.bytes[4] length:len-4];
     }
 }
 
