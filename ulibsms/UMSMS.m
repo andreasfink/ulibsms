@@ -250,7 +250,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     {
         len2 = 0;
     }
-    NSData *tmp = [NSData dataWithBytes:&bytes[*p] length:len2];
+    NSData *tmp = [NSData dataWithBytes:&bytes[*p-1] length:len2+1];
     if(ton == 5) /* alphanumeric */
     {
         tpa.address = [tmp stringFromGsm7withNibbleLengthPrefix];
