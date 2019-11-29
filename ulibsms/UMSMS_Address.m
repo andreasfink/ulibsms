@@ -211,7 +211,9 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
     return self;
 }
 
-- (UMSMS_Address *)initWithAddress:(NSString *)msisdn ton:(GSMMAP_TonType)xton npi:(GSMMAP_NpiType)xnpi
+- (UMSMS_Address *)initWithAddress:(NSString *)msisdn
+                               ton:(GSMMAP_TonType)xton
+                               npi:(GSMMAP_NpiType)xnpi
 {
     self = [super init];
     if(self)
