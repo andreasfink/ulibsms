@@ -250,13 +250,15 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     {
         len2 = 0;
     }
-    NSData *tmp = [NSData dataWithBytes:&bytes[*p-1] length:len2+1];
+    NSData *tmp;
     if(ton == 5) /* alphanumeric */
     {
+        tmp = [NSData dataWithBytes:&bytes[*p-1] length:len2+1];
         tpa.address = [tmp stringFromGsm7withNibbleLengthPrefix];
     }
     else
     {
+        tmp = [NSData dataWithBytes:&bytes[*p] length:len2];
         NSMutableString *s = [[NSMutableString alloc]init];
         const uint8_t *b2 = tmp.bytes;
         const char nib[16]="0123456789ABCDEF";
