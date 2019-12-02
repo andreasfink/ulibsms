@@ -255,6 +255,13 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     {
         tmp = [NSData dataWithBytes:&bytes[*p-1] length:len2+1];
         tpa.address = [tmp stringFromGsm7withNibbleLengthPrefix];
+        if(tpa.address.length==8)
+        {
+            if([tpa.address hasSuffix:@"@"])
+            {
+                tpa.address = [tpa.address substringWithRange:NSMakeRange(0,7)];
+            }
+        }
     }
     else
     {
