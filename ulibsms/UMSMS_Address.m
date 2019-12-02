@@ -296,12 +296,7 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
     {
         return [NSString stringWithFormat:@"+%@",_address];
     }
-    if(_ton!=5)
-    {
-        return _address;
-    }
-    NSString *s = [[_address unhexedData] stringFromGsm7withNibbleLengthPrefix];
-    return s;
+    return _address;
 }
 
 @end
