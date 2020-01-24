@@ -533,7 +533,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 - (UMSynchronizedSortedDictionary *)objectValue
 {
     UMSynchronizedSortedDictionary *dict = [[UMSynchronizedSortedDictionary alloc]init];
-    dict[@"_tp_mti"] = @(_tp_mti);
+    dict[@"tp_mti"] = @(_tp_mti);
     dict[@"tp_mms"] = @(_tp_mms);
     dict[@"tp_sri"] = @(_tp_sri);
     dict[@"tp_udhi"] = @(_tp_udhi);
