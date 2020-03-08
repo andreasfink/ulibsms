@@ -216,7 +216,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             break;
         case UMSMS_MessageType_COMMAND:
         {
-            NSLog(@"UMSMS_MessageType_COMMAND not supported yet");
+            //NSLog(@"UMSMS_MessageType_COMMAND not supported yet");
         }
             break;
     }
