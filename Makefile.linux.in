@@ -53,7 +53,7 @@ install: ${LIB} ${SLIB} build/decode-sms
 
 build/decode-sms: decode-sms/main.m.o lib@PROJECT_NAME@.so
 	mkdir -p build
-	${CC} -o build/decode-sms  -L. -l@PROJECT_NAME@ ${LDFLAGS} decode-sms/main.m.o lib@PROJECT_NAME@.so -l:libiconv.so.2.6.0
+	${CC} -o build/decode-sms  -L. -l@PROJECT_NAME@ ${LDFLAGS} decode-sms/main.m.o lib@PROJECT_NAME@.so -l:libiconv.a
 
 clean:
 	rm -f $(LIB) $(OFILES) ${SLIB} build/decode-sms
