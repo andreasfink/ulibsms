@@ -571,6 +571,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         };
     }
     dict[@"udh"] = _udh_decoded;
+    dict[@"message-class"] = @(_messageClass);
     return dict;
 }
 
