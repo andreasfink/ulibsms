@@ -15,8 +15,9 @@
 
 @interface UMSMSWaitingQueue : UMObject
 {
-    UMSynchronizedDictionary *numbersInProgress;
-    UMGlobalMessageCache *_messageCache;
+    UMSynchronizedDictionary    *_numbersInProgress;
+    UMGlobalMessageCache        *_messageCache;
+    UMMutex                     *_lock;
 }
 @property (readwrite,strong)    UMGlobalMessageCache    *messageCache;
 

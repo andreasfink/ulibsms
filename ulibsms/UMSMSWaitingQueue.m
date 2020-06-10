@@ -21,90 +21,99 @@
     self = [super init];
     if(self)
     {
-        numbersInProgress = [[UMSynchronizedDictionary alloc]init];
+        _numbersInProgress = [[UMSynchronizedDictionary alloc]init];
+        _lock = [[UMMutex alloc]initWithName:@"sms-waiting-queue"];
     }
     return self;
 }
 
 - (BOOL)isTransactionToNumberInProgress:(NSString *)number
 {
-#ifdef DEBUG_LOGGING
-    NSLog(@"waitingQueue isTransactionToNumberInProgress:%@",number);
-#endif
-    @synchronized(numbersInProgress)
+    BOOL returnValue = NO;
+    @autoreleasepool
     {
-        UMSynchronizedArray *transactionsOfNumber = numbersInProgress[number];
+        [_lock lock];
+    #ifdef DEBUG_LOGGING
+        NSLog(@"waitingQueue isTransactionToNumberInProgress:%@",number);
+    #endif
+        UMSynchronizedArray *transactionsOfNumber = _numbersInProgress[number];
         if([transactionsOfNumber count]>0)
         {
-            return YES;
+            returnValue = YES;
         }
-        return NO;
+        [_lock unlock];
     }
+    return returnValue;
 }
 
 - (void)queueTransaction:(id<UMSMSTransactionProtocol>)transaction
                forNumber:(NSString *)number
 {
+    @autoreleasepool
+    {
+        [_lock lock];
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue queueTransaction:%@ forNumber:%@",transaction,number);
 #endif
-
-    @synchronized(numbersInProgress)
-    {
-        UMQueue *transactionsOfNumber = numbersInProgress[number];
+        UMQueue *transactionsOfNumber = _numbersInProgress[number];
         if(transactionsOfNumber == NULL)
         {
             transactionsOfNumber = [[UMQueue alloc]init];
         }
         [transactionsOfNumber append:transaction];
-        numbersInProgress[number] = transactionsOfNumber;
-        
+        _numbersInProgress[number] = transactionsOfNumber;
         [_messageCache retainMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
-
+        [_lock unlock];
     }
 }
 
 - (id<UMSMSTransactionProtocol>)getNextTransactionForNumber:(NSString *)number
 {
+    
+    id<UMSMSTransactionProtocol> transaction = NULL;
+    @autoreleasepool
+    {
+        [_lock lock];
+
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue getNextTransactionForNumber:%@",number);
 #endif
 
-    @synchronized(numbersInProgress)
-    {
-        UMQueue *transactionsOfNumber = numbersInProgress[number];
+        UMQueue *transactionsOfNumber = _numbersInProgress[number];
         if(transactionsOfNumber == NULL)
         {
 #ifdef DEBUG_LOGGING
             NSLog(@"  return NULL");
 #endif
-
-            return NULL;
-        }
-        id<UMSMSTransactionProtocol> transaction = [transactionsOfNumber getFirst];
-        [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
-
-        if([transactionsOfNumber count]<1)
-        {
-            [numbersInProgress removeObjectForKey:number];
         }
         else
         {
-            numbersInProgress[number] = transactionsOfNumber;
+            transaction = [transactionsOfNumber getFirst];
+            [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+            if([transactionsOfNumber count]<1)
+            {
+                [_numbersInProgress removeObjectForKey:number];
+            }
+            else
+            {
+                _numbersInProgress[number] = transactionsOfNumber;
+            }
         }
 #ifdef DEBUG_LOGGING
-        NSLog(@"  return %@",transaction);
+        NSLog(@"  returning %@",transaction);
 #endif
-        return transaction;
+        [_lock unlock];
     }
+    return transaction;
 }
 
 - (NSInteger)count
 {
-    @synchronized(numbersInProgress)
-    {
-        return [numbersInProgress count];
-    }
+    NSInteger count = 0;
+    [_lock unlock];
+    count =  [_numbersInProgress count];
+    [_lock unlock];
+    return count;
 }
 
 @end
