@@ -17,6 +17,8 @@
 - (id) msg;
 - (void) expireAction;
 - (BOOL) isExpired;
+- (NSDate *)awaitNumberFreeExpiration;
+- (void)setAwaitNumberFreeExpiration:(NSDate *)date;
 - (NSDictionary *)checkForTasks;   /* checks for timers etc and returns a dictionay of actions to do, No actions = NULL */
 
 @end

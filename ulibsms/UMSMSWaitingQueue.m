@@ -23,6 +23,7 @@
     {
         _numbersInProgress = [[UMSynchronizedDictionary alloc]init];
         _lock = [[UMMutex alloc]initWithName:@"sms-waiting-queue"];
+        _awaitNumberFreeTime = 6.0;
     }
     return self;
 }
@@ -36,7 +37,7 @@
     #ifdef DEBUG_LOGGING
         NSLog(@"waitingQueue isTransactionToNumberInProgress:%@",number);
     #endif
-        UMSynchronizedArray *transactionsOfNumber = _numbersInProgress[number];
+        UMQueue *transactionsOfNumber = _numbersInProgress[number];
         if([transactionsOfNumber count]>0)
         {
             returnValue = YES;
@@ -60,6 +61,7 @@
         {
             transactionsOfNumber = [[UMQueue alloc]init];
         }
+        transaction.awaitNumberFreeExpiration = [NSDate dateWithTimeIntervalSinceNow:_awaitNumberFreeTime];
         [transactionsOfNumber append:transaction];
         _numbersInProgress[number] = transactionsOfNumber;
         [_messageCache retainMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
@@ -116,4 +118,27 @@
     return count;
 }
 
+
+- (NSArray <NSString *> *)overdueNumbers
+{
+    id<UMSMSTransactionProtocol> transaction = NULL;
+
+    NSMutableArray *result = [[NSMutableArray alloc]init];
+    @autoreleasepool
+    {
+        [_lock lock];
+        NSArray *allNumbers = [_numbersInProgress allKeys];
+        for(NSString *msisdn in allNumbers)
+        {
+            UMQueue *transactionsOfNumber = _numbersInProgress[msisdn];
+            transaction = [transactionsOfNumber peekFirst];
+            if(transaction.isExpired)
+            {
+                [result addObject:msisdn];
+            }
+        }
+        [_lock unlock];
+    }
+    return result;
+}
 @end

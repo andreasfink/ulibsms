@@ -18,6 +18,7 @@
     UMSynchronizedDictionary    *_numbersInProgress;
     UMGlobalMessageCache        *_messageCache;
     UMMutex                     *_lock;
+    NSTimeInterval              _awaitNumberFreeTime;
 }
 @property (readwrite,strong)    UMGlobalMessageCache    *messageCache;
 
@@ -27,4 +28,6 @@
 
 - (id<UMSMSTransactionProtocol>)getNextTransactionForNumber:(NSString *)number;
 - (NSInteger)count;
+- (NSArray <NSString *> *)overdueNumbers;
+
 @end
