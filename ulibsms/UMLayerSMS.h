@@ -12,11 +12,13 @@
 #import <ulibasn1/ulibasn1.h>
 
 @class UMSMSInProgressQueue;
-@class UMSMSWaitingQueue;
 @class UMSMSRetryQueue;
 @class UMHLRCache;
 @class UMLayerGSMMAP;
 @class UMGlobalMessageCache;
+
+#import "UMSMSWaitingQueue.h"
+
 @interface UMLayerSMS : UMLayer
 {
     UMLayerGSMMAP           *_mapInstance;

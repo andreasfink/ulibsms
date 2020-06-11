@@ -21,6 +21,7 @@
     NSTimeInterval              _awaitNumberFreeTime;
 }
 @property (readwrite,strong)    UMGlobalMessageCache    *messageCache;
+@property (readwrite,assign)    NSTimeInterval          awaitNumberFreeTime;
 
 - (BOOL)isTransactionToNumberInProgress:(NSString *)number;
 - (void)queueTransaction:(id<UMSMSTransactionProtocol>)transaction
