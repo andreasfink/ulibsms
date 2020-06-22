@@ -122,14 +122,16 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             _tp_oa = [self grabAddress:bytes len:len pos:&pos];
             _tp_pid = GRAB(bytes,len,pos);
             _tp_dcs = GRAB(bytes,len,pos);
-            _scts[0] = GRAB(bytes,len,pos);
-            _scts[1] = GRAB(bytes,len,pos);
-            _scts[2] = GRAB(bytes,len,pos);
-            _scts[3] = GRAB(bytes,len,pos);
-            _scts[4] = GRAB(bytes,len,pos);
-            _scts[5] = GRAB(bytes,len,pos);
-            _scts[6] = GRAB(bytes,len,pos);
-            _scts[7] = 0;
+            _scts1[0] = GRAB(bytes,len,pos);
+            _scts1[1] = GRAB(bytes,len,pos);
+            _scts1[2] = GRAB(bytes,len,pos);
+            _scts1[3] = GRAB(bytes,len,pos);
+            _scts1[4] = GRAB(bytes,len,pos);
+            _scts1[5] = GRAB(bytes,len,pos);
+            _scts1[6] = GRAB(bytes,len,pos);
+            _scts1[7] = 0;
+            NSData *d = [NSData dataWithBytes:_scts1 length:7];
+            _scts = [d hexString];
             /*
              timestamp to string
             tscts = octstr_create(scts);
@@ -438,7 +440,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             [pdu appendData:tp_oa_encoded];
             [pdu appendByte:_tp_pid];
             [pdu appendByte:_tp_dcs];
-            [pdu appendBytes:_scts length:7];
+            [pdu appendBytes:_scts1 length:7];
             [pdu appendData:[self encodedContent]];
         }
             break;
@@ -482,7 +484,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             [pdu appendByte:_tp_mr];
             NSData *tp_da_encoded = [_tp_da encoded];
             [pdu appendData:tp_da_encoded];
-            [pdu appendBytes:_scts length:7];
+            [pdu appendBytes:_scts1 length:7];
             [pdu appendByte:_tp_fcs];
         }
             break;
@@ -1304,24 +1306,26 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         timeStamp = [dateFormatter stringFromDate:sctsDate];
 
         const char *tmp_dt = [timeStamp UTF8String];
-        _scts[0]  = (tmp_dt[2] - '0') << 0; /* YY */
-        _scts[0] |= (tmp_dt[3] - '0') << 4;
-        _scts[1]  = (tmp_dt[4] - '0') << 0; /* MM */
-        _scts[1] |= (tmp_dt[5] - '0') << 4;
-        _scts[2]  = (tmp_dt[6] - '0') << 0; /* DD */
-        _scts[2] |= (tmp_dt[7] - '0') << 4;
-        _scts[3]  = (tmp_dt[8] - '0') << 0; /* hh */
-        _scts[3] |= (tmp_dt[9] - '0') << 4;
-        _scts[4]  = (tmp_dt[10] - '0') << 0; /* mm */
-        _scts[4] |= (tmp_dt[11] - '0') << 4;
-        _scts[5]  = (tmp_dt[12] - '0') << 0; /* ss */
-        _scts[5] |= (tmp_dt[13] - '0') << 4;
-        _scts[6]  = (offset_15min & 0xF0) >> 4;
-        _scts[6] |= (offset_15min & 0x0F) << 4;
+        _scts1[0]  = (tmp_dt[2] - '0') << 0; /* YY */
+        _scts1[0] |= (tmp_dt[3] - '0') << 4;
+        _scts1[1]  = (tmp_dt[4] - '0') << 0; /* MM */
+        _scts1[1] |= (tmp_dt[5] - '0') << 4;
+        _scts1[2]  = (tmp_dt[6] - '0') << 0; /* DD */
+        _scts1[2] |= (tmp_dt[7] - '0') << 4;
+        _scts1[3]  = (tmp_dt[8] - '0') << 0; /* hh */
+        _scts1[3] |= (tmp_dt[9] - '0') << 4;
+        _scts1[4]  = (tmp_dt[10] - '0') << 0; /* mm */
+        _scts1[4] |= (tmp_dt[11] - '0') << 4;
+        _scts1[5]  = (tmp_dt[12] - '0') << 0; /* ss */
+        _scts1[5] |= (tmp_dt[13] - '0') << 4;
+        _scts1[6]  = (offset_15min & 0xF0) >> 4;
+        _scts1[6] |= (offset_15min & 0x0F) << 4;
         if(offset_negative)
         {
-            _scts[6]  |= 0x08;
+            _scts1[6]  |= 0x08;
         }
+        NSData *d = [NSData dataWithBytes:_scts1 length:7];
+        _scts = [d hexString];
     }
     return self;
 }

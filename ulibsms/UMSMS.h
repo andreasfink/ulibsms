@@ -84,7 +84,8 @@ typedef enum UMSMS_MessageType
     NSData *_t_ud;
     NSData *_t_udh;
     UMSynchronizedArray *_udh_decoded;
-    char _scts[8];
+    char _scts1[8];
+    NSString *_scts;
     UMSMS_Address *_tp_oa;
     UMSMS_Address *_tp_da;
     NSData *_t_content;
@@ -127,6 +128,7 @@ typedef enum UMSMS_MessageType
 @property(readonly,assign) int multipart_current;
 @property(readonly,assign) int language_lock_table_number;
 @property(readonly,assign) int language_shift_table_number;
+@property(readwrite,strong) NSString *scts; /* hex bytes of SCTS */
 
 - (UMSMS *)initWithHttpRequest:(UMHTTPRequest *)req;
 + (NSData *) decode7bituncompressed:(NSData *)input len:(NSUInteger)len offset:(NSUInteger) offset;
