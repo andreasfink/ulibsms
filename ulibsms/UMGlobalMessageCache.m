@@ -40,7 +40,7 @@
     }
     else
     {
-        UMAssert(msg == entry.msg,@"two messages with same ID??");
+        //UMAssert(msg == entry.msg,@"two messages with same ID??");
         entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
         [self logEvent:[NSString stringWithFormat:@"retain %d->%d %s:%ld %s",entry.cacheRetainCounter-1,entry.cacheRetainCounter,file,line,func] messageId:messageId];
     }
