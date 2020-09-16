@@ -33,7 +33,9 @@ ${SLIB}: ${OFILES}
 	ar rcs ${SLIB} ${OFILES}
 	ranlib ${SLIB}
 
-install: ${LIB} ${SLIB} build/decode-sms
+install:	install-lib install-tools
+
+install-lib: ${LIB} ${SLIB} 
 	-mkdir -p ${DESTDIR}/usr/local/lib/pkgconfig
 	-mkdir -p ${DESTDIR}/usr/local/bin/
 	rm -f "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}.${MINORVER}.${REVISION}"
@@ -46,14 +48,17 @@ install: ${LIB} ${SLIB} build/decode-sms
 	ln -s "${LIB}.${MAJORVER}.${MINORVER}"             "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}"
 	ln -s "${LIB}.${MAJORVER}"                         "${DESTDIR}/usr/local/lib/${LIB}"
 	-install -b -g root -o root -m 644 ${PKGCONFIGFILE} ${DESTDIR}/usr/local/lib/pkgconfig/
-	-install -b -g root -o root -m 755 build/decode-sms ${DESTDIR}/usr/local/bin/decode-sms
 	-mkdir -p ${DESTDIR}/usr/local/include/@PROJECT_NAME@
 	cp $(HFILES) ${DESTDIR}/usr/local/include/@PROJECT_NAME@
 	ldconfig
 
+install-tools: build/decode-sms
+	-mkdir -p ${DESTDIR}/usr/local/bin/
+	-install -b -g root -o root -m 755 build/decode-sms ${DESTDIR}/usr/local/bin/decode-sms
+
 build/decode-sms: decode-sms/main.m.o lib@PROJECT_NAME@.so
 	mkdir -p build
-	${CC} -o build/decode-sms  -L. -l@PROJECT_NAME@ ${LDFLAGS} decode-sms/main.m.o lib@PROJECT_NAME@.so -l:libiconv.a
+	${CC} -o build/decode-sms  -L. -L./build-l@PROJECT_NAME@ ${LDFLAGS} decode-sms/main.m.o lib@PROJECT_NAME@.so -l:libiconv.a
 
 clean:
 	rm -f $(LIB) $(OFILES) ${SLIB} build/decode-sms
