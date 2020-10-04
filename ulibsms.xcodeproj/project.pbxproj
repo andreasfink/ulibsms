@@ -914,7 +914,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-sms";
@@ -946,7 +946,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-sms";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1137,7 +1137,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-gsm7";
@@ -1169,7 +1169,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-gsm7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1200,7 +1200,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-st";
@@ -1232,7 +1232,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-st";
 				PRODUCT_NAME = "$(TARGET_NAME)";
