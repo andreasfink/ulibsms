@@ -37,7 +37,7 @@
     #ifdef DEBUG_LOGGING
         NSLog(@"waitingQueue isTransactionToNumberInProgress:%@",number);
     #endif
-        UMQueue *transactionsOfNumber = _numbersInProgress[number];
+        UMQueueSingle *transactionsOfNumber = _numbersInProgress[number];
         if([transactionsOfNumber count]>0)
         {
             returnValue = YES;
@@ -56,10 +56,10 @@
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue queueTransaction:%@ forNumber:%@",transaction,number);
 #endif
-        UMQueue *transactionsOfNumber = _numbersInProgress[number];
+        UMQueueSingle *transactionsOfNumber = _numbersInProgress[number];
         if(transactionsOfNumber == NULL)
         {
-            transactionsOfNumber = [[UMQueue alloc]init];
+            transactionsOfNumber = [[UMQueueSingle alloc]init];
         }
         transaction.awaitNumberFreeExpiration = [NSDate dateWithTimeIntervalSinceNow:_awaitNumberFreeTime];
         [transactionsOfNumber append:transaction];
@@ -81,7 +81,7 @@
     NSLog(@"waitingQueue getNextTransactionForNumber:%@",number);
 #endif
 
-        UMQueue *transactionsOfNumber = _numbersInProgress[number];
+        UMQueueSingle *transactionsOfNumber = _numbersInProgress[number];
         if(transactionsOfNumber == NULL)
         {
 #ifdef DEBUG_LOGGING
@@ -130,7 +130,7 @@
         NSArray *allNumbers = [_numbersInProgress allKeys];
         for(NSString *msisdn in allNumbers)
         {
-            UMQueue *transactionsOfNumber = _numbersInProgress[msisdn];
+            UMQueueSingle *transactionsOfNumber = _numbersInProgress[msisdn];
             transaction = [transactionsOfNumber peekFirst];
             if(transaction.isExpired)
             {
