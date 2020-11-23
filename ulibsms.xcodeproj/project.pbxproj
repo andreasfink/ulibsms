@@ -1010,6 +1010,7 @@
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WARNING_CFLAGS = "-Wimplicit-fallthrough=3";
 			};
 			name = Debug;
 		};
@@ -1062,6 +1063,7 @@
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WARNING_CFLAGS = "-Wimplicit-fallthrough=3";
 			};
 			name = Release;
 		};
