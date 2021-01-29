@@ -9,10 +9,15 @@
 // the author.
 //
 
+#include <stdio.h>
+
 #import "UMSMSRetryQueue.h"
 #import "UMGlobalMessageCache.h"
 
+
 #define DEBUG_LOGGING    1
+
+#define LOG_TO_STDERR(str)  { fprintf(stderr,"%s\n",str.UTF8String); fflush(stderr); }
 
 @implementation UMSMSRetryQueue
 
@@ -35,7 +40,8 @@
              priority:(int) priority
 {
 #ifdef DEBUG_LOGGING
-    NSLog(@"retryQueue queueForRetry:%@ retryTime: %@ expireTime:%@ priority: %d", messageId,next_consideration,last_considersation,priority);
+    NSString *s = [NSString stringWithFormat:@"retryQueue queueForRetry:%@ retryTime: %@ expireTime:%@ priority: %d", messageId,next_consideration,last_considersation,priority];
+    LOG_TO_STDERR(s);
 #endif
     [_lock lock];
     NSDictionary *entry = @{ @"msg":msg,
@@ -51,6 +57,10 @@
 
 - (void)messagesNeedingRetrying:(NSArray **)needsRetry1 orExpiring:(NSArray **)hasExpired1
 {
+#ifdef DEBUG_LOGGING
+    LOG_TO_STDERR(@"messagesNeedingRetrying called");
+#endif
+
     UMAssert(needsRetry1, @"needsRetry is pointing to NULL");
     UMAssert(hasExpired1, @"hasExpired is pointing to NULL");
     
@@ -68,7 +78,8 @@
         if(retryTime.timeIntervalSinceReferenceDate < now.timeIntervalSinceReferenceDate)
         {
 #ifdef DEBUG_LOGGING
-            NSLog(@"retryQueue messagesNeedingRetrying:%@",entry[@"messageId"]);
+            NSString *s = [NSString stringWithFormat:@"retryQueue messagesNeedingRetrying:%@",entry[@"messageId"]];
+            LOG_TO_STDERR(s);
 #endif
 
             [needsRetry addObject:entry[@"msg"]];
@@ -91,6 +102,12 @@
     [_lock unlock];
     *needsRetry1 = needsRetry;
     *hasExpired1 = hasExpired;
+
+#ifdef DEBUG_LOGGING
+    NSString *s = [NSString stringWithFormat:@"messagesNeedingRetrying returns %lu/%lu",needsRetry.count,hasExpired.count];
+    LOG_TO_STDERR(s);
+#endif
+
 }
 
 - (NSInteger)count
