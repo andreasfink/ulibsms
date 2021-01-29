@@ -15,7 +15,7 @@
 #import "UMGlobalMessageCache.h"
 
 
-#define DEBUG_LOGGING    1
+//#define DEBUG_LOGGING    1
 
 #define LOG_TO_STDERR(str)  { fprintf(stderr,"%s\n",str.UTF8String); fflush(stderr); }
 
