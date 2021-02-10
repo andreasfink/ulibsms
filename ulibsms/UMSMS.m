@@ -165,7 +165,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 _t_udh = [NSData dataWithBytes:&bytes[pos-1] length:_tp_udhlen+1];
                 pos += _tp_udhlen;
                 remaining_bytes -= _tp_udhlen;
-                if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08))
+                if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08) || (_tp_dcs == 0x04))
                 {
                     _tp_udl -= (_tp_udhlen + 1);
                 }
@@ -195,7 +195,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             }
             /* deal with the user data -- 7 or 8 bit encoded */
             NSData *tmp = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
-            if(((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08)) /* 8 bit encoded */
+            if(((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08) || (_tp_dcs == 0x04)) /* 8 bit encoded */
             {
                 /* 8 bit encoding */
                 _t_ud = tmp;
@@ -323,7 +323,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 {
     NSMutableData *pdu = [[NSMutableData alloc]init];
     NSUInteger len = _t_content.length;
-    if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08))
+    if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08) || (_tp_dcs == 0x04))
     {
         /*  dcs+message class = 8 bit or Unicode */
         len +=_t_udh.length;
@@ -354,7 +354,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     {
         [pdu appendData:_t_udh];
     }
-    if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08)) /* 8 bit */
+    if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08) || (_tp_dcs == 0x04)) /* 8 bit */
     {
         [pdu appendData:_t_content];
     }
