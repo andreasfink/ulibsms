@@ -172,8 +172,8 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 else
                 {
                     int total_udhlen = _tp_udhlen + 1;
-                    int num_of_septep = ((total_udhlen * 8) + 6) / 7;
-                    _tp_udl -= num_of_septep;
+                    int num_of_septet = ((total_udhlen * 8) + 6) / 7;
+                    _tp_udl -= num_of_septet;
                 }
             }
             else
@@ -250,8 +250,8 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 else
                 {
                     int total_udhlen = _tp_udhlen + 1;
-                    int num_of_septep = ((total_udhlen * 8) + 6) / 7;
-                    _tp_udl -= num_of_septep;
+                    int num_of_septet = ((total_udhlen * 8) + 6) / 7;
+                    _tp_udl -= num_of_septet;
                 }
             }
             else
