@@ -167,7 +167,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 remaining_bytes -= _tp_udhlen;
                 if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08)|| (_tp_dcs == 0x04))
                 {
-                    _tp_udl -= _tp_udhlen);
+                    _tp_udl -= _tp_udhlen;
                 }
                 else
                 {
