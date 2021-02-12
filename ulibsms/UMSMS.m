@@ -273,7 +273,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             }
             /* deal with the user data -- 7 or 8 bit encoded */
             NSData *tmp = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
-            if(((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08)|| (_tp_dcs == 0x08)) /* 8 bit encoded */
+            if(((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08)|| (_tp_dcs == 0x04)) /* 8 bit encoded */
             {
                 /* 8 bit encoding */
                 _t_ud = tmp;
