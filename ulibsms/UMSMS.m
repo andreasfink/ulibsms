@@ -165,7 +165,9 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 _t_udh = [NSData dataWithBytes:&bytes[pos-1] length:_tp_udhlen+1];
                 pos += _tp_udhlen;
                 remaining_bytes -= _tp_udhlen;
-                if (((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08)|| (_tp_dcs == 0x04))
+                if (   ((_tp_dcs & 0xF4) == 0xF4)
+                    || (_tp_dcs == 0x08)
+                    || (_tp_dcs == 0x04))
                 {
                     _tp_udl -= _tp_udhlen;
                 }
@@ -652,6 +654,14 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     }
     dict[@"udh"] = _udh_decoded;
     dict[@"message-class"] = @(_messageClass);
+    if((_coding == DC_7BIT) || (_coding== DC_UCS2))
+    {
+        dict[@"text"] = self.text;
+    }
+    else if(_coding == DC_8BIT)
+    {
+        dict[@"binary"] = self.text;
+    }
     return dict;
 }
 
