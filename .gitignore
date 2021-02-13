@@ -8,6 +8,7 @@ Makefile.linux
 Makefile.osx
 Makefile.freebsd
 ulibsms.pc
+ulibsms_config.h
 config.h
 config.log
 config.status
