@@ -6,14 +6,14 @@
 Makefile
 Makefile.linux
 Makefile.osx
-#Makefile.freebsd
+Makefile.freebsd
+ulibsms.pc
+ulibsms_config.h
 config.h
 config.log
 config.status
 stamp-h1
 autom4te.cache
-#ulibsms.pc
-#ulibsms_config.h
 
 #########################
 # .gitignore file for Xcode4 and Xcode5 Source projects
