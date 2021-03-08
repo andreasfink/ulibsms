@@ -11,13 +11,20 @@
 
 #import <ulib/ulib.h>
 
+@protocol UMMessageCacheMessageProtocol
+- (NSString *)messageExpiry;
+- (NSString *)messageId;
+- (void)setMessageExpiry:(NSString *)m;
+@end
+
+
 @class UMessageCacheEntry;
 
 @interface UMGlobalMessageCache : UMObject
 {
     NSMutableDictionary *_cache;
     UMMutex             *_lock;
-    FILE *_flog;
+    FILE                *_flog;
 }
 
 //+ (UMGlobalMessageCache *)sharedInstance;
@@ -25,11 +32,14 @@
 - (void)openLog:(NSString *)logfilename;
 - (void)closeLog;
 
-- (void)retainMessage:(id)msg forMessageId:(NSString *)messageId file:(const char *)file line:(long)line func:(const char *)func;
+- (void)retainMessage:(id<UMMessageCacheMessageProtocol>)msg forMessageId:(NSString *)messageId file:(const char *)file line:(long)line func:(const char *)func;
 //- (void)retainMessage:(id)msg forMessageId:(NSString *)messageId;
 
-- (void)releaseMessage:(id)msg forMessageId:(NSString *)messageId  file:(const char *)file line:(long)line func:(const char *)func;
+- (void)releaseMessage:(id<UMMessageCacheMessageProtocol>)msg forMessageId:(NSString *)messageId  file:(const char *)file line:(long)line func:(const char *)func;
 //- (void)releaseMessage:(id)msg forMessageId:(NSString *)messageId;
 - (id)findMessage:(NSString *)messageId;
-- (NSInteger)count; 
+- (NSInteger)count;
+
+- (NSArray *)expiredMessages;
+
 @end

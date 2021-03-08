@@ -170,4 +170,32 @@
     return i;
 }
 
+
+- (NSArray *)expiredMessages
+{
+    [_lock lock];
+    NSArray *messageIds =[_cache allKeys];
+    [_lock unlock];
+
+    NSMutableArray *expiredMessages = [[NSMutableArray alloc]init];
+    for(NSString *msgId in messageIds)
+    {
+        id<UMMessageCacheMessageProtocol> msg = [self findMessage:msgId];
+        time_t now;
+        time(&now);
+        if(msg.messageExpiry.length==0)
+        {
+            msg.messageExpiry = UMTimeStampDTfromTime(now + 3 * 24 * 60 * 60 );
+        }
+        time_t expiration = UMTimeFromTimestampDT(msg.messageExpiry);
+        if(expiration < now)
+        {
+            [expiredMessages addObject:msg];
+            [self releaseMessage:msg forMessageId:msgId];
+        }
+    }
+    return expiredMessages;
+}
+
 @end
+
