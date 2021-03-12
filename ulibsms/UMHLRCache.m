@@ -31,11 +31,11 @@
                     imsi:(NSString *)imsi
                      hlr:(NSString *)hlr
 {
-    if(_expiration_seconds<1)
+    if(_expiration_seconds < 1)
     {
         return;
     }
-    [_lock lock];
+    UMMUTEX_LOCK(_lock);
     UMHLRCacheEntry *entry = _entries[msisdn];
     if(entry==NULL)
     {
@@ -56,13 +56,12 @@
         entry.msc = msc;
     }
     _entries[msisdn] = entry;
-    [_lock unlock];
+    UMMUTEX_UNLOCK(_lock);
 }
-
 
 - (void)expire
 {
-    [_lock lock];
+    UMMUTEX_LOCK(_lock);
     /* expire the dict */
     time_t	cur;
     cur = time(&cur);
@@ -75,23 +74,35 @@
             [_entries removeObjectForKey:key];
         }
    }
-   [_lock unlock];
+   UMMUTEX_UNLOCK(_lock);
 }
+
+- (void)expireMSISDN:(NSString *)msisdn
+{
+    if(msisdn==NULL)
+    {
+        return;
+    }
+    UMMUTEX_LOCK(_lock);
+    [_entries removeObjectForKey:msisdn];
+    UMMUTEX_UNLOCK(_lock);
+}
+
 
 - (UMHLRCacheEntry *)find:(NSString *)msisdn
 {
-    [_lock lock];
+    UMMUTEX_LOCK(_lock);
     UMHLRCacheEntry *entry = _entries[msisdn];
-    [_lock unlock];
+    UMMUTEX_UNLOCK(_lock);
     return entry;
 }
 
 -(NSInteger)count
 {
     NSInteger i;
-    [_lock lock];
+    UMMUTEX_LOCK(_lock);
     i = _entries.count;
-    [_lock unlock];
+    UMMUTEX_UNLOCK(_lock);
     return i;
 }
 

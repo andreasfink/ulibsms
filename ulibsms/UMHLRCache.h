@@ -17,13 +17,14 @@
 {
     NSMutableDictionary *   _entries;
     int                     _expiration_seconds;
-    UMMutex*                _lock;
+    UMMutex                 *_lock;
 }
 
 @property(readwrite,assign)    int expiration_seconds;
 
 - (void)addToCacheMSISDN:(NSString *)msisdn msc:(NSString *)msc imsi:(NSString *)imsi hlr:(NSString *)hlr;
 - (void)expire;
+- (void)expireMSISDN:(NSString *)msisdn;
 - (UMHLRCacheEntry *)find:(NSString *)msisdn;
 - (NSInteger)count;
 @end
