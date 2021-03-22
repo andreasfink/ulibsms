@@ -6,7 +6,7 @@ libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
 Cflags: -I${includedir} 
-Libs: -l:libulibsms.so.1.14 -l:libiconv.so.2
+Libs: -l:libulibsms.dylib.1.14 -l:libiconv.so.2
 
 Name: ulibsms
 Description: universal SS7 SMS library
