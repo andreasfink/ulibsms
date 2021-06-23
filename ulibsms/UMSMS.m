@@ -195,11 +195,19 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                     NSLog(@"Exception while decoding udh: %@",e);
                 }
             }
-            /* deal with the user data -- 7 or 8 bit encoded */
+            /* deal with the user data -- 7 or 8 bit or 16 bit encoded */
             NSData *tmp = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
-            if(((_tp_dcs & 0xF4) == 0xF4) || (_tp_dcs == 0x08)|| (_tp_dcs == 0x04)) /* 8 bit encoded */
+            [self dcs_to_fields];
+            if(  ((_tp_dcs & 0xF4) == 0xF4)
+               || (_tp_dcs == 0x08)
+               || (_tp_dcs == 0x04)
+               || (_coding == DC_8BIT)) /* 8 bit encoded */
             {
-                /* 8 bit encoding */
+                _t_ud = tmp;
+                tmp = NULL;
+            }
+            else if(_coding==DC_UCS2)
+            {
                 _t_ud = tmp;
                 tmp = NULL;
             }
@@ -215,7 +223,6 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 }
                 _t_ud = [UMSMS decode7bituncompressed:tmp len:_tp_udl offset:offset];
             }
-            [self dcs_to_fields];
         }
             break;
         case UMSMS_MessageType_SUBMIT:
@@ -293,7 +300,6 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 }
                 _t_ud = [UMSMS decode7bituncompressed:tmp len:_tp_udl offset:offset];
             }
-            [self dcs_to_fields];
         }
             break;
         case UMSMS_MessageType_COMMAND:
