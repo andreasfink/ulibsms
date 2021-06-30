@@ -100,12 +100,13 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     /* see ETS 300 536 GSM 3.40 version 4.13.0 page 45 section 9.2.3.1 */
 #define	_tp_mti(a)	(a & 0x03)
     /* value 1 means no more message are waiting for the MS in this SC so we negate it */
-#define	TP_MMS(a)	(((a >> 2) & 0x01) ? 0 : 1)
+#define	TP_MMS(a)	((a >> 2) & 0x01)
 #define	TP_VPF(a)	((a >> 3) & 0x03)
 #define TP_LP(a)    ((a >> 4) & 0x01)
 #define TP_SRR(a)	((a >> 5) & 0x01)  /* 1 means status report requested */
 #define	TP_UDHI(a)	((a >> 6) & 0x01)  /* 1 means udh present */
 #define	TP_RP(a)	((a >> 7) & 0x01)  /* 1 means reply path set */
+#define TP_RD(a)    ((a >> 2) & 0x01)  /* 1 means ignore duplicates */
 
     uint8_t	oct1 = GRAB(bytes,len,pos);
     _tp_mti	= _tp_mti(oct1);
@@ -113,7 +114,8 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     _tp_vpf	= TP_VPF(oct1);
     _tp_srr	= TP_SRR(oct1);
     _tp_udhi = TP_UDHI(oct1);
-    _tp_rp	= TP_RP(oct1);
+    _tp_rp    = TP_RP(oct1);
+    _tp_rd    = TP_RD(oct1);
     _tp_lp = TP_LP(oct1); /* this overlaps with VPS. Depends on SUBMIT or DELIVER direction */
     switch(_tp_mti)
     {
