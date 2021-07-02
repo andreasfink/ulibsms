@@ -39,6 +39,8 @@
 @property (readwrite,strong)    UMLayerGSMMAP           *mapInstance;
 @property (readwrite,strong)    UMGlobalMessageCache    *messageCache;
 
+
+- (UMLayerSMS *)initWithoutExecutionQueue:(NSString *)name;
 - (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq name:(NSString *)name;
 
 @end

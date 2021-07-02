@@ -36,6 +36,16 @@
     _hlrCache        = [[UMHLRCache alloc]init];
 }
 
+- (UMLayerSMS *)initWithoutExecutionQueue:(NSString *)name
+{
+    self = [super initWithoutExecutionQueue:name];
+    if(self)
+    {
+        [self genericInitialisation];
+    }
+    return self;
+}
+
 - (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq
                                   name:(NSString *)name
 {
