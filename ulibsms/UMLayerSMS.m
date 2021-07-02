@@ -37,13 +37,11 @@
 }
 
 - (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq
+                                  name:(NSString *)name
 {
-    return [self initWithTaskQueueMulti:tq name:@""];
-}
+    NSString *s = [NSString stringWithFormat:@"sms/%@",name];
 
-- (UMLayerSMS *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq name:(NSString *)name
-{
-    self = [super initWithTaskQueueMulti:tq name:name];
+    self = [super initWithTaskQueueMulti:tq name:s];
     if(self)
     {
         [self genericInitialisation];
