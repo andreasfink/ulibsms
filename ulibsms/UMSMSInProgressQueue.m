@@ -14,7 +14,7 @@
 #import "UMGlobalMessageCache.h"
 
 
-//#define DEBUG_LOGGING   1
+#define DEBUG_LOGGING   1
 
 @implementation UMSMSInProgressQueue
 
