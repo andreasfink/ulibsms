@@ -226,6 +226,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 _t_ud = [UMSMS decode7bituncompressed:tmp len:_tp_udl offset:offset];
             }
         }
+            [self checkUMTransport];
             break;
         case UMSMS_MessageType_SUBMIT:
         {
@@ -303,6 +304,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                 _t_ud = [UMSMS decode7bituncompressed:tmp len:_tp_udl offset:offset];
             }
         }
+            [self checkUMTransport];
             break;
         case UMSMS_MessageType_COMMAND:
         {
@@ -1424,5 +1426,30 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         _scts = [d hexString];
     }
     return self;
+}
+
+- (void)checkUMTransport
+{
+    if(_tp_udhi == 0)
+    {
+        if(_coding == DC_8BIT)
+        {
+            if(_t_content.length > 3)
+            {
+                const char *b = _t_content.bytes;
+                if(b[1]=='u')
+                {
+                    if(b[1]=='m')
+                    {
+                        if(b[2]=='t')
+                        {
+                            _umTransportPdu = [NSData dataWithBytes:&b[3] length:_t_content.length-3];
+                            _isUmTransportPdu = YES;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 @end

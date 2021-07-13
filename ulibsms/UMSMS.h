@@ -94,6 +94,8 @@ typedef enum UMSMS_MessageType
     int _multipart_current;
     int _language_lock_table_number;
     int _language_shift_table_number;
+    BOOL _isUmTransportPdu;
+    NSData *_umTransportPdu;
 }
 
 @property(readwrite,assign) int tp_mti; /* message type */
@@ -129,6 +131,8 @@ typedef enum UMSMS_MessageType
 @property(readonly,assign) int language_lock_table_number;
 @property(readonly,assign) int language_shift_table_number;
 @property(readwrite,strong) NSString *scts; /* hex bytes of SCTS */
+@property(readonly,assign) BOOL isUmTransportPdu;
+@property(readonly,strong) NSData *umTransportPdu;
 
 - (UMSMS *)initWithHttpRequest:(UMHTTPRequest *)req;
 + (NSData *) decode7bituncompressed:(NSData *)input len:(NSUInteger)len offset:(NSUInteger) offset;
@@ -141,6 +145,5 @@ typedef enum UMSMS_MessageType
 //+ (NSString *)gsmToUTF8:(NSData *)d;
 + (void)appendSmsMoForm:(NSMutableString *)s;
 + (void)appendSmsMtForm:(NSMutableString *)s;
-
 
 @end
