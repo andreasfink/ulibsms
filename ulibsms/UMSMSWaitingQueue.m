@@ -71,12 +71,10 @@
 
 - (id<UMSMSTransactionProtocol>)getNextTransactionForNumber:(NSString *)number
 {
-    
     id<UMSMSTransactionProtocol> transaction = NULL;
     @autoreleasepool
     {
         [_lock lock];
-
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue getNextTransactionForNumber:%@",number);
 #endif
@@ -132,7 +130,7 @@
         {
             UMQueueSingle *transactionsOfNumber = _numbersInProgress[msisdn];
             transaction = [transactionsOfNumber peekFirst];
-            if(transaction.isExpired)
+            if([transaction isExpired])
             {
                 [result addObject:msisdn];
             }
