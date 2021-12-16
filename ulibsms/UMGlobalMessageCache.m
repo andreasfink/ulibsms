@@ -42,8 +42,10 @@
     {
         //UMAssert(msg == entry.msg,@"two messages with same ID??");
         entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
+        entry.keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60]; /* lets keep it around for max 1h. We can always reload from DB if needed */
         [self logEvent:[NSString stringWithFormat:@"retain %d->%d %s:%ld %s",entry.cacheRetainCounter-1,entry.cacheRetainCounter,file,line,func] messageId:messageId];
     }
+    entry.keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60]; /* lets keep it around for max 1h. We can always reload from DB if needed */
     _cache[messageId]=entry;
     [_lock unlock];
 }
@@ -64,6 +66,7 @@
         UMAssert(msg == entry.msg,@"two messages with same ID??");
         entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
     }
+    entry.keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60]; /* lets keep it around for max 1h. We can always reload from DB if needed */
     _cache[messageId]=entry;
     [_lock unlock];
 }
@@ -80,6 +83,9 @@
         {
             [_cache removeObjectForKey:messageId];
         }
+        entry.keepInCacheUntil = NULL;
+        entry.msg = NULL;
+        entry = NULL;
     }
     else
     {
@@ -100,6 +106,9 @@
         {
             [_cache removeObjectForKey:messageId];
         }
+        entry.keepInCacheUntil = NULL;
+        entry.msg = NULL;
+        entry = NULL;
     }
     [_lock unlock];
 
@@ -174,27 +183,49 @@
 - (NSArray *)expiredMessages
 {
     [_lock lock];
-    NSArray *messageIds =[_cache allKeys];
+    NSArray *messageIds = [_cache allKeys];
     [_lock unlock];
+    NSDate *now = [NSDate date];
 
     NSMutableArray *expiredMessages = [[NSMutableArray alloc]init];
     for(NSString *msgId in messageIds)
     {
+        
         id<UMMessageCacheMessageProtocol> msg = [self findMessage:msgId];
-        time_t now;
-        time(&now);
-        if(msg.messageExpiry.length==0)
-        {
-            msg.messageExpiry = UMTimeStampDTfromTime(now + 3 * 24 * 60 * 60 );
-        }
-        time_t expiration = UMTimeFromTimestampDT(msg.messageExpiry);
-        if(expiration < now)
+        
+        [_lock lock];
+        UMGlobalMessageCacheEntry *entry = _cache[msgId];
+        [_lock unlock];
+
+        if([now compare:entry.keepInCacheUntil] == NSOrderedDescending)
         {
             [expiredMessages addObject:msg];
             [self releaseMessage:msg forMessageId:msgId];
         }
+        else
+        {
+            time_t now;
+            time(&now);
+            if(msg.messageExpiry.length==0)
+            {
+                msg.messageExpiry = UMTimeStampDTfromTime(now + 3 * 24 * 60 * 60 );
+            }
+            time_t expiration = UMTimeFromTimestampDT(msg.messageExpiry);
+            if(expiration < now)
+            {
+                [expiredMessages addObject:msg];
+                [self releaseMessage:msg forMessageId:msgId];
+            }
+        }
     }
     return expiredMessages;
+}
+
+- (void) flushAll
+{
+    [_lock lock];
+    _cache = [[NSMutableDictionary alloc]init];
+    [_lock unlock];
 }
 
 @end

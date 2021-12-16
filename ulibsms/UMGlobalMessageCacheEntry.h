@@ -16,11 +16,14 @@
     NSString    *_messageId;
     id          _msg;
     int         _cacheRetainCounter;
+    NSDate      *_keepInCacheUntil;
 }
 
 @property(readwrite,strong) NSString   *messageId;
-@property(readwrite,strong) id          msg;
-@property(readwrite,assign) int         cacheRetainCounter;
+@property(readwrite,strong) id         msg;
+@property(readwrite,assign) int        cacheRetainCounter;
+@property(readwrite,strong) NSDate     *keepInCacheUntil;
+
 
 
 @end

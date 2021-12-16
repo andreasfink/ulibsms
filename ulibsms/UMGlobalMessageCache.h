@@ -38,8 +38,8 @@
 - (void)releaseMessage:(id<UMMessageCacheMessageProtocol>)msg forMessageId:(NSString *)messageId  file:(const char *)file line:(long)line func:(const char *)func;
 //- (void)releaseMessage:(id)msg forMessageId:(NSString *)messageId;
 - (id)findMessage:(NSString *)messageId;
-- (NSInteger)count;
-
-- (NSArray *)expiredMessages;
+- (NSInteger) count;
+- (void) flushAll;
+- (NSArray *) expiredMessages;
 
 @end
