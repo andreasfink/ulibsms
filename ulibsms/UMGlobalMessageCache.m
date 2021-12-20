@@ -197,6 +197,10 @@
         UMGlobalMessageCacheEntry *entry = _cache[msgId];
         [_lock unlock];
 
+        if(entry.keepInCacheUntil == NULL)
+        {
+            entry.keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60]; /* lets keep it around for max 1h. We can always reload from DB if needed */
+        }
         if([now compare:entry.keepInCacheUntil] == NSOrderedDescending)
         {
             [expiredMessages addObject:msg];

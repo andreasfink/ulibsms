@@ -13,5 +13,14 @@
 
 @implementation UMGlobalMessageCacheEntry
 
+- (UMGlobalMessageCacheEntry *)init
+{
+    self = [super init];
+    if(self)
+    {
+        _keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60];
+    }
+    return self;
+}
 
 @end
