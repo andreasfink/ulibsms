@@ -66,7 +66,7 @@
         UMAssert(msg == entry.msg,@"two messages with same ID??");
         entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
     }
-    entry.keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60]; /* lets keep it around for max 1h. We can always reload from DB if needed */
+    [entry touch];
     _cache[messageId]=entry;
     [_lock unlock];
 }
@@ -83,9 +83,6 @@
         {
             [_cache removeObjectForKey:messageId];
         }
-        entry.keepInCacheUntil = NULL;
-        entry.msg = NULL;
-        entry = NULL;
     }
     else
     {
@@ -106,12 +103,17 @@
         {
             [_cache removeObjectForKey:messageId];
         }
-        entry.keepInCacheUntil = NULL;
-        entry.msg = NULL;
-        entry = NULL;
     }
     [_lock unlock];
 
+}
+
+- (id)findEntry:(NSString *)messageId
+{
+    [_lock lock];
+    UMGlobalMessageCacheEntry *entry = _cache[messageId];
+    [_lock unlock];
+    return entry;
 }
 
 - (id)findMessage:(NSString *)messageId
@@ -205,21 +207,6 @@
         {
             [expiredMessages addObject:msg];
             [self releaseMessage:msg forMessageId:msgId];
-        }
-        else
-        {
-            time_t now;
-            time(&now);
-            if(msg.messageExpiry.length==0)
-            {
-                msg.messageExpiry = UMTimeStampDTfromTime(now + 3 * 24 * 60 * 60 );
-            }
-            time_t expiration = UMTimeFromTimestampDT(msg.messageExpiry);
-            if(expiration < now)
-            {
-                [expiredMessages addObject:msg];
-                [self releaseMessage:msg forMessageId:msgId];
-            }
         }
     }
     return expiredMessages;

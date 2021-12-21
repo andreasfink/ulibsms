@@ -24,6 +24,6 @@
 @property(readwrite,assign) int        cacheRetainCounter;
 @property(readwrite,strong) NSDate     *keepInCacheUntil;
 
-
+- (void)touch;
 
 @end

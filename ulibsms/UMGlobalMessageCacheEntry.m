@@ -23,4 +23,9 @@
     return self;
 }
 
+- (void)touch
+{
+    _keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60];
+}
+
 @end
