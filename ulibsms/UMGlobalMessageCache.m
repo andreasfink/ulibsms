@@ -186,24 +186,20 @@
 {
     [_lock lock];
     NSArray *messageIds = [_cache allKeys];
-    [_lock unlock];
     NSDate *now = [NSDate date];
-
     NSMutableArray *expiredMessages = [[NSMutableArray alloc]init];
     for(NSString *msgId in messageIds)
     {
         
         id<UMMessageCacheMessageProtocol> msg = [self findMessage:msgId];
-        
-        [_lock lock];
         UMGlobalMessageCacheEntry *entry = _cache[msgId];
         if([entry.keepInCacheUntil compare:now] == NSOrderedAscending)
         {
             [expiredMessages addObject:msg];
             [self releaseMessage:msg forMessageId:msgId];
         }
-        [_lock unlock];
     }
+    [_lock unlock];
     return expiredMessages;
 }
 
