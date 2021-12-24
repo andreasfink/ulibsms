@@ -28,4 +28,13 @@
     _keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60];
 }
 
+- (NSDate *)keepInCacheUntil
+{
+    if (_keepInCacheUntil==NULL)
+    {
+        _keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60];
+    }
+    return _keepInCacheUntil;
+}
+
 @end

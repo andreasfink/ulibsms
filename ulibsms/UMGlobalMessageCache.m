@@ -197,17 +197,12 @@
         
         [_lock lock];
         UMGlobalMessageCacheEntry *entry = _cache[msgId];
-        [_lock unlock];
-
-        if(entry.keepInCacheUntil == NULL)
-        {
-            [entry touch];
-        }
-        if([now compare:entry.keepInCacheUntil] == NSOrderedDescending)
+        if([entry.keepInCacheUntil compare:now] == NSOrderedAscending)
         {
             [expiredMessages addObject:msg];
             [self releaseMessage:msg forMessageId:msgId];
         }
+        [_lock unlock];
     }
     return expiredMessages;
 }

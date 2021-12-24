@@ -22,7 +22,7 @@
 @property(readwrite,strong) NSString   *messageId;
 @property(readwrite,strong) id         msg;
 @property(readwrite,assign) int        cacheRetainCounter;
-@property(readwrite,strong) NSDate     *keepInCacheUntil;
+@property(readonly,strong,atomic) NSDate     *keepInCacheUntil;
 
 - (void)touch;
 
