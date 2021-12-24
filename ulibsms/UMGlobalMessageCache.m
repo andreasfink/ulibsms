@@ -42,10 +42,10 @@
     {
         //UMAssert(msg == entry.msg,@"two messages with same ID??");
         entry.cacheRetainCounter = entry.cacheRetainCounter + 1;
-        entry.keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60]; /* lets keep it around for max 1h. We can always reload from DB if needed */
+        [entry touch];
         [self logEvent:[NSString stringWithFormat:@"retain %d->%d %s:%ld %s",entry.cacheRetainCounter-1,entry.cacheRetainCounter,file,line,func] messageId:messageId];
     }
-    entry.keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60]; /* lets keep it around for max 1h. We can always reload from DB if needed */
+    [entry touch];
     _cache[messageId]=entry;
     [_lock unlock];
 }
@@ -201,7 +201,7 @@
 
         if(entry.keepInCacheUntil == NULL)
         {
-            entry.keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60]; /* lets keep it around for max 1h. We can always reload from DB if needed */
+            [entry touch];
         }
         if([now compare:entry.keepInCacheUntil] == NSOrderedDescending)
         {

@@ -18,7 +18,7 @@
     self = [super init];
     if(self)
     {
-        _keepInCacheUntil = [NSDate dateWithTimeIntervalSinceNow:61*60];
+        [self touch];
     }
     return self;
 }
