@@ -26,6 +26,8 @@ OFILES = $(MOFILES)
 
 INCLUDEDIRS=-I @PROJECT_NAME@
 
+all: ${LIB} ${SLIB} build/decode-sms build/decode-st build/decode-gsm7
+
 ${LIB}: ${OFILES}
 	${CC} -shared -o ${LIB}  ${LDFLAGS} ${OFILES} ${LIBS} ${STATIC_LIBS}
 
@@ -58,10 +60,18 @@ install-tools: build/decode-sms
 
 build/decode-sms: decode-sms/main.m.o lib@PROJECT_NAME@.so
 	mkdir -p build
-	${CC} -o build/decode-sms  -L. -L./build-l@PROJECT_NAME@ ${LDFLAGS} decode-sms/main.m.o lib@PROJECT_NAME@.so -l:libiconv.a
+	${CC} -o build/decode-sms  decode-sms/main.m.o -L. ${SLIB} -l:libiconv.a
+
+build/decode-gsm7: decode-gsm7/main.m.o lib@PROJECT_NAME@.so
+	mkdir -p build
+	${CC} -o build/decode-gsm7  decode-gsm7/main.m.o -L. ${SLIB} -l:libiconv.a
+
+build/decode-st: decode-st/main.m.o lib@PROJECT_NAME@.so
+	mkdir -p build
+	${CC} -o build/decode-st decode-st/main.m.o -L. ${SLIB} -l:libiconv.a
 
 clean:
-	rm -f $(LIB) $(OFILES) ${SLIB} build/decode-sms
+	rm -f $(LIB) $(OFILES) ${SLIB} build/decode-sms build/decode-st build/decode-gsm7
 
 .SUFFIXES: .m.o .o .m .c
 
