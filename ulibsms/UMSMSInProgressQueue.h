@@ -29,6 +29,7 @@
 - (id) findTransactionById:(NSString *)msgid;
 - (id) findTransactionByNumber:(NSString *)number;
 - (BOOL) hasExistingTransactionTo:(NSString *)number;
+- (BOOL) hasExistingTransactionTo:(NSString *)number notMessageId:(NSString *)currentMsgId;
 - (NSArray *)expiredTransactions;
 - (NSArray *) checkForTasks;
 - (NSUInteger)count;

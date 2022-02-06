@@ -131,16 +131,28 @@
 
 -(BOOL)hasExistingTransactionTo:(NSString *)number
 {
+    return [self hasExistingTransactionTo:number notMessageId:NULL];
+}
+
+-(BOOL)hasExistingTransactionTo:(NSString *)number notMessageId:(NSString *)currentMsgId
+{
 #ifdef DEBUG_LOGGING
-    NSLog(@"inProgressQueue hasExistingTransactionTo:%@",number);
+    NSLog(@"inProgressQueue hasExistingTransactionTo:%@ notMessageId:%@",number,currentMsgId ? currentMsgId : @"NULL");
 #endif
 
     [_lock lock];
     BOOL returnValue = NO;
-    id t = [self findTransactionByNumber:number];
+    id<UMSMSTransactionProtocol> t = [self findTransactionByNumber:number];
     if(t)
     {
-        returnValue = YES;
+        if([t.messageId isEqualToString:currentMsgId])
+        {
+            returnValue = NO;
+        }
+        else
+        {
+            returnValue = YES;
+        }
     }
     [_lock unlock];
     return returnValue;
