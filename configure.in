@@ -17,7 +17,7 @@ MAJORVER=`echo $VERSION | cut -f1 -d.`
 MINORVER=`echo $VERSION | cut -f2 -d.`
 REVISION=`echo $VERSION | cut -f3 -d.`
 CONFIG_HEADER=ulibsms_config.h
-DEPENDENT_PKGCONFIGS="ulibgsmmap ulibasn1"
+DEPENDENT_PKGCONFIGS="ulib ulibsctp ulibm2pa ulibmtp3 ulibtcap ulibgsmmap ulibasn1"
 FRAMEWORKS="-framework ulib -framework ulibsctp -framework ulibm2pa -framework ulibmtp3 -framework ulibsccp -framework ulibtcap -framework ulibgsmmap -framework ulibasn1"
 PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 export PKG_CONFIG_PATH
