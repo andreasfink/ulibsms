@@ -20,7 +20,7 @@
 
 - (UMLayerSMS *)initWithMessageCache:(UMGlobalMessageCache *)cache
 {
-    self = [super init];
+    self = [super initWithoutExecutionQueue:@"UMLayerSMS"];
     if(self)
     {
         [self genericInitialisation];
@@ -34,6 +34,10 @@
     _inProgressQueue = [[UMSMSInProgressQueue  alloc]init];
     _retryQueue      = [[UMSMSRetryQueue alloc]init];
     _hlrCache        = [[UMHLRCache alloc]init];
+    if(_layerHistory==NULL)
+    {
+        _layerHistory    = [[UMHistoryLog alloc]initWithMaxLines:1000];
+    }
 }
 
 - (UMLayerSMS *)initWithoutExecutionQueue:(NSString *)name
