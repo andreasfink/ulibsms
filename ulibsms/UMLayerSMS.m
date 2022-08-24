@@ -38,6 +38,7 @@
     {
         _layerHistory    = [[UMHistoryLog alloc]initWithMaxLines:1000];
     }
+    [self addToLayerHistoryLog:@"**STARTUP**"];
 }
 
 - (UMLayerSMS *)initWithoutExecutionQueue:(NSString *)name
