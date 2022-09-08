@@ -17,7 +17,7 @@
     NSMutableDictionary *_dictById;
     NSMutableDictionary *_dictByNumber;
     UMGlobalMessageCache *_messageCache;
-    UMMutex             *_lock;
+    UMMutex             *_inProgressQueueLock;
 }
 
 @property(readwrite,strong) UMGlobalMessageCache *messageCache;

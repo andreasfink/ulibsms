@@ -21,7 +21,7 @@
     {
         _entries= [[NSMutableDictionary alloc] init];
         _expiration_seconds = 0;
-        _lock = [[UMMutex alloc]initWithName:@"UMHLRCache"];
+        _hlrCacheLock = [[UMMutex alloc]initWithName:@"UMHLRCache"];
     }
     return self;
 }
@@ -35,7 +35,7 @@
     {
         return;
     }
-    UMMUTEX_LOCK(_lock);
+    UMMUTEX_LOCK(_hlrCacheLock);
     UMHLRCacheEntry *entry = _entries[msisdn];
     if(entry==NULL)
     {
@@ -56,12 +56,12 @@
         entry.msc = msc;
     }
     _entries[msisdn] = entry;
-    UMMUTEX_UNLOCK(_lock);
+    UMMUTEX_UNLOCK(_hlrCacheLock);
 }
 
 - (void)expire
 {
-    UMMUTEX_LOCK(_lock);
+    UMMUTEX_LOCK(_hlrCacheLock);
     /* expire the dict */
     time_t	cur;
     cur = time(&cur);
@@ -74,7 +74,7 @@
             [_entries removeObjectForKey:key];
         }
    }
-   UMMUTEX_UNLOCK(_lock);
+   UMMUTEX_UNLOCK(_hlrCacheLock);
 }
 
 - (void)expireMSISDN:(NSString *)msisdn
@@ -83,26 +83,26 @@
     {
         return;
     }
-    UMMUTEX_LOCK(_lock);
+    UMMUTEX_LOCK(_hlrCacheLock);
     [_entries removeObjectForKey:msisdn];
-    UMMUTEX_UNLOCK(_lock);
+    UMMUTEX_UNLOCK(_hlrCacheLock);
 }
 
 
 - (UMHLRCacheEntry *)find:(NSString *)msisdn
 {
-    UMMUTEX_LOCK(_lock);
+    UMMUTEX_LOCK(_hlrCacheLock);
     UMHLRCacheEntry *entry = _entries[msisdn];
-    UMMUTEX_UNLOCK(_lock);
+    UMMUTEX_UNLOCK(_hlrCacheLock);
     return entry;
 }
 
 -(NSInteger)count
 {
     NSInteger i;
-    UMMUTEX_LOCK(_lock);
+    UMMUTEX_LOCK(_hlrCacheLock);
     i = _entries.count;
-    UMMUTEX_UNLOCK(_lock);
+    UMMUTEX_UNLOCK(_hlrCacheLock);
     return i;
 }
 

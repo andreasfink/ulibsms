@@ -22,7 +22,7 @@
     if(self)
     {
         _numbersInProgress = [[UMSynchronizedDictionary alloc]init];
-        _lock = [[UMMutex alloc]initWithName:@"sms-waiting-queue"];
+        _waitingQueueLock = [[UMMutex alloc]initWithName:@"sms-waiting-queue"];
         _awaitNumberFreeTime = 6.0;
     }
     return self;
@@ -33,7 +33,7 @@
     BOOL returnValue = NO;
     @autoreleasepool
     {
-        [_lock lock];
+        [_waitingQueueLock lock];
     #ifdef DEBUG_LOGGING
         NSLog(@"waitingQueue isTransactionToNumberInProgress:%@",number);
     #endif
@@ -42,7 +42,7 @@
         {
             returnValue = YES;
         }
-        [_lock unlock];
+        [_waitingQueueLock unlock];
     }
     return returnValue;
 }
@@ -52,7 +52,7 @@
 {
     @autoreleasepool
     {
-        [_lock lock];
+        [_waitingQueueLock lock];
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue queueTransaction:%@ forNumber:%@",transaction,number);
 #endif
@@ -65,7 +65,7 @@
         [transactionsOfNumber append:transaction];
         _numbersInProgress[number] = transactionsOfNumber;
         [_messageCache retainMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
-        [_lock unlock];
+        [_waitingQueueLock unlock];
     }
 }
 
@@ -74,7 +74,7 @@
     id<UMSMSTransactionProtocol> transaction = NULL;
     @autoreleasepool
     {
-        [_lock lock];
+        [_waitingQueueLock lock];
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue getNextTransactionForNumber:%@",number);
 #endif
@@ -102,7 +102,7 @@
 #ifdef DEBUG_LOGGING
         NSLog(@"  returning %@",transaction);
 #endif
-        [_lock unlock];
+        [_waitingQueueLock unlock];
     }
     return transaction;
 }
@@ -110,9 +110,9 @@
 - (NSInteger)count
 {
     NSInteger count = 0;
-    [_lock unlock];
+    [_waitingQueueLock unlock];
     count =  [_numbersInProgress count];
-    [_lock unlock];
+    [_waitingQueueLock unlock];
     return count;
 }
 
@@ -124,7 +124,7 @@
     NSMutableArray *result = [[NSMutableArray alloc]init];
     @autoreleasepool
     {
-        [_lock lock];
+        [_waitingQueueLock lock];
         NSArray *allNumbers = [_numbersInProgress allKeys];
         for(NSString *msisdn in allNumbers)
         {
@@ -135,7 +135,7 @@
                 [result addObject:msisdn];
             }
         }
-        [_lock unlock];
+        [_waitingQueueLock unlock];
     }
     return result;
 }

@@ -23,7 +23,7 @@
 @interface UMGlobalMessageCache : UMObject
 {
     NSMutableDictionary *_cache;
-    UMMutex             *_lock;
+    UMMutex             *_globalMessageCacheLock;
     FILE                *_flog;
 }
 

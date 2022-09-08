@@ -17,7 +17,7 @@
 {
     UMSynchronizedDictionary    *_numbersInProgress;
     UMGlobalMessageCache        *_messageCache;
-    UMMutex                     *_lock;
+    UMMutex                     *_waitingQueueLock;
     NSTimeInterval              _awaitNumberFreeTime;
 }
 @property (readwrite,strong)    UMGlobalMessageCache    *messageCache;

@@ -17,7 +17,7 @@
 {
     NSMutableDictionary *   _entries;
     int                     _expiration_seconds;
-    UMMutex                 *_lock;
+    UMMutex                 *_hlrCacheLock;
 }
 
 @property(readwrite,assign)    int expiration_seconds;
