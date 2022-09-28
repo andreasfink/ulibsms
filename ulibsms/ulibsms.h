@@ -20,4 +20,5 @@
 #import "UMHLRCache.h"
 #import "UMHLRCacheEntry.h"
 #import "UMSMS.h"
+#import "UMMultipartSMS.h"
 
