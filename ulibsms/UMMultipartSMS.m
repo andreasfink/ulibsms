@@ -59,7 +59,7 @@
 
 - (UMSMS *)getMultipart:(NSInteger)index
 {
-    
+    return NULL;
 }
 
 
