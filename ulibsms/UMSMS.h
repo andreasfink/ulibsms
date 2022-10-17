@@ -89,11 +89,11 @@ typedef enum UMSMS_MessageType
     UMSMS_Address *_tp_oa;
     UMSMS_Address *_tp_da;
     NSData *_t_content;
-    int _multipart_ref;
-    int _multipart_max;
-    int _multipart_current;
-    int _language_lock_table_number;
-    int _language_shift_table_number;
+    NSNumber *_multipart_ref;
+    NSNumber *_multipart_max;
+    NSNumber *_multipart_current;
+    NSNumber *_language_lock_table_number;
+    NSNumber *_language_shift_table_number;
     BOOL _isUmTransportPdu;
     NSData *_umTransportPdu;
 }
@@ -125,11 +125,11 @@ typedef enum UMSMS_MessageType
 @property(readwrite,strong) NSData *t_content;
 @property(readwrite,strong) NSString *tp_mti_string;
 
-@property(readonly,assign) int multipart_ref;
-@property(readonly,assign) int multipart_max;
-@property(readonly,assign) int multipart_current;
-@property(readonly,assign) int language_lock_table_number;
-@property(readonly,assign) int language_shift_table_number;
+@property(readonly,strong) NSNumber * multipart_ref;
+@property(readonly,strong) NSNumber * multipart_max;
+@property(readonly,strong) NSNumber * multipart_current;
+@property(readonly,strong) NSNumber * language_lock_table_number;
+@property(readonly,strong) NSNumber * language_shift_table_number;
 @property(readwrite,strong) NSString *scts; /* hex bytes of SCTS */
 @property(readonly,assign) BOOL isUmTransportPdu;
 @property(readonly,strong) NSData *umTransportPdu;

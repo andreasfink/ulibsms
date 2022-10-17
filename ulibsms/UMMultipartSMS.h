@@ -12,26 +12,25 @@
 
 @interface UMMultipartSMS : UMSMS
 {
-    NSInteger           _mulitpartsMaxCount;
+    NSNumber            *_mulitpartsMaxCount;
     UMSynchronizedArray *_multiparts;
-    NSInteger           _refNo;
+    NSNumber            *_refNo;
     NSString            *_smscNumber;
     NSString            *_mscNumber;
     NSDate              *_lastPartArrived;
     NSDate              *_firstPartArrived;    
 }
 
-- (void)addMultipart:(UMSMS *)sms number:(NSInteger)pos max:(NSInteger)max;
+- (void)addMultipart:(UMSMS *)sms number:(NSNumber *)pos max:(NSNumber *)max;
 - (BOOL)allPartsPresent;
 - (void)combine;
 - (void)resplitByMaxSize:(NSInteger)maxSize;
 - (UMSMS *)getMultipart:(NSInteger)index;
-- (NSInteger)mulitpartsMaxCount;
 
-@property(readwrite,assign,atomic) NSInteger mulitpartsMaxCount;
-@property(readwrite,assign,atomic) NSInteger           refNo;
-@property(readwrite,strong,atomic) NSString            *smscNumber;
-@property(readwrite,strong,atomic) NSString            *mscNumber;
+@property(readwrite,strong,atomic) NSNumber *mulitpartsMaxCount;
+@property(readwrite,strong,atomic) NSNumber *refNo;
+@property(readwrite,strong,atomic) NSString *smscNumber;
+@property(readwrite,strong,atomic) NSString *mscNumber;
 
 @end
 

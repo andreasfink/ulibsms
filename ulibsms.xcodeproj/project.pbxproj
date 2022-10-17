@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A61958992192D76B00BEB8A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A61958982192D76B00BEB8A5 /* main.m */; };
 		A619589F2192D78300BEB8A5 /* ulibsms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F9FE461EF7FA33007C203A /* ulibsms.framework */; };
+		A6416E6E28FAC789001E7AF6 /* UMMultipartRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = A6416E6C28FAC789001E7AF6 /* UMMultipartRegistry.h */; };
+		A6416E6F28FAC789001E7AF6 /* UMMultipartRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6416E6D28FAC789001E7AF6 /* UMMultipartRegistry.m */; };
 		A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CEB11B42014800854472 /* ulibsmsTests.m */; };
 		A6521E092334E5A0004C8C1F /* ulibgsmmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D422BB68F40019806C /* ulibgsmmap.framework */; };
 		A6521E0A2334E5A0004C8C1F /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D022BB68DB0019806C /* ulib.framework */; };
@@ -166,6 +168,8 @@
 /* Begin PBXFileReference section */
 		A61958962192D76B00BEB8A5 /* decode-sms */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "decode-sms"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A61958982192D76B00BEB8A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A6416E6C28FAC789001E7AF6 /* UMMultipartRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMMultipartRegistry.h; sourceTree = "<group>"; };
+		A6416E6D28FAC789001E7AF6 /* UMMultipartRegistry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMMultipartRegistry.m; sourceTree = "<group>"; };
 		A641CEA31B42014800854472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A641CEA41B42014800854472 /* ulibsms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ulibsms.h; sourceTree = "<group>"; };
 		A641CEAA1B42014800854472 /* ulibsmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ulibsmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -409,6 +413,8 @@
 				A6909AB11F694638000254E8 /* UMGSMCharacterTable.m */,
 				A689DD4D28E1F60200CCFF18 /* UMMultipartSMS.h */,
 				A689DD4E28E1F60200CCFF18 /* UMMultipartSMS.m */,
+				A6416E6C28FAC789001E7AF6 /* UMMultipartRegistry.h */,
+				A6416E6D28FAC789001E7AF6 /* UMMultipartRegistry.m */,
 			);
 			path = ulibsms;
 			sourceTree = "<group>";
@@ -551,6 +557,7 @@
 				A6F9FE531EF7FB79007C203A /* UMSMSInProgressQueue.h in Headers */,
 				A689DD4F28E1F60200CCFF18 /* UMMultipartSMS.h in Headers */,
 				A66C148F235933620019C5EA /* UMSATTokenCouple.h in Headers */,
+				A6416E6E28FAC789001E7AF6 /* UMMultipartRegistry.h in Headers */,
 				A6F9FE4E1EF7FB67007C203A /* UMSMS.h in Headers */,
 				A66C148E235933620019C5EA /* UMSATTokenSecureMessage.h in Headers */,
 				A66C1491235933620019C5EA /* UMSATTokenInitVariableSelected.h in Headers */,
@@ -867,6 +874,7 @@
 				A6F9FE591EF7FB8E007C203A /* UMSMS.m in Sources */,
 				A6F9FE601EF7FB8E007C203A /* UMSMSRetryQueue.m in Sources */,
 				A6F9FE5C1EF7FB8E007C203A /* UMSMSWaitingQueue.m in Sources */,
+				A6416E6F28FAC789001E7AF6 /* UMMultipartRegistry.m in Sources */,
 				A6F9FE5F1EF7FB8E007C203A /* UMHLRCacheEntry.m in Sources */,
 				A689DD5028E1F60200CCFF18 /* UMMultipartSMS.m in Sources */,
 				A6F9FE5E1EF7FB8E007C203A /* UMHLRCache.m in Sources */,

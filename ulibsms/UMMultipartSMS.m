@@ -11,7 +11,9 @@
 @implementation UMMultipartSMS
 
 
-- (void)addMultipart:(UMSMS *)sms number:(NSInteger)pos max:(NSInteger)max
+- (void)addMultipart:(UMSMS *)sms
+              number:(NSNumber *)pos
+                 max:(NSNumber *)max
 {
     if(pos > max)
     {
@@ -55,6 +57,7 @@
 - (void)resplitByMaxSize:(NSInteger)maxSize
 {
     [self combine];
+    
 }
 
 - (UMSMS *)getMultipart:(NSInteger)index
