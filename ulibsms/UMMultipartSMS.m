@@ -15,20 +15,20 @@
               number:(NSNumber *)pos
                  max:(NSNumber *)max
 {
-    if(pos > max)
+    if(pos.integerValue > max.integerValue)
     {
-        max = pos+1;
+        max = @(pos.integerValue + 1);
     }
     _mulitpartsMaxCount = max;
     if(_multiparts == NULL)
     {
         _multiparts = [[UMSynchronizedArray alloc]init];
     }
-    for(NSInteger i = _multiparts.count ; i< _mulitpartsMaxCount;i++)
+    for(NSInteger i = _multiparts.count ; i < _mulitpartsMaxCount.integerValue;i++)
     {
         _multiparts[i] = [NSNull null];
     }
-    _multiparts[pos] = sms;
+    _multiparts[pos.intValue] = sms;
 }
 
 - (BOOL)allPartsPresent

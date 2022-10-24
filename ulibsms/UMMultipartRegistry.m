@@ -46,6 +46,8 @@
             UMSMS *sms = [multi getMultipart:i];
         }
     }
+    /* TO BE COMPLETED */
+    return @[];
 }
 
 
