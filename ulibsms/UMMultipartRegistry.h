@@ -14,6 +14,7 @@
     UMSynchronizedDictionary *multipartByDestinationAndRef;
 }
 
-- (NSArray<UMSMS *>*)registerMultipartSMS:(UMSMS *)sms;
+- (NSArray<UMSMS *>*)registerMultipartSMS:(UMSMS *)sms newMaxSize:(int)newMaxSize;
+
 
 @end
