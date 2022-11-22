@@ -36,6 +36,7 @@
     {
         return NO;
     }
+    [self combine];
     for(NSInteger i=0;i<_multiparts.count;i++)
     {
         if([_multiparts[i] isKindOfClass:[NSNull class]])
@@ -45,33 +46,45 @@
     }
     return YES;
 }
-- (void)combine
+
+- (BOOL)combine /* return Yes for success */
 {
     NSMutableData *combinedData = [[NSMutableData alloc]init];
     for(NSInteger i=0;i<_multiparts.count;i++)
     {
-        id smsPart = _multiparts[i];
-        if([smsPart isKindOfClass:[UMSMS class]])
+        UMSMS *smsPart = [self getMultipart:i];
+        if(smsPart == NULL)
         {
-            NSData *part = smsPart.t_ud;
-            [combinedData appendData:part];
+            return NO;
         }
+        NSData *part = smsPart.t_ud;
+        [combinedData appendData:part];
     }
-    self.t_ud = combine;
+    self.t_ud = combinedData;
+    return YES;
 }
 
 - (void)resplitByMaxSize:(NSInteger)maxSize
 {
     [self combine];
-                                                          
 }
 
 - (UMSMS *)getMultipart:(NSInteger)index
 {
-    return NULL;
+    id smsPart = _multiparts[index];
+    if(smsPart ==NULL)
+    {
+        return NULL;
+    }
+    if(![smsPart isKindOfClass:[UMSMS class]])
+    {
+        return NULL;
+    }
+    return smsPart;
 }
 
 
+#if 0
 
 /* Checks if message is concatenated. Returns:
 
@@ -198,5 +211,8 @@
 
     return ret;
 }
+
+#endif
+
 
 @end

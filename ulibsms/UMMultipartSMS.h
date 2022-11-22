@@ -13,7 +13,7 @@
 @interface UMMultipartSMS : UMSMS
 {
     NSNumber            *_mulitpartsMaxCount;
-    UMSynchronizedArray *_multiparts;
+    UMSynchronizedArray *_multiparts; /* array of UMSMS objects */
     NSNumber            *_refNo;
     NSString            *_smscNumber;
     NSString            *_mscNumber;
@@ -23,7 +23,7 @@
 
 - (void)addMultipart:(UMSMS *)sms number:(NSNumber *)pos max:(NSNumber *)max;
 - (BOOL)allPartsPresent;
-- (void)combine;
+- (BOOL)combine; /* return YES for success */
 - (void)resplitByMaxSize:(NSInteger)maxSize;
 - (UMSMS *)getMultipart:(NSInteger)index;
 
