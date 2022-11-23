@@ -8,10 +8,10 @@
 
 #import "UMSATToken.h"
 
-NS_ASSUME_NONNULL_BEGIN
+
 
 @interface UMSATTokenSPS : UMSATToken
 
 @end
 
-NS_ASSUME_NONNULL_END
+
