@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A61958992192D76B00BEB8A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A61958982192D76B00BEB8A5 /* main.m */; };
 		A619589F2192D78300BEB8A5 /* ulibsms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F9FE461EF7FA33007C203A /* ulibsms.framework */; };
-		A6416E6E28FAC789001E7AF6 /* UMMultipartRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = A6416E6C28FAC789001E7AF6 /* UMMultipartRegistry.h */; };
+		A6416E6E28FAC789001E7AF6 /* UMMultipartRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = A6416E6C28FAC789001E7AF6 /* UMMultipartRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6416E6F28FAC789001E7AF6 /* UMMultipartRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6416E6D28FAC789001E7AF6 /* UMMultipartRegistry.m */; };
 		A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CEB11B42014800854472 /* ulibsmsTests.m */; };
 		A6521E092334E5A0004C8C1F /* ulibgsmmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D422BB68F40019806C /* ulibgsmmap.framework */; };
@@ -100,17 +100,18 @@
 		A67989D522BB68F40019806C /* ulibgsmmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D422BB68F40019806C /* ulibgsmmap.framework */; };
 		A67989D622BB68F40019806C /* ulibgsmmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D422BB68F40019806C /* ulibgsmmap.framework */; };
 		A67989D722BB68F40019806C /* ulibgsmmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D422BB68F40019806C /* ulibgsmmap.framework */; };
-		A689DD4F28E1F60200CCFF18 /* UMMultipartSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = A689DD4D28E1F60200CCFF18 /* UMMultipartSMS.h */; };
+		A689DD4F28E1F60200CCFF18 /* UMMultipartSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = A689DD4D28E1F60200CCFF18 /* UMMultipartSMS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A689DD5028E1F60200CCFF18 /* UMMultipartSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A689DD4E28E1F60200CCFF18 /* UMMultipartSMS.m */; };
 		A68D2147241153F7004C629A /* ulibsccp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68D2146241153F7004C629A /* ulibsccp.framework */; };
 		A68D21492411540F004C629A /* ulibtcap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68D21482411540E004C629A /* ulibtcap.framework */; };
 		A68D214B24115415004C629A /* ulibgt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68D214A24115415004C629A /* ulibgt.framework */; };
 		A6909AAE1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = A6909AAC1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6909AB21F694638000254E8 /* UMGSMCharacterTable.h in Headers */ = {isa = PBXBuildFile; fileRef = A6909AB01F694638000254E8 /* UMGSMCharacterTable.h */; };
+		A6909AB21F694638000254E8 /* UMGSMCharacterTable.h in Headers */ = {isa = PBXBuildFile; fileRef = A6909AB01F694638000254E8 /* UMGSMCharacterTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6909AB31F694638000254E8 /* UMGSMCharacterTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A6909AB11F694638000254E8 /* UMGSMCharacterTable.m */; };
 		A6981AAE233B2B7800D666D4 /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D022BB68DB0019806C /* ulib.framework */; };
 		A6981AB8233B2B9C00D666D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6981AB7233B2B9C00D666D4 /* main.m */; };
 		A6981AB9233B307900D666D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6521E132334E5C7004C8C1F /* main.m */; };
+		A6E592F62931171500F4718F /* ulibsms.h in Headers */ = {isa = PBXBuildFile; fileRef = A641CEA41B42014800854472 /* ulibsms.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6F9FE4E1EF7FB67007C203A /* UMSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = A64612D41D41F12B00211137 /* UMSMS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6F9FE4F1EF7FB79007C203A /* UMSMS_Address.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D10CCF1D4F34EB001D021B /* UMSMS_Address.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6F9FE501EF7FB79007C203A /* UMSMSTransactionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = A682DB601B4566A50090FC94 /* UMSMSTransactionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -567,6 +568,7 @@
 				A66C1494235933620019C5EA /* UMSATTokenConcatenate.h in Headers */,
 				A66C148D235933620019C5EA /* UMSATTokenConstantParameter.h in Headers */,
 				A66C149D235933620019C5EA /* UMSATTokenExecuteSTKCommand.h in Headers */,
+				A6E592F62931171500F4718F /* ulibsms.h in Headers */,
 				A66C148C235933620019C5EA /* UMSATTokenAddressReference.h in Headers */,
 				A6F9FE4F1EF7FB79007C203A /* UMSMS_Address.h in Headers */,
 				A66C1481235933620019C5EA /* UMSATTokenDeckId.h in Headers */,
@@ -696,7 +698,7 @@
 		A641CE961B42014800854472 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1410;
 				ORGANIZATIONNAME = "Andreas Fink (andreas@fink.org)";
 				TargetAttributes = {
 					A61958952192D76B00BEB8A5 = {
@@ -896,6 +898,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
 				DSTROOT = /;
@@ -928,6 +931,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
 				DSTROOT = /;
@@ -983,6 +987,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1049,6 +1054,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1078,6 +1084,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1104,6 +1111,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1132,6 +1140,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
 				DSTROOT = /;
@@ -1164,6 +1173,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
 				DSTROOT = /;
@@ -1195,6 +1205,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
 				DSTROOT = /;
@@ -1227,6 +1238,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
 				DSTROOT = /;
@@ -1258,6 +1270,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = NO;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
@@ -1300,6 +1313,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = NO;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
