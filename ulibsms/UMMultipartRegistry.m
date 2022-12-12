@@ -44,6 +44,7 @@
         for(NSInteger i=0;i<multi.mulitpartsMaxCount.integerValue;i++)
         {
             UMSMS *sms = [multi getMultipart:i];
+            [a addObject:sms];
         }
     }
     /* TO BE COMPLETED */
