@@ -28,6 +28,7 @@
     UMSMSRetryQueue         *_retryQueue;        /* SMS to be resent after some time (during normal retry) */
     UMHLRCache              *_hlrCache;
     UMGlobalMessageCache    *_messageCache;
+    id                      _namedListProvider;    /* used by umscripts */
 }
 
 @property (readwrite,strong)    UMSMSInProgressQueue    *inProgressQueue;
@@ -38,6 +39,7 @@
 @property (readwrite,strong)    NSString                *smscNumber;
 @property (readwrite,strong)    UMLayerGSMMAP           *mapInstance;
 @property (readwrite,strong)    UMGlobalMessageCache    *messageCache;
+@property (readwrite,strong)    id                      namedListProvider;
 
 
 - (UMLayerSMS *)initWithoutExecutionQueue:(NSString *)name;
