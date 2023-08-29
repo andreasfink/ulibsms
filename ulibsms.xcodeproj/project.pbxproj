@@ -722,7 +722,6 @@
 					};
 					A6F9FE451EF7FA33007C203A = {
 						CreatedOnToolsVersion = 9.0;
-						DevelopmentTeam = 38L827M334;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1284,7 +1283,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = NO;
 				DEPLOYMENT_LOCATION = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				DSTROOT = /;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
