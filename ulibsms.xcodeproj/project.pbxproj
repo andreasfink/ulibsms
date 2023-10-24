@@ -704,20 +704,16 @@
 				TargetAttributes = {
 					A61958952192D76B00BEB8A5 = {
 						CreatedOnToolsVersion = 10.1;
-						DevelopmentTeam = 38L827M334;
 						ProvisioningStyle = Automatic;
 					};
 					A641CEA91B42014800854472 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 38L827M334;
 						ProvisioningStyle = Automatic;
 					};
 					A6521E042334E5A0004C8C1F = {
-						DevelopmentTeam = 38L827M334;
 						ProvisioningStyle = Automatic;
 					};
 					A6981AA8233B2B7800D666D4 = {
-						DevelopmentTeam = 38L827M334;
 						ProvisioningStyle = Automatic;
 					};
 					A6F9FE451EF7FA33007C203A = {
@@ -902,8 +898,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
-				DSTROOT = /;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -912,7 +907,6 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -935,8 +929,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
-				DSTROOT = /;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -945,7 +938,6 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-sms";
@@ -987,6 +979,7 @@
 				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				DSTROOT = "/Library/Application Support/";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1052,6 +1045,7 @@
 				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				DSTROOT = "/Library/Application Support/";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1083,7 +1077,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -1114,7 +1108,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -1148,8 +1142,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
-				DSTROOT = /;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1158,7 +1151,6 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1181,8 +1173,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
-				DSTROOT = /;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1191,7 +1182,6 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-gsm7";
@@ -1213,8 +1203,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
-				DSTROOT = /;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1223,7 +1212,6 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1246,8 +1234,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
-				DSTROOT = /;
+				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1256,7 +1243,6 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/bin";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-st";
@@ -1273,7 +1259,6 @@
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
@@ -1315,7 +1300,6 @@
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
