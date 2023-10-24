@@ -6,8 +6,7 @@
 //  Copyright © 2019 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import <ulibsms/UMSATToken.h>
-
+#import "UMSATToken.h"
 
 
 @interface UMSATTokenDeckId : UMSATToken
