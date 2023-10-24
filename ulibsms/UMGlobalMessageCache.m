@@ -9,8 +9,8 @@
 // the author.
 //
 
-#import "UMGlobalMessageCache.h"
-#import "UMGlobalMessageCacheEntry.h"
+#import <ulibsms/UMGlobalMessageCache.h>
+#import <ulibsms/UMGlobalMessageCacheEntry.h>
 
 @implementation UMGlobalMessageCache
 

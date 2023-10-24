@@ -6,7 +6,7 @@
 //  Copyright © 2022 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMMultipartSMS.h"
+#import <ulibsms/UMMultipartSMS.h>
 
 @implementation UMMultipartSMS
 

@@ -6,9 +6,9 @@
 //  Copyright © 2022 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMMultipartRegistry.h"
-#import "UMSMS.h"
-#import "UMMultipartSMS.h"
+#import <ulibsms/UMMultipartRegistry.h>
+#import <ulibsms/UMSMS.h>
+#import <ulibsms/UMMultipartSMS.h>
 
 @implementation UMMultipartRegistry
 

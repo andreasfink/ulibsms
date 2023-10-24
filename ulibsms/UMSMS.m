@@ -8,10 +8,10 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 //
-#import "UMSMS.h"
-#import "UMSMS_Address.h"
 #import <ulibgsmmap/ulibgsmmap.h>
 #import <iconv.h>
+#import <ulibsms/UMSMS.h>
+#import <ulibsms/UMSMS_Address.h>
 
 static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos, const char *file, long line)
 {

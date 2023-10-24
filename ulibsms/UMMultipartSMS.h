@@ -8,7 +8,7 @@
 
 #import <ulib/ulib.h>
 
-#import "UMSMS.h"
+#import <ulibsms/UMSMS.h>
 
 @interface UMMultipartSMS : UMSMS
 {

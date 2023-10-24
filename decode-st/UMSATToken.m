@@ -6,39 +6,39 @@
 //  Copyright © 2019 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMSATToken.h"
-#import "UMSATTokenDeck.h"
-#import "UMSATTokenDeckId.h"
-#import "UMSATTokenSPS.h"
-#import "UMSATTokenTextElementTable.h"
-#import "UMSATTokenCard.h"
-#import "UMSATTokenCardId.h"
-#import "UMSATTokenCardTemplate.h"
-#import "UMSATTokenVariableReference.h"
-#import "UMSATTokenVariableReferenceList.h"
-#import "UMSATTokenInlineValue.h"
-#import "UMSATTokenInputList.h"
-#import "UMSATTokenParameter.h"
-#import "UMSATTokenURLReference.h"
-#import "UMSATTokenAddressReference.h"
-#import "UMSATTokenConstantParameter.h"
-#import "UMSATTokenSecureMessage.h"
-#import "UMSATTokenCouple.h"
-#import "UMSATTokenInitVariable.h"
-#import "UMSATTokenInitVariableSelected.h"
-#import "UMSATTokenGetEnvironmentVariable.h"
-#import "UMSATTokenSetHelp.h"
-#import "UMSATTokenConcatenate.h"
-#import "UMSATTokenExtract.h"
-#import "UMSATTokenEcrypt.h"
-#import "UMSATTokenDecrypt.h"
-#import "UMSATTokenGoBack.h"
-#import "UMSATTokenGoSelected.h"
-#import "UMSATTokenSwitchCaseOnVariable.h"
-#import "UMSATTokenExit.h"
-#import "UMSATTokenManageContextualMenu.h"
-#import "UMSATTokenExecuteSTKCommand.h"
-#import "UMSATTokenExecutePlugin.h"
+#import <ulibsms/UMSATToken.h>
+#import <ulibsms/UMSATTokenDeck.h>
+#import <ulibsms/UMSATTokenDeckId.h>
+#import <ulibsms/UMSATTokenSPS.h>
+#import <ulibsms/UMSATTokenTextElementTable.h>
+#import <ulibsms/UMSATTokenCard.h>
+#import <ulibsms/UMSATTokenCardId.h>
+#import <ulibsms/UMSATTokenCardTemplate.h>
+#import <ulibsms/UMSATTokenVariableReference.h>
+#import <ulibsms/UMSATTokenVariableReferenceList.h>
+#import <ulibsms/UMSATTokenInlineValue.h>
+#import <ulibsms/UMSATTokenInputList.h>
+#import <ulibsms/UMSATTokenParameter.h>
+#import <ulibsms/UMSATTokenURLReference.h>
+#import <ulibsms/UMSATTokenAddressReference.h>
+#import <ulibsms/UMSATTokenConstantParameter.h>
+#import <ulibsms/UMSATTokenSecureMessage.h>
+#import <ulibsms/UMSATTokenCouple.h>
+#import <ulibsms/UMSATTokenInitVariable.h>
+#import <ulibsms/UMSATTokenInitVariableSelected.h>
+#import <ulibsms/UMSATTokenGetEnvironmentVariable.h>
+#import <ulibsms/UMSATTokenSetHelp.h>
+#import <ulibsms/UMSATTokenConcatenate.h>
+#import <ulibsms/UMSATTokenExtract.h>
+#import <ulibsms/UMSATTokenEcrypt.h>
+#import <ulibsms/UMSATTokenDecrypt.h>
+#import <ulibsms/UMSATTokenGoBack.h>
+#import <ulibsms/UMSATTokenGoSelected.h>
+#import <ulibsms/UMSATTokenSwitchCaseOnVariable.h>
+#import <ulibsms/UMSATTokenExit.h>
+#import <ulibsms/UMSATTokenManageContextualMenu.h>
+#import <ulibsms/UMSATTokenExecuteSTKCommand.h>
+#import <ulibsms/UMSATTokenExecutePlugin.h>
 
 
 static inline uint8_t grab_byte(uint8_t *bytes,int *pos, int len);

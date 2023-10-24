@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 #import <ulib/ulib.h>
-#import "UMSMS.h"
+#import <ulibsms/UMSMS.h>
 
 @interface ulibsmsTests : XCTestCase
 

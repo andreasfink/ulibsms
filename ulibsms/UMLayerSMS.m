@@ -8,12 +8,12 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 //
-#import "UMLayerSMS.h"
-#import "UMSMSInProgressQueue.h"
-#import "UMSMSWaitingQueue.h"
-#import "UMSMSRetryQueue.h"
-#import "UMHLRCache.h"
-#import "UMGlobalMessageCache.h"
+#import <ulibsms/UMLayerSMS.h>
+#import <ulibsms/UMSMSInProgressQueue.h>
+#import <ulibsms/UMSMSWaitingQueue.h>
+#import <ulibsms/UMSMSRetryQueue.h>
+#import <ulibsms/UMHLRCache.h>
+#import <ulibsms/UMGlobalMessageCache.h>
 
 @implementation UMLayerSMS
 

@@ -11,8 +11,8 @@
 
 #include <stdio.h>
 
-#import "UMSMSRetryQueue.h"
-#import "UMGlobalMessageCache.h"
+#import <ulibsms/UMSMSRetryQueue.h>
+#import <ulibsms/UMGlobalMessageCache.h>
 
 
 //#define DEBUG_LOGGING    1

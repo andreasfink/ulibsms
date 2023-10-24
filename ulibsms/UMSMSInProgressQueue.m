@@ -10,8 +10,8 @@
 //
 
 #import <ulib/ulib.h>
-#import "UMSMSInProgressQueue.h"
-#import "UMGlobalMessageCache.h"
+#import <ulibsms/UMSMSInProgressQueue.h>
+#import <ulibsms/UMGlobalMessageCache.h>
 
 
 //#define DEBUG_LOGGING   1

@@ -8,8 +8,8 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 //
-#import "UMSMSWaitingQueue.h"
-#import "UMGlobalMessageCache.h"
+#import <ulibsms/UMSMSWaitingQueue.h>
+#import <ulibsms/UMGlobalMessageCache.h>
 
 //#define DEBUG_LOGGING    1
 

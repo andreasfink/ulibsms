@@ -17,7 +17,7 @@
 @class UMLayerGSMMAP;
 @class UMGlobalMessageCache;
 
-#import "UMSMSWaitingQueue.h"
+#import <ulibsms/UMSMSWaitingQueue.h>
 
 @interface UMLayerSMS : UMLayer
 {

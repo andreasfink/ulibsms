@@ -10,15 +10,15 @@
 //
 #import <ulibasn1/ulibasn1.h>
 
-#import "UMLayerSMS.h"
-#import "UMSMSWaitingQueue.h"
-#import "UMSMSInProgressQueue.h"
-#import "UMSMSRetryQueue.h"
-#import "UMSMSTransactionProtocol.h"
-#import "UMGlobalMessageCache.h"
-#import "UMGlobalMessageCacheEntry.h"
-#import "UMHLRCache.h"
-#import "UMHLRCacheEntry.h"
-#import "UMSMS.h"
-#import "UMMultipartSMS.h"
+#import <ulibsms/UMLayerSMS.h>
+#import <ulibsms/UMSMSWaitingQueue.h>
+#import <ulibsms/UMSMSInProgressQueue.h>
+#import <ulibsms/UMSMSRetryQueue.h>
+#import <ulibsms/UMSMSTransactionProtocol.h>
+#import <ulibsms/UMGlobalMessageCache.h>
+#import <ulibsms/UMGlobalMessageCacheEntry.h>
+#import <ulibsms/UMHLRCache.h>
+#import <ulibsms/UMHLRCacheEntry.h>
+#import <ulibsms/UMSMS.h>
+#import <ulibsms/UMMultipartSMS.h>
 

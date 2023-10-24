@@ -9,7 +9,7 @@
 // the author.
 //
 #import <ulib/ulib.h>
-#import "UMSMSTransactionProtocol.h"
+#import <ulibsms/UMSMSTransactionProtocol.h>
 
 @class UMGlobalMessageCache;
 

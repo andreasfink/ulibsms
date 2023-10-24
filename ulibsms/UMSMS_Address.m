@@ -8,8 +8,8 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 //
-#import "UMSMS_Address.h"
 #import <ulibgsmmap/ulibgsmmap.h>
+#import <ulibsms/UMSMS_Address.h>
 
 static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len);
 

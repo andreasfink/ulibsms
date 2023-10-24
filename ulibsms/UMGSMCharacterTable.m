@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMGSMCharacterTable.h"
+#import <ulibsms/UMGSMCharacterTable.h>
 
 @implementation UMGSMCharacterTable
 

@@ -9,7 +9,7 @@
 // the author.
 //
 
-#import "UMHLRCacheEntry.h"
+#import <ulibsms/UMHLRCacheEntry.h>
 
 @implementation UMHLRCacheEntry
 

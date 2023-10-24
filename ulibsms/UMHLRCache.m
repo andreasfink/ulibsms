@@ -9,8 +9,8 @@
 // the author.
 //
 
-#import "UMHLRCache.h"
-#import "UMHLRCacheEntry.h"
+#import <ulibsms/UMHLRCache.h>
+#import <ulibsms/UMHLRCacheEntry.h>
 
 @implementation UMHLRCache
 

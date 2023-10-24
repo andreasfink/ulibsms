@@ -10,7 +10,7 @@
 //
 #import <ulib/ulib.h>
 
-#import "UMSMS_Address.h"
+#import <ulibsms/UMSMS_Address.h>
 
 typedef enum UMSMS_MessageType
 {
