@@ -7,7 +7,7 @@
 //
 
 #import <ulibasn1/ulibasn1.h>
-#import <ulibsms/UMSATToken.h>
+#import "UMSATToken.h"
 
 @interface UMSATCommands : UMObject
 {
