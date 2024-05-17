@@ -20,7 +20,7 @@ SLIB=lib@PROJECT_NAME@.a
 PKGCONFIGFILE=@PROJECT_NAME@.pc
 
 MFILES = $(wildcard @PROJECT_NAME@/*.m) $(wildcard @PROJECT_NAME@/*/*.m)
-HFILES =  $(wildcard @PROJECT_NAME@/*.h) $(wildcard @PROJECT_NAME@/*/*.h)
+HFILES =  $(wildcard @PROJECT_NAME@/*.h) $(wildcard @PROJECT_NAME@/*/*.h) $(wildcard decode-st/*.h)
 MOFILES  = $(MFILES:.m=.m.o)
 OFILES = $(MOFILES)
 STFILES = $(wildcard decode-st/*.m)
