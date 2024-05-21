@@ -32,7 +32,7 @@ DECODEOFILES = $(DECODEFILES:.m=.m.o)
 GSM7FILES = $(wildcard decode-gsm7/*.m)
 GSM7OFILES = $(GSM7FILES:.m=.m.o)
 
-INCLUDEDIRS=-I @PROJECT_NAME@
+INCLUDEDIRS=-I @PROJECT_NAME@  -I build/include
 
 all: ${LIB} ${SLIB} build/decode-sms build/decode-st build/decode-gsm7
 
@@ -42,6 +42,10 @@ ${LIB}: ${OFILES}
 ${SLIB}: ${OFILES}
 	ar rcs ${SLIB} ${OFILES}
 	ranlib ${SLIB}
+
+headers:
+	-mkdir -p build/include/ulibsms
+	cp $(HFILES) build/include/ulibsms
 
 install:	install-lib install-tools
 

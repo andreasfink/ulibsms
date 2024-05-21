@@ -6,39 +6,7 @@
 //  Copyright © 2019 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMSATToken.h"
-#import "UMSATTokenDeck.h"
-#import "UMSATTokenDeckId.h"
-#import "UMSATTokenSPS.h"
-#import "UMSATTokenTextElementTable.h"
-#import "UMSATTokenCard.h"
-#import "UMSATTokenCardId.h"
-#import "UMSATTokenCardTemplate.h"
-#import "UMSATTokenVariableReference.h"
-#import "UMSATTokenVariableReferenceList.h"
-#import "UMSATTokenInlineValue.h"
-#import "UMSATTokenInputList.h"
-#import "UMSATTokenParameter.h"
-#import "UMSATTokenURLReference.h"
-#import "UMSATTokenAddressReference.h"
-#import "UMSATTokenConstantParameter.h"
-#import "UMSATTokenSecureMessage.h"
-#import "UMSATTokenCouple.h"
-#import "UMSATTokenInitVariable.h"
-#import "UMSATTokenInitVariableSelected.h"
-#import "UMSATTokenGetEnvironmentVariable.h"
-#import "UMSATTokenSetHelp.h"
-#import "UMSATTokenConcatenate.h"
-#import "UMSATTokenExtract.h"
-#import "UMSATTokenEcrypt.h"
-#import "UMSATTokenDecrypt.h"
-#import "UMSATTokenGoBack.h"
-#import "UMSATTokenGoSelected.h"
-#import "UMSATTokenSwitchCaseOnVariable.h"
-#import "UMSATTokenExit.h"
-#import "UMSATTokenManageContextualMenu.h"
-#import "UMSATTokenExecuteSTKCommand.h"
-#import "UMSATTokenExecutePlugin.h"
+#import <ulibsms/ulibsms.h>
 
 
 static inline uint8_t grab_byte(uint8_t *bytes,int *pos, int len);

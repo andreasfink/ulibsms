@@ -1,14 +1,14 @@
 dnl /* ==================================================================== 
 dnl  * Project "ulibsms"
-dnl  * Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
+dnl  * Copyright © 2024 Andreas Fink (andreas@fink.org). All rights reserved.
 dnl  * ==================================================================== 
 dnl  */ 
 dnl initialization
 
 AC_PREREQ([2.69])
-AC_INIT([ulibsms],[1.0],[afink])
+AC_INIT([ulibsms],[2.0],[afink])
 dnl generic parameters
-COPYRIGHT="Copyright 2016 Andreas Fink"
+COPYRIGHT="Copyright 2024 Andreas Fink"
 PROJECT_NAME="ulibsms"
 AUTHOR="Andreas Fink <andreas@fink.org>"
 CONFIG_DEFINE="ULIBSMS_CONFIG"
@@ -111,15 +111,15 @@ case "$host" in
 		fi
 	fi
 	CFLAGS="$CFLAGS `${GNUSTEP_CONFIG}  --objc-flags`"
-    LDFLAGS="$LDFLAGS `${GNUSTEP_CONFIG}  --base-libs --objc-libs`"
+        LDFLAGS="$LDFLAGS `${GNUSTEP_CONFIG}  --base-libs --objc-libs`"
 	CFLAGS="$CFLAGS `pkg-config  --cflags ${DEPENDENT_PKGCONFIGS}`"
 	LDFLAGS="$LDFLAGS `pkg-config --libs ${DEPENDENT_PKGCONFIGS}`"
 	if [[ -f /usr/local/lib/libiconv.a ]]
-    then
+        then
             STATIC_LIBS="-l:libiconv.a"
-    fi
+        fi
 	SHARED_LIBRARY_EXTENSION=so
-    SHARED_FLAGS="-shared"
+        SHARED_FLAGS="-shared"
     ;;
   *-freebsd*)
 	CFLAGS="$CFLAGS -std=c99 -fPIC -DFREEBSD"
