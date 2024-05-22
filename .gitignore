@@ -3,6 +3,10 @@
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 *.o
+*.d
+install
+libulibsms.a
+libulibsms.so
 Makefile
 Makefile.linux
 Makefile.osx
@@ -18,7 +22,7 @@ BUILDNR
 make_buildnr.sh
 buildnumber.c
 buildnumber.h
-*.m.d
+version.h
 
 #########################
 # .gitignore file for Xcode4 and Xcode5 Source projects
