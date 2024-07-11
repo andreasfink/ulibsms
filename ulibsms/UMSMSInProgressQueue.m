@@ -54,11 +54,11 @@
     NSLog(@"inProgressQueue remove:%@",transaction);
 #endif
 
-    [_inProgressQueueLock lock];
+    UMMUTEX_LOCK(_inProgressQueueLock);
     [_dictById removeObjectForKey:transaction.messageId];
     [_dictByNumber removeObjectForKey:transaction.destinationNumber];
     [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
-    [_inProgressQueueLock unlock];
+    UMMUTEX_UNLOCK(_inProgressQueueLock);
 
 }
 
@@ -68,7 +68,7 @@
 #ifdef DEBUG_LOGGING
     NSLog(@"inProgressQueue removeId:%@ destinationNumber:%@",msgid,number);
 #endif
-    [_inProgressQueueLock lock];
+    UMMUTEX_LOCK(_inProgressQueueLock);
     id msg = [_messageCache findMessage:msgid];
     if(msg)
     {
@@ -76,7 +76,7 @@
         [_dictById removeObjectForKey:msgid];
         [_dictByNumber removeObjectForKey:number];
     }
-    [_inProgressQueueLock unlock];
+    UMMUTEX_UNLOCK(_inProgressQueueLock);
 }
 
 
@@ -86,7 +86,7 @@
     NSLog(@"inProgressQueue findTransactionById:%@",msgid);
 #endif
 
-    [_inProgressQueueLock lock];
+    UMMUTEX_LOCK(_inProgressQueueLock);
     id t= _dictById[msgid];
     if(t)
     {
@@ -100,7 +100,7 @@
         NSLog(@"  not found");
 #endif 
     }
-    [_inProgressQueueLock unlock];
+    UMMUTEX_UNLOCK(_inProgressQueueLock);
     return t;
 
 }
@@ -111,7 +111,7 @@
     NSLog(@"inProgressQueue findTransactionByNumber:%@",number);
 #endif
 
-    [_inProgressQueueLock lock];
+    UMMUTEX_LOCK(_inProgressQueueLock);
     id t = _dictByNumber[number];
     if(t)
     {
@@ -125,7 +125,7 @@
         NSLog(@"  not found");
 #endif
     }
-    [_inProgressQueueLock unlock];
+    UMMUTEX_UNLOCK(_inProgressQueueLock);
     return t;
 }
 
@@ -140,7 +140,7 @@
     NSLog(@"inProgressQueue hasExistingTransactionTo:%@ notMessageId:%@",number,currentMsgId ? currentMsgId : @"NULL");
 #endif
 
-    [_inProgressQueueLock lock];
+    UMMUTEX_LOCK(_inProgressQueueLock);
     BOOL returnValue = NO;
     id<UMSMSTransactionProtocol> t = [self findTransactionByNumber:number];
     if(t)
@@ -154,14 +154,14 @@
             returnValue = YES;
         }
     }
-    [_inProgressQueueLock unlock];
+    UMMUTEX_UNLOCK(_inProgressQueueLock);
     return returnValue;
 }
 
 - (NSArray *) expiredTransactions
 {
     NSMutableArray *expiredObjects = [[NSMutableArray alloc]init];
-    [_inProgressQueueLock lock];
+    UMMUTEX_LOCK(_inProgressQueueLock);
     NSArray *keys = [_dictById allKeys];
     for (NSString *key in keys)
     {
@@ -179,7 +179,7 @@
 
         }
     }
-    [_inProgressQueueLock unlock];
+    UMMUTEX_UNLOCK(_inProgressQueueLock);
 
     return expiredObjects;
 }
@@ -188,7 +188,7 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc]init];
 
-    [_inProgressQueueLock lock];
+    UMMUTEX_LOCK(_inProgressQueueLock);
 
     NSArray *keys = [_dictById allKeys];
     for (NSString *key in keys)
@@ -203,16 +203,16 @@
             [arr addObject:dict];
         }
     }
-    [_inProgressQueueLock unlock];
+    UMMUTEX_UNLOCK(_inProgressQueueLock);
     return arr;
 }
 
 - (NSUInteger)count
 {
     NSInteger i;
-    [_inProgressQueueLock lock];
+    UMMUTEX_LOCK(_inProgressQueueLock);
     i = _dictById.count;
-    [_inProgressQueueLock unlock];
+    UMMUTEX_UNLOCK(_inProgressQueueLock);
     return i;
 }
 

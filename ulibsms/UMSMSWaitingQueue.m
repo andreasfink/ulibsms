@@ -33,7 +33,7 @@
     BOOL returnValue = NO;
     @autoreleasepool
     {
-        [_waitingQueueLock lock];
+        UMMUTEX_LOCK(_waitingQueueLock)
     #ifdef DEBUG_LOGGING
         NSLog(@"waitingQueue isTransactionToNumberInProgress:%@",number);
     #endif
@@ -42,7 +42,7 @@
         {
             returnValue = YES;
         }
-        [_waitingQueueLock unlock];
+        UMMUTEX_UNLOCK(_waitingQueueLock)
     }
     return returnValue;
 }
@@ -52,7 +52,7 @@
 {
     @autoreleasepool
     {
-        [_waitingQueueLock lock];
+        UMMUTEX_LOCK(_waitingQueueLock)
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue queueTransaction:%@ forNumber:%@",transaction,number);
 #endif
@@ -65,7 +65,7 @@
         [transactionsOfNumber append:transaction];
         _numbersInProgress[number] = transactionsOfNumber;
         [_messageCache retainMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
-        [_waitingQueueLock unlock];
+        UMMUTEX_UNLOCK(_waitingQueueLock)
     }
 }
 
@@ -74,7 +74,7 @@
     id<UMSMSTransactionProtocol> transaction = NULL;
     @autoreleasepool
     {
-        [_waitingQueueLock lock];
+        UMMUTEX_LOCK(_waitingQueueLock)
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue getNextTransactionForNumber:%@",number);
 #endif
@@ -102,7 +102,7 @@
 #ifdef DEBUG_LOGGING
         NSLog(@"  returning %@",transaction);
 #endif
-        [_waitingQueueLock unlock];
+        UMMUTEX_UNLOCK(_waitingQueueLock)
     }
     return transaction;
 }
@@ -124,7 +124,7 @@
     NSMutableArray *result = [[NSMutableArray alloc]init];
     @autoreleasepool
     {
-        [_waitingQueueLock lock];
+        UMMUTEX_LOCK(_waitingQueueLock)
         NSArray *allNumbers = [_numbersInProgress allKeys];
         for(NSString *msisdn in allNumbers)
         {
@@ -135,7 +135,7 @@
                 [result addObject:msisdn];
             }
         }
-        [_waitingQueueLock unlock];
+        UMMUTEX_UNLOCK(_waitingQueueLock)
     }
     return result;
 }
