@@ -35,7 +35,7 @@
     {
         return;
     }
-    UMMUTEX_LOCK(_hlrCacheLock);
+    ummutex_lock(_hlrCacheLock);
     UMHLRCacheEntry *entry = _entries[msisdn];
     if(entry==NULL)
     {
@@ -56,12 +56,12 @@
         entry.msc = msc;
     }
     _entries[msisdn] = entry;
-    UMMUTEX_UNLOCK(_hlrCacheLock);
+    ummutex_unlock(_hlrCacheLock);
 }
 
 - (void)expire
 {
-    UMMUTEX_LOCK(_hlrCacheLock);
+    ummutex_lock(_hlrCacheLock);
     /* expire the dict */
     time_t	cur;
     cur = time(&cur);
@@ -74,7 +74,7 @@
             [_entries removeObjectForKey:key];
         }
    }
-   UMMUTEX_UNLOCK(_hlrCacheLock);
+   ummutex_unlock(_hlrCacheLock);
 }
 
 - (void)expireMSISDN:(NSString *)msisdn
@@ -83,26 +83,26 @@
     {
         return;
     }
-    UMMUTEX_LOCK(_hlrCacheLock);
+    ummutex_lock(_hlrCacheLock);
     [_entries removeObjectForKey:msisdn];
-    UMMUTEX_UNLOCK(_hlrCacheLock);
+    ummutex_unlock(_hlrCacheLock);
 }
 
 
 - (UMHLRCacheEntry *)find:(NSString *)msisdn
 {
-    UMMUTEX_LOCK(_hlrCacheLock);
+    ummutex_lock(_hlrCacheLock);
     UMHLRCacheEntry *entry = _entries[msisdn];
-    UMMUTEX_UNLOCK(_hlrCacheLock);
+    ummutex_unlock(_hlrCacheLock);
     return entry;
 }
 
 -(NSInteger)count
 {
     NSInteger i;
-    UMMUTEX_LOCK(_hlrCacheLock);
+    ummutex_lock(_hlrCacheLock);
     i = _entries.count;
-    UMMUTEX_UNLOCK(_hlrCacheLock);
+    ummutex_unlock(_hlrCacheLock);
     return i;
 }
 

@@ -27,7 +27,7 @@
 
 - (void)retainMessage:(id)msg forMessageId:(NSString *)messageId file:(const char *)file line:(long)line func:(const char *)func
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     UMGlobalMessageCacheEntry *entry = _cache[messageId];
     if(entry == NULL)
     {
@@ -47,12 +47,12 @@
     }
     [entry touch];
     _cache[messageId]=entry;
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
 }
 
 - (void)retainMessage:(id)msg forMessageId:(NSString *)messageId
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     UMGlobalMessageCacheEntry *entry = _cache[messageId];
     if(entry == NULL)
     {
@@ -68,12 +68,12 @@
     }
     [entry touch];
     _cache[messageId]=entry;
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
 }
 
 - (void)releaseMessage:(id)msg forMessageId:(NSString *)messageId file:(const char *)file line:(long)line func:(const char *)func
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     UMGlobalMessageCacheEntry *entry = _cache[messageId];
     if(entry)
     {
@@ -88,13 +88,13 @@
     {
         [self logEvent:[NSString stringWithFormat:@"not-found %s:%ld %s",file,line,func] messageId:messageId];
     }
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
 
 }
 
 - (void)releaseMessage:(id)msg forMessageId:(NSString *)messageId
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     UMGlobalMessageCacheEntry *entry = _cache[messageId];
     if(entry)
     {
@@ -104,23 +104,23 @@
             [_cache removeObjectForKey:messageId];
         }
     }
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
 
 }
 
 - (id)findEntry:(NSString *)messageId
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     UMGlobalMessageCacheEntry *entry = _cache[messageId];
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
     return entry;
 }
 
 - (id)findMessage:(NSString *)messageId
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     UMGlobalMessageCacheEntry *entry = _cache[messageId];
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
     return entry.msg;
 }
 
@@ -128,18 +128,18 @@
 {
     if(_flog)
     {
-        UMMUTEX_LOCK(_globalMessageCacheLock);
+        ummutex_lock(_globalMessageCacheLock);
         NSString *logLine = [NSString stringWithFormat:@"MessageCache: %@ %@",messageId,event];
         NSLog(@"%@",logLine);
         fprintf(_flog,"%s\n",logLine.UTF8String);
         fflush(_flog);
-        UMMUTEX_UNLOCK(_globalMessageCacheLock);
+        ummutex_unlock(_globalMessageCacheLock);
     }
 }
 
 - (void)openLog:(NSString *)logfilename
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     if(_flog)
     {
         fclose(_flog);
@@ -148,43 +148,43 @@
     _flog = fopen(logfilename.UTF8String,"w+");
     fprintf(_flog,"open log\n");
     fflush(_flog);
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
 
 }
 
 - (void)closeLog
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     if(_flog)
     {
         fclose(_flog);
         _flog = NULL;
     }
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
 
 }
 
 -(void)flush
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     _cache = [[NSMutableDictionary alloc]init];
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
 
 }
 
 - (NSInteger)count
 {
     NSInteger i;
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     i = _cache.count;
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
     return i;
 }
 
 
 - (NSArray *)expiredMessages
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     NSArray *messageIds = [_cache allKeys];
     NSDate *now = [NSDate date];
     NSMutableArray *expiredMessages = [[NSMutableArray alloc]init];
@@ -199,15 +199,15 @@
             [self releaseMessage:msg forMessageId:msgId];
         }
     }
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
     return expiredMessages;
 }
 
 - (void) flushAll
 {
-    UMMUTEX_LOCK(_globalMessageCacheLock);
+    ummutex_lock(_globalMessageCacheLock);
     _cache = [[NSMutableDictionary alloc]init];
-    UMMUTEX_UNLOCK(_globalMessageCacheLock);
+    ummutex_unlock(_globalMessageCacheLock);
 }
 
 @end

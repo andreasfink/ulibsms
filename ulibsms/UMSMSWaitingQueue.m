@@ -33,7 +33,7 @@
     BOOL returnValue = NO;
     @autoreleasepool
     {
-        UMMUTEX_LOCK(_waitingQueueLock)
+        ummutex_lock(_waitingQueueLock);
     #ifdef DEBUG_LOGGING
         NSLog(@"waitingQueue isTransactionToNumberInProgress:%@",number);
     #endif
@@ -42,7 +42,7 @@
         {
             returnValue = YES;
         }
-        UMMUTEX_UNLOCK(_waitingQueueLock)
+        ummutex_unlock(_waitingQueueLock);
     }
     return returnValue;
 }
@@ -52,7 +52,7 @@
 {
     @autoreleasepool
     {
-        UMMUTEX_LOCK(_waitingQueueLock)
+        ummutex_lock(_waitingQueueLock);
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue queueTransaction:%@ forNumber:%@",transaction,number);
 #endif
@@ -65,7 +65,7 @@
         [transactionsOfNumber append:transaction];
         _numbersInProgress[number] = transactionsOfNumber;
         [_messageCache retainMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
-        UMMUTEX_UNLOCK(_waitingQueueLock)
+        ummutex_unlock(_waitingQueueLock);
     }
 }
 
@@ -74,7 +74,7 @@
     id<UMSMSTransactionProtocol> transaction = NULL;
     @autoreleasepool
     {
-        UMMUTEX_LOCK(_waitingQueueLock)
+        ummutex_lock(_waitingQueueLock);
 #ifdef DEBUG_LOGGING
     NSLog(@"waitingQueue getNextTransactionForNumber:%@",number);
 #endif
@@ -102,7 +102,7 @@
 #ifdef DEBUG_LOGGING
         NSLog(@"  returning %@",transaction);
 #endif
-        UMMUTEX_UNLOCK(_waitingQueueLock)
+        ummutex_unlock(_waitingQueueLock);
     }
     return transaction;
 }
@@ -110,9 +110,9 @@
 - (NSInteger)count
 {
     NSInteger count = 0;
-    UMMUTEX_LOCK(_waitingQueueLock);
+    ummutex_lock(_waitingQueueLock);
     count =  [_numbersInProgress count];
-    UMMUTEX_UNLOCK(_waitingQueueLock);
+    ummutex_unlock(_waitingQueueLock);
     return count;
 }
 
@@ -124,7 +124,7 @@
     NSMutableArray *result = [[NSMutableArray alloc]init];
     @autoreleasepool
     {
-        UMMUTEX_LOCK(_waitingQueueLock)
+        ummutex_lock(_waitingQueueLock);
         NSArray *allNumbers = [_numbersInProgress allKeys];
         for(NSString *msisdn in allNumbers)
         {
@@ -135,7 +135,7 @@
                 [result addObject:msisdn];
             }
         }
-        UMMUTEX_UNLOCK(_waitingQueueLock)
+        ummutex_unlock(_waitingQueueLock);
     }
     return result;
 }

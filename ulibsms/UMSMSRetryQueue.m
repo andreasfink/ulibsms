@@ -43,7 +43,7 @@
     NSString *s = [NSString stringWithFormat:@"retryQueue queueForRetry:%@ retryTime: %@ expireTime:%@ priority: %d", messageId,next_consideration,last_considersation,priority];
     LOG_TO_STDERR(s);
 #endif
-    UMMUTEX_LOCK(_retryQueueLock);
+    ummutex_lock(_retryQueueLock);
     NSDictionary *entry = @{ @"msg":msg,
                              @"messageId" : messageId,
                              @"retry-time":next_consideration,
@@ -52,7 +52,7 @@
                              };
     [_messageCache retainMessage:msg forMessageId:messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
     [_retry_entries addObject:entry];
-    UMMUTEX_UNLOCK(_retryQueueLock);
+    ummutex_unlock(_retryQueueLock);
 }
 
 - (void)messagesNeedingRetrying:(NSArray **)needsRetry1 orExpiring:(NSArray **)hasExpired1
@@ -68,7 +68,7 @@
     NSMutableArray *needsRetry = [[NSMutableArray alloc]init];
     NSMutableArray *hasExpired = [[NSMutableArray alloc]init];
     
-    UMMUTEX_LOCK(_retryQueueLock);
+    ummutex_lock(_retryQueueLock);
 
     NSUInteger n =[_retry_entries count];
     for(NSUInteger i=0;i<n; )
@@ -100,7 +100,7 @@
             i++;
         }
     }
-    UMMUTEX_UNLOCK(_retryQueueLock);
+    ummutex_unlock(_retryQueueLock);
     *needsRetry1 = needsRetry;
     *hasExpired1 = hasExpired;
 
@@ -114,9 +114,9 @@
 - (NSInteger)count
 {
     NSInteger i;
-    UMMUTEX_LOCK(_retryQueueLock);
+    ummutex_lock(_retryQueueLock);
     i = [_retry_entries count];
-    UMMUTEX_UNLOCK(_retryQueueLock);
+    ummutex_unlock(_retryQueueLock);
     return i;
 }
 
