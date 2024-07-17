@@ -110,9 +110,9 @@
 - (NSInteger)count
 {
     NSInteger count = 0;
-    [_waitingQueueLock unlock];
+    UMMUTEX_LOCK(_waitingQueueLock);
     count =  [_numbersInProgress count];
-    [_waitingQueueLock unlock];
+    UMMUTEX_UNLOCK(_waitingQueueLock);
     return count;
 }
 

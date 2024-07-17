@@ -114,9 +114,9 @@
 - (NSInteger)count
 {
     NSInteger i;
-    [_retryQueueLock unlock];
+    UMMUTEX_LOCK(_retryQueueLock);
     i = [_retry_entries count];
-    [_retryQueueLock unlock];
+    UMMUTEX_UNLOCK(_retryQueueLock);
     return i;
 }
 
