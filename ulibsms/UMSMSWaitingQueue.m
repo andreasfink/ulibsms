@@ -64,7 +64,7 @@
         transaction.awaitNumberFreeExpiration = [NSDate dateWithTimeIntervalSinceNow:_awaitNumberFreeTime];
         [transactionsOfNumber append:transaction];
         _numbersInProgress[number] = transactionsOfNumber;
-        [_messageCache retainMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+        [_messageCache retainMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__func__];
         ummutex_unlock(_waitingQueueLock);
     }
 }
@@ -89,7 +89,7 @@
         else
         {
             transaction = [transactionsOfNumber getFirst];
-            [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+            [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__func__];
             if([transactionsOfNumber count]<1)
             {
                 [_numbersInProgress removeObjectForKey:number];
