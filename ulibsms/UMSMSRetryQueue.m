@@ -50,7 +50,7 @@
                              @"expire-time":last_considersation,
                              @"priority":  @(priority),
                              };
-    [_messageCache retainMessage:msg forMessageId:messageId file:__FILE__ line:__LINE__ func:__FUNCTION__];
+    [_messageCache retainMessage:msg forMessageId:messageId file:__FILE__ line:__LINE__ func:__func__];
     [_retry_entries addObject:entry];
     ummutex_unlock(_retryQueueLock);
 }
@@ -85,14 +85,14 @@
 
             [needsRetry addObject:entry[@"msg"]];
             [_retry_entries removeObjectAtIndex:i];
-            [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
+            [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__func__];
             n--;
         }
         else if(expireTime.timeIntervalSinceReferenceDate <= now.timeIntervalSinceReferenceDate)
         {
             [hasExpired addObject:entry[@"msg"]];
             [_retry_entries removeObjectAtIndex:i];
-            [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__FUNCTION__];
+            [_messageCache releaseMessage:entry[@"msg"] forMessageId:entry[@"messageId"] file:__FILE__ line:__LINE__ func:__func__];
             n--;
         }
         else
