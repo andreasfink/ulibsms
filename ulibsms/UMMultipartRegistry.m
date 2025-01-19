@@ -17,21 +17,22 @@
     self = [super init];
     if(self)
     {
-        multipartByDestinationAndRef = [[UMSynchronizedDictionary alloc]init];
+        _multipartByDestinationAndRef = [[UMSynchronizedDictionary alloc]init];
     }
     return self;
 }
 
 - (NSArray<UMSMS *>*)registerMultipartSMS:(UMSMS *)sms newMaxSize:(int)newMaxSize
 {
+    
     if(sms.multipart_ref==NULL)
     {
         return @[sms];
     }
-    
+    ummutex_lock(_lock);
     NSString *key = [NSString stringWithFormat:@"%@.%@",sms.tp_da.address,sms.multipart_ref];
     
-    UMMultipartSMS *multi = multipartByDestinationAndRef[key];
+    UMMultipartSMS *multi = _multipartByDestinationAndRef[key];
     if(multi)
     {
         [multi addMultipart:sms number:sms.multipart_current max:sms.multipart_max];
@@ -46,10 +47,37 @@
             UMSMS *sms = [multi getMultipart:i];
             [a addObject:sms];
         }
+        ummutex_unlock(_lock);
+        return a;
     }
-    /* TO BE COMPLETED */
+    ummutex_unlock(_lock);
     return @[];
 }
 
+- (NSArray<UMSMS *>*)expiredMultiparts
+{
+    ummutex_lock(_lock);
+    NSArray *keys = [_multipartByDestinationAndRef allKeys];
+    NSMutableArray *expiredMultipartKeys = [[NSMutableArray alloc]init];
+    NSMutableArray *expiredSMS = [[NSMutableArray alloc]init];
+    for(id ref in keys)
+    {
+        UMMultipartSMS *multi = _multipartByDestinationAndRef[ref];
+        if([multi isExpired])
+        {
+            [expiredMultipartKeys addObject:ref];
+            for(UMSMS *sms in multi.multiparts)
+            {
+                [expiredSMS addObject:sms];
+            }
+        }
+    }
+    for(id key in expiredMultipartKeys)
+    {
+        [_multipartByDestinationAndRef removeObjectForKey:key];
+    }
+    ummutex_unlock(_lock);
+    return expiredSMS;
+}
 
 @end

@@ -18,7 +18,7 @@
     NSString            *_smscNumber;
     NSString            *_mscNumber;
     NSDate              *_lastPartArrived;
-    NSDate              *_firstPartArrived;    
+    NSDate              *_firstPartArrived;
 }
 
 - (void)addMultipart:(UMSMS *)sms number:(NSNumber *)pos max:(NSNumber *)max;
@@ -26,11 +26,14 @@
 - (BOOL)combine; /* return YES for success */
 - (void)resplitByMaxSize:(NSInteger)maxSize;
 - (UMSMS *)getMultipart:(NSInteger)index;
+- (BOOL) isExpired;
 
 @property(readwrite,strong,atomic) NSNumber *mulitpartsMaxCount;
 @property(readwrite,strong,atomic) NSNumber *refNo;
 @property(readwrite,strong,atomic) NSString *smscNumber;
 @property(readwrite,strong,atomic) NSString *mscNumber;
+@property(readwrite,strong,atomic) UMSynchronizedArray *multiparts; /* array of UMSMS objects */
+
 
 @end
 

@@ -11,7 +11,8 @@
 
 @interface UMMultipartRegistry : UMObject
 {
-    UMSynchronizedDictionary *multipartByDestinationAndRef;
+    UMMutex *_lock;
+    UMSynchronizedDictionary *_multipartByDestinationAndRef;
 }
 
 - (NSArray<UMSMS *>*)registerMultipartSMS:(UMSMS *)sms newMaxSize:(int)newMaxSize;
