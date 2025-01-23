@@ -17,5 +17,4 @@
 
 - (NSArray<UMSMS *>*)registerMultipartSMS:(UMSMS *)sms newMaxSize:(int)newMaxSize;
 
-
 @end
