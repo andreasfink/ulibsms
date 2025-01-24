@@ -77,7 +77,7 @@ typedef enum UMSMS_MessageType
     int _tp_rd; /* reject duplicates */
     int _validity_time;
     int _coding;
-    int _messageClass;
+    int _esmClass;
     int _compress;
     int _mwi_pdu;
     int _tp_fcs; /* status cause */
