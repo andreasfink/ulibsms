@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		A61958992192D76B00BEB8A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A61958982192D76B00BEB8A5 /* main.m */; };
 		A619589F2192D78300BEB8A5 /* ulibsms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F9FE461EF7FA33007C203A /* ulibsms.framework */; };
-		A62FECEA2D4D8B6F00392994 /* NSData+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A62FECE92D4D8B6F00392994 /* NSData+sms.m */; };
-		A62FECEB2D4D8B6F00392994 /* NSData+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A62FECE92D4D8B6F00392994 /* NSData+sms.m */; };
-		A62FECEC2D4D8B6F00392994 /* NSData+sms.h in Headers */ = {isa = PBXBuildFile; fileRef = A62FECE82D4D8B6F00392994 /* NSData+sms.h */; };
 		A6416E6E28FAC789001E7AF6 /* UMMultipartRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = A6416E6C28FAC789001E7AF6 /* UMMultipartRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6416E6F28FAC789001E7AF6 /* UMMultipartRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6416E6D28FAC789001E7AF6 /* UMMultipartRegistry.m */; };
 		A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CEB11B42014800854472 /* ulibsmsTests.m */; };
@@ -165,8 +162,6 @@
 /* Begin PBXFileReference section */
 		A61958962192D76B00BEB8A5 /* decode-sms */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "decode-sms"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A61958982192D76B00BEB8A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A62FECE82D4D8B6F00392994 /* NSData+sms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+sms.h"; sourceTree = "<group>"; };
-		A62FECE92D4D8B6F00392994 /* NSData+sms.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+sms.m"; sourceTree = "<group>"; };
 		A6416E6C28FAC789001E7AF6 /* UMMultipartRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMMultipartRegistry.h; sourceTree = "<group>"; };
 		A6416E6D28FAC789001E7AF6 /* UMMultipartRegistry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMMultipartRegistry.m; sourceTree = "<group>"; };
 		A641CEA31B42014800854472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -373,8 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				A6F9FE491EF7FA33007C203A /* Info.plist */,
-				A62FECE82D4D8B6F00392994 /* NSData+sms.h */,
-				A62FECE92D4D8B6F00392994 /* NSData+sms.m */,
 				A641CEA41B42014800854472 /* ulibsms.h */,
 				A64612D41D41F12B00211137 /* UMSMS.h */,
 				A64612D51D41F12B00211137 /* UMSMS.m */,
@@ -536,7 +529,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A66C1482235933620019C5EA /* UMSATTokenSPS.h in Headers */,
-				A62FECEC2D4D8B6F00392994 /* NSData+sms.h in Headers */,
 				A66C1486235933620019C5EA /* UMSATTokenVariableReference.h in Headers */,
 				A6F9FE521EF7FB79007C203A /* UMSMSWaitingQueue.h in Headers */,
 				A6F9FE551EF7FB79007C203A /* UMHLRCacheEntry.h in Headers */,
@@ -793,7 +785,6 @@
 				A664D57D1F6A60F100BD455E /* UMSMSWaitingQueue.m in Sources */,
 				A664D57E1F6A60F400BD455E /* UMSMSInProgressQueue.m in Sources */,
 				A664D57B1F6A60EB00BD455E /* UMSMS_Address.m in Sources */,
-				A62FECEA2D4D8B6F00392994 /* NSData+sms.m in Sources */,
 				A664D57A1F6A60E500BD455E /* UMSMS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -856,7 +847,6 @@
 				A6F9FE621EF7FB8E007C203A /* UMGlobalMessageCacheEntry.m in Sources */,
 				A6F9FE5A1EF7FB8E007C203A /* UMSMS_Address.m in Sources */,
 				A6F9FE5D1EF7FB8E007C203A /* UMSMSInProgressQueue.m in Sources */,
-				A62FECEB2D4D8B6F00392994 /* NSData+sms.m in Sources */,
 				A6F9FE5B1EF7FB8E007C203A /* UMLayerSMS.m in Sources */,
 				A6F9FE611EF7FB8E007C203A /* UMGlobalMessageCache.m in Sources */,
 				A6F9FE591EF7FB8E007C203A /* UMSMS.m in Sources */,
