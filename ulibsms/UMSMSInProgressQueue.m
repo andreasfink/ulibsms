@@ -49,17 +49,7 @@
 
 - (void) remove:(UMObject<UMSMSTransactionProtocol> *)transaction
 {
-//    UMAssert(transaction!=NULL,@"you ask me to remove a NULL transaction!");
-#ifdef DEBUG_LOGGING
-    NSLog(@"inProgressQueue remove:%@",transaction);
-#endif
-
-    ummutex_lock(_inProgressQueueLock);
-    [_dictById removeObjectForKey:transaction.messageId];
-    [_dictByNumber removeObjectForKey:transaction.destinationNumber];
-    [_messageCache releaseMessage:transaction.msg forMessageId:transaction.messageId file:__FILE__ line:__LINE__ func:__func__];
-    ummutex_unlock(_inProgressQueueLock);
-
+   [self removeId:transaction.messageId destinationNumber:transaction.destinationNumber];
 }
 
 
@@ -73,9 +63,9 @@
     if(msg)
     {
         [_messageCache releaseMessage:msg forMessageId:msgid file:__FILE__ line:__LINE__ func:__func__];
-        [_dictById removeObjectForKey:msgid];
-        [_dictByNumber removeObjectForKey:number];
     }
+    [_dictById removeObjectForKey:msgid];
+    [_dictByNumber removeObjectForKey:number];
     ummutex_unlock(_inProgressQueueLock);
 }
 
