@@ -19,6 +19,7 @@
     NSString            *_mscNumber;
     NSDate              *_lastPartArrived;
     NSDate              *_firstPartArrived;
+    NSTimeInterval      _waitingTime;
 }
 
 - (void)addMultipart:(UMSMS *)sms number:(NSNumber *)pos max:(NSNumber *)max;
@@ -33,7 +34,9 @@
 @property(readwrite,strong,atomic) NSString *smscNumber;
 @property(readwrite,strong,atomic) NSString *mscNumber;
 @property(readwrite,strong,atomic) UMSynchronizedArray *multiparts; /* array of UMSMS objects */
-
+@property(readwrite,strong,atomic) NSDate              *lastPartArrived;
+@property(readwrite,strong,atomic) NSDate              *firstPartArrived;
+@property(readwrite,assign,atomic) NSTimeInterval      waitingTime;
 
 @end
 

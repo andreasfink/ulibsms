@@ -10,6 +10,18 @@
 
 @implementation UMMultipartSMS
 
+- (UMMultipartSMS *)init
+{
+    self = [super init];
+    if(self)
+    {
+        _waitingTime = 120.0;
+        _firstPartArrived = [NSDate date];
+        _lastPartArrived = _firstPartArrived;
+    }
+    return self;
+}
+
 - (void)addMultipart:(UMSMS *)sms
               number:(NSNumber *)pos
                  max:(NSNumber *)max
@@ -213,6 +225,17 @@
 }
 
 #endif
+
+- (BOOL) isExpired
+{
+    NSDate *now = [NSDate date];
+    NSTimeInterval delay = [now timeIntervalSinceDate:_lastPartArrived];
+    if(delay > _waitingTime)
+    {
+        return YES;
+    }
+    return NO;
+}
 
 
 @end
