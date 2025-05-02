@@ -1456,55 +1456,27 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
 - (NSString *)sctsAsString
 {
-    char timestamp[32];
-    int i=0;
-    
-    int a = (_scts1[0] >> 0) & 0xF;
-    int b = (_scts1[0] >> 4) & 0xF;
-    /* year */
-    timestamp[0] = '2';
-    timestamp[1] = '0';
-    timestamp[2] = (_scts1[0] >> 0) & 0xF + '0'; /* YEAR */
-    timestamp[3] = (_scts1[0] >> 4) & 0xF + '0';
-    timestamp[4] = '-';
-    timestamp[5] = (_scts1[1] >> 0) & 0xF + '0'; /* MONTH */
-    timestamp[6] = (_scts1[1] >> 4) & 0xF + '0';
-    timestamp[7] = '-';
-    timestamp[8] = (_scts1[2] >> 0) & 0xF + '0'; /* DAY */
-    timestamp[9] = (_scts1[2] >> 4) & 0xF + '0';
-    timestamp[10] = ' ';
-    timestamp[11] = (_scts1[3] >> 0) & 0xF + '0';  /* HOUR */
-    timestamp[12] = (_scts1[3] >> 4) & 0xF + '0';
-    timestamp[13] = ':';
-    timestamp[14] = (_scts1[4] >> 0) & 0xF + '0'; /* MINUTE */
-    timestamp[15] = (_scts1[4] >> 4) & 0xF + '0';
-    timestamp[16] = ':';
-    timestamp[17] = (_scts1[4] >> 0) & 0xF + '0'; /* SECOND */
-    timestamp[18] = (_scts1[4] >> 4) & 0xF + '0';
-    timestamp[19] = '\0';
-
     int offset_15min;
     offset_15min  = (_scts1[6] & 0xF0) >> 4;
     offset_15min |= (_scts1[6] & 0x0F) << 4;
+    char sign = '+';
     if(offset_15min & 0x80)
     {
-        offset_15min = - (offset_15min & 0x7F);
+        offset_15min = offset_15min & 0x7F;
+        sign = '-';
     }
-    NSString *s;
-    if(offset_15min == 0)
-    {
-        s = @(timestamp);
-    }
-    else if(offset_15min > 0)
-    {
-        float f = (float)offset_15min / 4.0;
-        s = [NSString stringWithFormat:@"%s +%fh",timestamp,f];
-    }
-    else
-    {
-        float f = (float)offset_15min / 4.0;
-        s = [NSString stringWithFormat:@"%s -%fh",timestamp,f];
-    }
-    return s;
-}
-@end
+    float offset_h = ((float) offset_15min)/4.0;
+    
+    NSData *d = [NSData dataWithBytes:_scts1 length:7];
+    NSString *s = [d hexString];
+    const char *str = s.UTF8String;
+    NSString *ts = [NSString stringWithFormat:@"20%c%c-%c%c-%c%c- %c%c:%c%c:%c%c TZ: %c%fh",
+                    str[1],str[0],
+                    str[3],str[2],
+                    str[5],str[4],
+                    str[7],str[6],
+                    str[9],str[8],
+                    str[11],str[10],
+                    sign,offset_h];
+    return ts;
+}@end
