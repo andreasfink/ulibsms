@@ -132,30 +132,6 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             _scts1[5] = GRAB(bytes,len,pos);
             _scts1[6] = GRAB(bytes,len,pos);
             _scts1[7] = 0;
-            NSData *d = [NSData dataWithBytes:_scts1 length:7];
-            _scts = [d hexString];
-            /*
-             timestamp to string
-            tscts = octstr_create(scts);
-            octstr_binary_to_hex(tscts,1);
-            mm_layer_log_debug((mm_generic_layer *)mi,PLACE_MSC_GENERAL,	"   TP-Service-Center-Timestamp: %c%c-%c%c-20%c%c %c%c:%c%c:%c%c TZ: %c%c",
-                               octstr_get_char(tscts,5),
-                               octstr_get_char(tscts,4),
-                               octstr_get_char(tscts,3),
-                               octstr_get_char(tscts,2),
-                               octstr_get_char(tscts,1),
-                               octstr_get_char(tscts,0),
-                               octstr_get_char(tscts,7),
-                               octstr_get_char(tscts,6),
-                               octstr_get_char(tscts,9),
-                               octstr_get_char(tscts,8),
-                               octstr_get_char(tscts,11),
-                               octstr_get_char(tscts,10),
-                               octstr_get_char(tscts,13),
-                               octstr_get_char(tscts,12));
-            */
-            _tp_udl = GRAB(bytes,len,pos);
-            
             /* tp_udl is in characters not bytes */
             NSUInteger remaining_bytes = len - pos;
             _t_ud = [NSData dataWithBytes:&bytes[pos] length:remaining_bytes];
@@ -1456,56 +1432,31 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
 - (NSString *)sctsAsString
 {
-    char timestamp[256];
-    int i=0;
-    
-    int a = (_scts1[0] >> 0) & 0xF;
-    int b = (_scts1[0] >> 4) & 0xF;
-    /* year */
-    timestamp[0] = '2';
-    timestamp[1] = '0';
-    timestamp[2] = (_scts1[0] >> 0) & 0xF + '0'; /* YEAR */
-    timestamp[3] = (_scts1[0] >> 4) & 0xF + '0';
-    timestamp[4] = '-';
-    timestamp[5] = (_scts1[1] >> 0) & 0xF + '0'; /* MONTH */
-    timestamp[6] = (_scts1[1] >> 4) & 0xF + '0';
-    timestamp[7] = '-';
-    timestamp[8] = (_scts1[2] >> 0) & 0xF + '0'; /* DAY */
-    timestamp[9] = (_scts1[2] >> 4) & 0xF + '0';
-    timestamp[10] = ' ';
-    timestamp[11] = (_scts1[3] >> 0) & 0xF + '0';  /* HOUR */
-    timestamp[12] = (_scts1[3] >> 4) & 0xF + '0';
-    timestamp[13] = ':';
-    timestamp[14] = (_scts1[4] >> 0) & 0xF + '0'; /* MINUTE */
-    timestamp[15] = (_scts1[4] >> 4) & 0xF + '0';
-    timestamp[16] = ':';
-    timestamp[17] = (_scts1[4] >> 0) & 0xF + '0'; /* SECOND */
-    timestamp[18] = (_scts1[4] >> 4) & 0xF + '0';
-    timestamp[19] = '\0';
 
     int offset_15min;
     offset_15min  = (_scts1[6] & 0xF0) >> 4;
     offset_15min |= (_scts1[6] & 0x0F) << 4;
+    char sign = '+';
     if(offset_15min & 0x80)
     {
-        offset_15min = - (offset_15min & 0x7F);
+        offset_15min = offset_15min & 0x7F;
+        sign = '-';
     }
-    NSString *s;
-    if(offset_15min == 0)
-    {
-        s = @(timestamp);
-    }
-    else if(offset_15min > 0)
-    {
-        float f = (float)offset_15min / 4.0;
-        s = [NSString stringWithFormat:@"%s +%fh",timestamp,f];
-    }
-    else
-    {
-        float f = (float)offset_15min / 4.0;
-        s = [NSString stringWithFormat:@"%s -%fh",timestamp,f];
-    }
-    return s;
+    float offset_h = ((float) offset_15min)/4.0;
+    
+    NSData *d = [NSData dataWithBytes:_scts1 length:7];
+    NSString *s = [d hexString];
+    const char *str = s.UTF8String;
+    NSString *ts = [NSString stringWithFormat:@"20%c%c-%c%c-%c%c- %c%c:%c%c:%c%c TZ: %c%fh",
+                    str[1],str[0],
+                    str[3],str[2],
+                    str[5],str[4],
+                    str[7],str[6],
+                    str[9],str[8],
+                    str[11],str[10],
+                    sign,offset_h];
+    return ts;
 }
+
 
 @end
