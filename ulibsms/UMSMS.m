@@ -638,6 +638,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     dict[@"tp_mr"] = @(_tp_mr);
     dict[@"tp_rd"] = @(_tp_rd);
     dict[@"tp_fcs"] = @(_tp_fcs);
+    dict[@"tp_scts"] = [self sctsAsString];
     dict[@"t_ud"] = _t_ud;
     dict[@"t_udh"] = _t_udh;
     if(_t_content)
@@ -1452,4 +1453,59 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         }
     }
 }
+
+- (NSString *)sctsAsString
+{
+    char timestamp[256];
+    int i=0;
+    
+    int a = (_scts1[0] >> 0) & 0xF;
+    int b = (_scts1[0] >> 4) & 0xF;
+    /* year */
+    timestamp[0] = '2';
+    timestamp[1] = '0';
+    timestamp[2] = (_scts1[0] >> 0) & 0xF + '0'; /* YEAR */
+    timestamp[3] = (_scts1[0] >> 4) & 0xF + '0';
+    timestamp[4] = '-';
+    timestamp[5] = (_scts1[1] >> 0) & 0xF + '0'; /* MONTH */
+    timestamp[6] = (_scts1[1] >> 4) & 0xF + '0';
+    timestamp[7] = '-';
+    timestamp[8] = (_scts1[2] >> 0) & 0xF + '0'; /* DAY */
+    timestamp[9] = (_scts1[2] >> 4) & 0xF + '0';
+    timestamp[10] = ' ';
+    timestamp[11] = (_scts1[3] >> 0) & 0xF + '0';  /* HOUR */
+    timestamp[12] = (_scts1[3] >> 4) & 0xF + '0';
+    timestamp[13] = ':';
+    timestamp[14] = (_scts1[4] >> 0) & 0xF + '0'; /* MINUTE */
+    timestamp[15] = (_scts1[4] >> 4) & 0xF + '0';
+    timestamp[16] = ':';
+    timestamp[17] = (_scts1[4] >> 0) & 0xF + '0'; /* SECOND */
+    timestamp[18] = (_scts1[4] >> 4) & 0xF + '0';
+    timestamp[19] = '\0';
+
+    int offset_15min;
+    offset_15min  = (_scts1[6] & 0xF0) >> 4;
+    offset_15min |= (_scts1[6] & 0x0F) << 4;
+    if(offset_15min & 0x80)
+    {
+        offset_15min = - (offset_15min & 0x7F);
+    }
+    NSString *s;
+    if(offset_15min == 0)
+    {
+        s = @(timestamp);
+    }
+    else if(offset_15min > 0)
+    {
+        float f = (float)offset_15min / 4.0;
+        s = [NSString stringWithFormat:@"%s +%fh",timestamp,f];
+    }
+    else
+    {
+        float f = (float)offset_15min / 4.0;
+        s = [NSString stringWithFormat:@"%s -%fh",timestamp,f];
+    }
+    return s;
+}
+
 @end
