@@ -521,6 +521,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             /* normal message from SMSC to mobile */
             uint8_t o = _tp_mti;
             o |= _tp_mms ? 1 << 2 : 0;
+            o |= _tp_lp  ? 1 << 3 : 0;
             o |= (_tp_sri ? 1 : 0) << 5;
             o |= (_tp_udhi ? 1 : 0) << 6;
             o |= (_tp_rp ? 1 : 0 ) << 7;
@@ -1305,7 +1306,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
         if(web_tp_lp.length>0)
         {
-            _tp_lp = [web_tp_mms boolValue];
+            _tp_lp = [web_tp_lp boolValue];
         }
 
         if(web_tp_mms.length>0)
