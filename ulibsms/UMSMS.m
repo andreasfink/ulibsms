@@ -639,6 +639,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     dict[@"tp_mr"] = @(_tp_mr);
     dict[@"tp_rd"] = @(_tp_rd);
     dict[@"tp_fcs"] = @(_tp_fcs);
+    dict[@"tp_scts"] = [self sctsAsString];
     dict[@"t_ud"] = _t_ud;
     dict[@"t_udh"] = _t_udh;
     if(_t_content)
@@ -1453,4 +1454,30 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         }
     }
 }
-@end
+
+- (NSString *)sctsAsString
+{
+    int offset_15min;
+    offset_15min  = (_scts1[6] & 0xF0) >> 4;
+    offset_15min |= (_scts1[6] & 0x0F) << 4;
+    char sign = '+';
+    if(offset_15min & 0x80)
+    {
+        offset_15min = offset_15min & 0x7F;
+        sign = '-';
+    }
+    float offset_h = ((float) offset_15min)/4.0;
+    
+    NSData *d = [NSData dataWithBytes:_scts1 length:7];
+    NSString *s = [d hexString];
+    const char *str = s.UTF8String;
+    NSString *ts = [NSString stringWithFormat:@"20%c%c-%c%c-%c%c- %c%c:%c%c:%c%c TZ: %c%fh",
+                    str[1],str[0],
+                    str[3],str[2],
+                    str[5],str[4],
+                    str[7],str[6],
+                    str[9],str[8],
+                    str[11],str[10],
+                    sign,offset_h];
+    return ts;
+}@end
