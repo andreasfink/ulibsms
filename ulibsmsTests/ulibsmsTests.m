@@ -9,9 +9,8 @@
 // the author.
 //
 
-#import <Foundation/Foundation.h>
-#import <XCTest/XCTest.h>
 #import <ulib/ulib.h>
+#import <XCTest/XCTest.h>
 #import <ulibsms/UMSMS.h>
 
 @interface ulibsmsTests : XCTestCase

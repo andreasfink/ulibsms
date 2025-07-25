@@ -6,7 +6,7 @@
 //  Copyright © 2018 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <ulib/ulib.h>
 #import <ulibsms/ulibsms.h>
 
 int main(int argc, const char * argv[])
