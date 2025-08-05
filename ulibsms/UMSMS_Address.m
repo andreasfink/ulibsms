@@ -47,7 +47,7 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
 - (UMSMS_Address *)initWithAlpha:(NSString *)digits
 {
 	NSString *addr = [[[digits gsm8]gsm8to7withNibbleLengthPrefix]hexString];
-	return [self initWithAddress:addr ton:GSMMAP_TON_ALPHANUMERIC npi:GSMMAP_NPI_UNKNOWN];
+	return [self initWithAddress:addr ton:(SMS_TonType)GSMMAP_TON_ALPHANUMERIC npi:(SMS_NpiType)GSMMAP_NPI_UNKNOWN];
 }
 
 - (UMSMS_Address *)initWithString:(NSString *)digits
@@ -212,8 +212,8 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
 }
 
 - (UMSMS_Address *)initWithAddress:(NSString *)msisdn
-                               ton:(GSMMAP_TonType)xton
-                               npi:(GSMMAP_NpiType)xnpi
+                               ton:(SMS_TonType)xton
+                               npi:(SMS_NpiType)xnpi
 {
     self = [super init];
     if(self)

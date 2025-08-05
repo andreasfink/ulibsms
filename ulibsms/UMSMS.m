@@ -1433,10 +1433,6 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
 - (NSString *)sctsAsString
 {
-<<<<<<< HEAD
-
-=======
->>>>>>> release-2.1
     int offset_15min;
     offset_15min  = (_scts1[6] & 0xF0) >> 4;
     offset_15min |= (_scts1[6] & 0x0F) << 4;
@@ -1460,11 +1456,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
                     str[11],str[10],
                     sign,offset_h];
     return ts;
-<<<<<<< HEAD
 }
 
 
 @end
-=======
-}@end
->>>>>>> release-2.1
