@@ -10,6 +10,7 @@
 //
 #import <ulibgsmmap/ulibgsmmap.h>
 #import <ulibsms/UMSMS_Address.h>
+#import <ulibsms/NSData+sms.h>
 
 static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len);
 
@@ -46,7 +47,9 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
 
 - (UMSMS_Address *)initWithAlpha:(NSString *)digits
 {
-	NSString *addr = [[[digits gsm8]gsm8to7withNibbleLengthPrefix]hexString];
+    NSData *gsm8 = [digits gsm8];
+    NSData *gsm7 = [gsm8 smsGsm8to7withNibbleLengthPrefix];
+	NSString *addr = [gsm7 hexString];
 	return [self initWithAddress:addr ton:(SMS_TonType)GSMMAP_TON_ALPHANUMERIC npi:(SMS_NpiType)GSMMAP_NPI_UNKNOWN];
 }
 
@@ -197,7 +200,8 @@ static int is_all_digits(const char *text, NSUInteger startpos, NSUInteger len)
                 _npi = 0;
 
                 int nibblelen;
-                NSData *m = [[digits gsm8] gsm8to7:&nibblelen];
+                NSData *gsm8 = [digits gsm8];
+                NSData *m = [gsm8 smsGsm8to7:&nibblelen];
                 _address = [m hexString];
             }
             else
