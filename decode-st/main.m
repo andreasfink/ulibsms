@@ -92,7 +92,7 @@ void DecodeST(NSData *data)
     }
     CHL = bytes[p++];
     
-    NSInteger spipos = p;
+    //NSInteger spipos = p;
     NSInteger rcend = p + CHL;
     SPI = (bytes[p] << 8) | bytes[p+1];
     p+=2;
