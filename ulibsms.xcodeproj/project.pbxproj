@@ -128,11 +128,11 @@
 		A6F9FE621EF7FB8E007C203A /* UMGlobalMessageCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7894A1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.m */; };
 		A6F9FE6B1EF7FC39007C203A /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */; };
 		A6FC639B2EE2FB09002A9CB6 /* NSString+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC639A2EE2FB09002A9CB6 /* NSString+sms.m */; };
-		A6FC639C2EE2FB09002A9CB6 /* NSString+sms.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FC63992EE2FB09002A9CB6 /* NSString+sms.h */; };
+		A6FC639C2EE2FB09002A9CB6 /* NSString+sms.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FC63992EE2FB09002A9CB6 /* NSString+sms.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6FC639D2EE2FB09002A9CB6 /* NSString+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC639A2EE2FB09002A9CB6 /* NSString+sms.m */; };
 		A6FC63A02EE2FB6D002A9CB6 /* NSData+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC639F2EE2FB6D002A9CB6 /* NSData+sms.m */; };
 		A6FC63A12EE2FB6D002A9CB6 /* NSData+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC639F2EE2FB6D002A9CB6 /* NSData+sms.m */; };
-		A6FC63A22EE2FB6D002A9CB6 /* NSData+sms.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FC639E2EE2FB6D002A9CB6 /* NSData+sms.h */; };
+		A6FC63A22EE2FB6D002A9CB6 /* NSData+sms.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FC639E2EE2FB6D002A9CB6 /* NSData+sms.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6FC63A52EE2FDE6002A9CB6 /* GsmCharSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC63A42EE2FDE6002A9CB6 /* GsmCharSet.m */; };
 		A6FC63A62EE2FDE6002A9CB6 /* GsmCharSet.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FC63A32EE2FDE6002A9CB6 /* GsmCharSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6FC63A72EE2FDE6002A9CB6 /* GsmCharSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC63A42EE2FDE6002A9CB6 /* GsmCharSet.m */; };
@@ -383,13 +383,13 @@
 			isa = PBXGroup;
 			children = (
 				A6F9FE491EF7FA33007C203A /* Info.plist */,
+				A641CEA41B42014800854472 /* ulibsms.h */,
 				A6FC63A32EE2FDE6002A9CB6 /* GsmCharSet.h */,
 				A6FC63A42EE2FDE6002A9CB6 /* GsmCharSet.m */,
 				A6FC63992EE2FB09002A9CB6 /* NSString+sms.h */,
 				A6FC639A2EE2FB09002A9CB6 /* NSString+sms.m */,
 				A6FC639E2EE2FB6D002A9CB6 /* NSData+sms.h */,
 				A6FC639F2EE2FB6D002A9CB6 /* NSData+sms.m */,
-				A641CEA41B42014800854472 /* ulibsms.h */,
 				A64612D41D41F12B00211137 /* UMSMS.h */,
 				A64612D51D41F12B00211137 /* UMSMS.m */,
 				A6D10CCF1D4F34EB001D021B /* UMSMS_Address.h */,

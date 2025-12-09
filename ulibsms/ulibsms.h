@@ -9,7 +9,8 @@
 // the author.
 //
 #import <ulibasn1/ulibasn1.h>
-
+#import <ulibsms/NSString+sms.h>
+#import <ulibsms/NSData+sms.h>
 #import <ulibsms/UMLayerSMS.h>
 #import <ulibsms/UMSMSWaitingQueue.h>
 #import <ulibsms/UMSMSInProgressQueue.h>
