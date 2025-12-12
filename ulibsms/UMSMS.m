@@ -13,6 +13,7 @@
 #import <ulibsms/UMSMS.h>
 #import <ulibsms/UMSMS_Address.h>
 #import <ulibsms/NSData+sms.h>
+#import <ulibsms/NSString+sms.h>
 
 static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos, const char *file, long line)
 {
@@ -656,7 +657,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
 - (void)setText:(NSString *)text
 {
-    _t_content = [text gsm8];
+    _t_content = [text smsGsm8];
  }
 
 
@@ -1345,7 +1346,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         }
         if(web_text.length > 0)
         {
-            _t_content = [web_text gsm8];
+            _t_content = [web_text smsGsm8];
         }
         if(web_binary.length > 0)
         {

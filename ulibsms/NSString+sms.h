@@ -9,6 +9,9 @@
 
 
 @interface NSString(sms)
+- (NSData *) smsGsm8;
+- (NSData *) smsGsm7WithNibbleLenPrefix;
+
 @end
 
 

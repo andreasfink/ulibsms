@@ -408,6 +408,7 @@ void DecodeDeck(NSData *data, NSString *ident)
     int len = (int)data.length;
     for(int i=0;i<len;)
     {
+#pragma unused(container)
         BOOL container = NO;
         uint8_t token = bytes[i++];
         NSString *s = [UMSATCommands tagName:token];
@@ -452,7 +453,6 @@ void DecodeDeck(NSData *data, NSString *ident)
             fprintf(stdout,"\n");
         }
         ident = [NSString stringWithFormat:@"   %@",ident];
-
     }
 }
 
