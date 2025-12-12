@@ -273,10 +273,12 @@
         b = value & 0xFF;
         [result appendBytes:&b    length:1];
     }
+#if 0
     if((*nibblelen!=11) || (result.length !=7))
     {
         [result appendBytes:&b    length:1];
     }
+#endif
     return result;
 }
 
