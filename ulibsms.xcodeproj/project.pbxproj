@@ -127,6 +127,15 @@
 		A6F9FE611EF7FB8E007C203A /* UMGlobalMessageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C789461B4A885E0090FC94 /* UMGlobalMessageCache.m */; };
 		A6F9FE621EF7FB8E007C203A /* UMGlobalMessageCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7894A1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.m */; };
 		A6F9FE6B1EF7FC39007C203A /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */; };
+		A6FC639B2EE2FB09002A9CB6 /* NSString+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC639A2EE2FB09002A9CB6 /* NSString+sms.m */; };
+		A6FC639C2EE2FB09002A9CB6 /* NSString+sms.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FC63992EE2FB09002A9CB6 /* NSString+sms.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6FC639D2EE2FB09002A9CB6 /* NSString+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC639A2EE2FB09002A9CB6 /* NSString+sms.m */; };
+		A6FC63A02EE2FB6D002A9CB6 /* NSData+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC639F2EE2FB6D002A9CB6 /* NSData+sms.m */; };
+		A6FC63A12EE2FB6D002A9CB6 /* NSData+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC639F2EE2FB6D002A9CB6 /* NSData+sms.m */; };
+		A6FC63A22EE2FB6D002A9CB6 /* NSData+sms.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FC639E2EE2FB6D002A9CB6 /* NSData+sms.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6FC63A52EE2FDE6002A9CB6 /* GsmCharSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC63A42EE2FDE6002A9CB6 /* GsmCharSet.m */; };
+		A6FC63A62EE2FDE6002A9CB6 /* GsmCharSet.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FC63A32EE2FDE6002A9CB6 /* GsmCharSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6FC63A72EE2FDE6002A9CB6 /* GsmCharSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC63A42EE2FDE6002A9CB6 /* GsmCharSet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -276,6 +285,12 @@
 		A6F694121B4E84600090FC94 /* VERSION */ = {isa = PBXFileReference; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		A6F9FE461EF7FA33007C203A /* ulibsms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ulibsms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F9FE491EF7FA33007C203A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6FC63992EE2FB09002A9CB6 /* NSString+sms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+sms.h"; sourceTree = "<group>"; };
+		A6FC639A2EE2FB09002A9CB6 /* NSString+sms.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+sms.m"; sourceTree = "<group>"; };
+		A6FC639E2EE2FB6D002A9CB6 /* NSData+sms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+sms.h"; sourceTree = "<group>"; };
+		A6FC639F2EE2FB6D002A9CB6 /* NSData+sms.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+sms.m"; sourceTree = "<group>"; };
+		A6FC63A32EE2FDE6002A9CB6 /* GsmCharSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GsmCharSet.h; sourceTree = "<group>"; };
+		A6FC63A42EE2FDE6002A9CB6 /* GsmCharSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GsmCharSet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +384,12 @@
 			children = (
 				A6F9FE491EF7FA33007C203A /* Info.plist */,
 				A641CEA41B42014800854472 /* ulibsms.h */,
+				A6FC63A32EE2FDE6002A9CB6 /* GsmCharSet.h */,
+				A6FC63A42EE2FDE6002A9CB6 /* GsmCharSet.m */,
+				A6FC63992EE2FB09002A9CB6 /* NSString+sms.h */,
+				A6FC639A2EE2FB09002A9CB6 /* NSString+sms.m */,
+				A6FC639E2EE2FB6D002A9CB6 /* NSData+sms.h */,
+				A6FC639F2EE2FB6D002A9CB6 /* NSData+sms.m */,
 				A64612D41D41F12B00211137 /* UMSMS.h */,
 				A64612D51D41F12B00211137 /* UMSMS.m */,
 				A6D10CCF1D4F34EB001D021B /* UMSMS_Address.h */,
@@ -559,6 +580,7 @@
 				A66C149E235933620019C5EA /* UMSATTokenExecutePlugin.h in Headers */,
 				A66C1499235933620019C5EA /* UMSATTokenGoSelected.h in Headers */,
 				A66C1490235933620019C5EA /* UMSATTokenInitVariable.h in Headers */,
+				A6FC63A62EE2FDE6002A9CB6 /* GsmCharSet.h in Headers */,
 				A66C1492235933620019C5EA /* UMSATTokenGetEnvironmentVariable.h in Headers */,
 				A6909AB21F694638000254E8 /* UMGSMCharacterTable.h in Headers */,
 				A66C1485235933620019C5EA /* UMSATTokenCardTemplate.h in Headers */,
@@ -570,11 +592,13 @@
 				A66C149B235933620019C5EA /* UMSATTokenExit.h in Headers */,
 				A66C1483235933620019C5EA /* UMSATTokenTextElementTable.h in Headers */,
 				A66C149A235933620019C5EA /* UMSATTokenSwitchCaseOnVariable.h in Headers */,
+				A6FC639C2EE2FB09002A9CB6 /* NSString+sms.h in Headers */,
 				A66C148A235933620019C5EA /* UMSATTokenParameter.h in Headers */,
 				A6F9FE541EF7FB79007C203A /* UMHLRCache.h in Headers */,
 				A6F9FE571EF7FB79007C203A /* UMGlobalMessageCache.h in Headers */,
 				A6F9FE561EF7FB79007C203A /* UMSMSRetryQueue.h in Headers */,
 				A66C1484235933620019C5EA /* UMSATTokenCardId.h in Headers */,
+				A6FC63A22EE2FB6D002A9CB6 /* NSData+sms.h in Headers */,
 				A66C1498235933620019C5EA /* UMSATTokenGoBack.h in Headers */,
 				A6F9FE581EF7FB79007C203A /* UMGlobalMessageCacheEntry.h in Headers */,
 			);
@@ -678,7 +702,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1620;
-				ORGANIZATIONNAME = "Andreas Fink (andreas@fink.org)";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					A61958952192D76B00BEB8A5 = {
 						CreatedOnToolsVersion = 10.1;
@@ -701,7 +725,7 @@
 				};
 			};
 			buildConfigurationList = A641CE991B42014800854472 /* Build configuration list for PBXProject "ulibsms" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -777,6 +801,9 @@
 				A664D5831F6A616100BD455E /* UMGlobalMessageCacheEntry.m in Sources */,
 				A664D5811F6A60FC00BD455E /* UMSMSRetryQueue.m in Sources */,
 				A664D5841F6A616400BD455E /* UMGSMCharacterTable.m in Sources */,
+				A6FC639D2EE2FB09002A9CB6 /* NSString+sms.m in Sources */,
+				A6FC63A02EE2FB6D002A9CB6 /* NSData+sms.m in Sources */,
+				A6FC63A52EE2FDE6002A9CB6 /* GsmCharSet.m in Sources */,
 				A664D5821F6A615F00BD455E /* UMGlobalMessageCache.m in Sources */,
 				A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */,
 				A664D57F1F6A60F700BD455E /* UMHLRCache.m in Sources */,
@@ -844,12 +871,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6909AB31F694638000254E8 /* UMGSMCharacterTable.m in Sources */,
+				A6FC63A12EE2FB6D002A9CB6 /* NSData+sms.m in Sources */,
 				A6F9FE621EF7FB8E007C203A /* UMGlobalMessageCacheEntry.m in Sources */,
 				A6F9FE5A1EF7FB8E007C203A /* UMSMS_Address.m in Sources */,
 				A6F9FE5D1EF7FB8E007C203A /* UMSMSInProgressQueue.m in Sources */,
 				A6F9FE5B1EF7FB8E007C203A /* UMLayerSMS.m in Sources */,
 				A6F9FE611EF7FB8E007C203A /* UMGlobalMessageCache.m in Sources */,
 				A6F9FE591EF7FB8E007C203A /* UMSMS.m in Sources */,
+				A6FC63A72EE2FDE6002A9CB6 /* GsmCharSet.m in Sources */,
+				A6FC639B2EE2FB09002A9CB6 /* NSString+sms.m in Sources */,
 				A6F9FE601EF7FB8E007C203A /* UMSMSRetryQueue.m in Sources */,
 				A6F9FE5C1EF7FB8E007C203A /* UMSMSWaitingQueue.m in Sources */,
 				A6416E6F28FAC789001E7AF6 /* UMMultipartRegistry.m in Sources */,
@@ -885,7 +915,7 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-sms";
@@ -916,7 +946,7 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-sms";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -928,6 +958,7 @@
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -955,11 +986,14 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2.0.0;
+				CURRENT_PROJECT_VERSION = 2.1.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				DSTROOT = "/Library/Application Support/";
+				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
+				DYLIB_CURRENT_VERSION = 2.1.1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -980,11 +1014,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /FinkTelecomServices/frameworks;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 2.1.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -997,6 +1032,7 @@
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1024,11 +1060,14 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2.0.0;
+				CURRENT_PROJECT_VERSION = 2.1.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				DSTROOT = "/Library/Application Support/";
+				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
+				DYLIB_CURRENT_VERSION = 2.1.1;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1042,11 +1081,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /FinkTelecomServices/frameworks;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 2.1.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1115,6 +1155,7 @@
 		A6521E0E2334E5A0004C8C1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AUTOMATION_APPLE_EVENTS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1127,7 +1168,13 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -1135,17 +1182,24 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-gsm7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 			};
 			name = Debug;
 		};
 		A6521E0F2334E5A0004C8C1F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AUTOMATION_APPLE_EVENTS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1158,7 +1212,13 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -1166,16 +1226,23 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-gsm7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 			};
 			name = Release;
 		};
 		A6981AB2233B2B7800D666D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AUTOMATION_APPLE_EVENTS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1188,7 +1255,13 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -1196,17 +1269,24 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-st";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 			};
 			name = Debug;
 		};
 		A6981AB3233B2B7800D666D4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AUTOMATION_APPLE_EVENTS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1219,7 +1299,13 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -1227,10 +1313,16 @@
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.fink.decode-st";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 			};
 			name = Release;
 		};
@@ -1250,8 +1342,6 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
 				DSTROOT = "/Library/Application Support";
-				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.0.0;
 				DYLIB_INSTALL_NAME_BASE = "$(DSTROOT)/$(INSTALL_PATH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1266,21 +1356,16 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ulibsms/Info.plist;
 				INSTALL_PATH = FinkTelecomServices/frameworks;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fink-telecom.--PRODUCT-NAME-rfc1034identifier-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fink-telecom.ulibsms";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
-				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
-				TVOS_DEPLOYMENT_TARGET = 18.0;
 			};
 			name = Debug;
 		};
@@ -1300,8 +1385,6 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DEVELOPMENT_TEAM = 38L827M334;
 				DSTROOT = "/Library/Application Support";
-				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.0.0;
 				DYLIB_INSTALL_NAME_BASE = "$(DSTROOT)/$(INSTALL_PATH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1316,21 +1399,16 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ulibsms/Info.plist;
 				INSTALL_PATH = FinkTelecomServices/frameworks;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fink-telecom.--PRODUCT-NAME-rfc1034identifier-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fink-telecom.ulibsms";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
-				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
-				TVOS_DEPLOYMENT_TARGET = 18.0;
 			};
 			name = Release;
 		};

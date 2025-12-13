@@ -18,7 +18,7 @@ int main(int argc, const char * argv[])
             NSString *s = @(argv[idx]);
             NSData *d = [s unhexedData];
 
-            NSString *result = [d stringFromGsm7withNibbleLengthPrefix];
+            NSString *result = [d smsStringFromGsm7withNibbleLengthPrefix];
             NSLog(@"Result: %@",result);
         }
     }

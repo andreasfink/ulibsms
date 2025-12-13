@@ -12,6 +12,8 @@
 #import <iconv.h>
 #import <ulibsms/UMSMS.h>
 #import <ulibsms/UMSMS_Address.h>
+#import <ulibsms/NSData+sms.h>
+#import <ulibsms/NSString+sms.h>
 
 static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos, const char *file, long line)
 {
@@ -322,7 +324,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     if(ton == 5) /* alphanumeric */
     {
         tmp = [NSData dataWithBytes:&bytes[*p-1] length:len2+1];
-        tpa.address = [tmp stringFromGsm7withNibbleLengthPrefix];
+        tpa.address = [tmp smsStringFromGsm7withNibbleLengthPrefix];
         if(tpa.address.length==8)
         {
             if([tpa.address hasSuffix:@"@"])
@@ -655,7 +657,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
 
 - (void)setText:(NSString *)text
 {
-    _t_content = [text gsm8];
+    _t_content = [text smsGsm8];
  }
 
 
@@ -684,7 +686,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
     switch(_tp_dcs)
     {
         case 0:
-            t = [_t_ud stringFromGsm8];
+            t = [_t_ud smsStringFromGsm8];
             break;
         case 0x08:
             t = [self textFromUCS2];
@@ -701,7 +703,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
             {
                 case DC_7BIT:
                 case DC_8BIT:
-                    t= [_t_ud stringFromGsm8];
+                    t= [_t_ud smsStringFromGsm8];
                     break;
                 case DC_UCS2:
                     t = [self textFromUCS2];
@@ -1344,7 +1346,7 @@ static inline uint8_t grab(const uint8_t *bytes ,NSUInteger len, NSUInteger *pos
         }
         if(web_text.length > 0)
         {
-            _t_content = [web_text gsm8];
+            _t_content = [web_text smsGsm8];
         }
         if(web_binary.length > 0)
         {
