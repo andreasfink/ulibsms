@@ -2468,8 +2468,7 @@ then
 fi
 
 
-DEPENDENT_PKGCONFIGS="ulibgsmmap"
-LIBS=-liconv
+DEPENDENT_PKGCONFIGS="ulibgsmmap libiconv"
 
 
 

@@ -71,8 +71,7 @@ dnl -----------------------------------------
 dnl setting up dependencies
 dnl -----------------------------------------
 
-DEPENDENT_PKGCONFIGS="ulibgsmmap"
-LIBS=-liconv
+DEPENDENT_PKGCONFIGS="ulibgsmmap libiconv"
 
 dnl -----------------------------------------
 dnl main work
