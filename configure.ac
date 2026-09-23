@@ -71,8 +71,7 @@ dnl -----------------------------------------
 dnl setting up dependencies
 dnl -----------------------------------------
 
-DEPENDENT_PKGCONFIGS="ulibgsmmap"
-LIBS=-liconv
+DEPENDENT_PKGCONFIGS="ulibgsmmap libiconv"
 
 dnl -----------------------------------------
 dnl main work
@@ -91,7 +90,12 @@ case "$host" in
   	then
 		SDK=/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk
 	fi
-	if [[ -d "${SDK}" ]]
+	
+   	CFLAGS="${CFLAGS} `pkg-config  --cflags ${DEPENDENT_PKGCONFIGS}`"
+	LDFLAGS="${LDFLAGS} `pkg-config --libs ${DEPENDENT_PKGCONFIGS}`"
+    UR="`uname -r | cut -f1 -d.`"
+    DONE=0
+    if [[ -d "${SDK}" ]]
     then
 		CFLAGS="--sysroot ${SDK} ${CFLAGS}"
 		LDFLAGS="${LDFLAGS} -L ${SDK}/usr/lib"
@@ -104,10 +108,6 @@ case "$host" in
 	then
 		MACOSX_DEPLOYMENT_TARGET=12.4
 	fi
-   	CFLAGS="${CFLAGS} `pkg-config  --cflags ${DEPENDENT_PKGCONFIGS}`"
-	LDFLAGS="${LDFLAGS} `pkg-config --libs ${DEPENDENT_PKGCONFIGS}`"
-    UR="`uname -r | cut -f1 -d.`"
-    DONE=0
 	if [[ -d "${SDK}" ]]
     then
 		CFLAGS="${CFLAGS} --sysroot ${SDK} ${CFLAGS}"
