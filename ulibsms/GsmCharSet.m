@@ -6,7 +6,7 @@
 //  Copyright 2008-2014 Andreas Fink, Paradieshofstrasse 101, 4054 Basel, Switzerland
 //
 
-#import <ulib/framework.h>
+#import <ulibgsmmap/ulibgsmmap.h>
 #import "GsmCharSet.h"
 
 typedef enum GSM_CBSDataCodingScheme

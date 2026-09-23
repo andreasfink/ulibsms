@@ -6,7 +6,7 @@
 //  Copyright © 2022 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import <ulib/ulib.h>
+#import <ulibgsmmap/ulibgsmmap.h>
 @class UMSMS;
 
 @interface UMMultipartRegistry : UMObject

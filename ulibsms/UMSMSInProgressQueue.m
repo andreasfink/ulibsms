@@ -9,7 +9,7 @@
 // the author.
 //
 
-#import <ulib/ulib.h>
+#import <ulibgsmmap/ulibgsmmap.h>
 #import <ulibsms/UMSMSInProgressQueue.h>
 #import <ulibsms/UMGlobalMessageCache.h>
 

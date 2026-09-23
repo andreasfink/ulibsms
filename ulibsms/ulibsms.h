@@ -8,7 +8,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 //
-#import <ulibasn1/ulibasn1.h>
+#import <ulibgsmmap/ulibgsmmap.h>
 #import <ulibsms/NSString+sms.h>
 #import <ulibsms/NSData+sms.h>
 #import <ulibsms/UMLayerSMS.h>

@@ -5,7 +5,7 @@
 //  Created by Andreas Fink on 05.12.2025.
 //
 
-#import <ulib/ulib.h>
+#import <ulibgsmmap/ulibgsmmap.h>
 
 @interface NSData(sms)
 -(NSString *)smsStringFromGsm7withNibbleLengthPrefix;

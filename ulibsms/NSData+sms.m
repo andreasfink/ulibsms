@@ -5,8 +5,8 @@
 //  Created by Andreas Fink on 05.12.2025.
 //
 
-#import "NSData+sms.h"
-#import "GsmCharSet.h"
+#import <ulibsms/NSData+sms.h>
+#import <ulibsms/GsmCharSet.h>
 
 @implementation NSData(sms)
 

@@ -5,9 +5,9 @@
 //  Created by Andreas Fink on 05.12.2025.
 //
 
-#import "NSString+sms.h"
-#import "GsmCharSet.h"
-#import "NSData+sms.h"
+#import <ulibsms/NSString+sms.h>
+#import <ulibsms/GsmCharSet.h>
+#import <ulibsms/NSData+sms.h>
 
 @implementation NSString(sms)
 

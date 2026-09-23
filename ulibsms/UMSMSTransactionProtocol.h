@@ -8,7 +8,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 //
-#import <ulib/ulib.h>
+#import <ulibgsmmap/ulibgsmmap.h>
 
 @protocol UMSMSTransactionProtocol<NSObject>
 

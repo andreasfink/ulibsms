@@ -6,7 +6,7 @@
 //  Copyright © 2019 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import <ulib/ulib.h>
+#import <ulibgsmmap/ulibgsmmap.h>
 #import "UMSATCommands.h"
 #import "UMSATToken.h"
 

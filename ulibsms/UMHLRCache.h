@@ -10,7 +10,7 @@
 //
 
 
-#import <ulib/ulib.h>
+#import <ulibgsmmap/ulibgsmmap.h>
 @class UMHLRCacheEntry;
 
 @interface UMHLRCache : UMObject

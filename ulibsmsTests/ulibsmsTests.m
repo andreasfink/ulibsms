@@ -9,12 +9,7 @@
 // the author.
 //
 
-<<<<<<< HEAD
-#import <ulib/ulib.h>
-#import <XCTest/XCTest.h>
-=======
->>>>>>> release-2.1
-#import <ulib/ulib.h>
+#import <ulibgsmmap/ulibgsmmap.h>
 #import <XCTest/XCTest.h>
 #import <ulibsms/UMSMS.h>
 

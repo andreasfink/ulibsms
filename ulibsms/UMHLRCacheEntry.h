@@ -9,7 +9,7 @@
 // the author.
 //
 
-#import <ulib/ulib.h>
+#import <ulibgsmmap/ulibgsmmap.h>
 
 @interface UMHLRCacheEntry : UMObject
 {
