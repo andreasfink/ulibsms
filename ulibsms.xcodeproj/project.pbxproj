@@ -12,7 +12,15 @@
 		A6416E6E28FAC789001E7AF6 /* UMMultipartRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = A6416E6C28FAC789001E7AF6 /* UMMultipartRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6416E6F28FAC789001E7AF6 /* UMMultipartRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6416E6D28FAC789001E7AF6 /* UMMultipartRegistry.m */; };
 		A641CEB21B42014800854472 /* ulibsmsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CEB11B42014800854472 /* ulibsmsTests.m */; };
-		A6521E0A2334E5A0004C8C1F /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D022BB68DB0019806C /* ulib.framework */; };
+		A643D7FA306502B500F9798D /* libulibgsmmap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7F9306502B500F9798D /* libulibgsmmap.a */; };
+		A643D7FB306502B500F9798D /* libulibgsmmap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7F9306502B500F9798D /* libulibgsmmap.a */; };
+		A643D7FD306502C200F9798D /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7FC306502C200F9798D /* libiconv.2.dylib */; };
+		A643D7FE306502C200F9798D /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7FC306502C200F9798D /* libiconv.2.dylib */; };
+		A643D8003065031C00F9798D /* libulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7FF3065031B00F9798D /* libulib.a */; };
+		A643D8013065031C00F9798D /* libulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7FF3065031B00F9798D /* libulib.a */; };
+		A643D8023065031C00F9798D /* libulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7FF3065031B00F9798D /* libulib.a */; };
+		A643D8033065031C00F9798D /* libulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7FF3065031B00F9798D /* libulib.a */; };
+		A643D8043065031C00F9798D /* libulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7FF3065031B00F9798D /* libulib.a */; };
 		A6521E0B2334E5A0004C8C1F /* ulibsms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F9FE461EF7FA33007C203A /* ulibsms.framework */; };
 		A65C7C0D23460A110013DDC3 /* UMSATCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = A65C7C0C23460A110013DDC3 /* UMSATCommands.m */; };
 		A6645193234CE5CB006A2FA2 /* UMSATToken.m in Sources */ = {isa = PBXBuildFile; fileRef = A6645192234CE5CB006A2FA2 /* UMSATToken.m */; };
@@ -27,7 +35,6 @@
 		A664D5821F6A615F00BD455E /* UMGlobalMessageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C789461B4A885E0090FC94 /* UMGlobalMessageCache.m */; };
 		A664D5831F6A616100BD455E /* UMGlobalMessageCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7894A1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.m */; };
 		A664D5841F6A616400BD455E /* UMGSMCharacterTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A6909AB11F694638000254E8 /* UMGSMCharacterTable.m */; };
-		A664D58D1F6A61BB00BD455E /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */; };
 		A66C142223592D9A0019C5EA /* UMSATTokenDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C142123592D9A0019C5EA /* UMSATTokenDeck.m */; };
 		A66C142523592DA70019C5EA /* UMSATTokenCard.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C142423592DA70019C5EA /* UMSATTokenCard.m */; };
 		A66C14282359322D0019C5EA /* UMSATTokenDeckId.m in Sources */ = {isa = PBXBuildFile; fileRef = A66C14272359322D0019C5EA /* UMSATTokenDeckId.m */; };
@@ -93,15 +100,11 @@
 		A66C149E235933620019C5EA /* UMSATTokenExecutePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C147D235933220019C5EA /* UMSATTokenExecutePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A66C149F235933620019C5EA /* UMSATTokenDeck.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C142023592D9A0019C5EA /* UMSATTokenDeck.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A66C14A0235933620019C5EA /* UMSATTokenCard.h in Headers */ = {isa = PBXBuildFile; fileRef = A66C142323592DA70019C5EA /* UMSATTokenCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A67989D122BB68DB0019806C /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D022BB68DB0019806C /* ulib.framework */; };
-		A67989D222BB68DB0019806C /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D022BB68DB0019806C /* ulib.framework */; };
-		A67989D322BB68DB0019806C /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D022BB68DB0019806C /* ulib.framework */; };
 		A689DD4F28E1F60200CCFF18 /* UMMultipartSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = A689DD4D28E1F60200CCFF18 /* UMMultipartSMS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A689DD5028E1F60200CCFF18 /* UMMultipartSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A689DD4E28E1F60200CCFF18 /* UMMultipartSMS.m */; };
 		A6909AAE1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = A6909AAC1F69432A000254E8 /* UMGSMNationalLanguageIdentifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6909AB21F694638000254E8 /* UMGSMCharacterTable.h in Headers */ = {isa = PBXBuildFile; fileRef = A6909AB01F694638000254E8 /* UMGSMCharacterTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6909AB31F694638000254E8 /* UMGSMCharacterTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A6909AB11F694638000254E8 /* UMGSMCharacterTable.m */; };
-		A6981AAE233B2B7800D666D4 /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989D022BB68DB0019806C /* ulib.framework */; };
 		A6981AB8233B2B9C00D666D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6981AB7233B2B9C00D666D4 /* main.m */; };
 		A6981AB9233B307900D666D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6521E132334E5C7004C8C1F /* main.m */; };
 		A6E592F62931171500F4718F /* ulibsms.h in Headers */ = {isa = PBXBuildFile; fileRef = A641CEA41B42014800854472 /* ulibsms.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -126,7 +129,6 @@
 		A6F9FE601EF7FB8E007C203A /* UMSMSRetryQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A682DB5B1B455ADF0090FC94 /* UMSMSRetryQueue.m */; };
 		A6F9FE611EF7FB8E007C203A /* UMGlobalMessageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C789461B4A885E0090FC94 /* UMGlobalMessageCache.m */; };
 		A6F9FE621EF7FB8E007C203A /* UMGlobalMessageCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7894A1B4A886C0090FC94 /* UMGlobalMessageCacheEntry.m */; };
-		A6F9FE6B1EF7FC39007C203A /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */; };
 		A6FC639B2EE2FB09002A9CB6 /* NSString+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC639A2EE2FB09002A9CB6 /* NSString+sms.m */; };
 		A6FC639C2EE2FB09002A9CB6 /* NSString+sms.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FC63992EE2FB09002A9CB6 /* NSString+sms.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6FC639D2EE2FB09002A9CB6 /* NSString+sms.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FC639A2EE2FB09002A9CB6 /* NSString+sms.m */; };
@@ -178,6 +180,9 @@
 		A641CEAA1B42014800854472 /* ulibsmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ulibsmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A641CEB01B42014800854472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A641CEB11B42014800854472 /* ulibsmsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ulibsmsTests.m; sourceTree = "<group>"; };
+		A643D7F9306502B500F9798D /* libulibgsmmap.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libulibgsmmap.a; path = /usr/local/lib/libulibgsmmap.a; sourceTree = "<absolute>"; };
+		A643D7FC306502C200F9798D /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = /usr/local/lib/libiconv.2.dylib; sourceTree = "<absolute>"; };
+		A643D7FF3065031B00F9798D /* libulib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libulib.a; path = /usr/local/lib/libulib.a; sourceTree = "<absolute>"; };
 		A64612D41D41F12B00211137 /* UMSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSMS.h; sourceTree = "<group>"; };
 		A64612D51D41F12B00211137 /* UMSMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMSMS.m; sourceTree = "<group>"; };
 		A6521E102334E5A0004C8C1F /* decode-gsm7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "decode-gsm7"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,7 +255,6 @@
 		A66C147B235933190019C5EA /* UMSATTokenExecuteSTKCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenExecuteSTKCommand.m; sourceTree = "<group>"; };
 		A66C147D235933220019C5EA /* UMSATTokenExecutePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSATTokenExecutePlugin.h; sourceTree = "<group>"; };
 		A66C147E235933220019C5EA /* UMSATTokenExecutePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSATTokenExecutePlugin.m; sourceTree = "<group>"; };
-		A67989D022BB68DB0019806C /* ulib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulib.framework; path = "/Library/Application Support/FinkTelecomServices/frameworks/ulib.framework"; sourceTree = "<absolute>"; };
 		A682DB5A1B455ADF0090FC94 /* UMSMSRetryQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSMSRetryQueue.h; sourceTree = "<group>"; };
 		A682DB5B1B455ADF0090FC94 /* UMSMSRetryQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMSMSRetryQueue.m; sourceTree = "<group>"; };
 		A682DB601B4566A50090FC94 /* UMSMSTransactionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSMSTransactionProtocol.h; sourceTree = "<group>"; };
@@ -275,7 +279,6 @@
 		A6D10CD01D4F34EB001D021B /* UMSMS_Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMSMS_Address.m; sourceTree = "<group>"; };
 		A6D2B7BA1B453E490090FC94 /* UMSMSInProgressQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMSMSInProgressQueue.h; sourceTree = "<group>"; };
 		A6D2B7BB1B453E490090FC94 /* UMSMSInProgressQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMSMSInProgressQueue.m; sourceTree = "<group>"; };
-		A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = /usr/lib/libiconv.2.dylib; sourceTree = "<absolute>"; };
 		A6ED5C391B434FAD00854472 /* UMLayerSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMLayerSMS.h; sourceTree = "<group>"; };
 		A6ED5C3A1B434FAD00854472 /* UMLayerSMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMLayerSMS.m; sourceTree = "<group>"; };
 		A6F694111B4E84600090FC94 /* ulibsms.pc.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = ulibsms.pc.in; sourceTree = "<group>"; };
@@ -295,8 +298,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A67989D322BB68DB0019806C /* ulib.framework in Frameworks */,
 				A619589F2192D78300BEB8A5 /* ulibsms.framework in Frameworks */,
+				A643D8013065031C00F9798D /* libulib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,8 +307,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A664D58D1F6A61BB00BD455E /* libiconv.2.dylib in Frameworks */,
-				A67989D222BB68DB0019806C /* ulib.framework in Frameworks */,
+				A643D7FA306502B500F9798D /* libulibgsmmap.a in Frameworks */,
+				A643D7FD306502C200F9798D /* libiconv.2.dylib in Frameworks */,
+				A643D8043065031C00F9798D /* libulib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,8 +317,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6521E0A2334E5A0004C8C1F /* ulib.framework in Frameworks */,
 				A6521E0B2334E5A0004C8C1F /* ulibsms.framework in Frameworks */,
+				A643D8033065031C00F9798D /* libulib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6981AAE233B2B7800D666D4 /* ulib.framework in Frameworks */,
+				A643D8023065031C00F9798D /* libulib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,8 +334,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6F9FE6B1EF7FC39007C203A /* libiconv.2.dylib in Frameworks */,
-				A67989D122BB68DB0019806C /* ulib.framework in Frameworks */,
+				A643D7FB306502B500F9798D /* libulibgsmmap.a in Frameworks */,
+				A643D7FE306502C200F9798D /* libiconv.2.dylib in Frameworks */,
+				A643D8003065031C00F9798D /* libulib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,8 +534,9 @@
 		A6ED5C8E1B435C4500854472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A6DC79991DE65D17003BBA67 /* libiconv.2.dylib */,
-				A67989D022BB68DB0019806C /* ulib.framework */,
+				A643D7FF3065031B00F9798D /* libulib.a */,
+				A643D7F9306502B500F9798D /* libulibgsmmap.a */,
+				A643D7FC306502C200F9798D /* libiconv.2.dylib */,
 			);
 			name = Frameworks;
 			path = /Library/Frameworks;
@@ -695,7 +701,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 2700;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					A61958952192D76B00BEB8A5 = {
@@ -1015,6 +1021,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
@@ -1086,6 +1093,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
