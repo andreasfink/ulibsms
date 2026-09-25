@@ -23,6 +23,7 @@
 #import <ulibsms/UMSMS.h>
 #import <ulibsms/UMMultipartSMS.h>
 
+#if 0
 #import <ulibsms/UMSATTokenSecureMessage.h>
 #import <ulibsms/UMSATTokenCardTemplate.h>
 #import <ulibsms/UMSATTokenDecrypt.h>
@@ -58,4 +59,7 @@
 #import <ulibsms/UMSATTokenDeckId.h>
 #import <ulibsms/UMSATTokenConcatenate.h>
 #import <ulibsms/UMSATTokenTextElementTable.h>
+#endif
+
 #import <ulibsms/UMGSMCharacterTable.h>
+
